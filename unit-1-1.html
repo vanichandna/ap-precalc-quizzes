@@ -72,4 +72,98 @@ const quizData = [
   },
   {
     section: "Section B: Moderate (Rates of Rates & Concavity)",
-    q: `4. Use the table below to determine the concavity of the function
+    q: `4. Use the table below to determine the concavity of the function k(x):
+        <table><tr><th>x</th><td>1</td><td>3</td><td>5</td><td>7</td></tr><tr><th>k(x)</th><td>5</td><td>9</td><td>17</td><td>33</td></tr></table>`,
+    opts: { A: "Concave up because the average rates of change are increasing.", B: "Concave down because the average rates of change are decreasing.", C: "Linear because the change in x is constant.", D: "Concave up because the function values are positive." },
+    ans: "A",
+    sol: "Calculate the successive average rates of change over the intervals of length 2. [1, 3]: (9-5)/2 = 2. [3, 5]: (17-9)/2 = 4. [5, 7]: (33-17)/2 = 8. The rates of change are 2, 4, 8. Because the rate of change is increasing as x increases, the function is concave up."
+  },
+
+  // SECTION C: HARD
+  {
+    section: "Section C: Hard (Contextual Applications & Proportionality)",
+    q: "5. The variables x and y change in tandem such that for every increase of 2 in the value of x, the value of y is multiplied by 3. If y = 4 when x = 0, what is the value of y when x = 6?",
+    opts: { A: "36", B: "108", C: "256", D: "324" },
+    ans: "B",
+    sol: "The x-values increase from 0 to 6 in steps of 2: 0 &rarr; 2 &rarr; 4 &rarr; 6. This is three steps. Since y is multiplied by 3 for each step, we multiply the initial y-value by 3, three times. y = 4 * 3 * 3 * 3 = 4 * 27 = 108."
+  },
+  {
+    section: "Section C: Hard (Contextual Applications & Proportionality)",
+    q: "6. A spherical balloon is being inflated such that its volume V increases at a constant rate with respect to time t. How does the radius r of the balloon change in tandem with time t?",
+    opts: { A: "The radius increases at a constant rate.", B: "The radius increases at an increasing rate.", C: "The radius increases at a decreasing rate.", D: "The radius decreases at a decreasing rate." },
+    ans: "C",
+    sol: "As the balloon gets larger, it requires more and more volume to add just a tiny bit of length to the radius (since Volume is proportional to the cube of the radius). Because the volume is entering at a *constant* speed, the balloon will visibly expand very quickly at first, but the outward growth of the radius will slow down as it gets bigger. Therefore, the radius increases at a decreasing rate (concave down)."
+  }
+];
+
+const container = document.getElementById('quiz-container');
+let currentSection = "";
+
+quizData.forEach((item, index) => {
+  if (item.section !== currentSection) {
+    container.innerHTML += `<div class="section-title">${item.section}</div>`;
+    currentSection = item.section;
+  }
+  let optionsHtml = '';
+  for (const [key, value] of Object.entries(item.opts)) {
+    optionsHtml += `<label id="label-${index}-${key}"><input type="radio" name="q${index}" value="${key}"> <strong>${key})</strong> ${value}</label>`;
+  }
+  container.innerHTML += `
+    <div class="question-block" id="block-${index}">
+      <div class="question-text">${item.q}</div>
+      <div class="options">${optionsHtml}</div>
+      <div class="solution-box" id="solution-${index}">
+        <strong>Incorrect.</strong> <br><br>
+        <strong>Correct Answer:</strong> ${item.ans}) ${item.opts[item.ans]} <br><br>
+        <strong>Detailed Solution:</strong> ${item.sol}
+      </div>
+    </div>
+  `;
+});
+
+function gradeQuiz() {
+  let score = 0;
+  let allAnswered = true;
+  quizData.forEach((item, index) => {
+    const selected = document.querySelector(`input[name="q${index}"]:checked`);
+    if (!selected) allAnswered = false;
+  });
+  if (!allAnswered) return alert("Please select an answer for every question before submitting.");
+  
+  quizData.forEach((item, index) => {
+    const selected = document.querySelector(`input[name="q${index}"]:checked`).value;
+    const solutionBox = document.getElementById(`solution-${index}`);
+    for (const key of Object.keys(item.opts)) {
+      document.getElementById(`label-${index}-${key}`).classList.remove('correct-highlight', 'incorrect-highlight');
+    }
+    if (selected === item.ans) {
+      score++;
+      document.getElementById(`label-${index}-${selected}`).classList.add('correct-highlight');
+      solutionBox.style.display = "none"; 
+    } else {
+      document.getElementById(`label-${index}-${selected}`).classList.add('incorrect-highlight');
+      document.getElementById(`label-${index}-${item.ans}`).classList.add('correct-highlight');
+      solutionBox.style.display = "block"; 
+    }
+  });
+
+  const scoreDiv = document.getElementById('score-display');
+  scoreDiv.style.display = "block";
+  scoreDiv.innerHTML = `You scored ${score} out of ${quizData.length}!`;
+  if (score === quizData.length) {
+    scoreDiv.style.backgroundColor = "#d4edda";
+    scoreDiv.style.color = "#155724";
+  } else {
+    scoreDiv.style.backgroundColor = "#f8d7da";
+    scoreDiv.style.color = "#721c24";
+    scoreDiv.innerHTML += "<br><span style='font-size:16px; font-weight: normal; margin-top: 10px; display: inline-block;'>Review the solutions above.</span>";
+  }
+  const submitBtn = document.getElementById('submit-btn');
+  submitBtn.innerText = "Retake Quiz";
+  submitBtn.style.backgroundColor = "#2c3e50";
+  submitBtn.onclick = () => location.reload();
+}
+</script>
+
+</body>
+</html>
