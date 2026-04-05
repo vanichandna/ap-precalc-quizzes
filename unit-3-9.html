@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AP Precalculus Unit 3.9: Inverse Trigonometric Functions</title>
+<style>
+  body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px; background-color: #f4f7f6; color: #333; }
+  .container { max-width: 850px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+  h1 { text-align: center; color: #2c3e50; font-size: 28px;}
+  p.subtitle { text-align:center; margin-bottom: 30px; color: #555; }
+  .section-title { background-color: #2c3e50; color: white; padding: 10px 15px; border-radius: 5px; margin-top: 30px; margin-bottom: 15px; font-size: 20px; }
+  .question-block { margin-bottom: 25px; padding: 20px; border-left: 5px solid #3498db; background-color: #fdfdfd; border-radius: 0 8px 8px 0; }
+  .question-text { font-weight: bold; font-size: 16px; margin-bottom: 15px; line-height: 1.5;}
+  .options label { display: block; margin: 10px 0; cursor: pointer; padding: 10px; border-radius: 4px; transition: background 0.2s; border: 1px solid transparent;}
+  .options label:hover { background-color: #eef2f5; border: 1px solid #dcdcdc; }
+  button { display: block; width: 100%; padding: 15px; font-size: 18px; color: white; background-color: #3498db; border: none; border-radius: 5px; cursor: pointer; margin-top: 30px; font-weight: bold; transition: 0.3s;}
+  button:hover { background-color: #2980b9; }
+  #score-display { margin-top: 25px; font-weight: bold; font-size: 20px; text-align: center; padding: 15px; border-radius: 5px; display: none; }
+  .solution-box { margin-top: 15px; padding: 15px; background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; border-radius: 5px; display: none; font-size: 15px; line-height: 1.5;}
+  .solution-box strong { color: #d32f2f; }
+  .correct-highlight { background-color: #d4edda !important; border: 1px solid #c3e6cb !important; font-weight: bold; }
+  .incorrect-highlight { background-color: #f8d7da !important; border: 1px solid #f5c6cb !important; color: #721c24; text-decoration: line-through;}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Unit 3.9: Inverse Trigonometric Functions</h1>
+  <p class="subtitle">Complete the quiz below. Detailed solutions will appear for any missed questions.</p>
+  
+  <div id="quiz-container"></div>
+
+  <button type="button" id="submit-btn" onclick="gradeQuiz()">Submit & Grade Quiz</button>
+  <div id="score-display"></div>
+</div>
+
+<script>
+// Quiz Data Array with Sections
+const quizData = [
+  // SECTION A: EASY
+  {
+    section: "Section A: Easy (Fundamentals & Principal Values)",
+    q: "1. What is the range of the parent function f(x) = arcsin(x)?",
+    opts: { A: "[0, &pi;]", B: "[&minus;&pi;/2, &pi;/2]", C: "(&minus;&infin;, &infin;)", D: "[&minus;1, 1]" },
+    ans: "B",
+    sol: "The sine function fails the horizontal line test, so to create an inverse function, its domain is restricted. By convention, the restricted domain for sin(x) is [&minus;&pi;/2, &pi;/2]. Therefore, the range of the inverse sine function (arcsin) is [&minus;&pi;/2, &pi;/2]."
+  },
+  {
+    section: "Section A: Easy (Fundamentals & Principal Values)",
+    q: "2. Evaluate exactly: arctan(&minus;1).",
+    opts: { A: "3&pi;/4", B: "&pi;/4", C: "&minus;&pi;/4", D: "5&pi;/4" },
+    ans: "C",
+    sol: "We are looking for an angle &theta; in the range of arctan, which is (&minus;&pi;/2, &pi;/2), where tan(&theta;) = &minus;1. The tangent function is negative in Quadrant IV. The angle in that restricted range with a tangent of &minus;1 is &minus;&pi;/4."
+  },
+  {
+    section: "Section A: Easy (Fundamentals & Principal Values)",
+    q: "3. What is the domain of the function g(x) = arccos(x)?",
+    opts: { A: "[&minus;1, 1]", B: "(&minus;&infin;, &infin;)", C: "[0, &pi;]", D: "[&minus;&pi;/2, &pi;/2]" },
+    ans: "A",
+    sol: "The domain of an inverse function is the range of the original function. The range of the parent cosine function is [&minus;1, 1]. Therefore, you can only input values between &minus;1 and 1 into the arccos function."
+  },
+
+  // SECTION B: MODERATE
+  {
+    section: "Section B: Moderate (Compositions & Restrictions)",
+    q: "4. Evaluate exactly: arcsin(sin(4&pi;/3)).",
+    opts: { A: "4&pi;/3", B: "&pi;/3", C: "&minus;&pi;/3", D: "&minus;4&pi;/3" },
+    ans: "C",
+    sol: "First, evaluate the inner function: sin(4&pi;/3) = &minus;&radic;3/2. Now evaluate the outer function: arcsin(&minus;&radic;3/2). We need an angle in the restricted range [&minus;&pi;/2, &pi;/2] whose sine is &minus;&radic;3/2. That angle is in Quadrant IV, which is &minus;&pi;/3. Notice the answer is NOT 4&pi;/3 because 4&pi;/3 is outside the restricted range of arcsin."
+  },
+  {
+    section: "Section B: Moderate (Compositions & Restrictions)",
+    q: "5. Evaluate exactly: cos(arccos(2)).",
+    opts: { A: "2", B: "0", C: "&pi;", D: "Undefined" },
+    ans: "D",
+    sol: "Look at the inner function: arccos(2). The domain of arccos(x) is [&minus;1, 1]. Since 2 is outside this domain, arccos(2) is undefined. Therefore, the entire expression is undefined."
+  },
+  {
+    section: "Section B: Moderate (Compositions & Restrictions)",
+    q: "6. What is the range of the function y = 3 arcsin(x) + &pi;?",
+    opts: { A: "[&minus;&pi;/2, &pi;/2]", B: "[&pi;/2, 5&pi;/2]", C: "[&minus;&pi;/2, 5&pi;/2]", D: "[&pi;/2, 3&pi;/2]" },
+    ans: "C",
+    sol: "Start with the parent range of arcsin(x), which is [&minus;&pi;/2, &pi;/2]. Apply the transformations to the y-values. First, multiply by 3 to get [&minus;3&pi;/2, 3&pi;/2]. Then, add &pi; (which is 2&pi;/2) to both bounds: &minus;3&pi;/2 + 2&pi;/2 = &minus;&pi;/2, and 3&pi;/2 + 2&pi;/2 = 5&pi;/2. The new range is [&minus;&pi;/2, 5&pi;/2]."
+  },
+
+  // SECTION C: HARD
+  {
+    section: "Section C: Hard (Right Triangle Trigonometry & Algebra)",
+    q: "7. Evaluate exactly: sin(arccos(4/5)).",
+    opts: { A: "3/5", B: "4/5", C: "3/4", D: "5/3" },
+    ans: "A",
+    sol: "Let &theta; = arccos(4/5). This means cos(&theta;) = 4/5. Draw a right triangle in Quadrant I where the adjacent side is 4 and the hypotenuse is 5. Using the Pythagorean theorem (a&sup2; + 4&sup2; = 5&sup2;), the opposite side is 3. We want sin(&theta;), which is opposite/hypotenuse. Thus, sin(&theta;) = 3/5."
+  },
+  {
+    section: "Section C: Hard (Right Triangle Trigonometry & Algebra)",
+    q: "8. Write an algebraic expression equivalent to tan(arcsin(x/2)) for 0 < x < 2.",
+    opts: { A: "x / &radic;(4&minus;x&sup2;)", B: "&radic;(4&minus;x&sup2;) / x", C: "2 / &radic;(4&minus;x&sup2;)", D: "x / 2" },
+    ans: "A",
+    sol: "Let &theta; = arcsin(x/2). This means sin(&theta;) = x/2. Draw a right triangle where the opposite side is x and the hypotenuse is 2. Use the Pythagorean theorem to find the adjacent side: (adj)&sup2; + x&sup2; = 2&sup2;, so adj = &radic;(4&minus;x&sup2;). The expression asks for tan(&theta;), which is opposite/adjacent. Therefore, the answer is x / &radic;(4&minus;x&sup2;)."
+  },
+  {
+    section: "Section C: Hard (Right Triangle Trigonometry & Algebra)",
+    q: "9. Evaluate exactly: cos(arctan(&minus;12/5)).",
+    opts: { A: "5/13", B: "&minus;5/13", C: "12/13", D: "&minus;12/13" },
+    ans: "A",
+    sol: "Let &theta; = arctan(&minus;12/5). Since the argument is negative, and the range of arctan is (&minus;&pi;/2, &pi;/2), &theta; must be in Quadrant IV. In QIV, cosine is positive. Draw a reference triangle with opposite = &minus;12 and adjacent = 5. The hypotenuse is &radic;(5&sup2; + (&minus;12)&sup2;) = 13. We want cos(&theta;), which is adj/hyp = 5/13."
+  }
+];
+
+const container = document.getElementById('quiz-container');
+let currentSection = "";
+
+// Render the quiz dynamically
+quizData.forEach((item, index) => {
+  // Add section headers when the section changes
+  if (item.section !== currentSection) {
+    container.innerHTML += `<div class="section-title">${item.section}</div>`;
+    currentSection = item.section;
+  }
+
+  let optionsHtml = '';
+  for (const [key, value] of Object.entries(item.opts)) {
+    optionsHtml += `
+      <label id="label-${index}-${key}">
+        <input type="radio" name="q${index}" value="${key}"> 
+        <strong>${key})</strong> ${value}
+      </label>
+    `;
+  }
+
+  container.innerHTML += `
+    <div class="question-block" id="block-${index}">
+      <div class="question-text">${item.q}</div>
+      <div class="options">
+        ${optionsHtml}
+      </div>
+      <div class="solution-box" id="solution-${index}">
+        <strong>Incorrect.</strong> <br><br>
+        <strong>Correct Answer:</strong> ${item.ans}) ${item.opts[item.ans]} <br><br>
+        <strong>Detailed Solution:</strong> ${item.sol}
+      </div>
+    </div>
+  `;
+});
+
+function gradeQuiz() {
+  let score = 0;
+  let allAnswered = true;
+
+  // Verify all questions are answered
+  quizData.forEach((item, index) => {
+    const selected = document.querySelector(`input[name="q${index}"]:checked`);
+    if (!selected) allAnswered = false;
+  });
+
+  if (!allAnswered) {
+    alert("Please select an answer for every question before submitting.");
+    return;
+  }
+
+  // Grade and provide feedback
+  quizData.forEach((item, index) => {
+    const selected = document.querySelector(`input[name="q${index}"]:checked`).value;
+    const solutionBox = document.getElementById(`solution-${index}`);
+    
+    // Reset highlights
+    for (const key of Object.keys(item.opts)) {
+      document.getElementById(`label-${index}-${key}`).classList.remove('correct-highlight', 'incorrect-highlight');
+    }
+
+    // Apply logic for correct/incorrect
+    if (selected === item.ans) {
+      score++;
+      document.getElementById(`label-${index}-${selected}`).classList.add('correct-highlight');
+      solutionBox.style.display = "none"; 
+    } else {
+      document.getElementById(`label-${index}-${selected}`).classList.add('incorrect-highlight');
+      document.getElementById(`label-${index}-${item.ans}`).classList.add('correct-highlight');
+      solutionBox.style.display = "block"; 
+    }
+  });
+
+  // Display final score banner
+  const scoreDiv = document.getElementById('score-display');
+  scoreDiv.style.display = "block";
+  scoreDiv.innerHTML = `You scored ${score} out of ${quizData.length}!`;
+  
+  if (score === quizData.length) {
+    scoreDiv.style.backgroundColor = "#d4edda";
+    scoreDiv.style.color = "#155724";
+  } else {
+    scoreDiv.style.backgroundColor = "#f8d7da";
+    scoreDiv.style.color = "#721c24";
+    scoreDiv.innerHTML += "<br><span style='font-size:16px; font-weight: normal; margin-top: 10px; display: inline-block;'>Review the detailed solutions above for the questions you missed.</span>";
+  }
+  
+  // Change button to Retake
+  const submitBtn = document.getElementById('submit-btn');
+  submitBtn.innerText = "Retake Quiz";
+  submitBtn.style.backgroundColor = "#2c3e50";
+  submitBtn.onclick = () => location.reload();
+}
+</script>
+
+</body>
+</html>
