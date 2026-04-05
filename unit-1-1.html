@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AP Precalculus Unit 1.1: Change in Tandem</title>
+<style>
+  body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px; background-color: #f4f7f6; color: #333; }
+  .container { max-width: 850px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+  h1 { text-align: center; color: #2c3e50; font-size: 28px;}
+  p.subtitle { text-align:center; margin-bottom: 30px; color: #555; }
+  .section-title { background-color: #2c3e50; color: white; padding: 10px 15px; border-radius: 5px; margin-top: 30px; margin-bottom: 15px; font-size: 20px; }
+  .question-block { margin-bottom: 25px; padding: 20px; border-left: 5px solid #3498db; background-color: #fdfdfd; border-radius: 0 8px 8px 0; }
+  .question-text { font-weight: bold; font-size: 16px; margin-bottom: 15px; line-height: 1.5;}
+  .options label { display: block; margin: 10px 0; cursor: pointer; padding: 10px; border-radius: 4px; transition: background 0.2s; border: 1px solid transparent;}
+  .options label:hover { background-color: #eef2f5; border: 1px solid #dcdcdc; }
+  button { display: block; width: 100%; padding: 15px; font-size: 18px; color: white; background-color: #3498db; border: none; border-radius: 5px; cursor: pointer; margin-top: 30px; font-weight: bold; transition: 0.3s;}
+  button:hover { background-color: #2980b9; }
+  #score-display { margin-top: 25px; font-weight: bold; font-size: 20px; text-align: center; padding: 15px; border-radius: 5px; display: none; }
+  .solution-box { margin-top: 15px; padding: 15px; background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; border-radius: 5px; display: none; font-size: 15px; line-height: 1.5;}
+  .solution-box strong { color: #d32f2f; }
+  .correct-highlight { background-color: #d4edda !important; border: 1px solid #c3e6cb !important; font-weight: bold; }
+  .incorrect-highlight { background-color: #f8d7da !important; border: 1px solid #f5c6cb !important; color: #721c24; text-decoration: line-through;}
+  .home-link { display: inline-block; margin-bottom: 20px; text-decoration: none; color: #3498db; font-weight: bold; }
+  .home-link:hover { text-decoration: underline; }
+  table { border-collapse: collapse; margin: 10px 0; width: 50%; text-align: center; }
+  th, td { border: 1px solid #ccc; padding: 8px; }
+  th { background-color: #f2f2f2; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <a href="index.html" class="home-link">&larr; Back to Portal</a>
+  
+  <h1 id="page-title">Unit 1.1: Change in Tandem</h1>
+  <p class="subtitle">Complete the quiz below. Detailed solutions will appear for any missed questions.</p>
+  
+  <div id="quiz-container"></div>
+
+  <button type="button" id="submit-btn" onclick="gradeQuiz()">Submit & Grade Quiz</button>
+  <div id="score-display"></div>
+</div>
+
+<script>
+const quizData = [
+  // SECTION A: EASY
+  {
+    section: "Section A: Easy (Average Rate of Change)",
+    q: "1. A function f(x) passes through the points (1, 4) and (5, 20). What is the average rate of change of f(x) on the interval [1, 5]?",
+    opts: { A: "16", B: "4", C: "5", D: "24" },
+    ans: "B",
+    sol: "The average rate of change is calculated using the formula (y&sub2; - y&sub1;) / (x&sub2; - x&sub1;). Plugging in the points: (20 - 4) / (5 - 1) = 16 / 4 = 4."
+  },
+  {
+    section: "Section A: Easy (Average Rate of Change)",
+    q: `2. Consider the table of values for a continuous function g(x):
+        <table><tr><th>x</th><td>0</td><td>2</td><td>4</td><td>6</td></tr><tr><th>g(x)</th><td>10</td><td>7</td><td>4</td><td>1</td></tr></table>
+        Which of the following describes how g(x) changes in tandem with x?`,
+    opts: { A: "As x increases, g(x) increases at a constant rate.", B: "As x increases, g(x) decreases at a decreasing rate.", C: "As x increases, g(x) decreases at a constant rate.", D: "As x increases, g(x) decreases at an increasing rate." },
+    ans: "C",
+    sol: "Calculate the average rate of change for each interval of x. From x=0 to 2, ROC is (7-10)/2 = -1.5. From x=2 to 4, ROC is (4-7)/2 = -1.5. From x=4 to 6, ROC is (1-4)/2 = -1.5. Because the rate of change is constant and negative, g(x) decreases at a constant rate."
+  },
+
+  // SECTION B: MODERATE
+  {
+    section: "Section B: Moderate (Rates of Rates & Concavity)",
+    q: "3. A function h(x) is strictly increasing on the interval (a, b). If the rate at which h(x) increases is getting smaller as x increases, what must be true about the graph of h(x) on this interval?",
+    opts: { A: "It is concave up.", B: "It is concave down.", C: "It is linear.", D: "It has a vertical asymptote." },
+    ans: "B",
+    sol: "When a function is increasing at a decreasing rate, its slopes are positive but getting less steep over time. Graphically, this creates a curve that bends downwards, which is the definition of being concave down."
+  },
+  {
+    section: "Section B: Moderate (Rates of Rates & Concavity)",
+    q: `4. Use the table below to determine the concavity of the function
