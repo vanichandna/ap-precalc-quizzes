@@ -75,19 +75,41 @@ const quizData = [
         D: "The radius decreases at a decreasing rate." 
     },
     ans: "C",
-    sol: "As the balloon gets larger, it requires more and more volume to add just a tiny bit of length to the radius. Because the volume is entering at a constant speed, the balloon expands outward visibly fast at first, but slows down as it gets bigger. Therefore, the radius increases at a decreasing rate (concave down)."
+    sol: "As the balloon gets larger, it requires significantly more volume to add just a tiny bit of length to the radius. Because the volume is entering at a constant speed, the outward growth of the radius must slow down as the balloon expands. Therefore, the radius increases at a decreasing rate (concave down)."
   },
   {
     q: "2. The variables x and y change in tandem such that for every increase of 2 in the value of x, the value of y is multiplied by 3. If y = 4 when x = 0, what is the value of y when x = 6?",
     opts: { A: "36", B: "108", C: "256", D: "324" },
     ans: "B",
-    sol: "The x-values increase from 0 to 6 in steps of 2: 0 &rarr; 2 &rarr; 4 &rarr; 6. This is three complete steps. Since y is multiplied by 3 for each step, we multiply the initial y-value by 3, three times. y = 4 * 3 * 3 * 3 = 108."
+    sol: "The x-values increase from 0 to 6 in steps of 2: 0 &rarr; 2 &rarr; 4 &rarr; 6. This is exactly three steps. Since y is multiplied by 3 for each step, we multiply the initial y-value by 3, three times. y = 4 * (3 * 3 * 3) = 4 * 27 = 108."
   },
   {
-    q: "3. Water is poured into a conical cup at a constant rate. Let h(t) represent the height of the water in the cup at time t. Which of the following best describes the concavity of h(t)?",
+    q: "3. Water is poured into a conical cup (point facing down) at a constant rate. Let h(t) represent the height of the water in the cup at time t. Which of the following best describes the concavity of h(t)?",
     opts: { A: "Concave up", B: "Concave down", C: "Linear", D: "Cannot be determined" },
     ans: "B",
-    sol: "Because the cone is wider at the top than at the bottom, it takes more water to raise the level by 1 inch at the top than it does at the bottom. Since water enters at a constant rate, the height will rise quickly at first, and then slow down as the cup gets wider. An increasing function that is slowing down is concave down."
+    sol: "Because the cone is wider at the top than at the bottom, it takes more water to raise the level by 1 inch at the top than it does at the narrow bottom. Since water enters at a constant rate, the height will rise quickly at first, and then slow down as the cup gets wider. An increasing function that is slowing down is concave down."
+  },
+  {
+    q: "4. A car traveling at 60 mph suddenly slams on the brakes. Let d(t) be the total distance the car has traveled since the brakes were applied. Which of the following describes the rate of change of d(t)?",
+    opts: { 
+        A: "d(t) increases at an increasing rate", 
+        B: "d(t) increases at a decreasing rate", 
+        C: "d(t) decreases at an increasing rate", 
+        D: "d(t) decreases at a decreasing rate" 
+    },
+    ans: "B",
+    sol: "The car is still moving forward, so the total distance traveled, d(t), is increasing. However, because the brakes are applied, the car is slowing down. Therefore, the distance is increasing, but it is increasing at a decreasing rate as the car comes to a stop."
+  },
+  {
+    q: "5. Company A and Company B both produce 500 units of a product per day. Company A decides to increase production by adding exactly 50 units per day. Company B decides to increase production by 10% per day. How do the rates of change compare over the first 5 days?",
+    opts: { 
+        A: "Both companies increase at a constant rate.", 
+        B: "Company A increases at a constant rate, while Company B increases at an increasing rate.", 
+        C: "Company A increases at an increasing rate, while Company B increases at a constant rate.", 
+        D: "Both companies increase at an increasing rate." 
+    },
+    ans: "B",
+    sol: "Company A adds a fixed amount (+50) every day, which defines a constant rate of change (linear). Company B multiplies its current total by 1.10 every day. As the total gets larger, 10% of that total also becomes a larger number, meaning Company B's growth rate accelerates over time (increasing at an increasing rate)."
   }
 ];
 
