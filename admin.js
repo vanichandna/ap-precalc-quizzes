@@ -92,9 +92,10 @@ async function loadStudents() {
         const querySnapshot = await getDocs(collection(db, "users"));
         tableBody.innerHTML = "";
 
-        querySnapshot.forEach((document) => {
-            const student = document.data();
-            const row = document.createElement('tr');
+        // FIX APPLIED HERE: Changed 'document' to 'docSnapshot'
+        querySnapshot.forEach((docSnapshot) => {
+            const student = docSnapshot.data();
+            const row = document.createElement('tr'); // Now 'document' correctly refers to the webpage!
 
             row.innerHTML = `
                 <td>${student.email}</td>
