@@ -3,67 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AP Precalculus Portal</title>
+    <title>AP Precalc - Admin Dashboard</title>
     <style>
-        :root { --primary: #2c3e50; --accent: #3498db; --bg: #f4f7f6; }
+        :root { --primary: #1a252f; --accent: #e74c3c; --bg: #ecf0f1; --card: #ffffff; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background-color: var(--bg); color: #333; }
         
         /* Navbar */
         .navbar { background-color: var(--primary); padding: 15px 30px; color: white; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .navbar h1 { margin: 0; font-size: 24px; }
-        #logout-btn { background: transparent; border: 1px solid white; color: white; padding: 8px 15px; border-radius: 5px; cursor: pointer; display: none; transition: 0.3s; }
-        #logout-btn:hover { background: white; color: var(--primary); }
+        .navbar h1 { margin: 0; font-size: 24px; font-weight: 600; letter-spacing: 1px; }
+        .navbar span { font-size: 14px; color: #aaa; margin-left: 10px; }
+        #admin-logout-btn { background: transparent; border: 1px solid white; color: white; padding: 8px 15px; border-radius: 5px; cursor: pointer; display: none; transition: 0.3s; }
+        #admin-logout-btn:hover { background: var(--accent); border-color: var(--accent); }
 
         /* Container */
-        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+        
+        /* Cards */
+        .card { background: var(--card); padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 30px; border-top: 4px solid var(--primary); }
         
         /* Login Box */
-        #login-section { background: white; padding: 40px; border-radius: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); text-align: center; max-width: 400px; margin: auto; }
-        input { width: 90%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; }
-        .btn-main { background-color: var(--accent); color: white; border: none; padding: 12px 20px; width: 100%; border-radius: 5px; font-size: 16px; cursor: pointer; margin-top: 10px; transition: 0.3s; }
-        .btn-main:hover { background-color: #2980b9; }
+        #login-section { max-width: 400px; margin: 80px auto; text-align: center; border-top: 4px solid var(--accent); }
+        input[type="email"], input[type="password"] { width: 90%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; box-sizing: border-box; }
+        .btn-main { background-color: var(--accent); color: white; border: none; padding: 12px 20px; width: 90%; border-radius: 5px; font-size: 16px; cursor: pointer; margin-top: 10px; transition: 0.3s; font-weight: bold; }
+        .btn-main:hover { background-color: #c0392b; }
 
-        /* Dashboard & Grid */
-        #quiz-section { display: none; }
-        .unit-header { border-bottom: 2px solid #ccc; padding-bottom: 10px; margin-top: 40px; color: var(--primary); }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
+        /* Dashboard Elements */
+        #dashboard-section { display: none; }
+        .form-group { display: flex; gap: 10px; align-items: center; margin-top: 15px; }
+        .form-group input { width: 300px; margin: 0; }
+        .form-group button { background-color: #27ae60; width: auto; margin: 0; }
+        .form-group button:hover { background-color: #219653; }
+
+        /* Table Styling */
+        .table-wrapper { overflow-x: auto; margin-top: 20px; border-radius: 8px; border: 1px solid #e0e0e0; }
+        table { width: 100%; border-collapse: collapse; min-width: 800px; background: white; }
+        th, td { border-bottom: 1px solid #eee; border-right: 1px solid #eee; padding: 15px; text-align: left; }
+        th { background-color: #f8f9fa; color: var(--primary); font-weight: bold; border-bottom: 2px solid #ddd; white-space: nowrap; }
+        tr:hover { background-color: #f9fbfd; }
         
-        /* Beautiful Cards */
-        .quiz-card { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align: center; transition: transform 0.2s, box-shadow 0.2s; border-top: 5px solid var(--accent); }
-        .quiz-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px rgba(0,0,0,0.1); }
-        .quiz-card h3 { margin: 0 0 10px 0; color: var(--primary); font-size: 22px; }
-        .quiz-card p { color: #666; font-size: 14px; margin-bottom: 20px; }
-        .quiz-card a { display: inline-block; background-color: var(--accent); color: white; text-decoration: none; padding: 10px 20px; border-radius: 20px; font-weight: bold; font-size: 14px; transition: 0.3s; }
-        .quiz-card a:hover { background-color: #2980b9; }
+        h3 { margin-top: 0; color: var(--primary); }
     </style>
 </head>
 <body>
 
     <div class="navbar">
-        <h1>AP Precalculus Hub</h1>
-        <button id="logout-btn">Log Out</button>
+        <div>
+            <h1>AP Precalc <span>Admin</span></h1>
+        </div>
+        <button id="admin-logout-btn">Log Out</button>
     </div>
 
     <div class="container">
-        <div id="login-section">
-            <h2 style="margin-top:0;">Student Login</h2>
-            <p style="color:#666; font-size:14px;">Enter your credentials to access your assignments.</p>
-            <input type="email" id="student-email" placeholder="Student Email">
-            <input type="password" id="student-password" placeholder="Password">
-            
-            <button id="login-btn" class="btn-main">Log In</button>
-            <button id="signup-btn" class="btn-main" style="background-color: #27ae60;">First Time? Sign Up</button>
-            
-            <p id="login-message" style="color: red; font-weight:bold; margin-top:15px;"></p>
+        
+        <div id="login-section" class="card">
+            <h2>Teacher Access</h2>
+            <p style="color:#666; font-size:14px;">Log in to manage student access and view scores.</p>
+            <input type="email" id="admin-email" placeholder="Admin Email">
+            <input type="password" id="admin-password" placeholder="Password">
+            <button id="admin-login-btn" class="btn-main">Secure Login</button>
+            <p id="admin-error" style="color: #e74c3c; font-weight: bold; margin-top: 15px;"></p>
         </div>
 
-        <div id="quiz-section">
-            <h2>Welcome back! Here are your active assignments:</h2>
-            <div id="dashboard-content">
+        <div id="dashboard-section">
+            
+            <div class="card" style="border-top-color: #27ae60;">
+                <h3>Add New Student</h3>
+                <p style="color:#666; font-size:14px; margin: 0;">Enter a student's email to generate their database profile and grant them portal access.</p>
+                <div class="form-group">
+                    <input type="email" id="new-student-email" placeholder="student@example.com">
+                    <button id="add-student-btn" class="btn-main">Add Student to Database</button>
                 </div>
+            </div>
+
+            <div class="card">
+                <h3>Master Curriculum Control</h3>
+                <p style="color:#666; font-size:14px; margin-bottom: 0;">Toggle the checkboxes below to instantly grant or revoke quiz access for specific students.</p>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                </tr>
+                        </thead>
+                        <tbody id="student-table-body">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+
         </div>
     </div>
 
-    <script type="module" src="student.js"></script>
+    <script type="module" src="admin.js"></script>
 </body>
 </html>
