@@ -30,14 +30,43 @@ export const masterCurriculum = {
         ]
     },
 
-    // UNIT 1.2 DATA
+    // ==========================================
+    // UNIT 1.2: Rates of Change (Expanded Practice)
+    // ==========================================
     "1_2_easy": {
         title: "Unit 1.2: Easy Practice",
-        subtitle: "Focus: Basic Average Rate of Change from equations and points.",
+        subtitle: "Focus: Basic Average Rate of Change calculations.",
         themeColor: "#27ae60",
         questions: [
-            { q: "1. A linear function passes through (2, 7) and (5, -2). What is the constant rate of change?", opts: { A: "3", B: "-3", C: "-1/3", D: "9" }, ans: "B", sol: "Slope formula: (-2 - 7) / (5 - 2) = -9/3 = -3." }
-            // ...
+            { q: "1. What is the average rate of change of f(x) = x² - 3x over the interval [1, 4]?", opts: { A: "2", B: "4", C: "-2", D: "6" }, ans: "A", sol: "f(4) = 16 - 12 = 4. f(1) = 1 - 3 = -2. Rate: (4 - (-2)) / (4 - 1) = 6 / 3 = 2." },
+            { q: "2. A linear function passes through (2, 7) and (5, -2). What is its constant rate of change?", opts: { A: "3", B: "-3", C: "-1/3", D: "9" }, ans: "B", sol: "Slope formula: (-2 - 7) / (5 - 2) = -9 / 3 = -3." },
+            { q: "3. Which of the following functions will have a constant average rate of change over ANY interval?", opts: { A: "f(x) = 2^x", B: "g(x) = x³", C: "h(x) = 4x - 5", D: "k(x) = √x" }, ans: "C", sol: "Only linear functions have a constant rate of change. h(x) = 4x - 5 is a line." },
+            { q: "4. What is the average rate of change of the constant function y = 8 over the interval [-10, 10]?", opts: { A: "8", B: "16", C: "0", D: "Undefined" }, ans: "C", sol: "A horizontal line has a slope of 0. The y-value does not change, so the rate of change is 0." },
+            { q: "5. Find the average rate of change of g(x) = x³ on the interval [0, 2].", opts: { A: "2", B: "3", C: "4", D: "8" }, ans: "C", sol: "g(2) = 8. g(0) = 0. Rate: (8 - 0) / (2 - 0) = 4." }
+        ]
+    },
+    "1_2_med": {
+        title: "Unit 1.2: Medium Practice",
+        subtitle: "Focus: Finding AROC from tables and comparing intervals.",
+        themeColor: "#f39c12",
+        questions: [
+            { q: "1. Table: t=(0, 2, 4, 6), T(t)=(90, 75, 65, 58). What is the AROC from t=2 to t=6?", opts: { A: "-4.25", B: "-8.5", C: "-17", D: "-5" }, ans: "A", sol: "(T(6) - T(2)) / (6 - 2) = (58 - 75) / 4 = -17 / 4 = -4.25." },
+            { q: "2. If the AROC of a continuous function is positive on [a, b] and negative on [b, c], what MUST be true?", opts: { A: "It has a maximum at x=b", B: "Net change from a to c is 0", C: "g(b) > g(a) and g(c) < g(b)", D: "Concave down" }, ans: "C", sol: "Positive rate means ending value > starting value. Negative rate means ending value < starting value." },
+            { q: "3. Let f(x) = 2^x. Compare the AROC on [0, 2] to the AROC on [2, 4].", opts: { A: "They are the same", B: "Rate on [2, 4] is 4 times larger", C: "Rate on [0, 2] is larger", D: "Rate on [2, 4] is 2 times larger" }, ans: "B", sol: "AROC on [0, 2] is 1.5. AROC on [2, 4] is 6. The second rate (6) is 4 times larger than 1.5." },
+            { q: "4. If the AROC of f(x) on [-2, 2] is 0, which of the following is definitely true?", opts: { A: "f(x) is a horizontal line", B: "f(-2) = f(2)", C: "f(0) = 0", D: "f(x) is decreasing then increasing" }, ans: "B", sol: "AROC is only concerned with endpoints. If the rate is 0, the y-values at the endpoints must be identical: f(-2) = f(2)." },
+            { q: "5. Find the AROC of f(x) = 1/x over the interval [1, 4].", opts: { A: "-1/4", B: "1/4", C: "-3/4", D: "-1/3" }, ans: "A", sol: "f(4) = 1/4. f(1) = 1. Rate: (1/4 - 1) / (4 - 1) = (-3/4) / 3 = -1/4." }
+        ]
+    },
+    "1_2_hard": {
+        title: "Unit 1.2: Hard Practice",
+        subtitle: "Focus: Contextual word problems and interpreting AROC.",
+        themeColor: "#e74c3c",
+        questions: [
+            { q: "1. The population P(t) of a town (t in years since 2010) has an AROC of 400 on [0, 5]. Interpretation?", opts: { A: "Population was 400 in 2015", B: "Increased exactly 400 each year", C: "Total increase was 400", D: "Increased by an average of 400 per year" }, ans: "D", sol: "AROC is a 'per unit' average. It means growth averaged out to 400 people per year." },
+            { q: "2. Distance from destination d(t) has an AROC of -55 on [1, 3]. What does this mean?", opts: { A: "Drove backwards 55 miles", B: "Distance decreased at an average of 55 mph", C: "Car is 55 miles away", D: "Total distance is -55" }, ans: "B", sol: "A negative rate means the distance is dropping by an average of 55 miles every hour." },
+            { q: "3. Profit R(x) in thousands of dollars, x in hundreds of items. AROC is 3. Units?", opts: { A: "Dollars/item", B: "Thousands of dollars/item", C: "Thousands of dollars / hundred items", D: "Items / thousand dollars" }, ans: "C", sol: "Units are always Output / Input. Output is 'thousands of dollars', Input is 'hundreds of items'." },
+            { q: "4. A tank is draining. Volume V(t) in gallons, t in minutes. If V(t) is concave up, how does the drainage rate change?", opts: { A: "Draining at a constant speed", B: "Draining faster over time", C: "Draining slower over time", D: "Cannot be determined" }, ans: "C", sol: "Concave up means the slopes are increasing (getting less negative). If the negative slopes are getting closer to zero, the water is draining slower and slower." },
+            { q: "5. The AROC of a function is 10 on [0, 2] and 10 on [2, 4]. Does this prove the function is linear?", opts: { A: "Yes", B: "No, it could be a curve that happens to hit those specific points", C: "No, it proves it is quadratic", D: "Yes, but only if it passes through the origin" }, ans: "B", sol: "AROC only looks at endpoints. A highly fluctuating curve (like a sine wave) could easily happen to have the same average rate of change over two specific intervals without being a straight line." }
         ]
     },
     // You just keep adding blocks for 1_2_med, 1_2_hard, 1_3_easy, etc.!
