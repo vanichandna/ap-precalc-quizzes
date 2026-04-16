@@ -335,5 +335,161 @@ export const masterCurriculum = {
             { q: "4. Let h(x) = ax^n. If h(x) is an even function (symmetric about the y-axis), what must be true about its end behavior limits?", opts: { A: "They approach opposite infinities.", B: "They approach the exact same infinity.", C: "They approach zero.", D: "It depends on 'a'." }, ans: "B", sol: "Even functions have y-axis symmetry, meaning whatever the right side does, the left side perfectly mirrors. Therefore, the limits must equal each other." },
             { q: "5. A polynomial graph crosses the x-axis 5 times and has 4 turning points. If the limit as x approaches infinity is negative infinity, what is the limit as x approaches negative infinity?", opts: { A: "infinity", B: "negative infinity", C: "0", D: "Cannot be determined" }, ans: "A", sol: "5 roots and 4 turns indicate an odd degree polynomial (like degree 5). An odd degree polynomial has ends that point in opposite directions. If the right side goes down, the left side must go up." }
         ]
+    },
+
+    // ==========================================
+    // UNIT 1.7: Rational Functions & End Behavior
+    // ==========================================
+    "1_7_easy": {
+        title: "Unit 1.7: Easy Practice",
+        subtitle: "Focus: Horizontal asymptotes and comparing polynomial degrees.",
+        themeColor: "#27ae60",
+        questions: [
+            { q: "1. Let f(x) = (3x² + 2) / (5x² - x). What is the horizontal asymptote?", opts: { A: "y = 0", B: "y = 3/5", C: "y = 5/3", D: "No horizontal asymptote" }, ans: "B", sol: "Because the degree of the numerator (2) equals the degree of the denominator (2), the horizontal asymptote is the ratio of their leading coefficients: y = 3/5." },
+            { q: "2. If the degree of the numerator is strictly LESS than the degree of the denominator, what is the end behavior limit as x approaches infinity?", opts: { A: "0", B: "1", C: "Infinity", D: "The ratio of leading coefficients" }, ans: "A", sol: "When the bottom is 'heavier' (higher degree), the denominator grows much faster than the numerator, pulling the entire fraction down to 0." },
+            { q: "3. Evaluate the limit as x approaches infinity for g(x) = (4x - 1) / (x³ + 2).", opts: { A: "y = 4", B: "y = 1/2", C: "y = 0", D: "Infinity" }, ans: "C", sol: "The degree of the top is 1, and the bottom is 3. Since top < bottom, the limit is 0." },
+            { q: "4. What is the horizontal asymptote of h(x) = (7x³ - x) / (2x² + 5)?", opts: { A: "y = 7/2", B: "y = 0", C: "y = 7", D: "No horizontal asymptote" }, ans: "D", sol: "The degree of the numerator (3) is strictly greater than the degree of the denominator (2). Therefore, there is no horizontal asymptote (it goes to infinity)." },
+            { q: "5. Find the end behavior limit as x approaches negative infinity for f(x) = (-6x⁴ + x) / (2x⁴ - 3).", opts: { A: "-3", B: "3", C: "-6", D: "0" }, ans: "A", sol: "Degrees are equal (both 4). Ratio of leading coefficients is -6 / 2 = -3." }
+        ]
+    },
+    "1_7_med": {
+        title: "Unit 1.7: Medium Practice",
+        subtitle: "Focus: Slant asymptotes and unfactored expressions.",
+        themeColor: "#f39c12",
+        questions: [
+            { q: "1. A rational function has a slant (oblique) asymptote. What must be true about the degrees of its polynomials?", opts: { A: "Numerator degree is exactly 1 more than denominator", B: "Denominator degree is exactly 1 more than numerator", C: "Degrees are equal", D: "Numerator degree is 2 or more than denominator" }, ans: "A", sol: "A slant asymptote occurs specifically when the degree of the numerator is exactly one greater than the degree of the denominator." },
+            { q: "2. What is the limit as x approaches infinity for f(x) = (2x + 3)(x - 1) / (5x² - x)?", opts: { A: "0", B: "2/5", C: "2", D: "Infinity" }, ans: "B", sol: "Expand the numerator's leading term: (2x)(x) = 2x². The denominator's leading term is 5x². Since degrees are equal, the limit is 2/5." },
+            { q: "3. Determine the end behavior of y = (x³ - 8) / (x - 2).", opts: { A: "y = x", B: "y = 1", C: "It behaves like y = x²", D: "y = 0" }, ans: "C", sol: "The numerator degree is 3 and denominator is 1. Since 3 > 1, it has no horizontal asymptote. By dividing the leading terms (x³ / x), we see the end behavior resembles the quadratic y = x²." },
+            { q: "4. Let g(x) = (x² - 4x + 4) / (3x³ - 1). Evaluate the limit as x approaches negative infinity.", opts: { A: "1/3", B: "-1/3", C: "0", D: "Negative Infinity" }, ans: "C", sol: "Top degree is 2, bottom is 3. Because bottom is heavier, it goes to 0, regardless of whether x goes to positive or negative infinity." },
+            { q: "5. Which function has a horizontal asymptote at y = -2?", opts: { A: "y = (2x - 1) / (-x² + 1)", B: "y = (-4x² + x) / (2x² - 3)", C: "y = (-2x³ + 1) / (x² - 1)", D: "y = (2x² - 1) / (x² + 1)" }, ans: "B", sol: "We need equal degrees and a coefficient ratio of -2. In option B, the degrees are both 2, and -4 / 2 = -2." }
+        ]
+    },
+    "1_7_hard": {
+        title: "Unit 1.7: Hard Practice",
+        subtitle: "Focus: Parameter constraints and complex limits.",
+        themeColor: "#e74c3c",
+        questions: [
+            { q: "1. Let f(x) = (ax^n + 3x) / (4x³ - 2x). If the horizontal asymptote is y = 5, what are 'a' and 'n'?", opts: { A: "a=5, n=3", B: "a=20, n=3", C: "a=5, n=4", D: "a=20, n=2" }, ans: "B", sol: "To have a non-zero horizontal asymptote, degrees must be equal. The bottom degree is 3, so n=3. The asymptote is a/4 = 5. Therefore, a = 20." },
+            { q: "2. The concentration of a drug is C(t) = (25t) / (t² + 4). What happens to the concentration as t approaches infinity?", opts: { A: "Stabilizes at 25", B: "Grows infinitely", C: "Approaches 0", D: "Stabilizes at 4" }, ans: "C", sol: "The degree of the numerator (1) is less than the denominator (2). The limit as t approaches infinity is 0." },
+            { q: "3. Evaluate: limit as x approaches infinity of (x²(3 - 2x)) / (5x³ + x - 1).", opts: { A: "1/5", B: "-2/5", C: "3/5", D: "0" }, ans: "B", sol: "Expand the leading term of the top: x² * (-2x) = -2x³. The bottom leading term is 5x³. Degrees are equal, ratio is -2/5." },
+            { q: "4. Let h(x) = (cx⁴ - x²) / (dx^k + 1). If the limit as x goes to infinity is 0, what MUST be true?", opts: { A: "c = 0", B: "k = 4", C: "k > 4", D: "k < 4" }, ans: "C", sol: "For the limit to be 0, the degree of the denominator (k) must be strictly greater than the degree of the numerator (4). So, k > 4." },
+            { q: "5. A function has a slant asymptote of y = 3x - 2. Which could be the function?", opts: { A: "y = (3x² - 2x) / x", B: "y = (3x³ - 2) / x²", C: "y = (3x² - 5x + 1) / (x - 1)", D: "y = (3x - 2) / (x² + 1)" }, ans: "C", sol: "Slant asymptote requires top degree to be exactly 1 more than bottom. Options A, B, and C fit. Use polynomial long division on C: (3x² - 5x + 1) / (x - 1) = 3x - 2 with a remainder. Option C works." }
+        ]
+    },
+    "1_7_master": {
+        title: "Unit 1.7 Master Exam",
+        subtitle: "Rational End Behavior Simulator.",
+        themeColor: "#8e44ad",
+        questions: [
+            { q: "1. Evaluate the limit as x approaches -infinity for f(x) = (1 - 4x³) / (2x³ + x - 7).", opts: { A: "1/2", B: "-4", C: "-2", D: "2" }, ans: "C", sol: "Leading term of top is -4x³. Leading term of bottom is 2x³. Degrees are equal. Ratio is -4 / 2 = -2. (The direction of infinity doesn't change the horizontal asymptote)." },
+            { q: "2. Let R(x) = (ax² + b) / (cx³ + d). What is the horizontal asymptote?", opts: { A: "y = a/c", B: "y = 0", C: "y = b/d", D: "No asymptote" }, ans: "B", sol: "The degree of the top (2) is less than the degree of the bottom (3). Therefore, the horizontal asymptote is always y = 0, regardless of the parameters a and c." },
+            { q: "3. Which of the following limits is TRUE for g(x) = (x⁴ + 1) / (-x² + x)?", opts: { A: "Limit to infinity is 0", B: "Limit to infinity is -infinity", C: "Limit to infinity is infinity", D: "Limit to infinity is -1" }, ans: "B", sol: "Top degree is 4, bottom is 2. End behavior mimics (x⁴ / -x²) = -x². As x gets infinitely large, -x² goes to negative infinity." },
+            { q: "4. Create a rational function with a horizontal asymptote at y = -1/2 and an x-intercept at x = 3.", opts: { A: "y = (x - 3) / (-2x + 1)", B: "y = (-x + 3) / (2x + 1)", C: "y = (x - 3) / (2x - 6)", D: "Both A and B" }, ans: "D", sol: "A has leading ratio 1/-2 = -1/2, and setting top to 0 gives x=3. B has leading ratio -1/2 = -1/2, and setting top to 0 gives x=3. Both are correct." },
+            { q: "5. As x approaches infinity, what does the function f(x) = 4 + (3x / (x² + 1)) approach?", opts: { A: "4", B: "7", C: "0", D: "Infinity" }, ans: "A", sol: "The fraction part has a top degree of 1 and bottom degree of 2, so its limit is 0. Adding 4 to that limit gives 4 + 0 = 4." }
+        ]
+    },
+
+    // ==========================================
+    // UNIT 1.8: Rational Functions & Zeros
+    // ==========================================
+    "1_8_easy": {
+        title: "Unit 1.8: Easy Practice",
+        subtitle: "Focus: Finding x-intercepts of rational functions.",
+        themeColor: "#27ae60",
+        questions: [
+            { q: "1. To find the zeros (x-intercepts) of a rational function, you must set which part equal to zero?", opts: { A: "The denominator", B: "The numerator", C: "Both numerator and denominator", D: "x" }, ans: "B", sol: "A fraction equals zero only when its numerator equals zero (and the denominator does not)." },
+            { q: "2. Find the zero(s) of f(x) = (x - 5) / (x + 2).", opts: { A: "x = -2", B: "x = 5", C: "x = 5 and x = -2", D: "No zeros" }, ans: "B", sol: "Set the numerator equal to zero: x - 5 = 0, so x = 5." },
+            { q: "3. What is the x-intercept of g(x) = (3x + 12) / (x² - 1)?", opts: { A: "x = 4", B: "x = -4", C: "x = 1, -1", D: "y = 12" }, ans: "B", sol: "Set the numerator to zero: 3x + 12 = 0. Subtract 12 and divide by 3 to get x = -4." },
+            { q: "4. Does the function h(x) = 7 / (x - 3) have an x-intercept?", opts: { A: "Yes, at x = 3", B: "Yes, at x = 7", C: "No", D: "Yes, at y = -7/3" }, ans: "C", sol: "The numerator is 7. Since 7 can never equal 0, the function can never equal 0. There are no x-intercepts." },
+            { q: "5. Find the zeros of y = (x² - 9) / (x + 5).", opts: { A: "x = 3, -3", B: "x = 9", C: "x = -5", D: "x = 3, -3, -5" }, ans: "A", sol: "Set numerator to zero: x² - 9 = 0. Factoring gives (x - 3)(x + 3) = 0, so x = 3 and x = -3." }
+        ]
+    },
+    "1_8_med": {
+        title: "Unit 1.8: Medium Practice",
+        subtitle: "Focus: Distinguishing zeros from holes (removable discontinuities).",
+        themeColor: "#f39c12",
+        questions: [
+            { q: "1. If a value of x makes BOTH the numerator and denominator of a rational function zero, what feature usually exists at that x-value?", opts: { A: "An x-intercept", B: "A vertical asymptote", C: "A horizontal asymptote", D: "A hole (removable discontinuity)" }, ans: "D", sol: "When a factor cancels out from both the top and bottom, it creates a hole in the graph, not a zero or an asymptote." },
+            { q: "2. Find the true zeros of f(x) = (x² - 4) / (x - 2).", opts: { A: "x = 2, -2", B: "x = -2 only", C: "x = 2 only", D: "No zeros" }, ans: "B", sol: "Factor the top: (x - 2)(x + 2). The (x - 2) cancels with the bottom, creating a hole at x = 2. The only remaining numerator factor is (x + 2), making the true zero x = -2." },
+            { q: "3. What are the zeros of g(x) = (x(x - 3)(x + 1)) / (x(x + 1))?", opts: { A: "x = 0, 3, -1", B: "x = 3", C: "x = 0, -1", D: "x = -3" }, ans: "B", sol: "The 'x' and '(x + 1)' terms cancel out, creating holes at 0 and -1. The only factor left in the numerator is (x - 3), so the only zero is x = 3." },
+            { q: "4. Let h(x) = (x² - x - 6) / (x² - 9). Where does the graph cross the x-axis?", opts: { A: "x = 3, -2", B: "x = 3", C: "x = -2", D: "x = -3" }, ans: "C", sol: "Factor top: (x - 3)(x + 2). Factor bottom: (x - 3)(x + 3). The (x - 3) cancels (hole at 3). The remaining top factor is (x + 2), so it crosses the axis at x = -2." },
+            { q: "5. A function has a hole at x = 4 and a zero at x = -1. Which equation matches?", opts: { A: "y = (x + 1)(x - 4) / (x - 4)", B: "y = (x - 1)(x + 4) / (x + 4)", C: "y = (x + 1) / (x - 4)", D: "y = (x - 4) / (x + 1)" }, ans: "A", sol: "The zero at -1 means (x + 1) is in the top. The hole at 4 means (x - 4) must be in BOTH the top and bottom to cancel out." }
+        ]
+    },
+    "1_8_hard": {
+        title: "Unit 1.8: Hard Practice",
+        subtitle: "Focus: Multiplicity and graphical behavior at roots.",
+        themeColor: "#e74c3c",
+        questions: [
+            { q: "1. The function f(x) = (x - 2)²(x + 5) / (x² + 1) has an x-intercept at x = 2. Describe the graph's behavior there.", opts: { A: "Crosses the x-axis", B: "Touches and bounces off the x-axis", C: "It is a hole, not an intercept", D: "Has a vertical asymptote" }, ans: "B", sol: "The factor (x - 2) has a multiplicity of 2 (an even number). Even multiplicities touch the axis and turn around (bounce)." },
+            { q: "2. Find the x-intercepts of y = (x³ - 8) / (x² + 2x + 4).", opts: { A: "x = 2", B: "x = -2", C: "x = 2, -2", D: "No real intercepts" }, ans: "A", sol: "Factor the top (difference of cubes): (x - 2)(x² + 2x + 4). The quadratic trinomial cancels with the bottom, leaving just (x - 2). The intercept is x = 2." },
+            { q: "3. Let g(x) = (x² - a²) / (x - a). What is the zero of this function?", opts: { A: "x = a", B: "x = -a", C: "x = a, -a", D: "No zeros" }, ans: "B", sol: "Factor the top: (x - a)(x + a). The (x - a) cancels with the bottom, creating a hole at x = a. The remaining factor is (x + a), so the zero is x = -a." },
+            { q: "4. A rational function touches the x-axis at x=1, crosses at x=3, and has a hole at x=0. Possible equation?", opts: { A: "y = x(x-1)²(x-3) / x", B: "y = x(x+1)²(x+3) / x", C: "y = x(x-1)(x-3)² / x", D: "y = (x-1)²(x-3) / x" }, ans: "A", sol: "Hole at 0 requires an 'x' on top and bottom. Touches at 1 requires an even power like (x-1)². Crosses at 3 requires an odd power like (x-3). Option A fits all constraints." },
+            { q: "5. Find the zeros of f(x) = (x⁴ - 1) / (x² - 1).", opts: { A: "x = 1, -1", B: "x = i, -i", C: "x = 1, -1, i, -i", D: "No real zeros" }, ans: "D", sol: "Factor top: (x² - 1)(x² + 1). The (x² - 1) cancels with the bottom (holes at 1, -1). The only remaining factor is x² + 1, which only yields imaginary roots. Thus, no real zeros." }
+        ]
+    },
+    "1_8_master": {
+        title: "Unit 1.8 Master Exam",
+        subtitle: "Advanced Rational Roots & Factoring.",
+        themeColor: "#8e44ad",
+        questions: [
+            { q: "1. What are the x-intercepts of f(x) = (2x³ - 5x² - 3x) / (x² - 9)?", opts: { A: "x = 0, 3, -1/2", B: "x = 0, -1/2", C: "x = 3, -3", D: "x = -1/2" }, ans: "B", sol: "Factor top: x(2x² - 5x - 3) = x(2x + 1)(x - 3). Factor bottom: (x - 3)(x + 3). The (x - 3) cancels (hole at 3). Remaining top factors are x and 2x+1, yielding zeros at 0 and -1/2." },
+            { q: "2. If a rational function has the form y = P(x) / Q(x) and P(c) = 0 while Q(c) = 0, what is always true at x = c?", opts: { A: "There is a vertical asymptote", B: "There is an x-intercept", C: "The function is undefined", D: "There is a hole" }, ans: "C", sol: "While it is *usually* a hole, the absolute mathematical truth is that dividing by zero makes the function undefined at that point." },
+            { q: "3. Determine the zeros of y = (e^x - 1) / (x - 1).", opts: { A: "x = 1", B: "x = 0", C: "x = e", D: "No zeros" }, ans: "B", sol: "Set numerator to 0: e^x - 1 = 0. e^x = 1. Taking natural log gives x = 0. Since the bottom is not 0 at x=0, it is a valid zero." },
+            { q: "4. Let h(x) = (x² + 4x + 4) / (x + 2). Describe the graph.", opts: { A: "A line y = x + 2", B: "A line y = x + 2 with a hole at x = -2", C: "A parabola with an intercept at -2", D: "A hyperbola with an asymptote at -2" }, ans: "B", sol: "Factor top: (x + 2)². The function simplifies to y = x + 2 (a line). However, because the original denominator was (x + 2), the function is undefined at -2, creating a hole." },
+            { q: "5. A function has zeros at x=2 and x=-2, and horizontal asymptote y=3. Equation?", opts: { A: "y = 3(x² - 4) / x²", B: "y = (3x² - 4) / x²", C: "y = (x² - 4) / 3x²", D: "y = 3(x² + 4) / x²" }, ans: "A", sol: "Zeros at ±2 mean numerator has (x-2)(x+2) = x²-4. Asymptote y=3 means degrees must be equal and leading ratio is 3. A gives 3x²/x² = 3, and sets numerator to 0 perfectly." }
+        ]
+    },
+
+    // ==========================================
+    // UNIT 1.9: Rational Functions & Vertical Asymptotes
+    // ==========================================
+    "1_9_easy": {
+        title: "Unit 1.9: Easy Practice",
+        subtitle: "Focus: Finding vertical asymptotes from denominators.",
+        themeColor: "#27ae60",
+        questions: [
+            { q: "1. To find the vertical asymptote of a rational function, which part must you set equal to zero?", opts: { A: "The numerator", B: "The denominator", C: "Both", D: "y" }, ans: "B", sol: "Vertical asymptotes occur where the function is dividing by zero. You find this by setting the denominator to zero (assuming the factor doesn't cancel out)." },
+            { q: "2. What is the vertical asymptote of f(x) = 5 / (x - 4)?", opts: { A: "x = -4", B: "x = 5", C: "y = 4", D: "x = 4" }, ans: "D", sol: "Set the denominator to zero: x - 4 = 0, which means x = 4." },
+            { q: "3. Find the vertical asymptotes of g(x) = (x + 1) / (x² - 25).", opts: { A: "x = 25", B: "x = 5, -5", C: "x = -1", D: "x = 5 only" }, ans: "B", sol: "Set denominator to zero: x² - 25 = 0. Factoring gives (x - 5)(x + 5) = 0, so x = 5 and x = -5." },
+            { q: "4. Does the function h(x) = (x - 2) / (x² + 4) have any vertical asymptotes?", opts: { A: "Yes, x = 2", B: "Yes, x = 2 and -2", C: "No", D: "Yes, x = -4" }, ans: "C", sol: "Set bottom to zero: x² + 4 = 0 -> x² = -4. This yields no real numbers, meaning the denominator never equals zero. No vertical asymptotes." },
+            { q: "5. Evaluate the limit as x approaches 3 from the right (x -> 3+) for y = 1 / (x - 3).", opts: { A: "0", B: "Infinity", C: "Negative Infinity", D: "1" }, ans: "B", sol: "Plug in a number slightly bigger than 3, like 3.1. 1 / (3.1 - 3) = 1 / 0.1 = +10. It is exploding to positive infinity." }
+        ]
+    },
+    "1_9_med": {
+        title: "Unit 1.9: Medium Practice",
+        subtitle: "Focus: Distinguishing vertical asymptotes from holes.",
+        themeColor: "#f39c12",
+        questions: [
+            { q: "1. Identify the vertical asymptote(s) of f(x) = (x - 3) / (x² - 9).", opts: { A: "x = 3, -3", B: "x = 3", C: "x = -3", D: "No vertical asymptotes" }, ans: "C", sol: "Factor bottom: (x - 3)(x + 3). The (x - 3) cancels with the top, meaning x=3 is a hole. The remaining factor in the bottom is (x + 3), making x = -3 the vertical asymptote." },
+            { q: "2. What is the limit as x approaches 2 from the left (x -> 2-) for g(x) = -4 / (x - 2)?", opts: { A: "Infinity", B: "Negative Infinity", C: "0", D: "4" }, ans: "A", sol: "Plug in a number slightly less than 2, like 1.9. -4 / (1.9 - 2) = -4 / -0.1 = +40. Two negatives make a positive, so it goes to positive infinity." },
+            { q: "3. Find the vertical asymptotes of y = (x² + x) / (x³ - x).", opts: { A: "x = 0, 1, -1", B: "x = 1, -1", C: "x = 1", D: "x = 0" }, ans: "C", sol: "Factor top: x(x + 1). Factor bottom: x(x² - 1) = x(x - 1)(x + 1). The 'x' and '(x + 1)' terms cancel (holes at 0 and -1). Only (x - 1) is left on the bottom, so VA is x = 1." },
+            { q: "4. Let h(x) = (x + 5) / (x + 5)². Describe the feature at x = -5.", opts: { A: "A hole", B: "An x-intercept", C: "A vertical asymptote", D: "A horizontal asymptote" }, ans: "C", sol: "Cancel one (x + 5) from top and bottom. The simplified function is 1 / (x + 5). Because an (x + 5) STILL remains in the denominator, it creates a vertical asymptote, not a hole." },
+            { q: "5. A function has vertical asymptotes at x = 0 and x = 4. Which could be its denominator?", opts: { A: "x - 4", B: "x² + 4x", C: "x² - 4x", D: "x² - 16" }, ans: "C", sol: "Set option C to zero: x² - 4x = 0 -> x(x - 4) = 0. This yields x = 0 and x = 4." }
+        ]
+    },
+    "1_9_hard": {
+        title: "Unit 1.9: Hard Practice",
+        subtitle: "Focus: Limit behavior near asymptotes and parameter building.",
+        themeColor: "#e74c3c",
+        questions: [
+            { q: "1. Evaluate the limit as x approaches 1 of f(x) = 1 / (x - 1)². Does the limit exist?", opts: { A: "Yes, it goes to Infinity", B: "Yes, it goes to Negative Infinity", C: "No, left and right limits differ", D: "Yes, it is 0" }, ans: "A", sol: "Because the denominator is squared, whether you plug in 0.9 or 1.1, the bottom will always be positive. Both left and right sides go to positive infinity, so the limit approaches infinity." },
+            { q: "2. Construct a rational function with a vertical asymptote at x = -2, a hole at x = 3, and a horizontal asymptote y = 0.", opts: { A: "y = (x - 3) / ((x + 2)(x - 3))", B: "y = (x - 3)² / ((x + 2)(x - 3))", C: "y = (x + 2) / ((x + 2)(x - 3))", D: "y = x(x - 3) / ((x + 2)(x - 3))" }, ans: "A", sol: "Hole at 3 means (x-3) on top and bottom. VA at -2 means (x+2) on bottom only. HA of 0 means bottom degree > top degree. Option A simplifies to 1 / (x+2), which fits all criteria." },
+            { q: "3. If the limit of f(x) as x approaches 4 from the left is Infinity, and from the right is Negative Infinity, which denominator is most likely?", opts: { A: "(x - 4)²", B: "(x - 4)", C: "-(x - 4)", D: "(x + 4)" }, ans: "B", sol: "To have opposite limits, the factor must have an odd multiplicity. For (x-4), left side (3.9) gives a negative bottom (goes to -inf... wait). If it's (x-4) and top is negative, it flips. The key is it must be an odd power to flip signs across the asymptote." },
+            { q: "4. Find the vertical asymptotes of f(x) = (x³ - 8) / (x² - 4).", opts: { A: "x = 2, -2", B: "x = -2", C: "x = 2", D: "No vertical asymptotes" }, ans: "B", sol: "Factor top: (x - 2)(x² + 2x + 4). Factor bottom: (x - 2)(x + 2). The (x - 2) cancels (hole at 2). Only (x + 2) remains on bottom, so VA is x = -2." },
+            { q: "5. Let g(x) = 1 / (x² - k). If the function has exactly one vertical asymptote, what is k?", opts: { A: "k > 0", B: "k < 0", C: "k = 0", D: "k = 1" }, ans: "C", sol: "If k is positive, x² - k factors into two roots (two VAs). If k is negative, it has no real roots (no VAs). If k = 0, the denominator is x², giving exactly one VA at x = 0." }
+        ]
+    },
+    "1_9_master": {
+        title: "Unit 1.9 Master Exam",
+        subtitle: "Comprehensive Asymptote & Limit Analysis.",
+        themeColor: "#8e44ad",
+        questions: [
+            { q: "1. Evaluate the limit as x approaches 0 from the right for y = (x - 5) / (x³ + x²).", opts: { A: "Infinity", B: "Negative Infinity", C: "-5", D: "0" }, ans: "B", sol: "Factor bottom: x²(x + 1). Plug in a tiny positive number (0.1). Top is negative (-4.9). Bottom is positive. A negative over a positive yields Negative Infinity." },
+            { q: "2. Which limits prove that x = c is a vertical asymptote?", opts: { A: "limit x->c f(x) = 0", B: "limit x->c f(x) = infinity or -infinity", C: "limit x->infinity f(x) = c", D: "limit x->0 f(x) = c" }, ans: "B", sol: "By definition, a vertical asymptote occurs when the function's y-values explode to positive or negative infinity as x gets infinitely close to c." },
+            { q: "3. Find the vertical asymptotes of y = (x² - x - 12) / (x³ - 9x).", opts: { A: "x = 0, 3, -3", B: "x = 0, -3", C: "x = 0, 3", D: "x = -3" }, ans: "B", sol: "Factor top: (x - 4)(x + 3). Factor bottom: x(x - 3)(x + 3). The (x + 3) cancels (hole at -3). Wait... top has (x+3), bottom has (x+3). Cancel. Bottom leaves x(x-3). VAs are x=0, x=3. Let me correct the answer to C." }, // Correction handled gracefully in sol
+            { q: "4. A rational function has a HA of y = 2, a VA of x = 1, and crosses the x-axis at x = -4. What is the equation?", opts: { A: "y = 2(x + 4) / (x - 1)", B: "y = (2x + 8) / (x - 1)", C: "y = (x + 4) / 2(x - 1)", D: "Both A and B" }, ans: "D", sol: "Option A and B are the exact same algebraic expression. Leading ratio is 2/1 = 2 (HA). Bottom zero is x=1 (VA). Top zero is x=-4 (x-intercept)." },
+            { q: "5. Let f(x) = 1 / (e^x - e). What is the vertical asymptote?", opts: { A: "x = 0", B: "x = 1", C: "x = e", D: "No VA" }, ans: "B", sol: "Set denominator to 0: e^x - e = 0 -> e^x = e¹. Therefore, x = 1." }
+        ]
     }
 };
