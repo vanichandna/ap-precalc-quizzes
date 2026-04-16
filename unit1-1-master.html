@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 1.1 Master Quiz</title>
+<style>
+  body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px; background-color: #f4f7f6; color: #333; }
+  .container { max-width: 850px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+  
+  /* Timer Styles */
+  .timer-bar { background-color: #e74c3c; color: white; padding: 15px; text-align: center; font-size: 24px; font-weight: bold; border-radius: 5px; margin-bottom: 20px; position: sticky; top: 10px; z-index: 100; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
+  
+  h1 { text-align: center; color: #8e44ad; font-size: 28px;}
+  p.subtitle { text-align:center; margin-bottom: 30px; color: #555; }
+  
+  .question-block { margin-bottom: 25px; padding: 20px; border-left: 5px solid #8e44ad; background-color: #fdfdfd; border-radius: 0 8px 8px 0; }
+  .question-text { font-weight: bold; font-size: 16px; margin-bottom: 15px; line-height: 1.5;}
+  .options label { display: block; margin: 10px 0; cursor: pointer; padding: 10px; border-radius: 4px; transition: background 0.2s; border: 1px solid transparent;}
+  .options label:hover { background-color: #f4e8fc; border: 1px solid #dcdcdc; }
+  
+  .btn-submit { display: block; width: 100%; padding: 15px; font-size: 18px; color: white; background-color: #8e44ad; border: none; border-radius: 5px; cursor: pointer; margin-top: 30px; font-weight: bold; transition: 0.3s;}
+  .btn-submit:hover { background-color: #732d91; }
+  .btn-submit:disabled { background-color: #95a5a6; cursor: not-allowed; }
+  
+  #score-display { margin-top: 25px; font-weight: bold; font-size: 20px; text-align: center; padding: 15px; border-radius: 5px; display: none; }
+  
+  .solution-box { margin-top: 15px; padding: 15px; background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; border-radius: 5px; display: none; font-size: 15px; line-height: 1.5;}
+  .correct-highlight { background-color: #d4edda !important; border: 1px solid #c3e6cb !important; font-weight: bold; }
+  .incorrect-highlight { background-color: #f8d7da !important; border: 1px solid #f5c6cb !important; color: #721c24; text-decoration: line-through;}
+  
+  .home-link { display: inline-block; margin-bottom: 20px; text-decoration: none; color: #8e44ad; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <a href="index.html" class="home-link">&larr; Back to Dashboard</a>
+  
+  <div id="timer-bar" class="timer-bar">⏱️ Time Remaining: <span id="time-display">10:00</span></div>
+
+  <h1 id="page-title">Unit 1.1 Master Exam</h1>
+  <p class="subtitle">This is a timed assessment. Ensure you answer all questions before the timer runs out!</p>
+  
+  <div id="quiz-container">Loading exam...</div>
+
+  <button type="button" id="submit-btn" class="btn-submit" style="display: none;">Submit Exam & View Solutions</button>
+  <div id="score-display"></div>
+</div>
+
+<script type="module">
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+import { doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+import { auth, db } from './firebase-config.js';
+
+let currentUser = null;
+const container = document.getElementById('quiz-container');
+const submitBtn = document.getElementById('submit-btn');
+const timeDisplay = document.getElementById('time-display');
+const timerBar = document.getElementById('timer-bar');
+
+// Timer Variables (10 Minutes)
+let timeLeft = 10 * 60; 
+let timerInterval;
+let quizGraded = false;
+
+// 1. Security Check
+onAuthStateChanged(auth, async (user) => {
+    if (user) {
+        const docSnap = await getDoc(doc(db, "users", user.email));
+        if (docSnap.exists() && docSnap.data().access.unit1_1 === true) {
+            currentUser = user;
+            container.innerHTML = ""; 
+            submitBtn.style.display = "block"; 
+            renderQuiz(); 
+            startTimer();
+        } else {
+            container.innerHTML = "<h3 style='color:red;'>Access Denied.</h3>";
+            timerBar.style.display = "none";
+        }
+    } else {
+        window.location.href = "index.html"; 
+    }
+});
+
+// 2. The Quiz Data (Mixed difficulty for the Master Quiz)
+const quizData = [
+  {
+    q: "1. A function f(x) passes through the points (2, 8) and (4, 32). What is the average rate of change on this interval?",
+    opts: { A: "12", B: "8", C: "24", D: "16" },
+    ans: "A",
+    sol: "(32 - 8) / (4 - 2) = 24 / 2 = 12."
+  },
+  {
+    q: "2. If a function is increasing at a decreasing rate, its graph is:",
+    opts: { A: "Concave Up", B: "Concave Down", C: "Linear", D: "Undefined" },
+    ans: "B",
+    sol: "Positive slopes that are getting less steep create a downward bending curve (concave down)."
+  }
+];
+
+// 3. Render Quiz HTML
+function renderQuiz() {
+    quizData.forEach((item, index) => {
+      let optionsHtml = '';
+      for (const [key, value] of Object.entries(item.opts)) {
+        optionsHtml += `<label id="label-${index}-${key}"><input type="radio" name="q${index}" value="${key}"> <strong>${key})</strong> ${value}</label>`;
+      }
+      container.innerHTML += `
+        <div class="question-block" id="block-${index}">
+          <div class="question-text">${item.q}</div>
+          <div class="options">${optionsHtml}</div>
+          <div class="solution-box" id="solution-${index}">
+            <strong>Detailed Solution:</strong> ${item.sol}
+          </div>
+        </div>
+      `;
+    });
+}
+
+// 4. Timer Logic
+function startTimer() {
+    timerInterval = setInterval(() => {
+        if(quizGraded) return clearInterval(timerInterval); // Stop timer if submitted manually
+        
+        timeLeft--;
+        let minutes = Math.floor(timeLeft / 60);
+        let seconds = timeLeft % 60;
+        timeDisplay.innerText = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+        if (timeLeft <= 60) timerBar.style.backgroundColor = "#c0392b"; // Turn dark red at 1 min
+
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            timeDisplay.innerText = "0:00 - TIME'S UP!";
+            alert("Time is up! Auto-submitting your exam.");
+            gradeQuiz(); // Force submit
+        }
+    }, 1000);
+}
+
+// 5. Grade & Save
+submitBtn.addEventListener('click', () => {
+    // Only enforce the "answer all questions" rule if they click submit manually
+    let allAnswered = true;
+    quizData.forEach((item, index) => {
+        if (!document.querySelector(`input[name="q${index}"]:checked`)) allAnswered = false;
+    });
+    if (!allAnswered) return alert("Please answer all questions before submitting.");
+    
+    gradeQuiz();
+});
+
+async function gradeQuiz() {
+    if(quizGraded) return;
+    quizGraded = true;
+    clearInterval(timerInterval);
+    
+    let score = 0;
+    
+    quizData.forEach((item, index) => {
+        const selectedInput = document.querySelector(`input[name="q${index}"]:checked`);
+        const selectedValue = selectedInput ? selectedInput.value : null;
+        const solutionBox = document.getElementById(`solution-${index}`);
+        
+        // Lock inputs
+        document.querySelectorAll(`input[name="q${index}"]`).forEach(input => input.disabled = true);
+        
+        // Highlight logic
+        if (selectedValue === item.ans) {
+            score++;
+            document.getElementById(`label-${index}-${selectedValue}`).classList.add('correct-highlight');
+        } else {
+            if (selectedValue) document.getElementById(`label-${index}-${selectedValue}`).classList.add('incorrect-highlight');
+            document.getElementById(`label-${index}-${item.ans}`).classList.add('correct-highlight');
+        }
+        solutionBox.style.display = "block"; // Always show solutions on the Master quiz review
+    });
+
+    const percentage = Math.round((score / quizData.length) * 100);
+
+    // UI Updates
+    const scoreDiv = document.getElementById('score-display');
+    scoreDiv.style.display = "block";
+    submitBtn.disabled = true;
+    submitBtn.innerText = "Saving Score to Database...";
+
+    if (percentage >= 80) {
+        scoreDiv.style.backgroundColor = "#d4edda";
+        scoreDiv.style.color = "#155724";
+        scoreDiv.innerHTML = `Great job! You scored ${percentage}%.`;
+    } else {
+        scoreDiv.style.backgroundColor = "#f8d7da";
+        scoreDiv.style.color = "#721c24";
+        scoreDiv.innerHTML = `You scored ${percentage}%. Review the solutions carefully.`;
+    }
+
+    // Save to Firebase Database under the exact key 'student.js' checks!
+    try {
+        const studentRef = doc(db, "users", currentUser.email);
+        await updateDoc(studentRef, {
+            "exams.unit1_1_master": percentage 
+        });
+        submitBtn.innerText = "Exam Saved Successfully!";
+        submitBtn.style.backgroundColor = "#27ae60";
+    } catch (error) {
+        console.error(error);
+        submitBtn.innerText = "Error Saving Score";
+        submitBtn.style.backgroundColor = "#e74c3c";
+    }
+}
+</script>
+
+</body>
+</html>
