@@ -22,3 +22,9 @@ const app = initializeApp(firebaseConfig);
 // 4. EXPORT the initialized Auth and Database so other files can use them!
 export const auth = getAuth(app);
 export const db = getFirestore(app);
+
+// Add this import to the top of firebase-config.js
+import { getFirestore, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+// Export it at the bottom so your quiz files can use it
+export const timestamp = serverTimestamp;
