@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 1 Master Exam</title>
+<style>
+  body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px; background-color: #f4f7f6; color: #333; }
+  .container { max-width: 850px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+  .lock-screen { text-align: center; padding: 40px; background: #fdfaef; border: 2px solid #f39c12; border-radius: 8px; display: none; }
+  .btn-submit { display: block; width: 100%; padding: 15px; background-color: #8e44ad; color: white; border: none; font-size: 18px; cursor: pointer; border-radius: 5px; }
+  .btn-submit:hover { background-color: #732d91; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <a href="index.html" style="color: #3498db; text-decoration: none; font-weight: bold;">&larr; Back to Dashboard</a>
+  
+  <h1 style="color: #8e44ad; text-align: center;">Unit 1 Master Exam</h1>
+
+  <div id="lock-screen" class="lock-screen">
+      <h2 id="final-score" style="color: #2c3e50; font-size: 32px;"></h2>
+      <p style="font-size: 18px;">To simulate exam security, detailed solutions are temporarily locked.</p>
+      <div style="background: white; padding: 15px; border-radius: 5px; margin-top: 20px; font-weight: bold; color: #e74c3c;">
+          🔓 Solutions will unlock on: <br>
+          <span id="unlock-time" style="font-size: 22px;"></span>
+      </div>
+  </div>
+
+  <div id="exam-area" style="display: none;">
+      <p style="text-align: center; color: #e74c3c; font-weight: bold;">⏱️ This is a timed simulation. You have 20 minutes.</p>
+      
+      <div id="quiz-container">
+          <p>1. Example Question...</p>
+          <label><input type="radio" name="q0" value="A"> A) 5</label><br>
+          <label><input type="radio" name="q0" value="B"> B) 10</label>
+      </div>
+
+      <button id="submit-btn" class="btn-submit" style="margin-top: 30px;">Submit Exam</button>
+  </div>
+</div>
+
+<script type="module">
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+import { doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+import { auth, db, timestamp } from './firebase-config.js';
+
+const lockScreen = document.getElementById('lock-screen');
+const examArea = document.getElementById('exam-area');
+const submitBtn = document.getElementById('submit-btn');
+
+let currentUser = null;
+
+onAuthStateChanged(auth, async (user) => {
+    if (user) {
+        currentUser = user;
+        const studentRef = doc(db, "users", user.email);
+        const docSnap = await getDoc(studentRef);
+        const data = docSnap.data();
+
+        // 1. CHECK IF THEY HAVE ALREADY TAKEN THE MASTER EXAM
+        if (data.exams && data.exams.unit1_master) {
+            
+            const examData = data.exams.unit1_master;
+            
+            // Firebase timestamps need to be converted to Javascript Dates
+            const submissionTime = examData.submittedAt.toDate().getTime(); 
+            const currentTime = new Date().getTime();
+            
+            // Calculate hours passed
+            const hoursPassed = (currentTime - submissionTime) / (1000 * 60 * 60);
+
+            if (hoursPassed >= 24) {
+                // REVIEW MODE: 24 hours have passed!
+                examArea.style.display = "block";
+                submitBtn.style.display = "none"; // Hide submit button, they already took it
+                alert("Your detailed solutions are now unlocked!");
+                // (Here you would write code to display their saved answers and the solution boxes)
+            } else {
+                // LOCK MODE: Less than 24 hours. Calculate local unlock time.
+                const unlockDate = new Date(submissionTime + (24 * 60 * 60 * 1000));
+                
+                document.getElementById('final-score').innerText = `Your Score: ${examData.score}%`;
+                // toLocaleString() automatically uses the student's computer/phone timezone!
+                document.getElementById('unlock-time').innerText = unlockDate.toLocaleString(); 
+                
+                lockScreen.style.display = "block";
+            }
+
+        } else {
+            // TAKING MODE: They have never taken it before. Show the exam.
+            examArea.style.display = "block";
+        }
+
+    } else {
+        window.location.href = "index.html";
+    }
+});
+
+// 2. SUBMITTING THE EXAM
+submitBtn.addEventListener('click', async () => {
+    // (Grade the exam and calculate percentage here...)
+    const fakeScore = 85; 
+
+    submitBtn.innerText = "Saving to Database...";
+    submitBtn.disabled = true;
+
+    try {
+        const studentRef = doc(db, "users", currentUser.email);
+        
+        // Save the score AND the exact server time
+        await updateDoc(studentRef, {
+            "exams.unit1_master": {
+                score: fakeScore,
+                submittedAt: timestamp() 
+            }
+        });
+
+        alert("Exam submitted successfully!");
+        location.reload(); // Refresh the page so it triggers the 24-hour Lock Screen!
+
+    } catch (error) {
+        console.error(error);
+        alert("Error saving exam.");
+    }
+});
+</script>
+
+</body>
+</html>
