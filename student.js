@@ -4,7 +4,7 @@ import { signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthState
 import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 import { auth, db } from './firebase-config.js';
 
-// Curriculum Definition
+// --- CURRICULUM DEFINITION ---
 const curriculum = { 1: 14, 2: 8, 3: 15, 4: 14 };
 const unitTitles = {
     1: "Polynomial & Rational Functions",
@@ -13,7 +13,7 @@ const unitTitles = {
     4: "Parameters, Vectors & Matrices"
 };
 
-// DOM Elements
+// --- DOM ELEMENTS ---
 const loginSection = document.getElementById('login-section');
 const quizSection = document.getElementById('quiz-section');
 const dashboardContent = document.getElementById('dashboard-content');
@@ -24,61 +24,72 @@ const signupBtn = document.getElementById('signup-btn');
 const logoutBtn = document.getElementById('logout-btn');
 const loginMessage = document.getElementById('login-message');
 
-// Handlers for Login/Signup/Logout
+// --- AUTHENTICATION HANDLERS ---
 signupBtn.addEventListener('click', async () => {
-    try { await createUserWithEmailAndPassword(auth, emailInput.value.trim(), passwordInput.value); } 
-    catch (error) { loginMessage.innerText = error.message; }
+    try { 
+        await createUserWithEmailAndPassword(auth, emailInput.value.trim(), passwordInput.value); 
+    } catch (error) { 
+        loginMessage.innerText = error.message; 
+    }
 });
 
 loginBtn.addEventListener('click', async () => {
-    try { await signInWithEmailAndPassword(auth, emailInput.value.trim(), passwordInput.value); } 
-    catch (error) { loginMessage.innerText = "Invalid email or password."; }
+    try { 
+        await signInWithEmailAndPassword(auth, emailInput.value.trim(), passwordInput.value); 
+    } catch (error) { 
+        loginMessage.innerText = "Invalid email or password."; 
+    }
 });
 
 logoutBtn.addEventListener('click', () => signOut(auth));
 
-// Monitor Login State & Build Dashboard
+
+// --- DASHBOARD GENERATION & LOGIC ---
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         const docRef = doc(db, "users", user.email);
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
+            // Student is authorized by Admin. Show Dashboard.
             loginSection.style.display = 'none';
             quizSection.style.display = 'block';
             logoutBtn.style.display = 'block';
             
             const studentData = docSnap.data();
-            // Failsafe: Ensure scores and exams objects exist
+            
+            // Failsafe: Ensure scores and exams objects exist in case of legacy data
             const scores = studentData.scores || {};
             const exams = studentData.exams || {};
             
             dashboardContent.innerHTML = ""; 
             let hasAnyQuizzes = false;
 
-            // Loop through Units 1 to 4
+            // Loop through Main Units 1 to 4
             for (let unit = 1; unit <= 4; unit++) {
                 let unitCardsHTML = "";
-                let entireUnitMastered = true; // Assume true until we find an uncompleted Topic Master
+                let entireUnitMastered = true; 
                 let totalTopicsInUnit = 0;
 
+                // Loop through Sub-topics for the current unit
                 for(let sub = 1; sub <= curriculum[unit]; sub++) {
                     const unitKey = `unit${unit}_${sub}`;
                     
+                    // Only render if the Admin checked the box for this specific topic
                     if (studentData.access && studentData.access[unitKey]) {
                         hasAnyQuizzes = true;
                         totalTopicsInUnit++;
 
-                        // Check completion status (does the score exist in the database?)
+                        // Check completion status in the database
                         const isEasyDone = scores[`${unitKey}_easy`] !== undefined;
                         const isMedDone  = scores[`${unitKey}_med`] !== undefined;
                         const isHardDone = scores[`${unitKey}_hard`] !== undefined;
                         
-                        // Check if they took this specific sub-topic's master quiz
+                        // Check if they took this specific sub-topic's timed master quiz
                         const isTopicMasterDone = exams[`${unitKey}_master`] !== undefined;
                         if (!isTopicMasterDone) entireUnitMastered = false;
 
-                        // Unlocks the Sub-Topic Master only if E, M, and H are done
+                        // Unlocks the Sub-Topic Master only if Easy, Med, and Hard are done
                         const topicMasterUnlocked = isEasyDone && isMedDone && isHardDone;
 
                         // UI helpers for checkmarks
@@ -86,14 +97,15 @@ onAuthStateChanged(auth, async (user) => {
                         const mIcon = isMedDone ? "✅" : "📝";
                         const hIcon = isHardDone ? "✅" : "📝";
 
+                        // Build the Card (Using the new dynamic quiz.html links!)
                         unitCardsHTML += `
                             <div class="quiz-card">
                                 <h3>Topic ${unit}.${sub}</h3>
                                 
                                 <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 15px;">
-                                    <a href="unit${unit}-${sub}-easy.html" style="background-color: ${isEasyDone ? '#27ae60' : '#3498db'};">${eIcon} Easy Practice</a>
-                                    <a href="unit${unit}-${sub}-med.html" style="background-color: ${isMedDone ? '#27ae60' : '#f39c12'};">${mIcon} Medium Practice</a>
-                                    <a href="unit${unit}-${sub}-hard.html" style="background-color: ${isHardDone ? '#27ae60' : '#e74c3c'};">${hIcon} Hard Practice</a>
+                                    <a href="quiz.html?unit=${unit}_${sub}&diff=easy" style="background-color: ${isEasyDone ? '#27ae60' : '#3498db'};">${eIcon} Easy Practice</a>
+                                    <a href="quiz.html?unit=${unit}_${sub}&diff=med" style="background-color: ${isMedDone ? '#27ae60' : '#f39c12'};">${mIcon} Medium Practice</a>
+                                    <a href="quiz.html?unit=${unit}_${sub}&diff=hard" style="background-color: ${isHardDone ? '#27ae60' : '#e74c3c'};">${hIcon} Hard Practice</a>
                                 </div>
 
                                 ${topicMasterUnlocked 
@@ -105,10 +117,9 @@ onAuthStateChanged(auth, async (user) => {
                     }
                 }
 
-                // If they have access to this unit, render the cards AND the Grand Unit Exam
+                // If they have access to this unit, render the cards AND the Grand Unit Exam at the bottom
                 if (unitCardsHTML !== "") {
                     
-                    // Grand Unit Master Exam Logic
                     let grandMasterHTML = "";
                     
                     // Only unlock if they have access to at least 1 topic, AND they mastered all topics they have access to
@@ -139,17 +150,22 @@ onAuthStateChanged(auth, async (user) => {
                 }
             }
 
+            // Fallback if the Admin hasn't checked any boxes for this student yet
             if(!hasAnyQuizzes) {
                 dashboardContent.innerHTML = `<div class="quiz-card" style="border-top-color:#e74c3c;"><h3>No Active Quizzes</h3><p>Your teacher has not unlocked any quizzes for you yet.</p></div>`;
             }
 
         } else {
+            // Student is logged into Firebase, but their email is NOT in the Admin's Firestore database
             signOut(auth);
-            loginMessage.innerText = "Access Denied: Your email is not authorized.";
+            loginMessage.innerText = "Access Denied: Your email is not authorized by the teacher.";
         }
     } else {
+        // Not logged in at all. Show login screen.
         loginSection.style.display = 'block';
         quizSection.style.display = 'none';
         logoutBtn.style.display = 'none';
+        emailInput.value = ""; 
+        passwordInput.value = "";
     }
 });
