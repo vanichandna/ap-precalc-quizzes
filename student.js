@@ -1,9 +1,9 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-import { getAuth, sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
 import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
 // 1. PASTE YOUR CONFIG HERE
-const firebaseConfig = {
+ const firebaseConfig = {
     apiKey: "AIzaSyCjpG0uEfQOhnBoTD80cE--KInyg7rh6vQ",
     authDomain: "ap-precalc.firebaseapp.com",
     projectId: "ap-precalc",
@@ -11,7 +11,7 @@ const firebaseConfig = {
     messagingSenderId: "50281949647",
     appId: "1:50281949647:web:c2c0eff68b2d0fa5d24aba",
     measurementId: "G-Z5YBDNR3NZ"
-};
+  };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -22,78 +22,79 @@ const loginSection = document.getElementById('login-section');
 const quizSection = document.getElementById('quiz-section');
 const quizContainer = document.getElementById('quiz-container');
 const emailInput = document.getElementById('student-email');
+const passwordInput = document.getElementById('student-password');
 const loginBtn = document.getElementById('login-btn');
+const signupBtn = document.getElementById('signup-btn');
 const logoutBtn = document.getElementById('logout-btn');
 const loginMessage = document.getElementById('login-message');
 
-// 2. Settings for the Email Link
-const actionCodeSettings = {
-  // Replace this URL with your actual GitHub Pages URL once published!
-  // For now, if testing locally, use your local live server URL.
-  url: 'https://vanichandna.github.io/ap-precalc-quizzes/index.html',
-  handleCodeInApp: true,
-};
-
-// 3. Send the Magic Link
-loginBtn.addEventListener('click', async () => {
+// 2. Handle First-Time Sign Up
+signupBtn.addEventListener('click', async () => {
     const email = emailInput.value.trim();
-    if (!email) return alert("Please enter your email.");
+    const password = passwordInput.value;
+
+    if (!email || password.length < 6) {
+        return loginMessage.innerText = "Please enter an email and a password (at least 6 characters).";
+    }
 
     try {
-        await sendSignInLinkToEmail(auth, email, actionCodeSettings);
-        window.localStorage.setItem('emailForSignIn', email); // Save email for the return trip
-        loginMessage.innerText = "Check your email! A login link has been sent.";
+        await createUserWithEmailAndPassword(auth, email, password);
+        loginMessage.style.color = "green";
+        loginMessage.innerText = "Account created successfully!";
     } catch (error) {
-        console.error("Error sending email: ", error);
-        alert(error.message);
+        loginMessage.style.color = "red";
+        loginMessage.innerText = error.message; // Shows if email is already in use, etc.
     }
 });
 
-// 4. Handle the return from the Magic Link
-if (isSignInWithEmailLink(auth, window.location.href)) {
-    let email = window.localStorage.getItem('emailForSignIn');
-    if (!email) {
-        email = window.prompt('Please provide your email for confirmation');
+// 3. Handle Returning User Log In
+loginBtn.addEventListener('click', async () => {
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
+
+    if (!email || !password) {
+        return loginMessage.innerText = "Please enter both email and password.";
     }
 
-    signInWithEmailLink(auth, email, window.location.href)
-    .then((result) => {
-        window.localStorage.removeItem('emailForSignIn');
-        // Clear the URL to remove the ugly verification code
-        window.history.replaceState(null, null, window.location.pathname);
-    })
-    .catch((error) => console.error("Error signing in: ", error));
-}
+    try {
+        await signInWithEmailAndPassword(auth, email, password);
+        loginMessage.innerText = ""; // Clear errors on success
+    } catch (error) {
+        loginMessage.style.color = "red";
+        loginMessage.innerText = "Invalid email or password.";
+    }
+});
 
-// 5. Monitor Login State & Fetch Access
+// 4. Monitor Login State & Fetch Access (This remains exactly the same!)
 onAuthStateChanged(auth, async (user) => {
     if (user) {
-        loginSection.style.display = 'none';
-        quizSection.style.display = 'block';
-        
-        // Fetch their access rules from Firestore
         const docRef = doc(db, "users", user.email);
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
+            // SUCCESS: They are on your Admin list!
+            loginSection.style.display = 'none';
+            quizSection.style.display = 'block';
+            
             const studentData = docSnap.data();
-            quizContainer.innerHTML = ""; // Clear existing buttons
+            quizContainer.innerHTML = ""; 
 
-            // Check Unit 1
             if (studentData.access.unit1) {
                 quizContainer.innerHTML += `<a href="unit1-quiz.html"><button>Take Unit 1 Quiz</button></a>`;
             }
-            // Check Unit 2
             if (studentData.access.unit2) {
                 quizContainer.innerHTML += `<a href="unit2-quiz.html"><button>Take Unit 2 Quiz</button></a>`;
             }
-
             if(quizContainer.innerHTML === "") {
                 quizContainer.innerHTML = "<p>You do not currently have access to any quizzes. Please ask your teacher.</p>";
             }
-
         } else {
-            quizContainer.innerHTML = "<p>Your email is not in the student database. Contact your teacher.</p>";
+            // FAILED: They logged in, but are NOT on your Admin list.
+            signOut(auth);
+            loginMessage.style.color = "red";
+            loginMessage.innerText = "Access Denied: Your email is not authorized by the teacher.";
+            loginSection.style.display = 'block';
+            quizSection.style.display = 'none';
         }
     } else {
         loginSection.style.display = 'block';
@@ -101,7 +102,9 @@ onAuthStateChanged(auth, async (user) => {
     }
 });
 
-// 6. Logout
+// 5. Logout
 logoutBtn.addEventListener('click', () => {
     signOut(auth);
+    emailInput.value = "";
+    passwordInput.value = "";
 });
