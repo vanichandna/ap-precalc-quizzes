@@ -3,9 +3,15 @@ import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/
 import { getFirestore, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
 // 1. PASTE YOUR CONFIG HERE
-const firebaseConfig = {
-  // YOUR CONFIG GOES HERE
-};
+ const firebaseConfig = {
+    apiKey: "AIzaSyCjpG0uEfQOhnBoTD80cE--KInyg7rh6vQ",
+    authDomain: "ap-precalc.firebaseapp.com",
+    projectId: "ap-precalc",
+    storageBucket: "ap-precalc.firebasestorage.app",
+    messagingSenderId: "50281949647",
+    appId: "1:50281949647:web:c2c0eff68b2d0fa5d24aba",
+    measurementId: "G-Z5YBDNR3NZ"
+  };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
