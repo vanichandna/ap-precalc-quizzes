@@ -67,16 +67,17 @@ addBtn.addEventListener('click', async () => {
     addBtn.disabled = true;
 
     try {
+        // UPDATE 1: Create slots for sub-units here
         await setDoc(doc(db, "users", email), {
             email: email,
-            access: { unit1: false, unit2: false },
-            scores: { unit1: 0, unit2: 0 }
+            access: { unit1_1: false, unit1_2: false, unit1_3: false },
+            scores: { unit1_1: 0, unit1_2: 0, unit1_3: 0 }
         });
         alert("Student added successfully!");
         newStudentEmailInput.value = '';
-        loadStudents(); // Refresh table
+        loadStudents(); 
     } catch (e) {
-        alert("Error adding student! Check your console for details.");
+        alert("Error adding student!");
         console.error(e);
     } finally {
         addBtn.innerText = "Grant Access";
@@ -86,36 +87,38 @@ addBtn.addEventListener('click', async () => {
 
 // Load Students into Table
 async function loadStudents() {
-    tableBody.innerHTML = "<tr><td colspan='4'>Loading...</td></tr>";
+    tableBody.innerHTML = "<tr><td colspan='5'>Loading...</td></tr>";
     
     try {
         const querySnapshot = await getDocs(collection(db, "users"));
         tableBody.innerHTML = "";
 
-        // FIX APPLIED HERE: Changed 'document' to 'docSnapshot'
         querySnapshot.forEach((docSnapshot) => {
             const student = docSnapshot.data();
-            const row = document.createElement('tr'); // Now 'document' correctly refers to the webpage!
+            const row = document.createElement('tr');
 
+            // UPDATE 2: Add table columns for 1.1, 1.2, 1.3
             row.innerHTML = `
                 <td>${student.email}</td>
-                <td><input type="checkbox" class="access-toggle" data-email="${student.email}" data-unit="unit1" ${student.access.unit1 ? 'checked' : ''}></td>
-                <td><input type="checkbox" class="access-toggle" data-email="${student.email}" data-unit="unit2" ${student.access.unit2 ? 'checked' : ''}></td>
-                <td>U1: ${student.scores.unit1}% | U2: ${student.scores.unit2}%</td>
+                <td><input type="checkbox" class="access-toggle" data-email="${student.email}" data-unit="unit1_1" ${student.access.unit1_1 ? 'checked' : ''}></td>
+                <td><input type="checkbox" class="access-toggle" data-email="${student.email}" data-unit="unit1_2" ${student.access.unit1_2 ? 'checked' : ''}></td>
+                <td><input type="checkbox" class="access-toggle" data-email="${student.email}" data-unit="unit1_3" ${student.access.unit1_3 ? 'checked' : ''}></td>
+                <td style="font-size: 0.9em;">
+                    1.1: ${student.scores.unit1_1}%<br>
+                    1.2: ${student.scores.unit1_2}%<br>
+                    1.3: ${student.scores.unit1_3}%
+                </td>
             `;
             tableBody.appendChild(row);
         });
 
-        // Add event listeners to the new checkboxes
         document.querySelectorAll('.access-toggle').forEach(checkbox => {
             checkbox.addEventListener('change', handleAccessToggle);
         });
     } catch(e) {
-        tableBody.innerHTML = "<tr><td colspan='4' style='color:red;'>Failed to load students. Check console.</td></tr>";
-        console.error(e);
+        tableBody.innerHTML = "<tr><td colspan='5' style='color:red;'>Failed to load students.</td></tr>";
     }
 }
-
 // Update Access Checkboxes
 async function handleAccessToggle(event) {
     const email = event.target.getAttribute('data-email');
