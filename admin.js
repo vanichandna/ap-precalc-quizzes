@@ -1,22 +1,68 @@
 // admin.js
 
-// 1. Import Firestore functions from Google
+// 1. Import Auth and Firestore functions
+import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
 import { collection, doc, setDoc, getDocs, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
-// 2. IMPORT YOUR CONNECTION FROM YOUR CENTRAL HUB!
-import { db } from './firebase-config.js';
+// 2. Import your central connection!
+import { auth, db } from './firebase-config.js';
 
-// DOM Elements
+// DOM Elements - Login
+const loginSection = document.getElementById('login-section');
+const dashboardSection = document.getElementById('dashboard-section');
+const adminEmailInput = document.getElementById('admin-email');
+const adminPassInput = document.getElementById('admin-password');
+const loginBtn = document.getElementById('admin-login-btn');
+const logoutBtn = document.getElementById('admin-logout-btn');
+const errorMsg = document.getElementById('admin-error');
+
+// DOM Elements - Dashboard
 const addBtn = document.getElementById('add-student-btn');
-const emailInput = document.getElementById('new-student-email');
+const newStudentEmailInput = document.getElementById('new-student-email');
 const tableBody = document.getElementById('student-table-body');
 
-// 3. Function to Add a Student
+// --- AUTHENTICATION LOGIC ---
+
+// Log In Button
+loginBtn.addEventListener('click', async () => {
+    try {
+        errorMsg.innerText = "Logging in...";
+        await signInWithEmailAndPassword(auth, adminEmailInput.value.trim(), adminPassInput.value);
+    } catch (e) {
+        errorMsg.innerText = "Login failed: Invalid email or password.";
+    }
+});
+
+// Log Out Button
+logoutBtn.addEventListener('click', () => {
+    signOut(auth);
+});
+
+// Monitor Login State (Hides/Shows the Dashboard)
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        // You are logged in! Hide login box, show dashboard.
+        loginSection.style.display = "none";
+        dashboardSection.style.display = "block";
+        loadStudents(); // Fetch the database now that we have permission
+    } else {
+        // You are logged out.
+        loginSection.style.display = "block";
+        dashboardSection.style.display = "none";
+        adminEmailInput.value = "";
+        adminPassInput.value = "";
+        errorMsg.innerText = "";
+    }
+});
+
+
+// --- DASHBOARD LOGIC ---
+
+// Add a Student
 addBtn.addEventListener('click', async () => {
-    const email = emailInput.value.trim().toLowerCase();
+    const email = newStudentEmailInput.value.trim().toLowerCase();
     if (!email) return alert("Please enter an email");
 
-    // Change button text so you know it's thinking
     addBtn.innerText = "Adding...";
     addBtn.disabled = true;
 
@@ -27,19 +73,18 @@ addBtn.addEventListener('click', async () => {
             scores: { unit1: 0, unit2: 0 }
         });
         alert("Student added successfully!");
-        emailInput.value = '';
+        newStudentEmailInput.value = '';
         loadStudents(); // Refresh table
     } catch (e) {
-        console.error("Full Error: ", e);
-        // This stops it from failing silently!
-        alert("Error adding student! You might not be logged in as the Admin, or your Security Rules are blocking it.");
+        alert("Error adding student! Check your console for details.");
+        console.error(e);
     } finally {
         addBtn.innerText = "Grant Access";
         addBtn.disabled = false;
     }
 });
 
-// 4. Function to Load and Display Students
+// Load Students into Table
 async function loadStudents() {
     tableBody.innerHTML = "<tr><td colspan='4'>Loading...</td></tr>";
     
@@ -65,11 +110,12 @@ async function loadStudents() {
             checkbox.addEventListener('change', handleAccessToggle);
         });
     } catch(e) {
-        tableBody.innerHTML = "<tr><td colspan='4' style='color:red;'>Failed to load students. Are you logged in as Admin?</td></tr>";
+        tableBody.innerHTML = "<tr><td colspan='4' style='color:red;'>Failed to load students. Check console.</td></tr>";
+        console.error(e);
     }
 }
 
-// 5. Function to Update Access in Database
+// Update Access Checkboxes
 async function handleAccessToggle(event) {
     const email = event.target.getAttribute('data-email');
     const unit = event.target.getAttribute('data-unit');
@@ -82,9 +128,6 @@ async function handleAccessToggle(event) {
         });
     } catch (e) {
         alert("Error updating access! Reverting checkbox.");
-        event.target.checked = !isChecked; // Revert checkbox if it fails
+        event.target.checked = !isChecked;
     }
 }
-
-// Initial load
-loadStudents();
