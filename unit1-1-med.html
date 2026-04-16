@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 1.1 - Medium Practice</title>
+<style>
+  body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px; background-color: #f4f7f6; color: #333; }
+  .container { max-width: 850px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+  h1 { text-align: center; color: #f39c12; font-size: 28px;}
+  p.subtitle { text-align:center; margin-bottom: 30px; color: #555; }
+  .question-block { margin-bottom: 25px; padding: 20px; border-left: 5px solid #f39c12; background-color: #fdfdfd; border-radius: 0 8px 8px 0; }
+  .question-text { font-weight: bold; font-size: 16px; margin-bottom: 15px; line-height: 1.5;}
+  .options label { display: block; margin: 10px 0; cursor: pointer; padding: 10px; border-radius: 4px; transition: background 0.2s; border: 1px solid transparent;}
+  .options label:hover { background-color: #fef5e7; border: 1px solid #dcdcdc; }
+  .btn-submit { display: block; width: 100%; padding: 15px; font-size: 18px; color: white; background-color: #f39c12; border: none; border-radius: 5px; cursor: pointer; margin-top: 30px; font-weight: bold; transition: 0.3s;}
+  .btn-submit:hover { background-color: #d68910; }
+  .btn-submit:disabled { background-color: #95a5a6; cursor: not-allowed; }
+  #score-display { margin-top: 25px; font-weight: bold; font-size: 20px; text-align: center; padding: 15px; border-radius: 5px; display: none; }
+  .solution-box { margin-top: 15px; padding: 15px; background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; border-radius: 5px; display: none; font-size: 15px; line-height: 1.5;}
+  .correct-highlight { background-color: #d4edda !important; border: 1px solid #c3e6cb !important; font-weight: bold; }
+  .incorrect-highlight { background-color: #f8d7da !important; border: 1px solid #f5c6cb !important; color: #721c24; text-decoration: line-through;}
+  .home-link { display: inline-block; margin-bottom: 20px; text-decoration: none; color: #f39c12; font-weight: bold; }
+  table { border-collapse: collapse; margin: 10px 0; min-width: 300px; text-align: center; }
+  th, td { border: 1px solid #ccc; padding: 8px; }
+  th { background-color: #f2f2f2; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <a href="index.html" class="home-link">&larr; Back to Dashboard</a>
+  
+  <h1>Unit 1.1: Medium Practice</h1>
+  <p class="subtitle">Focus: Analyzing rates of rates and determining concavity.</p>
+  
+  <div id="quiz-container">Loading practice questions...</div>
+
+  <button type="button" id="submit-btn" class="btn-submit" style="display: none;">Submit & Check Answers</button>
+  <div id="score-display"></div>
+</div>
+
+<script type="module">
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+import { doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+import { auth, db } from './firebase-config.js';
+
+let currentUser = null;
+const container = document.getElementById('quiz-container');
+const submitBtn = document.getElementById('submit-btn');
+
+onAuthStateChanged(auth, async (user) => {
+    if (user) {
+        const docSnap = await getDoc(doc(db, "users", user.email));
+        if (docSnap.exists() && docSnap.data().access.unit1_1 === true) {
+            currentUser = user;
+            container.innerHTML = ""; 
+            submitBtn.style.display = "block"; 
+            renderQuiz(); 
+        } else {
+            container.innerHTML = "<h3 style='color:red;'>Access Denied.</h3>";
+        }
+    } else {
+        window.location.href = "index.html"; 
+    }
+});
+
+const quizData = [
+  {
+    q: "1. A function h(x) is strictly increasing on the interval (a, b). If the rate at which h(x) increases is getting smaller as x increases, what must be true about the graph of h(x)?",
+    opts: { A: "It is concave up.", B: "It is concave down.", C: "It is linear.", D: "It has a vertical asymptote." },
+    ans: "B",
+    sol: "When a function is increasing at a decreasing rate, its slopes are positive but getting less steep over time. Graphically, this creates a curve that bends downwards, which is the definition of concave down."
+  },
+  {
+    q: `2. Use the table below to determine the concavity of the function k(x):
+        <table><tr><th>x</th><td>1</td><td>3</td><td>5</td><td>7</td></tr><tr><th>k(x)</th><td>5</td><td>9</td><td>17</td><td>33</td></tr></table>`,
+    opts: { 
+        A: "Concave up because the average rates of change are increasing.", 
+        B: "Concave down because the average rates of change are decreasing.", 
+        C: "Linear because the change in x is constant.", 
+        D: "Concave down because the function values are positive." 
+    },
+    ans: "A",
+    sol: "Calculate successive average rates of change over the intervals. [1, 3]: (9-5)/2 = 2. [3, 5]: (17-9)/2 = 4. [5, 7]: (33-17)/2 = 8. Because the rate of change (2, 4, 8) is increasing, the function is concave up."
+  },
+  {
+    q: "3. If a function f(x) has a constant rate of change of 0, what does its graph look like?",
+    opts: { A: "A vertical line", B: "A horizontal line", C: "A parabola", D: "A diagonal line passing through the origin" },
+    ans: "B",
+    sol: "A constant rate of change of 0 means the y-values never go up and never go down as x changes. This creates a perfectly flat, horizontal line."
+  }
+];
+
+function renderQuiz() {
+    quizData.forEach((item, index) => {
+      let optionsHtml = '';
+      for (const [key, value] of Object.entries(item.opts)) {
+        optionsHtml += `<label id="label-${index}-${key}"><input type="radio" name="q${index}" value="${key}"> <strong>${key})</strong> ${value}</label>`;
+      }
+      container.innerHTML += `
+        <div class="question-block" id="block-${index}">
+          <div class="question-text">${item.q}</div>
+          <div class="options">${optionsHtml}</div>
+          <div class="solution-box" id="solution-${index}">
+            <strong>Detailed Solution:</strong> <br>${item.sol}
+          </div>
+        </div>
+      `;
+    });
+}
+
+submitBtn.addEventListener('click', async () => {
+    let allAnswered = true;
+    quizData.forEach((item, index) => { if (!document.querySelector(`input[name="q${index}"]:checked`)) allAnswered = false; });
+    if (!allAnswered) return alert("Please answer all questions before submitting.");
+    
+    let score = 0;
+    quizData.forEach((item, index) => {
+        const selected = document.querySelector(`input[name="q${index}"]:checked`).value;
+        document.querySelectorAll(`input[name="q${index}"]`).forEach(input => input.disabled = true);
+        
+        if (selected === item.ans) {
+            score++;
+            document.getElementById(`label-${index}-${selected}`).classList.add('correct-highlight');
+        } else {
+            document.getElementById(`label-${index}-${selected}`).classList.add('incorrect-highlight');
+            document.getElementById(`label-${index}-${item.ans}`).classList.add('correct-highlight');
+        }
+        document.getElementById(`solution-${index}`).style.display = "block"; 
+    });
+
+    const percentage = Math.round((score / quizData.length) * 100);
+    const scoreDiv = document.getElementById('score-display');
+    scoreDiv.style.display = "block";
+    submitBtn.disabled = true;
+
+    if (percentage === 100) {
+        scoreDiv.style.backgroundColor = "#d4edda";
+        scoreDiv.style.color = "#155724";
+        scoreDiv.innerHTML = `Perfect! You scored 100%.`;
+    } else {
+        scoreDiv.style.backgroundColor = "#fff3cd";
+        scoreDiv.style.color = "#856404";
+        scoreDiv.innerHTML = `You scored ${percentage}%. Review the solutions above.`;
+    }
+
+    try {
+        const studentRef = doc(db, "users", currentUser.email);
+        await updateDoc(studentRef, {
+            "scores.unit1_1_med": percentage // SAVES TO MEDIUM SLOT
+        });
+        submitBtn.innerText = "Score Saved!";
+    } catch (error) {
+        submitBtn.innerText = "Error Saving Score";
+    }
+});
+</script>
+
+</body>
+</html>
