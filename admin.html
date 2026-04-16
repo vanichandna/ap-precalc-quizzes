@@ -3,37 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AP Precalc - Admin Dashboard</title>
+    <title>AP Precalc - Admin</title>
     <style>
         body { font-family: sans-serif; padding: 20px; max-width: 800px; margin: auto; }
         table { width: 100%; border-collapse: collapse; margin-top: 20px; }
         th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
         .form-group { margin-bottom: 20px; }
+        #login-section { text-align: center; margin-top: 50px; padding: 20px; border: 1px solid #ccc; }
     </style>
 </head>
 <body>
 
     <h1>Admin Dashboard</h1>
-    
-    <div class="form-group">
-        <h3>Add New Student</h3>
-        <input type="email" id="new-student-email" placeholder="student@example.com">
-        <button id="add-student-btn">Grant Access</button>
+
+    <div id="login-section">
+        <h3>Please log in to manage students</h3>
+        <input type="email" id="admin-email" placeholder="admin@email.com" style="display:block; margin: 10px auto; padding: 8px;">
+        <input type="password" id="admin-password" placeholder="Password" style="display:block; margin: 10px auto; padding: 8px;">
+        <button id="admin-login-btn" style="padding: 10px 20px; cursor: pointer;">Log In</button>
+        <p id="admin-error" style="color: red;"></p>
     </div>
 
-    <h3>Manage Access & Scores</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>Student Email</th>
-                <th>Unit 1 Access</th>
-                <th>Unit 2 Access</th>
-                <th>Scores</th>
-            </tr>
-        </thead>
-        <tbody id="student-table-body">
-            </tbody>
-    </table>
+    <div id="dashboard-section" style="display: none;">
+        <button id="admin-logout-btn" style="float: right; padding: 5px 10px; cursor: pointer;">Log Out</button>
+        
+        <div class="form-group">
+            <h3>Add New Student</h3>
+            <input type="email" id="new-student-email" placeholder="student@example.com" style="padding: 5px;">
+            <button id="add-student-btn" style="padding: 5px 10px; cursor: pointer;">Grant Access</button>
+        </div>
+
+        <h3>Manage Access & Scores</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Student Email</th>
+                    <th>Unit 1 Access</th>
+                    <th>Unit 2 Access</th>
+                    <th>Scores</th>
+                </tr>
+            </thead>
+            <tbody id="student-table-body">
+                </tbody>
+        </table>
+    </div>
 
     <script type="module" src="admin.js"></script>
 </body>
