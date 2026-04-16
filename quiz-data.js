@@ -646,5 +646,212 @@ export const masterCurriculum = {
             { q: "4. Which transformation of y = 1/x does NOT change its vertical asymptote?", opts: { A: "y = 1/(x - 2)", B: "y = 1/(x + 5)", C: "y = 3/x + 4", D: "y = 1/(2x - 6)" }, ans: "C", sol: "The vertical asymptote of 1/x is x=0. Any horizontal shift (inside change) will move it. 3/x + 4 is a vertical stretch and vertical shift; it leaves the VA at x=0 untouched." },
             { q: "5. A polynomial f(x) has roots at -1, 2, and 5. What are the roots of f(-x)?", opts: { A: "-1, 2, 5", B: "1, -2, -5", C: "Cannot determine", D: "There are no roots" }, ans: "B", sol: "f(-x) is a reflection across the y-axis. All x-values (including roots) flip their signs. 1, -2, -5." }
         ]
+    },
+    // ==========================================
+    // UNIT 1.13: Function Model Selection & Assumptions
+    // ==========================================
+    "1_13_easy": {
+        title: "Unit 1.13: Easy Practice",
+        subtitle: "Focus: Identifying appropriate polynomial and rational models.",
+        themeColor: "#27ae60",
+        questions: [
+            { q: "1. A dataset shows a single absolute maximum and then decreases indefinitely on both sides. Which model is most appropriate?", opts: { A: "Linear", B: "Quadratic", C: "Cubic", D: "Rational with a horizontal asymptote" }, ans: "B", sol: "A single maximum (a peak) with both ends pointing down is the defining characteristic of a downward-opening parabola, which is a quadratic model." },
+            { q: "2. If a dataset has constant second differences, the most appropriate model is:", opts: { A: "Linear", B: "Quadratic", C: "Cubic", D: "Exponential" }, ans: "B", sol: "Constant second differences are the mathematical signature of a quadratic function (degree 2)." },
+            { q: "3. A scientist is modeling the volume of a box based on its side length. Volume involves multiplying length, width, and height. The best model is:", opts: { A: "Linear", B: "Quadratic", C: "Cubic", D: "Rational" }, ans: "C", sol: "Multiplying three linear dimensions (x * x * x) results in a cubic relationship (x³)." },
+            { q: "4. If a dataset approaches a constant value as the input gets infinitely large, the best model is:", opts: { A: "Polynomial with even degree", B: "Polynomial with odd degree", C: "Rational function", D: "Linear function" }, ans: "C", sol: "Approaching a constant value means the graph has a horizontal asymptote. Polynomials go to infinity or negative infinity. Rational functions can have horizontal asymptotes." },
+            { q: "5. A dataset exhibits 3 turning points. What is the minimum degree of a polynomial model for this data?", opts: { A: "Degree 2", B: "Degree 3", C: "Degree 4", D: "Degree 5" }, ans: "C", sol: "The minimum degree of a polynomial is always one more than the number of turning points. 3 + 1 = 4." }
+        ]
+    },
+    "1_13_med": {
+        title: "Unit 1.13: Medium Practice",
+        subtitle: "Focus: Articulating assumptions and limitations of models.",
+        themeColor: "#f39c12",
+        questions: [
+            { q: "1. A linear model is used to predict the height of a tree over time. What is the underlying assumption of this model?", opts: { A: "The tree will eventually stop growing.", B: "The tree grows by the same constant amount every year.", C: "The tree's growth rate is increasing.", D: "The tree grows proportionally to its current height." }, ans: "B", sol: "Linear models assume a constant average rate of change. This means assuming the tree adds the exact same number of inches every single year." },
+            { q: "2. A quadratic model y = -16x² + 40x models a thrown ball. Why might this model fail for x < 0?", opts: { A: "Time cannot be negative in this physical context.", B: "The ball hasn't been thrown yet.", C: "The model predicts a negative height.", D: "All of the above." }, ans: "D", sol: "Mathematical models often have domain restrictions based on reality. Negative time doesn't make sense, the event hasn't started, and the math outputs a negative height which is physically impossible here." },
+            { q: "3. A rational model for animal population P(t) has a horizontal asymptote at P = 5000. What does this assume?", opts: { A: "The population will die out.", B: "The population has a carrying capacity of 5000.", C: "The population grows infinitely.", D: "The population decreases by 5000 a year." }, ans: "B", sol: "A horizontal asymptote in a population model represents the 'carrying capacity'—the maximum population the environment can sustain over time." },
+            { q: "4. Data shows an alternating increasing and decreasing pattern. Why is a low-degree polynomial a poor choice?", opts: { A: "Polynomials cannot have turning points.", B: "Polynomials only increase.", C: "A polynomial would need a very high degree to capture many turns, making it overly complex.", D: "Rational functions are required for turning points." }, ans: "C", sol: "While polynomials have turning points, a dataset that goes up and down 10 times would require a degree 11 polynomial. High-degree polynomials are volatile and terrible for predicting outside the data range." },
+            { q: "5. You model car depreciation with a linear function. The flaw in this assumption is:", opts: { A: "Cars appreciate in value.", B: "Linear models suggest the car will eventually have a negative value.", C: "Cars lose value at an increasing rate.", D: "Linear models cannot have negative slopes." }, ans: "B", sol: "A linear model with a negative slope will eventually cross the x-axis and go into negative y-values. A car cannot have a negative value (you wouldn't pay someone to take it)." }
+        ]
+    },
+    "1_13_hard": {
+        title: "Unit 1.13: Hard Practice",
+        subtitle: "Focus: Evaluating competing models and analyzing residuals.",
+        themeColor: "#e74c3c",
+        questions: [
+            { q: "1. Model A (Quadratic) and Model B (Cubic) are fit to a dataset. The residuals for Model A show a clear U-shaped pattern, while Model B's residuals are randomly scattered. Which is better?", opts: { A: "Model A", B: "Model B", C: "Both are equally good", D: "Neither, use a linear model" }, ans: "B", sol: "A clear pattern in a residual plot indicates that the model failed to capture an underlying trend in the data. Randomly scattered residuals indicate a good, unbiased fit. Model B is better." },
+            { q: "2. A rational model f(x) = (ax) / (x + b) is proposed for a machine's production rate over time. If the rate must be 0 at t=0, what is true?", opts: { A: "a = 0", B: "b = 0", C: "The numerator must be 0 when x=0, which it is.", D: "This model cannot pass through the origin." }, ans: "C", sol: "If you plug in x=0, the top becomes a(0) = 0. As long as b is not 0, the function equals 0. The model naturally satisfies the condition." },
+            { q: "3. A dataset has x-values {1, 2, 3, 4} and y-values {2, 9, 28, 65}. Which model perfectly fits this?", opts: { A: "Linear", B: "Quadratic", C: "Cubic", D: "Rational" }, ans: "C", sol: "Check differences. 1st: 7, 19, 37. 2nd: 12, 18. 3rd: 6. Because the 3rd differences are constant, the data is perfectly modeled by a cubic function (specifically y = x³ + 1)." },
+            { q: "4. Why is it dangerous to use a high-degree polynomial (e.g., degree 8) to perfectly connect 9 data points?", opts: { A: "It violates the Fundamental Theorem of Algebra.", B: "It leads to 'overfitting', causing wild and inaccurate predictions between and outside the points.", C: "It forces the leading coefficient to be negative.", D: "High-degree polynomials have no end behavior." }, ans: "B", sol: "This is called overfitting. While the line hits every dot perfectly, it will likely have massive, unrealistic spikes and dips between the dots, making it useless for actual prediction." },
+            { q: "5. The cost to produce x units is C(x). Average cost is A(x) = C(x)/x. If C(x) is linear with a positive y-intercept, what is A(x)?", opts: { A: "Linear", B: "Quadratic", C: "A rational function with a vertical asymptote at x=0", D: "A constant" }, ans: "C", sol: "If C(x) = mx + b, then A(x) = (mx + b) / x. This is a rational function. Because 'x' is in the denominator, there is a vertical asymptote at x = 0 (producing 0 units makes average cost infinite)." }
+        ]
+    },
+    "1_13_master": {
+        title: "Unit 1.13 Master Exam",
+        subtitle: "Function Model Selection & Evaluation.",
+        themeColor: "#8e44ad",
+        questions: [
+            { q: "1. A dataset's residual plot for a linear regression shows a distinct curved pattern. What does this imply?", opts: { A: "The linear model is a perfect fit.", B: "A non-linear model (like quadratic or exponential) would be more appropriate.", C: "The data has no correlation.", D: "The correlation coefficient is exactly 1." }, ans: "B", sol: "When a linear model is applied to curved data, the errors (residuals) will form a curve. This pattern screams that a linear assumption is incorrect." },
+            { q: "2. The concentration of a drug spikes quickly and then slowly tapers off toward zero over many hours. Best model?", opts: { A: "Linear", B: "Quadratic", C: "Rational with horizontal asymptote y=0", D: "Cubic" }, ans: "C", sol: "Tapering off to zero over time implies a horizontal asymptote at y=0. Polynomials go to infinity, but a rational function (where bottom degree > top degree) naturally models this." },
+            { q: "3. You assume the height of a dropped object is modeled by h(t) = -16t² + 100. What happens if t = 3?", opts: { A: "Height is 100", B: "Height is 52", C: "Height is -44", D: "The model is physically invalid at t=3" }, ans: "D", sol: "At t=3, h(3) = -16(9) + 100 = -144 + 100 = -44. Since height above ground cannot be negative, the object already hit the ground. The model's domain is restricted." },
+            { q: "4. A company's revenue increases at a strictly increasing rate. Which model is instantly ruled OUT?", opts: { A: "y = x² (x > 0)", B: "y = x³ (x > 0)", C: "y = 5x + 10", D: "y = 2^x" }, ans: "C", sol: "Increasing at an increasing rate means the graph is concave up (the slopes are getting steeper). A linear model (C) has a constant rate of change, not an increasing one." },
+            { q: "5. To construct a rational model with a slant asymptote and a vertical asymptote at x=4, the degrees must be:", opts: { A: "Top = Bottom", B: "Top = 2, Bottom = 1", C: "Top = 1, Bottom = 2", D: "Top = 3, Bottom = 3" }, ans: "B", sol: "A slant asymptote requires the numerator degree to be exactly 1 higher than the denominator. A VA at x=4 means the denominator has (x-4), a degree 1 expression. Therefore, top must be degree 2." }
+        ]
+    },
+
+    // ==========================================
+    // UNIT 1.14: Model Construction & Application
+    // ==========================================
+    "1_14_easy": {
+        title: "Unit 1.14: Easy Practice",
+        subtitle: "Focus: Extracting equations from parameters.",
+        themeColor: "#27ae60",
+        questions: [
+            { q: "1. Construct a linear model that passes through (0, 5) and has a constant rate of change of 3.", opts: { A: "y = 5x + 3", B: "y = 3x + 5", C: "y = 3x - 5", D: "y = 1/3 x + 5" }, ans: "B", sol: "The constant rate of change is the slope (m=3). The point (0, 5) is the y-intercept (b=5). The model is y = mx + b -> y = 3x + 5." },
+            { q: "2. Construct a quadratic model in vertex form y = a(x - h)² + k with a vertex at (2, -4) and a leading coefficient of 1.", opts: { A: "y = (x + 2)² - 4", B: "y = (x - 2)² + 4", C: "y = (x - 2)² - 4", D: "y = (x + 2)² + 4" }, ans: "C", sol: "Plug the vertex (h, k) = (2, -4) into the form: y = 1(x - 2)² + (-4)." },
+            { q: "3. A rational model f(x) = a / (x - c) has a vertical asymptote at x = 7. What is the value of c?", opts: { A: "-7", B: "7", C: "0", D: "1" }, ans: "B", sol: "The vertical asymptote occurs where the denominator is zero. If x - c = 0 when x = 7, then 7 - c = 0, so c = 7." },
+            { q: "4. Use the model C(t) = 50 + 20t to find the cost after 4 hours.", opts: { A: "70", B: "130", C: "280", D: "50" }, ans: "B", sol: "Simply plug in t = 4. C(4) = 50 + 20(4) = 50 + 80 = 130." },
+            { q: "5. A polynomial model has roots at x = 0, x = -1, and x = 4. Write its factored form (assume a=1).", opts: { A: "y = x(x - 1)(x + 4)", B: "y = x(x + 1)(x - 4)", C: "y = (x + 1)(x - 4)", D: "y = x(x + 1)(x + 4)" }, ans: "B", sol: "A root at 0 means factor is x. A root at -1 means factor is (x+1). A root at 4 means factor is (x-4). Multiply them together." }
+        ]
+    },
+    "1_14_med": {
+        title: "Unit 1.14: Medium Practice",
+        subtitle: "Focus: Solving for 'a' values and interpolation.",
+        themeColor: "#f39c12",
+        questions: [
+            { q: "1. A quadratic model has a vertex at (0, 0) and passes through (3, 18). Find its equation.", opts: { A: "y = 2x²", B: "y = 6x²", C: "y = 3x²", D: "y = 18x²" }, ans: "A", sol: "Vertex at origin means y = ax². Plug in the point (3, 18): 18 = a(3)². 18 = 9a. Divide by 9: a = 2. Equation is y = 2x²." },
+            { q: "2. A rational function has roots at x=2 and x=-2, and a vertical asymptote at x=0. Equation?", opts: { A: "y = (x² - 4) / x", B: "y = x / (x² - 4)", C: "y = (x² + 4) / x", D: "y = (x - 2) / x" }, ans: "A", sol: "Roots at ±2 mean numerator is (x-2)(x+2) = x²-4. VA at 0 means denominator is x. Equation is y = (x² - 4) / x." },
+            { q: "3. Use the model P(t) = t³ - 2t² + 10 to predict the population at t = 3. Is this interpolation or extrapolation if the data used to build the model was from t=0 to t=5?", opts: { A: "19, Interpolation", B: "19, Extrapolation", C: "45, Interpolation", D: "45, Extrapolation" }, ans: "A", sol: "P(3) = (3)³ - 2(3)² + 10 = 27 - 18 + 10 = 19. Because t=3 falls INSIDE the data range [0, 5], it is interpolation." },
+            { q: "4. A linear model predicts score S based on hours studied h: S(h) = 8h + 40. What does the 8 represent?", opts: { A: "The baseline score with zero studying.", B: "The total score after 8 hours.", C: "The expected increase in score for every 1 additional hour studied.", D: "The maximum possible score." }, ans: "C", sol: "The slope (8) is the rate of change. It represents the change in the output (score) for every 1 unit increase in the input (hours)." },
+            { q: "5. Find 'a' for the cubic function y = ax(x-2)(x+3) if it passes through (1, -8).", opts: { A: "2", B: "-2", C: "4", D: "-4" }, ans: "A", sol: "Plug in x=1, y=-8: -8 = a(1)(1 - 2)(1 + 3). -8 = a(1)(-1)(4). -8 = -4a. Divide by -4: a = 2." }
+        ]
+    },
+    "1_14_hard": {
+        title: "Unit 1.14: Hard Practice",
+        subtitle: "Focus: Complex model construction from behavior descriptions.",
+        themeColor: "#e74c3c",
+        questions: [
+            { q: "1. Construct a rational model with a horizontal asymptote at y = 3, vertical asymptotes at x = ±2, and an x-intercept at x = 0.", opts: { A: "y = 3x / (x² - 4)", B: "y = 3x² / (x² - 4)", C: "y = (3x² - 4) / x²", D: "y = 3x² / (x - 2)" }, ans: "B", sol: "VA at ±2 means denominator is x²-4. HA at 3 means numerator must be degree 2 (to match bottom) and have leading coeff 3. Intercept at 0 means numerator has x² or x. 3x² / (x²-4) fits all rules." },
+            { q: "2. The concentration of a drug C(t) is modeled rationally. It is 0 at t=0, peaks at t=2, and approaches 0 as t gets large. Which form fits best?", opts: { A: "C(t) = at² + bt + c", B: "C(t) = (at) / (t² + b)", C: "C(t) = (at²) / (t + b)", D: "C(t) = a / t" }, ans: "B", sol: "Must pass origin (top has t). Must have HA of 0 (bottom degree > top degree). Option B has top degree 1, bottom degree 2, and passes through origin." },
+            { q: "3. A linear model y = mx + b is fit to data. The residual for the point (4, 10) is -2. What was the model's predicted y-value at x=4?", opts: { A: "8", B: "12", C: "10", D: "-2" }, ans: "B", sol: "Residual = Actual y - Predicted y. We know Residual is -2, Actual is 10. -2 = 10 - Predicted. Predicted = 12." },
+            { q: "4. A company models profit P(x) = -2x² + 400x - 5000. What production level x maximizes profit?", opts: { A: "100", B: "200", C: "400", D: "15000" }, ans: "A", sol: "The maximum of a downward-opening parabola is at its vertex. The x-coordinate of the vertex is x = -b / 2a. Here, x = -400 / 2(-2) = -400 / -4 = 100 units." },
+            { q: "5. Model building: A cubic passes through origin, touches x-axis at x=5, and f(1) = 32. Equation?", opts: { A: "y = 2x(x - 5)²", B: "y = 2x²(x - 5)", C: "y = -2x(x - 5)²", D: "y = 2(x - 5)³" }, ans: "A", sol: "Passes origin -> factor 'x'. Touches at 5 -> factor '(x-5)²'. Form is y = ax(x-5)². Plug in (1, 32): 32 = a(1)(-4)². 32 = 16a. a = 2. Equation is 2x(x-5)²." }
+        ]
+    },
+    "1_14_master": {
+        title: "Unit 1.14 Master Exam",
+        subtitle: "Comprehensive Modeling & Application.",
+        themeColor: "#8e44ad",
+        questions: [
+            { q: "1. Based on scatterplot data, a quadratic regression yields y = 3.2x² - 5x + 12. If the data domain was [0, 10], predicting the y-value at x = 20 is an example of:", opts: { A: "Interpolation, which is highly reliable", B: "Extrapolation, which is highly reliable", C: "Interpolation, which is risky", D: "Extrapolation, which is risky" }, ans: "D", sol: "Making predictions outside the known data range is extrapolation. With polynomials, this is very risky because their end behavior rapidly explodes to infinity, rarely matching reality." },
+            { q: "2. Construct a rational function that has a hole at x=1, vertical asymptote at x=-3, and horizontal asymptote y=2.", opts: { A: "y = 2(x-1)(x+3) / (x-1)", B: "y = 2x(x-1) / ((x+3)(x-1))", C: "y = 2(x+3) / (x-1)", D: "y = x(x-1) / 2(x+3)(x-1)" }, ans: "B", sol: "Hole at 1 -> (x-1) on top and bottom. VA at -3 -> (x+3) on bottom. HA is 2 -> ratio of leading terms is 2 and degrees match. B expands to 2x² / x² = 2." },
+            { q: "3. A rectangular pen is built against a wall (only 3 sides of fence needed). You have 100 feet of fence. If width is x, Area A(x) = x(100 - 2x). What is the domain of this model in context?", opts: { A: "All real numbers", B: "x > 0", C: "0 < x < 50", D: "0 < x < 100" }, ans: "C", sol: "Length is an object, so width x > 0. The other side is 100 - 2x, which must also be > 0. 100 > 2x, so 50 > x. Therefore, x must be strictly between 0 and 50." },
+            { q: "4. A model's residual plot shows random scatter around the horizontal zero line. This indicates:", opts: { A: "The model is a terrible fit.", B: "The model is an appropriate fit.", C: "The data is completely random.", D: "A higher degree polynomial is needed." }, ans: "B", sol: "A random scatter of residuals means the model successfully captured the main trend of the data, leaving only random noise. This is the goal of regression." },
+            { q: "5. Find the parameters for a linear model y = mx + b if f(2) = 10 and f(6) = 22.", opts: { A: "m=4, b=2", B: "m=3, b=4", C: "m=3, b=2", D: "m=4, b=4" }, ans: "B", sol: "Find slope: (22 - 10) / (6 - 2) = 12 / 4 = 3. So m=3. Use point (2, 10) to find b: 10 = 3(2) + b -> 10 = 6 + b -> b = 4. Equation is y = 3x + 4." }
+        ]
+    },
+
+    // ==========================================
+    // UNIT 2.1: Arithmetic & Geometric Sequences
+    // ==========================================
+    "2_1_easy": {
+        title: "Unit 2.1: Easy Practice",
+        subtitle: "Focus: Identifying constant addition vs. constant multiplication.",
+        themeColor: "#27ae60",
+        questions: [
+            { q: "1. A sequence is generated by adding 5 to the previous term. This type of sequence is:", opts: { A: "Geometric", B: "Arithmetic", C: "Quadratic", D: "Fibonacci" }, ans: "B", sol: "An arithmetic sequence is defined by a constant difference (adding or subtracting the same number each time)." },
+            { q: "2. A sequence is generated by multiplying the previous term by 3. This type of sequence is:", opts: { A: "Geometric", B: "Arithmetic", C: "Linear", D: "Cubic" }, ans: "A", sol: "A geometric sequence is defined by a constant ratio (multiplying or dividing by the same number each time)." },
+            { q: "3. Identify the next term in the arithmetic sequence: 2, 9, 16, 23, ...", opts: { A: "29", B: "30", C: "31", D: "32" }, ans: "B", sol: "Find the common difference: 9 - 2 = 7. 16 - 9 = 7. Add 7 to the last term: 23 + 7 = 30." },
+            { q: "4. Identify the next term in the geometric sequence: 5, 10, 20, 40, ...", opts: { A: "50", B: "60", C: "80", D: "100" }, ans: "C", sol: "Find the common ratio: 10 / 5 = 2. 20 / 10 = 2. Multiply the last term by 2: 40 * 2 = 80." },
+            { q: "5. What is the common difference for the sequence: 10, 6, 2, -2?", opts: { A: "4", B: "-4", C: "1.5", D: "0" }, ans: "B", sol: "Subtract any term from the term after it: 6 - 10 = -4." }
+        ]
+    },
+    "2_1_med": {
+        title: "Unit 2.1: Medium Practice",
+        subtitle: "Focus: Explicit and recursive formulas for sequences.",
+        themeColor: "#f39c12",
+        questions: [
+            { q: "1. Which is the explicit formula for the arithmetic sequence 4, 7, 10, 13...?", opts: { A: "a_n = 4n + 3", B: "a_n = 3n + 1", C: "a_n = 3n + 4", D: "a_n = n + 3" }, ans: "B", sol: "The common difference is 3 (this acts like the slope). The formula is a_n = dn + a_0. Since a_1 = 4, working backward, a_0 = 1. So, a_n = 3n + 1." },
+            { q: "2. The recursive formula a_n = a_(n-1) * 0.5 with a_1 = 16 generates which sequence?", opts: { A: "16, 8, 0, -8", B: "16, 24, 36, 54", C: "16, 32, 64, 128", D: "16, 8, 4, 2" }, ans: "D", sol: "Recursive means take the previous term and apply the rule. Start at 16. Multiply by 0.5 to get 8. Multiply by 0.5 to get 4, etc." },
+            { q: "3. Find the 10th term of the geometric sequence: 2, -6, 18, -54...", opts: { A: "-39366", B: "39366", C: "-118098", D: "118098" }, ans: "A", sol: "Explicit formula: a_n = a_1 * r^(n-1). Ratio r = -3. a_10 = 2 * (-3)^9 = 2 * (-19683) = -39366." },
+            { q: "4. An arithmetic sequence has a_3 = 10 and a_6 = 22. Find the common difference 'd'.", opts: { A: "3", B: "4", C: "6", D: "12" }, ans: "B", sol: "Difference in terms is 6 - 3 = 3 steps. Difference in values is 22 - 10 = 12. 3 steps equal 12, so 1 step (d) = 12 / 3 = 4." },
+            { q: "5. Which formula represents the geometric sequence 5, 15, 45...?", opts: { A: "a_n = 5(3)^n", B: "a_n = 3(5)^n", C: "a_n = 5(3)^(n-1)", D: "a_n = 3(5)^(n-1)" }, ans: "C", sol: "Formula is a_n = a_1 * r^(n-1). The first term a_1 is 5. The ratio r is 3. So, a_n = 5(3)^(n-1)." }
+        ]
+    },
+    "2_1_hard": {
+        title: "Unit 2.1: Hard Practice",
+        subtitle: "Focus: End behavior of sequences and solving complex terms.",
+        themeColor: "#e74c3c",
+        questions: [
+            { q: "1. Evaluate the limit of the sequence a_n = 5(0.8)^n as n approaches infinity.", opts: { A: "Infinity", B: "5", C: "0", D: "Does not exist" }, ans: "C", sol: "Because the common ratio (0.8) is between -1 and 1, multiplying by it repeatedly makes the terms smaller and smaller. The sequence converges to 0." },
+            { q: "2. Evaluate the limit of the sequence a_n = 2(-1.5)^n as n approaches infinity.", opts: { A: "Infinity", B: "Negative Infinity", C: "0", D: "Does not exist (diverges by oscillation)" }, ans: "D", sol: "The ratio is -1.5. Because the absolute value is > 1, the numbers get infinitely large. Because it is negative, it bounces between positive and negative (oscillation), meaning no single limit exists." },
+            { q: "3. A geometric sequence has a_2 = 12 and a_5 = 96. Find the explicit formula.", opts: { A: "a_n = 6(2)^(n-1)", B: "a_n = 3(4)^(n-1)", C: "a_n = 12(2)^(n-1)", D: "a_n = 6(4)^(n-1)" }, ans: "A", sol: "a_5 = a_2 * r³. So 96 = 12 * r³. r³ = 8. r = 2. Work backward to a_1: a_2 / r = 12 / 2 = 6. Formula: a_n = 6(2)^(n-1)." },
+            { q: "4. Find the number of terms in the finite arithmetic sequence: 5, 9, 13, ..., 101.", opts: { A: "24", B: "25", C: "26", D: "27" }, ans: "B", sol: "a_n = d(n-1) + a_1. 101 = 4(n-1) + 5. 96 = 4(n-1). 24 = n - 1. n = 25 terms." },
+            { q: "5. A sequence is defined by a_n = a_(n-1) + 2n, with a_1 = 3. What is a_4?", opts: { A: "11", B: "17", C: "21", D: "27" }, ans: "C", sol: "a_2 = a_1 + 2(2) = 3 + 4 = 7. a_3 = a_2 + 2(3) = 7 + 6 = 13. a_4 = a_3 + 2(4) = 13 + 8 = 21." }
+        ]
+    },
+    "2_1_master": {
+        title: "Unit 2.1 Master Exam",
+        subtitle: "Arithmetic & Geometric Progression Mastery.",
+        themeColor: "#8e44ad",
+        questions: [
+            { q: "1. The sequence a_n = c(r)^n converges to 0. What MUST be true about 'r'?", opts: { A: "r < 0", B: "r > 1", C: "-1 < r < 1", D: "r = 0" }, ans: "C", sol: "For a geometric sequence to decay to zero, the multiplier (ratio) must be a fraction between -1 and 1. (e.g., multiplying by 1/2 repeatedly approaches 0)." },
+            { q: "2. The sum of the interior angles of polygons forms a sequence: Triangle=180, Square=360, Pentagon=540. What is the formula for the nth polygon (where n=1 is triangle)?", opts: { A: "a_n = 180(2)^n", B: "a_n = 180n", C: "a_n = 180n + 180", D: "a_n = 180(n-1)" }, ans: "B", sol: "This is an arithmetic sequence with a_1 = 180 and d = 180. Using a_n = dn + a_0. a_0 = a_1 - d = 180 - 180 = 0. So a_n = 180n." },
+            { q: "3. If a_n is an arithmetic sequence, what type of sequence is b_n = 2^(a_n)?", opts: { A: "Arithmetic", B: "Geometric", C: "Quadratic", D: "Neither" }, ans: "B", sol: "Since a_n adds 'd' each time, 2^(a_n) will multiply by 2^d each time. Constant multiplication defines a geometric sequence." },
+            { q: "4. Find x so that x, x+4, x+12 form a geometric sequence.", opts: { A: "2", B: "4", C: "6", D: "8" }, ans: "B", sol: "The ratio must be constant: (x+4)/x = (x+12)/(x+4). Cross multiply: (x+4)² = x(x+12). x² + 8x + 16 = x² + 12x. 16 = 4x. x = 4." },
+            { q: "5. A geometric sequence has a ratio r = 1.05. Which statement describes the sequence's change?", opts: { A: "It grows by exactly 1.05 units per term.", B: "It grows by 5% per term.", C: "It grows by 105% per term.", D: "It decreases by 5% per term." }, ans: "B", sol: "Multiplying by 1.05 is mathematically identical to taking 100% of the previous amount and adding 5% to it. Therefore, it grows by 5% each term." }
+        ]
+    },
+
+    // ==========================================
+    // UNIT 2.2: Change in Linear & Exponential Functions
+    // ==========================================
+    "2_2_easy": {
+        title: "Unit 2.2: Easy Practice",
+        subtitle: "Focus: Identifying Add-Add vs. Add-Multiply patterns.",
+        themeColor: "#27ae60",
+        questions: [
+            { q: "1. Over equal intervals of x, a linear function exhibits:", opts: { A: "Constant multiplicative change in y", B: "Constant additive change in y", C: "Changing additive change in y", D: "Zero change in y" }, ans: "B", sol: "Linear functions are defined by a constant rate of change (adding or subtracting the same amount of y for every step of x)." },
+            { q: "2. Over equal intervals of x, an exponential function exhibits:", opts: { A: "Constant multiplicative change in y", B: "Constant additive change in y", C: "Changing multiplicative change in y", D: "Zero change in y" }, ans: "A", sol: "Exponential functions grow by a constant ratio (multiplying or dividing by the same amount of y for every step of x)." },
+            { q: "3. Analyze the table: x=(1,2,3,4), y=(3, 6, 12, 24). What type of function is this?", opts: { A: "Linear", B: "Quadratic", C: "Exponential", D: "Rational" }, ans: "C", sol: "As x increases by 1 (+1), y is multiplied by 2 (*2). This add-multiply pattern is the hallmark of an exponential function." },
+            { q: "4. Analyze the table: x=(0,2,4,6), y=(10, 15, 20, 25). What type of function is this?", opts: { A: "Linear", B: "Quadratic", C: "Exponential", D: "Rational" }, ans: "A", sol: "As x increases by 2 (+2), y increases by 5 (+5). This add-add pattern is the hallmark of a linear function." },
+            { q: "5. Which equation represents a function that grows proportionally (multiplicatively) over time?", opts: { A: "y = 5x + 2", B: "y = x² + 2x", C: "y = 3(2)^x", D: "y = 1/x" }, ans: "C", sol: "An equation with the variable in the exponent (like 2^x) represents an exponential function, which grows multiplicatively." }
+        ]
+    },
+    "2_2_med": {
+        title: "Unit 2.2: Medium Practice",
+        subtitle: "Focus: Calculating proportional change over intervals.",
+        themeColor: "#f39c12",
+        questions: [
+            { q: "1. For the exponential function f(x) = 4(3)^x, what is the ratio of f(x+1) / f(x)?", opts: { A: "4", B: "3", C: "12", D: "x" }, ans: "B", sol: "The base of the exponent (3) is the constant ratio. For every 1 step in x, the function multiplies its previous value by 3." },
+            { q: "2. A linear function f(x) has f(2) = 10 and f(5) = 22. How much does f(x) change for every 1 unit increase in x?", opts: { A: "12", B: "3", C: "4", D: "6" }, ans: "C", sol: "This is asking for the slope (rate of change). (22 - 10) / (5 - 2) = 12 / 3 = 4." },
+            { q: "3. An exponential function g(x) has g(1) = 5 and g(3) = 45. By what factor does g(x) change for every 1 unit increase in x?", opts: { A: "40", B: "20", C: "9", D: "3" }, ans: "D", sol: "The ratio over 2 steps is 45 / 5 = 9. So, r² = 9. Taking the square root, the single-step ratio r = 3." },
+            { q: "4. A bank account earns 4% interest every year. If it starts with $1000, what is the exponential growth factor (base)?", opts: { A: "0.04", B: "1.04", C: "1.4", D: "4" }, ans: "B", sol: "Growing by 4% means you keep 100% of what you had, plus 4%. 100% + 4% = 104%, which as a decimal multiplier is 1.04." },
+            { q: "5. A substance has a half-life of 10 days. By what factor does it change every 1 day?", opts: { A: "1/2", B: "1/20", C: "(1/2)^(1/10)", D: "(1/2)^10" }, ans: "C", sol: "In 10 days, the factor is (1/2). To find the 1-day factor, take the 10th root, which is the same as raising it to the power of 1/10." }
+        ]
+    },
+    "2_2_hard": {
+        title: "Unit 2.2: Hard Practice",
+        subtitle: "Focus: Identifying models from non-uniform tables.",
+        themeColor: "#e74c3c",
+        questions: [
+            { q: "1. Table: x=(0, 2, 5), y=(10, 40, 320). Is this linear, exponential, or neither?", opts: { A: "Linear", B: "Exponential", C: "Neither", D: "Quadratic" }, ans: "B", sol: "Check exponential ratio. From 0 to 2 (2 steps), y goes 10->40 (*4). So 1 step is *2 (since 2² = 4). From 2 to 5 (3 steps), y goes 40->320 (*8). 1 step is *2 (since 2³ = 8). The base multiplier is consistently 2. It is exponential." },
+            { q: "2. The value of a car depreciates by 15% each year. The function modeling this is V(t) = C(r)^t. What is 'r'?", opts: { A: "-0.15", B: "0.15", C: "1.15", D: "0.85" }, ans: "D", sol: "Depreciating by 15% means the car retains 85% of its value each year. 100% - 15% = 85%. The multiplier is 0.85." },
+            { q: "3. If f(x) is an exponential function where f(x+2) = 16 * f(x), what is the base of the exponential function?", opts: { A: "16", B: "8", C: "4", D: "2" }, ans: "C", sol: "A step of +2 in x results in multiplying by 16. So, base² = 16. The base is 4." },
+            { q: "4. Let g(t) be linear. If g(t) increases by 12 when t increases by 4, how much does g(t) increase when t increases by 7?", opts: { A: "21", B: "14", C: "19", D: "24" }, ans: "A", sol: "The constant rate of change (slope) is 12 / 4 = 3. So it grows by 3 for every 1 unit of t. For 7 units of t, it grows by 7 * 3 = 21." },
+            { q: "5. An exponential function f(x) = a(b)^x passes through (2, 50) and (5, 6250). What is 'b'?", opts: { A: "5", B: "25", C: "125", D: "10" }, ans: "A", sol: "The change in x is 3. The ratio of y is 6250 / 50 = 125. So b³ = 125. The cube root of 125 is 5." }
+        ]
+    },
+    "2_2_master": {
+        title: "Unit 2.2 Master Exam",
+        subtitle: "Linear vs. Exponential Growth Analysis.",
+        themeColor: "#8e44ad",
+        questions: [
+            { q: "1. Company A adds $5000 to their profit every month. Company B increases their profit by 2% every month. Which company will eventually have a higher profit?", opts: { A: "Company A", B: "Company B", C: "They will tie", D: "Depends on starting value" }, ans: "B", sol: "Company A is linear. Company B is exponential. An exponential growth function will ALWAYS eventually surpass a linear growth function, regardless of starting values or slopes." },
+            { q: "2. Table: x=(1, 3, 7), y=(5, 11, 23). Is this linear, exponential, or neither?", opts: { A: "Linear", B: "Exponential", C: "Neither", D: "Quadratic" }, ans: "A", sol: "Check slopes. (11-5)/(3-1) = 6/2 = 3. (23-11)/(7-3) = 12/4 = 3. Because the rate of change is constant (3), it is linear." },
+            { q: "3. If f(x) is exponential and f(1)=10, f(1.5)=100, what is f(2)?", opts: { A: "1000", B: "190", C: "10000", D: "200" }, ans: "A", sol: "From x=1 to 1.5 (step of 0.5), y is multiplied by 10. From 1.5 to 2 is another step of 0.5, so y must be multiplied by 10 again. 100 * 10 = 1000." },
+            { q: "4. A linear function f(x) and an exponential growth function g(x) intersect at x=0 and x=5. Where is the exponential function lower than the linear function?", opts: { A: "x < 0 only", B: "x > 5 only", C: "Between x=0 and x=5", D: "Nowhere" }, ans: "C", sol: "Between two intersection points, a straight line connects them directly. An exponential growth curve 'sags' below that line before shooting up rapidly past the second intersection. So g(x) is lower between 0 and 5." },
+            { q: "5. Find the linear function y=mx+b that has the same average rate of change on [0, 2] as the exponential function y = 3(2)^x.", opts: { A: "y = 4.5x + 3", B: "y = 3x + 3", C: "y = 6x + 3", D: "y = 4.5x + 2" }, ans: "A", sol: "Exp function endpoints: y(0)=3, y(2)=12. AROC = (12-3)/2 = 4.5. The linear function must have slope 4.5. It also passes through the same starting point (0, 3). Equation: y = 4.5x + 3." }
+        ]
     }
 };
