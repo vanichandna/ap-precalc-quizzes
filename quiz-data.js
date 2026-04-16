@@ -7,8 +7,48 @@ export const masterCurriculum = {
         subtitle: "Focus: Calculating and identifying Average Rates of Change.",
         themeColor: "#27ae60", // Green
         questions: [
-            { q: "1. A function f(x) passes through the points (1, 5) and (4, 17). What is the AROC?", opts: { A: "12", B: "4", C: "3", D: "6" }, ans: "B", sol: "(17 - 5) / (4 - 1) = 4." }
-            // Add your other 4 questions here...
+            { {
+    q: "1. A function f(x) passes through the points (1, 5) and (4, 17). What is the average rate of change of f(x) on the interval [1, 4]?",
+    opts: { A: "12", B: "4", C: "3", D: "6" },
+    ans: "B",
+    sol: "Use the formula (y2 - y1) / (x2 - x1). Plugging in the points: (17 - 5) / (4 - 1) = 12 / 3 = 4."
+  },
+  {
+    q: `2. Consider the table of values for a continuous function g(x):
+        <table style="margin-top:10px;"><tr><th>x</th><td>0</td><td>2</td><td>4</td><td>6</td></tr><tr><th>g(x)</th><td>10</td><td>7</td><td>4</td><td>1</td></tr></table>
+        Which of the following describes how g(x) changes in tandem with x?`,
+    opts: { 
+        A: "As x increases, g(x) increases at a constant rate.", 
+        B: "As x increases, g(x) decreases at a decreasing rate.", 
+        C: "As x increases, g(x) decreases at a constant rate.", 
+        D: "As x increases, g(x) decreases at an increasing rate." 
+    },
+    ans: "C",
+    sol: "Calculate the average rate of change for each interval. From x=0 to 2, ROC is (7-10)/2 = -1.5. From x=2 to 4, ROC is (4-7)/2 = -1.5. Because the rate of change is constant and negative, g(x) decreases at a constant rate."
+  },
+  {
+    q: "3. If the average rate of change of a function h(x) over the interval [2, 5] is negative, which of the following MUST be true?",
+    opts: { 
+        A: "h(5) is less than h(2)", 
+        B: "h(5) is greater than h(2)", 
+        C: "The function is decreasing at every single point between x=2 and x=5", 
+        D: "The graph of h(x) is concave down" 
+    },
+    ans: "A",
+    sol: "Average rate of change only looks at the endpoints. If the overall rate of change is negative, the y-value at the end of the interval, h(5), must be strictly lower than the y-value at the start of the interval, h(2)."
+  },
+  {
+    q: "4. Let p(x) = x&sup2; + 2x. What is the average rate of change of p(x) over the interval [-1, 3]?",
+    opts: { A: "4", B: "8", C: "16", D: "2" },
+    ans: "A",
+    sol: "Evaluate the endpoints: p(3) = (3)&sup2; + 2(3) = 9 + 6 = 15. Then p(-1) = (-1)&sup2; + 2(-1) = 1 - 2 = -1. The rate is (15 - (-1)) / (3 - (-1)) = 16 / 4 = 4."
+  },
+  {
+    q: "5. A function m(x) has a constant rate of change of 0 over the interval [-5, 5]. Which of the following best describes the graph of m(x) on this interval?",
+    opts: { A: "A vertical line", B: "A perfectly flat horizontal line", C: "A line passing through the origin", D: "A parabola opening upwards" },
+    ans: "B",
+    sol: "A constant rate of change of 0 means the y-values never increase or decrease as x changes. Graphically, this is a horizontal line."
+  }
         ]
     },
     "1_1_med": {
@@ -16,8 +56,49 @@ export const masterCurriculum = {
         subtitle: "Focus: Analyzing rates of rates and determining concavity.",
         themeColor: "#f39c12", // Orange
         questions: [
-            { q: "1. A function h(x) is strictly increasing on the interval (a, b). If the rate at which h(x) increases is getting smaller as x increases, what must be true?", opts: { A: "Concave up", B: "Concave down", C: "Linear", D: "Undefined" }, ans: "B", sol: "Positive slopes getting less steep means concave down." }
-             // Add your other 4 questions here...
+            {
+    q: "1. A function h(x) is strictly increasing on the interval (a, b). If the rate at which h(x) increases is getting smaller as x increases, what must be true about the graph of h(x)?",
+    opts: { A: "It is concave up.", B: "It is concave down.", C: "It is linear.", D: "It has a vertical asymptote." },
+    ans: "B",
+    sol: "When a function is increasing at a decreasing rate, its slopes are positive but getting less steep over time. Graphically, this creates a curve that bends downwards, which is the definition of concave down."
+  },
+  {
+    q: `2. Use the table below to determine the concavity of the function k(x):
+        <table style="margin-top:10px;"><tr><th>x</th><td>1</td><td>3</td><td>5</td><td>7</td></tr><tr><th>k(x)</th><td>5</td><td>9</td><td>17</td><td>33</td></tr></table>`,
+    opts: { 
+        A: "Concave up because the average rates of change are increasing.", 
+        B: "Concave down because the average rates of change are decreasing.", 
+        C: "Linear because the change in x is constant.", 
+        D: "Concave down because the function values are positive." 
+    },
+    ans: "A",
+    sol: "Calculate successive average rates of change over the intervals. [1, 3]: (9-5)/2 = 2. [3, 5]: (17-9)/2 = 4. [5, 7]: (33-17)/2 = 8. Because the rates of change (2, 4, 8) are strictly increasing, the function is concave up."
+  },
+  {
+    q: `3. Analyze the following table for a continuous function w(x):
+        <table style="margin-top:10px;"><tr><th>x</th><td>0</td><td>1</td><td>2</td><td>3</td></tr><tr><th>w(x)</th><td>20</td><td>10</td><td>4</td><td>1</td></tr></table>
+        Which of the following describes the behavior of w(x)?`,
+    opts: {
+        A: "Decreasing at a decreasing rate",
+        B: "Decreasing at an increasing rate",
+        Rates: "Increasing at a decreasing rate",
+        D: "Increasing at an increasing rate"
+    },
+    ans: "B",
+    sol: "Calculate the rates of change. [0, 1]: -10. [1, 2]: -6. [2, 3]: -3. The function values are going down (decreasing). However, the rates of change (-10, -6, -3) are becoming strictly larger numbers. Therefore, it is decreasing at an increasing rate (concave up)."
+  },
+  {
+    q: "4. If a secant line connecting the points (a, f(a)) and (b, f(b)) lies entirely ABOVE the graph of f(x) for all x in the interval (a, b), what is the concavity of f(x) on this interval?",
+    opts: { A: "Concave up", B: "Concave down", C: "Linear", D: "Cannot be determined" },
+    ans: "A",
+    sol: "By definition, if a graph is concave up (bending upwards like a cup), any secant line drawn between two points on the curve will pass 'above' the actual curve itself."
+  },
+  {
+    q: "5. Function A and Function B both start at the point (0, 0) and end at (10, 100). Function A increases at a constant rate. Function B increases at an increasing rate. Which function has a lower y-value at x = 5?",
+    opts: { A: "Function A", B: "Function B", C: "They have the same y-value", D: "Not enough information" },
+    ans: "B",
+    sol: "Function A is a straight line. Function B increases at an increasing rate (concave up), meaning it grows slowly at first and very fast at the end. Because it lags behind initially to save its rapid growth for the end, Function B will be lower than Function A at the halfway point."
+  }
         ]
     },
     "1_1_hard": {
@@ -25,8 +106,51 @@ export const masterCurriculum = {
         subtitle: "Focus: Contextual models and proportional reasoning.",
         themeColor: "#e74c3c", // Red
         questions: [
-             { q: "1. A spherical balloon is being inflated at a constant volume rate. How does the radius change?", opts: { A: "Constant", B: "Increasing rate", C: "Decreasing rate", D: "Decreases" }, ans: "C", sol: "As it gets bigger, it takes more volume to push the radius out further." }
-             // Add your other 4 questions here...
+             {
+    q: "1. A spherical balloon is being inflated such that its volume V increases at a constant rate with respect to time t. How does the radius r of the balloon change in tandem with time t?",
+    opts: { 
+        A: "The radius increases at a constant rate.", 
+        B: "The radius increases at an increasing rate.", 
+        C: "The radius increases at a decreasing rate.", 
+        D: "The radius decreases at a decreasing rate." 
+    },
+    ans: "C",
+    sol: "As the balloon gets larger, it requires significantly more volume to add just a tiny bit of length to the radius. Because the volume is entering at a constant speed, the outward growth of the radius must slow down as the balloon expands. Therefore, the radius increases at a decreasing rate (concave down)."
+  },
+  {
+    q: "2. The variables x and y change in tandem such that for every increase of 2 in the value of x, the value of y is multiplied by 3. If y = 4 when x = 0, what is the value of y when x = 6?",
+    opts: { A: "36", B: "108", C: "256", D: "324" },
+    ans: "B",
+    sol: "The x-values increase from 0 to 6 in steps of 2: 0 &rarr; 2 &rarr; 4 &rarr; 6. This is exactly three steps. Since y is multiplied by 3 for each step, we multiply the initial y-value by 3, three times. y = 4 * (3 * 3 * 3) = 4 * 27 = 108."
+  },
+  {
+    q: "3. Water is poured into a conical cup (point facing down) at a constant rate. Let h(t) represent the height of the water in the cup at time t. Which of the following best describes the concavity of h(t)?",
+    opts: { A: "Concave up", B: "Concave down", C: "Linear", D: "Cannot be determined" },
+    ans: "B",
+    sol: "Because the cone is wider at the top than at the bottom, it takes more water to raise the level by 1 inch at the top than it does at the narrow bottom. Since water enters at a constant rate, the height will rise quickly at first, and then slow down as the cup gets wider. An increasing function that is slowing down is concave down."
+  },
+  {
+    q: "4. A car traveling at 60 mph suddenly slams on the brakes. Let d(t) be the total distance the car has traveled since the brakes were applied. Which of the following describes the rate of change of d(t)?",
+    opts: { 
+        A: "d(t) increases at an increasing rate", 
+        B: "d(t) increases at a decreasing rate", 
+        C: "d(t) decreases at an increasing rate", 
+        D: "d(t) decreases at a decreasing rate" 
+    },
+    ans: "B",
+    sol: "The car is still moving forward, so the total distance traveled, d(t), is increasing. However, because the brakes are applied, the car is slowing down. Therefore, the distance is increasing, but it is increasing at a decreasing rate as the car comes to a stop."
+  },
+  {
+    q: "5. Company A and Company B both produce 500 units of a product per day. Company A decides to increase production by adding exactly 50 units per day. Company B decides to increase production by 10% per day. How do the rates of change compare over the first 5 days?",
+    opts: { 
+        A: "Both companies increase at a constant rate.", 
+        B: "Company A increases at a constant rate, while Company B increases at an increasing rate.", 
+        C: "Company A increases at an increasing rate, while Company B increases at a constant rate.", 
+        D: "Both companies increase at an increasing rate." 
+    },
+    ans: "B",
+    sol: "Company A adds a fixed amount (+50) every day, which defines a constant rate of change (linear). Company B multiplies its current total by 1.10 every day. As the total gets larger, 10% of that total also becomes a larger number, meaning Company B's growth rate accelerates over time (increasing at an increasing rate)."
+  }
         ]
     },
 
