@@ -1,26 +1,13 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
-import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+// student.js
 
-// 1. PASTE YOUR CONFIG HERE
- const firebaseConfig = {
-    apiKey: "AIzaSyCjpG0uEfQOhnBoTD80cE--KInyg7rh6vQ",
-    authDomain: "ap-precalc.firebaseapp.com",
-    projectId: "ap-precalc",
-    storageBucket: "ap-precalc.firebasestorage.app",
-    messagingSenderId: "50281949647",
-    appId: "1:50281949647:web:c2c0eff68b2d0fa5d24aba",
-    measurementId: "G-Z5YBDNR3NZ"
-  };
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+import { auth, db } from './firebase-config.js';
 
 // DOM Elements
 const loginSection = document.getElementById('login-section');
 const quizSection = document.getElementById('quiz-section');
-const quizContainer = document.getElementById('quiz-container');
+const dashboardContent = document.getElementById('dashboard-content');
 const emailInput = document.getElementById('student-email');
 const passwordInput = document.getElementById('student-password');
 const loginBtn = document.getElementById('login-btn');
@@ -28,83 +15,93 @@ const signupBtn = document.getElementById('signup-btn');
 const logoutBtn = document.getElementById('logout-btn');
 const loginMessage = document.getElementById('login-message');
 
-// 2. Handle First-Time Sign Up
+// Naming guide for the cards (You can customize these later!)
+const unitTitles = {
+    1: "Polynomial & Rational Functions",
+    2: "Exponential & Logarithmic Functions",
+    3: "Trigonometric & Polar Functions",
+    4: "Parameters, Vectors & Matrices"
+};
+
+// Handle Sign Up
 signupBtn.addEventListener('click', async () => {
-    const email = emailInput.value.trim();
-    const password = passwordInput.value;
-
-    if (!email || password.length < 6) {
-        return loginMessage.innerText = "Please enter an email and a password (at least 6 characters).";
-    }
-
     try {
-        await createUserWithEmailAndPassword(auth, email, password);
-        loginMessage.style.color = "green";
-        loginMessage.innerText = "Account created successfully!";
-    } catch (error) {
-        loginMessage.style.color = "red";
-        loginMessage.innerText = error.message; // Shows if email is already in use, etc.
-    }
+        await createUserWithEmailAndPassword(auth, emailInput.value.trim(), passwordInput.value);
+    } catch (error) { loginMessage.innerText = error.message; }
 });
 
-// 3. Handle Returning User Log In
+// Handle Log In
 loginBtn.addEventListener('click', async () => {
-    const email = emailInput.value.trim();
-    const password = passwordInput.value;
-
-    if (!email || !password) {
-        return loginMessage.innerText = "Please enter both email and password.";
-    }
-
     try {
-        await signInWithEmailAndPassword(auth, email, password);
-        loginMessage.innerText = ""; // Clear errors on success
-    } catch (error) {
-        loginMessage.style.color = "red";
-        loginMessage.innerText = "Invalid email or password.";
-    }
+        await signInWithEmailAndPassword(auth, emailInput.value.trim(), passwordInput.value);
+    } catch (error) { loginMessage.innerText = "Invalid email or password."; }
 });
 
-// 4. Monitor Login State & Fetch Access (This remains exactly the same!)
+// Handle Log Out
+logoutBtn.addEventListener('click', () => signOut(auth));
+
+// Monitor Login State & Build the Beautiful Dashboard
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         const docRef = doc(db, "users", user.email);
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
-            // SUCCESS: They are on your Admin list!
+            // SUCCESS! Let them in.
             loginSection.style.display = 'none';
             quizSection.style.display = 'block';
+            logoutBtn.style.display = 'block';
             
             const studentData = docSnap.data();
-            quizContainer.innerHTML = ""; 
+            dashboardContent.innerHTML = ""; 
+            let hasAnyQuizzes = false;
 
-            if (studentData.access.unit1) {
-                quizContainer.innerHTML += `<a href="unit1-quiz.html"><button>Take Unit 1 Quiz</button></a>`;
+            // Loop through Units 1 to 4
+            for (let unit = 1; unit <= 4; unit++) {
+                let unitCardsHTML = "";
+                
+                // Loop through all possible sub-units (up to 15)
+                for(let sub = 1; sub <= 15; sub++) {
+                    const unitKey = `unit${unit}_${sub}`;
+                    
+                    // If the student has access to this specific sub-unit, generate a card!
+                    if (studentData.access && studentData.access[unitKey]) {
+                        hasAnyQuizzes = true;
+                        unitCardsHTML += `
+                            <div class="quiz-card">
+                                <h3>Unit ${unit}.${sub}</h3>
+                                <p>Test your knowledge on Topic ${unit}.${sub}.</p>
+                                <a href="unit${unit}-${sub}-quiz.html">Start Quiz &rarr;</a> 
+                            </div>
+                        `;
+                    }
+                }
+
+                // If they had access to any quizzes in this Unit, draw the Grid for it
+                if (unitCardsHTML !== "") {
+                    dashboardContent.innerHTML += `
+                        <h3 class="unit-header">Unit ${unit}: ${unitTitles[unit]}</h3>
+                        <div class="grid">
+                            ${unitCardsHTML}
+                        </div>
+                    `;
+                }
             }
-            if (studentData.access.unit2) {
-                quizContainer.innerHTML += `<a href="unit2-quiz.html"><button>Take Unit 2 Quiz</button></a>`;
+
+            if(!hasAnyQuizzes) {
+                dashboardContent.innerHTML = `<div class="quiz-card" style="border-top-color:#e74c3c;"><h3>No Active Quizzes</h3><p>Your teacher has not unlocked any quizzes for you yet. Check back soon!</p></div>`;
             }
-            if(quizContainer.innerHTML === "") {
-                quizContainer.innerHTML = "<p>You do not currently have access to any quizzes. Please ask your teacher.</p>";
-            }
+
         } else {
-            // FAILED: They logged in, but are NOT on your Admin list.
+            // FAILED: Not on the Admin list.
             signOut(auth);
-            loginMessage.style.color = "red";
             loginMessage.innerText = "Access Denied: Your email is not authorized by the teacher.";
-            loginSection.style.display = 'block';
-            quizSection.style.display = 'none';
         }
     } else {
+        // Logged out state
         loginSection.style.display = 'block';
         quizSection.style.display = 'none';
+        logoutBtn.style.display = 'none';
+        emailInput.value = ""; passwordInput.value = "";
     }
-});
-
-// 5. Logout
-logoutBtn.addEventListener('click', () => {
-    signOut(auth);
-    emailInput.value = "";
-    passwordInput.value = "";
 });
