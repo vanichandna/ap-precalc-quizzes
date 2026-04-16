@@ -30,7 +30,7 @@ const loginMessage = document.getElementById('login-message');
 const actionCodeSettings = {
   // Replace this URL with your actual GitHub Pages URL once published!
   // For now, if testing locally, use your local live server URL.
-  url: 'https://vanichandna.github.io/ap-precalc-quizzes//index.html',
+  url: 'https://vanichandna.github.io/ap-precalc-quizzes/index.html',
   handleCodeInApp: true,
 };
 
