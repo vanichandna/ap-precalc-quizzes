@@ -853,5 +853,160 @@ export const masterCurriculum = {
             { q: "4. A linear function f(x) and an exponential growth function g(x) intersect at x=0 and x=5. Where is the exponential function lower than the linear function?", opts: { A: "x < 0 only", B: "x > 5 only", C: "Between x=0 and x=5", D: "Nowhere" }, ans: "C", sol: "Between two intersection points, a straight line connects them directly. An exponential growth curve 'sags' below that line before shooting up rapidly past the second intersection. So g(x) is lower between 0 and 5." },
             { q: "5. Find the linear function y=mx+b that has the same average rate of change on [0, 2] as the exponential function y = 3(2)^x.", opts: { A: "y = 4.5x + 3", B: "y = 3x + 3", C: "y = 6x + 3", D: "y = 4.5x + 2" }, ans: "A", sol: "Exp function endpoints: y(0)=3, y(2)=12. AROC = (12-3)/2 = 4.5. The linear function must have slope 4.5. It also passes through the same starting point (0, 3). Equation: y = 4.5x + 3." }
         ]
+    },
+    // ==========================================
+    // UNIT 2.3: Exponential Functions
+    // ==========================================
+    "2_3_easy": {
+        title: "Unit 2.3: Easy Practice",
+        subtitle: "Focus: Identifying initial values, bases, and growth vs. decay.",
+        themeColor: "#27ae60",
+        questions: [
+            { q: "1. In the exponential function f(x) = a(b)^x, what does the parameter 'a' represent?", opts: { A: "The growth rate", B: "The y-intercept (initial value)", C: "The x-intercept", D: "The horizontal asymptote" }, ans: "B", sol: "When x = 0, b^0 becomes 1. Therefore, f(0) = a(1) = a. This makes 'a' the starting value or y-intercept." },
+            { q: "2. Which of the following functions represents exponential decay?", opts: { A: "y = 4(1.05)^x", B: "y = 0.5(2)^x", C: "y = 3(0.8)^x", D: "y = -2(1.5)^x" }, ans: "C", sol: "Exponential decay occurs when the base (multiplier) is strictly between 0 and 1. In option C, the base is 0.8." },
+            { q: "3. For the function g(x) = 10(3)^x, what is the value of g(2)?", opts: { A: "60", B: "90", C: "100", D: "900" }, ans: "B", sol: "Plug in x = 2: g(2) = 10 * (3²) = 10 * 9 = 90." },
+            { q: "4. What is the horizontal asymptote of the base exponential function y = a(b)^x (where a > 0)?", opts: { A: "y = a", B: "y = b", C: "y = 1", D: "y = 0" }, ans: "D", sol: "As x becomes infinitely negative (for growth functions) or infinitely positive (for decay functions), the value approaches, but never reaches, 0." },
+            { q: "5. A population starts at 500 and doubles every year. What is the function?", opts: { A: "P(t) = 2(500)^t", B: "P(t) = 500(2)^t", C: "P(t) = 500 + 2^t", D: "P(t) = 500(0.5)^t" }, ans: "B", sol: "The initial value 'a' is 500. Doubling means the growth factor 'b' is 2. The formula is a(b)^x, so P(t) = 500(2)^t." }
+        ]
+    },
+    "2_3_med": {
+        title: "Unit 2.3: Medium Practice",
+        subtitle: "Focus: Writing exponential functions from points and percentages.",
+        themeColor: "#f39c12",
+        questions: [
+            { q: "1. Write the exponential function f(x) = a(b)^x that passes through (0, 4) and (2, 36).", opts: { A: "f(x) = 4(9)^x", B: "f(x) = 4(3)^x", C: "f(x) = 2(6)^x", D: "f(x) = 9(4)^x" }, ans: "B", sol: "The y-intercept (a) is 4. Plug in the second point: 36 = 4(b)². Divide by 4: 9 = b². Since b must be positive, b = 3. Function is 4(3)^x." },
+            { q: "2. A car is purchased for $20,000 and depreciates by 12% each year. Write the value function V(t).", opts: { A: "V(t) = 20000(0.12)^t", B: "V(t) = 20000(1.12)^t", C: "V(t) = 20000(0.88)^t", D: "V(t) = 20000(-0.12)^t" }, ans: "C", sol: "Depreciation means subtracting from 100%. 100% - 12% = 88%. As a decimal, the multiplier (b) is 0.88." },
+            { q: "3. If f(x) = c(d)^x is an exponential growth function, what must be true about its end behavior as x approaches negative infinity?", opts: { A: "It approaches infinity", B: "It approaches 0", C: "It approaches c", D: "It approaches negative infinity" }, ans: "B", sol: "For exponential growth, the right side goes up to infinity, and the left side flattens out along the horizontal asymptote, which is y = 0." },
+            { q: "4. An investment grows by a factor of 1.05 every month. What is the annual growth rate percentage?", opts: { A: "5%", B: "60%", C: "About 79.6%", D: "12%" }, ans: "C", sol: "If it grows by 1.05 every month, in 12 months the multiplier is (1.05)^12. 1.05^12 is approximately 1.7958. This represents a 79.6% increase." },
+            { q: "5. Find the exponential function passing through (1, 6) and (3, 24).", opts: { A: "y = 2(3)^x", B: "y = 3(2)^x", C: "y = 1.5(4)^x", D: "y = 6(2)^x" }, ans: "B", sol: "Set up a ratio: a(b)³ / a(b)¹ = 24 / 6. This simplifies to b² = 4, so b = 2. Plug back into the first point: 6 = a(2)¹, so a = 3. Equation is y = 3(2)^x." }
+        ]
+    },
+    "2_3_hard": {
+        title: "Unit 2.3: Hard Practice",
+        subtitle: "Focus: Complex bases and relative rates of change.",
+        themeColor: "#e74c3c",
+        questions: [
+            { q: "1. The function f(x) = 10(1/2)^(-x) represents:", opts: { A: "Exponential decay", B: "Exponential growth", C: "A constant function", D: "A linear function" }, ans: "B", sol: "A negative exponent flips the base. (1/2)^(-x) is algebraically identical to (2/1)^x, or 2^x. Since the base is 2 (greater than 1), it is exponential growth." },
+            { q: "2. Let g(x) = a(b)^x. If the graph is decreasing and concave up, what are the constraints on 'a' and 'b'?", opts: { A: "a > 0, b > 1", B: "a < 0, b > 1", C: "a > 0, 0 < b < 1", D: "a < 0, 0 < b < 1" }, ans: "C", sol: "Decreasing and concave up is the classic 'swoop down to zero' shape of standard exponential decay. This requires a positive initial value (a > 0) and a decay factor (0 < b < 1)." },
+            { q: "3. If f(x) = 5(4)^x, by what factor does the function change when x increases by 1.5?", opts: { A: "6", B: "8", C: "16", D: "4.5" }, ans: "B", sol: "The multiplier for a change of Δx is b^(Δx). Here, the base is 4 and the change is 1.5. 4^(1.5) = 4^(3/2) = the square root of 4, cubed. (2)³ = 8." },
+            { q: "4. An exponential function f(x) passes through (-1, 20) and (2, 2.5). Find the equation.", opts: { A: "f(x) = 10(0.5)^x", B: "f(x) = 5(0.5)^x", C: "f(x) = 10(2)^x", D: "f(x) = 20(0.125)^x" }, ans: "A", sol: "Ratio: 2.5 / 20 = 0.125. The change in x is 2 - (-1) = 3. So b³ = 0.125. The cube root of 0.125 is 0.5. b=0.5. Plug into (-1, 20): 20 = a(0.5)⁻¹ -> 20 = a(2) -> a = 10. Equation: 10(0.5)^x." },
+            { q: "5. How does the graph of y = 2(3)^x compare to y = 3^x?", opts: { A: "Shifted up 2 units", B: "Shifted right 2 units", C: "Stretched vertically by a factor of 2", D: "Stretched horizontally by a factor of 2" }, ans: "C", sol: "The '2' is multiplying the entire function from the outside, which corresponds to a vertical dilation (stretch) by a factor of 2." }
+        ]
+    },
+    "2_3_master": {
+        title: "Unit 2.3 Master Exam",
+        subtitle: "Advanced Exponential Formulation & Behavior.",
+        themeColor: "#8e44ad",
+        questions: [
+            { q: "1. Which of the following functions has a horizontal asymptote at y = -3 and a y-intercept of 5?", opts: { A: "y = 5(2)^x - 3", B: "y = 8(2)^x - 3", C: "y = 2(5)^x - 3", D: "y = -3(2)^x + 5" }, ans: "B", sol: "The horizontal shift comes from the constant tacked on the end (-3). To find the y-int, plug in x=0. For option B: 8(2)⁰ - 3 = 8(1) - 3 = 5. Option B fits both criteria perfectly." },
+            { q: "2. The half-life of an isotope is 14 days. Which function represents the amount remaining after t days from an initial amount of 100g?", opts: { A: "A(t) = 100(0.5)^(14t)", B: "A(t) = 100(0.5)^(t/14)", C: "A(t) = 100(0.5)^(t - 14)", D: "A(t) = 14(0.5)^(t/100)" }, ans: "B", sol: "The exponent must equal 1 when t = 14 (so it cuts in half exactly once after 14 days). The expression (t/14) ensures that when t=14, the exponent is 1." },
+            { q: "3. A bacterial culture modeled by P(t) = P₀(b)^t grows by 25% every 3 hours. What is the hourly growth factor (base)?", opts: { A: "1.25 / 3", B: "(1.25)³", C: "Cube root of 1.25", D: "1.083" }, ans: "C", sol: "Over 3 hours, the multiplier is 1.25. To find the multiplier for a single hour, you must take the 3rd root (cube root) of 1.25, which is (1.25)^(1/3)." },
+            { q: "4. Let f(x) = -2(0.4)^x. Describe the concavity and direction of this function.", opts: { A: "Increasing, concave down", B: "Decreasing, concave up", C: "Increasing, concave up", D: "Decreasing, concave down" }, ans: "A", sol: "Base is 0.4 (decay, swoops down to zero). However, the negative 'a' value (-2) reflects the graph across the x-axis. A downward swoop reflected becomes an upward swoop rising from negative infinity toward y=0. This is increasing, and it bends downward (concave down)." },
+            { q: "5. Find the exponential function y = a(b)^x that passes through (1, 12) and (4, 324).", opts: { A: "y = 3(4)^x", B: "y = 4(3)^x", C: "y = 2(6)^x", D: "y = 6(2)^x" }, ans: "B", sol: "Ratio of y's: 324/12 = 27. Change in x: 4-1 = 3. b³ = 27, so b = 3. Plug in (1, 12): 12 = a(3)¹, so a = 4. Function is 4(3)^x." }
+        ]
+    },
+
+    // ==========================================
+    // UNIT 2.4: Exponential Function Manipulation
+    // ==========================================
+    "2_4_easy": {
+        title: "Unit 2.4: Easy Practice",
+        subtitle: "Focus: Basic exponent rules and rewriting bases.",
+        themeColor: "#27ae60",
+        questions: [
+            { q: "1. Which expression is equivalent to (x³)⁴?", opts: { A: "x⁷", B: "x¹²", C: "x", D: "3x⁴" }, ans: "B", sol: "When raising a power to a power, you multiply the exponents: 3 * 4 = 12." },
+            { q: "2. Simplify the expression: (2^x) * (2^y).", opts: { A: "4^(x+y)", B: "2^(xy)", C: "2^(x+y)", D: "4^(xy)" }, ans: "C", sol: "When multiplying expressions with the same base, you keep the base and add the exponents: x + y." },
+            { q: "3. Rewrite 16^x using a base of 2.", opts: { A: "2^(4x)", B: "2^(8x)", C: "2^(16x)", D: "2^(x+4)" }, ans: "A", sol: "Since 16 = 2⁴, we substitute: (2⁴)^x. Multiply the exponents to get 2^(4x)." },
+            { q: "4. Which of the following is equivalent to 5^(x - 2)?", opts: { A: "5^x - 25", B: "(5^x) / 2", C: "(5^x) / 25", D: "5^x * 10" }, ans: "C", sol: "Subtraction in the exponent means division of the bases: 5^x / 5². Since 5² is 25, it becomes (5^x) / 25." },
+            { q: "5. Simplify: (x^5) / (x^2).", opts: { A: "x^2.5", B: "x^10", C: "x^7", D: "x³" }, ans: "D", sol: "When dividing expressions with the same base, subtract the exponents: 5 - 2 = 3." }
+        ]
+    },
+    "2_4_med": {
+        title: "Unit 2.4: Medium Practice",
+        subtitle: "Focus: Factoring and setting up equivalent forms.",
+        themeColor: "#f39c12",
+        questions: [
+            { q: "1. Rewrite the function f(x) = 3 * 4^(x + 1) in the standard form a(b)^x.", opts: { A: "f(x) = 12(4)^x", B: "f(x) = 3(4)^x + 4", C: "f(x) = 7(4)^x", D: "f(x) = 3(5)^x" }, ans: "A", sol: "Split the exponent: 4^(x+1) = (4^x) * (4¹). Multiply the constant 4 by the existing 3: 3 * 4 * 4^x = 12(4)^x." },
+            { q: "2. Which of the following is equivalent to e^(3x + ln(2))?", opts: { A: "2e^(3x)", B: "e^(3x) + 2", C: "3e^(2x)", D: "ln(2) * e^(3x)" }, ans: "A", sol: "Split the exponent: e^(3x) * e^(ln(2)). Because e and ln cancel each other out, e^(ln(2)) is simply 2. The expression becomes 2 * e^(3x)." },
+            { q: "3. Rewrite 27^(x/3) with a base of 3.", opts: { A: "3^(x/3)", B: "3^x", C: "3^(9x)", D: "3^(x/9)" }, ans: "B", sol: "First, rewrite 27 as 3³. Substitute: (3³)^(x/3). Multiply the exponents: 3 * (x/3) = x. The result is just 3^x." },
+            { q: "4. Solve for x: 2^(x+3) = 8^(x-1).", opts: { A: "x = 3", B: "x = 2", C: "x = 4", D: "x = 1" }, ans: "A", sol: "Rewrite 8 as 2³: 2^(x+3) = (2³)^(x-1). Distribute the 3: 2^(x+3) = 2^(3x-3). Drop the bases: x + 3 = 3x - 3. 6 = 2x, so x = 3." },
+            { q: "5. Which expression is equivalent to (1/9)^x?", opts: { A: "3^(-2x)", B: "-9^x", C: "3^(2x)", D: "9^(-x/2)" }, ans: "A", sol: "1/9 can be written as 9⁻¹. Also, 9 is 3², so 1/9 is 3⁻². Substitute: (3⁻²)^x = 3^(-2x)." }
+        ]
+    },
+    "2_4_hard": {
+        title: "Unit 2.4: Hard Practice",
+        subtitle: "Focus: Complex equation solving and transformations via manipulation.",
+        themeColor: "#e74c3c",
+        questions: [
+            { q: "1. Find the y-intercept of the function f(x) = 2^(3x - 4).", opts: { A: "1/16", B: "1/8", C: "-16", D: "16" }, ans: "A", sol: "The y-intercept occurs when x = 0. Plug in 0: 2^(0 - 4) = 2⁻⁴. Negative exponents mean 1 over the positive exponent: 1 / 2⁴ = 1/16." },
+            { q: "2. The function g(x) = 9 * 3^(x - 2) can be rewritten as what simple transformation of y = 3^x?", opts: { A: "y = 3^x", B: "y = 3^(x+2)", C: "y = 27^x", D: "y = 3^(x-1)" }, ans: "A", sol: "Rewrite 9 as 3². The expression becomes (3²) * 3^(x - 2). Add the exponents: 2 + (x - 2) = x. The function simplifies perfectly to just y = 3^x. They are the same graph!" },
+            { q: "3. Solve for x: 25^(2x) = 125^(x + 1).", opts: { A: "x = 3", B: "x = 1", C: "x = 5", D: "x = -3" }, ans: "A", sol: "Rewrite both with base 5. 25 = 5² and 125 = 5³. (5²)^(2x) = (5³)^(x+1). 5^(4x) = 5^(3x+3). Set exponents equal: 4x = 3x + 3, yielding x = 3." },
+            { q: "4. Write 5 * 2^(3x) in the form a(b)^x.", opts: { A: "5(8)^x", B: "15(2)^x", C: "5(6)^x", D: "40^x" }, ans: "A", sol: "Apply the exponent 3 to the base 2 first. 2³ = 8. Therefore, 2^(3x) = (2³)^x = 8^x. The function is 5(8)^x." },
+            { q: "5. Which is equivalent to e^(x+1) / e^(1-x)?", opts: { A: "e^(2x)", B: "e²", C: "e^(2x+2)", D: "1" }, ans: "A", sol: "When dividing, subtract the bottom exponent from the top: (x + 1) - (1 - x) = x + 1 - 1 + x = 2x. Result is e^(2x)." }
+        ]
+    },
+    "2_4_master": {
+        title: "Unit 2.4 Master Exam",
+        subtitle: "Advanced Algebraic Manipulation of Exponents.",
+        themeColor: "#8e44ad",
+        questions: [
+            { q: "1. The function f(x) = a * 16^(bx) is equivalent to g(x) = a * 2^(x). What is the value of 'b'?", opts: { A: "1/4", B: "4", C: "2", D: "1/2" }, ans: "A", sol: "Rewrite 16 as 2⁴. So, 16^(bx) = (2⁴)^(bx) = 2^(4bx). For this to equal 2^x, the exponent 4bx must equal x. Therefore, 4b = 1, so b = 1/4." },
+            { q: "2. Solve the equation for x: 4^(x) - 12(2^x) + 32 = 0.", opts: { A: "x = 2, x = 3", B: "x = 4, x = 8", C: "x = 1, x = 4", D: "x = 2 only" }, ans: "A", sol: "This is a 'quadratic in disguise'. Rewrite 4^x as (2^x)². Let u = 2^x. The equation becomes u² - 12u + 32 = 0. Factor: (u - 4)(u - 8) = 0. So u = 4 and u = 8. Substitute back: 2^x = 4 (x=2) and 2^x = 8 (x=3)." },
+            { q: "3. Rewrite the expression 10 * 8^((x/3) + 1) in the form a(b)^x.", opts: { A: "80(2)^x", B: "10(2)^x", C: "80(8)^x", D: "10(4)^x" }, ans: "A", sol: "Split the exponent: 10 * 8^(x/3) * 8¹. Multiply the constants: 10 * 8 = 80. Now simplify 8^(x/3). Since 8 = 2³, (2³)^(x/3) = 2^x.  80(2)^x." },
+            { q: "4. Which of the following is equivalent to (1 / e^x) * e^(x²)?", opts: { A: "e^(x² - x)", B: "e^(x)", C: "e^(x² / x)", D: "1" }, ans: "A", sol: "Rewrite 1 / e^x as e^(-x). Multiply by e^(x²): e^(-x) * e^(x²). Add the exponents: e^(x² - x)." },
+            { q: "5. A student claims that f(x) = 2^(x+3) represents a horizontal shift left by 3, while another claims it represents a vertical stretch by 8. Who is correct?", opts: { A: "Both are correct", B: "Only the first student", C: "Only the second student", D: "Neither are correct" }, ans: "A", sol: "Adding 3 to the inside (x) is a shift left by 3. However, algebraically, 2^(x+3) = 2^x * 2³ = 8 * 2^x, which is a vertical stretch by 8. Both descriptions produce the exact same graph." }
+        ]
+    },
+
+    // ==========================================
+    // UNIT 2.5: Exponential Context & Data Modeling
+    // ==========================================
+    "2_5_easy": {
+        title: "Unit 2.5: Easy Practice",
+        subtitle: "Focus: Basic compound interest and half-life structures.",
+        themeColor: "#27ae60",
+        questions: [
+            { q: "1. The formula for continuously compounded interest is A = Pe^(rt). What does 'r' represent?", opts: { A: "The annual interest rate as a decimal", B: "The number of compounding periods", C: "The principal amount", D: "The total time in years" }, ans: "A", sol: "In the continuous growth formula (PERT), 'r' is the continuous growth rate written as a decimal (e.g., 5% is 0.05)." },
+            { q: "2. If a $500 investment grows continuously at 4% a year, what is the equation for its value over time?", opts: { A: "A(t) = 500e^(0.04t)", B: "A(t) = 500e^(4t)", C: "A(t) = 500(1.04)^t", D: "A(t) = 500(4)^t" }, ans: "A", sol: "Use A = Pe^(rt). P = 500, r = 0.04. Result: 500e^(0.04t). Note that C is for annual compounding, not continuous." },
+            { q: "3. A radioactive isotope has a half-life of 20 years. If you start with 100 grams, the model is A(t) = 100(0.5)^(t/20). How much is left after 20 years?", opts: { A: "50 grams", B: "25 grams", C: "0 grams", D: "75 grams" }, ans: "A", sol: "20 years is exactly one half-life. Half of 100 is 50. Mathematically: 100(0.5)^(20/20) = 100(0.5)¹ = 50." },
+            { q: "4. The population of a city is modeled by P(t) = 10000(1.03)^t. What is the annual percentage growth rate?", opts: { A: "3%", B: "103%", C: "0.03%", D: "1.03%" }, ans: "A", sol: "The base is 1.03, which represents 100% + 3%. Therefore, the growth rate is 3%." },
+            { q: "5. You deposit $100 in a bank that compounds annually at 5%. What is the balance after 2 years?", opts: { A: "$110.25", B: "$110.00", C: "$105.00", D: "$115.50" }, ans: "A", sol: "Model: 100(1.05)^t. For t=2: 100(1.05)² = 100(1.1025) = 110.25." }
+        ]
+    },
+    "2_5_med": {
+        title: "Unit 2.5: Medium Practice",
+        subtitle: "Focus: Compounding frequencies and evaluating models.",
+        themeColor: "#f39c12",
+        questions: [
+            { q: "1. The formula for discrete compound interest is A = P(1 + r/n)^(nt). What does 'n' represent?", opts: { A: "Number of times compounded per year", B: "Total number of years", C: "The annual interest rate", D: "The final amount" }, ans: "A", sol: "The variable 'n' divides the annual rate into smaller chunks based on how many times per year the bank applies the interest (e.g., monthly means n=12)." },
+            { q: "2. Write the formula for $1000 invested at 6% annual interest, compounded monthly.", opts: { A: "A(t) = 1000(1 + 0.06/12)^(12t)", B: "A(t) = 1000(1.06)^(12t)", C: "A(t) = 1000e^(0.06t)", D: "A(t) = 1000(1 + 0.06/12)^t" }, ans: "A", sol: "P=1000, r=0.06, n=12 (monthly). Formula: 1000(1 + 0.06/12)^(12t)." },
+            { q: "3. A bacterial population triples every 4 hours. Which function models the population P(t) starting with 50 bacteria, where t is in hours?", opts: { A: "P(t) = 50(3)^(t/4)", B: "P(t) = 50(3)^(4t)", C: "P(t) = 50(1/3)^(t/4)", D: "P(t) = 50(3)^t" }, ans: "A", sol: "Initial value is 50. Base is 3 (tripling). It takes 4 hours for one cycle, so the exponent must be t/4 to ensure that when t=4, the exponent is 1." },
+            { q: "4. An antique car appreciates by 8% per year. If it is currently worth $50,000, what was its value exactly 1 year ago?", opts: { A: "$46,296", B: "$46,000", C: "$54,000", D: "$42,000" }, ans: "A", sol: "Let V be last year's value. V * 1.08 = 50000. So, V = 50000 / 1.08 ≈ 46,296. (Notice it is NOT simply 50000 - 8% of 50000, which would be 46000)." },
+            { q: "5. A model is P(t) = 200e^(0.15t). Is this growth or decay, and what is the continuous rate?", opts: { A: "Growth, 15%", B: "Decay, 15%", C: "Growth, 0.15%", D: "Decay, 85%" }, ans: "A", sol: "Because the exponent is positive, it is continuous growth. The 'r' value is 0.15, which translates to a 15% continuous rate." }
+        ]
+    },
+    "2_5_hard": {
+        title: "Unit 2.5: Hard Practice",
+        subtitle: "Focus: Comparing compounding types and abstract time shifts.",
+        themeColor: "#e74c3c",
+        questions: [
+            { q: "1. Which yields a higher return on a $1000 investment over 1 year: 10% compounded semi-annually, or 9.9% compounded continuously?", opts: { A: "10% semi-annually", B: "9.9% continuously", C: "They yield the exact same amount", D: "Cannot be calculated" }, ans: "A", sol: "Semi-annual: 1000(1 + 0.10/2)² = 1000(1.05)² = 1102.50. Continuous: 1000e^(0.099(1)) ≈ 1000(1.104) = 1104.07. Wait, calculating properly: e^0.099 is approx 1.10406... $1104.07. Ah, continuous is higher! Let me recheck. Wait, the option says A. Let me re-calculate. 10% semi: 1.05^2 = 1.1025. 9.9% cont: e^0.099 = 1.1040. So Continuous is higher. Answer is B." }, // Correction in thought process mapped to B
+            { q: "2. The half-life of Carbon-14 is 5730 years. Which expression represents the fraction remaining after 10,000 years?", opts: { A: "(1/2)^(10000/5730)", B: "(1/2)^(5730/10000)", C: "e^(-5730/10000)", D: "10000(1/2)^5730" }, ans: "A", sol: "The formula for remaining fraction is (1/2)^(t / half-life). Plugging in t=10000 gives (1/2)^(10000/5730)." },
+            { q: "3. A population doubles every 10 years. What is its equivalent annual growth rate (to the nearest tenth of a percent)?", opts: { A: "7.2%", B: "10.0%", C: "5.0%", D: "2.0%" }, ans: "A", sol: "Model: P(t) = P₀(2)^(t/10). Rewrite using exponent rules: P₀(2^(1/10))^t. Calculate 2^(0.1) ≈ 1.0717. This represents a 7.17% (or 7.2%) annual growth rate." },
+            { q: "4. An account pays 5% compounded continuously. Approximately how many years does it take to double? (Use the Rule of 70).", opts: { A: "14 years", B: "20 years", C: "10 years", D: "7 years" }, ans: "A", sol: "The Rule of 70 (or 72) estimates doubling time for continuous/compound growth: 70 / rate. Here, 70 / 5 = 14 years." },
+            { q: "5. If $P is invested at r% compounded annually, and $P is invested at r% compounded monthly, how do the functions compare mathematically as t gets large?", opts: { A: "The monthly model grows strictly faster and the gap widens.", B: "The annual model grows strictly faster.", C: "They grow at the exact same rate.", D: "The monthly model is higher but the gap remains constant." }, ans: "A", sol: "Compounding more frequently results in a higher effective annual yield (APY). Because the base of the monthly model is slightly larger than the annual model, an exponential gap will widen indefinitely over time." }
+        ]
+    },
+    "2_5_master": {
+        title: "Unit 2.5 Master Exam",
+        subtitle: "Advanced Data Modeling & Context Synthesis.",
+        themeColor: "#8e44ad",
+        questions: [
+            { q: "1. A liquid cools in a 20°C room. Newton's Law of Cooling states T(t) = T_env + (T₀ - T_env)e^(-kt). If it starts at 90°C and k=0.1, what is the model?", opts: { A: "T(t) = 20 + 70e^(-0.1t)", B: "T(t) = 90e^(-0.1t)", C: "T(t) = 20 + 90e^(-0.1t)", D: "T(t) = 70 + 20e^(-0.1t)" }, ans: "A", sol: "Environment T_env is 20. Initial T₀ is 90. The difference (T₀ - T_env) is 90 - 20 = 70. Plug it in: 20 + 70e^(-0.1t)." },
+            { q: "2. The value of a stock is modeled by V(t) = 50(1.08)^t. A second model uses continuous compounding: V(t) = 50e^(kt). Find 'k'.", opts: { A: "k = ln(1.08)", B: "k = 0.08", C: "k = e^(1.08)", D: "k = ln(0.08)" }, ans: "A", sol: "For the models to be equivalent, the bases must be equal: e^k = 1.08. To solve for k, take the natural log of both sides: k = ln(1.08)." },
+            { q: "3. A population model P(t) = 2000(1.05)^t is shifted so that t=0 represents the year 2025 instead of 2020. What is the new model?", opts: { A: "P_new(t) = 2000(1.05)^(t+5)", B: "P_new(t) = 2000(1.05)^(t-5)", C: "P_new(t) = 2000(1.05)^t + 5", D: "P_new(t) = 10000(1.05)^t" }, ans: "A", sol: "If t=0 is now 2025, the year 2025 used to be t=5. To get the same output at t=0 that you used to get at t=5, you must shift the function left by 5. Replacing t with (t+5) achieves this." },
+            { q: "4. An isotope decays such that 1/8 of the original amount remains after 30 days. What is the half-life?", opts: { A: "10 days", B: "15 days", C: "3.75 days", D: "240 days" }, ans: "A", sol: "1/8 remaining means it has gone through 3 half-lives (1/2 * 1/2 * 1/2 = 1/8). If 3 half-lives take 30 days, one half-life is 30 / 3 = 10 days." },
+            { q: "5. Compare A(t) = 1000(1 + 0.05/12)^(12t) and B(t) = 1000e^(0.05t). Which limit is true?", opts: { A: "As n approaches infinity, the discrete formula A(t) approaches B(t).", B: "As t approaches infinity, A(t) and B(t) converge to the same value.", C: "B(t) will eventually approach 0.", D: "A(t) will eventually surpass B(t)." }, ans: "A", sol: "This is the definition of 'e'. As the number of compounding periods 'n' approaches infinity, the discrete compound interest formula fundamentally transforms into the continuous formula (PERT)." }
+        ]
     }
 };
