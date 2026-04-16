@@ -15,10 +15,14 @@
     <h1>AP Precalculus Portal</h1>
     
     <div id="login-section">
-        <p>Enter your email to receive a login link. No password required!</p>
-        <input type="email" id="student-email" placeholder="student@example.com">
-        <button id="login-btn">Send Login Link</button>
-        <p id="login-message" style="color: green;"></p>
+        <p>Enter your email and a password to access your quizzes.</p>
+        <input type="email" id="student-email" placeholder="student@example.com" style="display:block; margin: 10px auto; padding: 8px;">
+        <input type="password" id="student-password" placeholder="Create or enter password" style="display:block; margin: 10px auto; padding: 8px;">
+        
+        <button id="login-btn">Log In</button>
+        <button id="signup-btn" style="background-color: #28a745; color: white;">First Time? Sign Up</button>
+        
+        <p id="login-message" style="color: red;"></p>
     </div>
 
     <div id="quiz-section" class="quiz-section">
