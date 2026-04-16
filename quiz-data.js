@@ -1,161 +1,68 @@
 // quiz-data.js
 
 export const masterCurriculum = {
-    // UNIT 1.1 DATA
+    // ==========================================
+    // UNIT 1.1: Change in Tandem & Rates
+    // ==========================================
     "1_1_easy": {
         title: "Unit 1.1: Easy Practice",
         subtitle: "Focus: Calculating and identifying Average Rates of Change.",
-        themeColor: "#27ae60", // Green
+        themeColor: "#27ae60", 
         questions: [
-            { {
-    q: "1. A function f(x) passes through the points (1, 5) and (4, 17). What is the average rate of change of f(x) on the interval [1, 4]?",
-    opts: { A: "12", B: "4", C: "3", D: "6" },
-    ans: "B",
-    sol: "Use the formula (y2 - y1) / (x2 - x1). Plugging in the points: (17 - 5) / (4 - 1) = 12 / 3 = 4."
-  },
-  {
-    q: `2. Consider the table of values for a continuous function g(x):
-        <table style="margin-top:10px;"><tr><th>x</th><td>0</td><td>2</td><td>4</td><td>6</td></tr><tr><th>g(x)</th><td>10</td><td>7</td><td>4</td><td>1</td></tr></table>
-        Which of the following describes how g(x) changes in tandem with x?`,
-    opts: { 
-        A: "As x increases, g(x) increases at a constant rate.", 
-        B: "As x increases, g(x) decreases at a decreasing rate.", 
-        C: "As x increases, g(x) decreases at a constant rate.", 
-        D: "As x increases, g(x) decreases at an increasing rate." 
-    },
-    ans: "C",
-    sol: "Calculate the average rate of change for each interval. From x=0 to 2, ROC is (7-10)/2 = -1.5. From x=2 to 4, ROC is (4-7)/2 = -1.5. Because the rate of change is constant and negative, g(x) decreases at a constant rate."
-  },
-  {
-    q: "3. If the average rate of change of a function h(x) over the interval [2, 5] is negative, which of the following MUST be true?",
-    opts: { 
-        A: "h(5) is less than h(2)", 
-        B: "h(5) is greater than h(2)", 
-        C: "The function is decreasing at every single point between x=2 and x=5", 
-        D: "The graph of h(x) is concave down" 
-    },
-    ans: "A",
-    sol: "Average rate of change only looks at the endpoints. If the overall rate of change is negative, the y-value at the end of the interval, h(5), must be strictly lower than the y-value at the start of the interval, h(2)."
-  },
-  {
-    q: "4. Let p(x) = x&sup2; + 2x. What is the average rate of change of p(x) over the interval [-1, 3]?",
-    opts: { A: "4", B: "8", C: "16", D: "2" },
-    ans: "A",
-    sol: "Evaluate the endpoints: p(3) = (3)&sup2; + 2(3) = 9 + 6 = 15. Then p(-1) = (-1)&sup2; + 2(-1) = 1 - 2 = -1. The rate is (15 - (-1)) / (3 - (-1)) = 16 / 4 = 4."
-  },
-  {
-    q: "5. A function m(x) has a constant rate of change of 0 over the interval [-5, 5]. Which of the following best describes the graph of m(x) on this interval?",
-    opts: { A: "A vertical line", B: "A perfectly flat horizontal line", C: "A line passing through the origin", D: "A parabola opening upwards" },
-    ans: "B",
-    sol: "A constant rate of change of 0 means the y-values never increase or decrease as x changes. Graphically, this is a horizontal line."
-  }
+            { q: "1. A function f(x) passes through the points (1, 5) and (4, 17). What is the average rate of change of f(x) on the interval [1, 4]?", opts: { A: "12", B: "4", C: "3", D: "6" }, ans: "B", sol: "Use the formula (y2 - y1) / (x2 - x1). Plugging in the points: (17 - 5) / (4 - 1) = 12 / 3 = 4." },
+            { q: `2. Consider the table of values for a continuous function g(x):
+                <table style="margin-top:10px;"><tr><th>x</th><td>0</td><td>2</td><td>4</td><td>6</td></tr><tr><th>g(x)</th><td>10</td><td>7</td><td>4</td><td>1</td></tr></table>
+                Which of the following describes how g(x) changes in tandem with x?`, opts: { A: "As x increases, g(x) increases at a constant rate.", B: "As x increases, g(x) decreases at a decreasing rate.", C: "As x increases, g(x) decreases at a constant rate.", D: "As x increases, g(x) decreases at an increasing rate." }, ans: "C", sol: "Calculate the average rate of change for each interval. From x=0 to 2, ROC is (7-10)/2 = -1.5. From x=2 to 4, ROC is (4-7)/2 = -1.5. Because the rate of change is constant and negative, g(x) decreases at a constant rate." },
+            { q: "3. If the average rate of change of a function h(x) over the interval [2, 5] is negative, which of the following MUST be true?", opts: { A: "h(5) is less than h(2)", B: "h(5) is greater than h(2)", C: "The function is decreasing at every single point between x=2 and x=5", D: "The graph of h(x) is concave down" }, ans: "A", sol: "Average rate of change only looks at the endpoints. If the overall rate of change is negative, the y-value at the end of the interval, h(5), must be strictly lower than the y-value at the start of the interval, h(2)." },
+            { q: "4. Let p(x) = x² + 2x. What is the average rate of change of p(x) over the interval [-1, 3]?", opts: { A: "4", B: "8", C: "16", D: "2" }, ans: "A", sol: "Evaluate the endpoints: p(3) = (3)² + 2(3) = 9 + 6 = 15. Then p(-1) = (-1)² + 2(-1) = 1 - 2 = -1. The rate is (15 - (-1)) / (3 - (-1)) = 16 / 4 = 4." },
+            { q: "5. A function m(x) has a constant rate of change of 0 over the interval [-5, 5]. Which of the following best describes the graph of m(x) on this interval?", opts: { A: "A vertical line", B: "A perfectly flat horizontal line", C: "A line passing through the origin", D: "A parabola opening upwards" }, ans: "B", sol: "A constant rate of change of 0 means the y-values never increase or decrease as x changes. Graphically, this is a horizontal line." },
+            { q: "6. Let f(x) = 2x² + 1. What is the average rate of change of f(x) over the interval [1, 3]?", opts: { A: "10", B: "8", C: "9", D: "4" }, ans: "B", sol: "Find the endpoints: f(3) = 2(9) + 1 = 19. f(1) = 2(1) + 1 = 3. Apply the formula: (19 - 3) / (3 - 1) = 16 / 2 = 8." },
+            { q: "7. A negative average rate of change over an interval indicates that the function has experienced a net:", opts: { A: "Increase", B: "Decrease", C: "Constant value", D: "Zero slope" }, ans: "B", sol: "A negative rate of change means the y-value at the end of the interval is lower than the y-value at the beginning, resulting in a net decrease." },
+            { q: "8. Analyze the table: x=(2, 4, 6), y=(5, 9, 13). What is the average rate of change on the interval [2, 6]?", opts: { A: "2", B: "4", C: "8", D: "1" }, ans: "A", sol: "Use the outer points of the interval: (13 - 5) / (6 - 2) = 8 / 4 = 2." },
+            { q: "9. Find the average rate of change for the linear function y = -4x + 10 over the interval [100, 105].", opts: { A: "-20", B: "-4", C: "10", D: "Cannot be determined" }, ans: "B", sol: "For any linear function, the average rate of change is always constant and equal to its slope. The slope is -4." },
+            { q: "10. If the average rate of change of g(x) on [0, 4] is 5, and g(0) = 2, what is g(4)?", opts: { A: "20", B: "22", C: "18", D: "7" }, ans: "B", sol: "Set up the formula: (g(4) - 2) / (4 - 0) = 5. Multiply both sides by 4: g(4) - 2 = 20. Add 2: g(4) = 22." }
         ]
     },
     "1_1_med": {
         title: "Unit 1.1: Medium Practice",
         subtitle: "Focus: Analyzing rates of rates and determining concavity.",
-        themeColor: "#f39c12", // Orange
+        themeColor: "#f39c12", 
         questions: [
-            {
-    q: "1. A function h(x) is strictly increasing on the interval (a, b). If the rate at which h(x) increases is getting smaller as x increases, what must be true about the graph of h(x)?",
-    opts: { A: "It is concave up.", B: "It is concave down.", C: "It is linear.", D: "It has a vertical asymptote." },
-    ans: "B",
-    sol: "When a function is increasing at a decreasing rate, its slopes are positive but getting less steep over time. Graphically, this creates a curve that bends downwards, which is the definition of concave down."
-  },
-  {
-    q: `2. Use the table below to determine the concavity of the function k(x):
-        <table style="margin-top:10px;"><tr><th>x</th><td>1</td><td>3</td><td>5</td><td>7</td></tr><tr><th>k(x)</th><td>5</td><td>9</td><td>17</td><td>33</td></tr></table>`,
-    opts: { 
-        A: "Concave up because the average rates of change are increasing.", 
-        B: "Concave down because the average rates of change are decreasing.", 
-        C: "Linear because the change in x is constant.", 
-        D: "Concave down because the function values are positive." 
-    },
-    ans: "A",
-    sol: "Calculate successive average rates of change over the intervals. [1, 3]: (9-5)/2 = 2. [3, 5]: (17-9)/2 = 4. [5, 7]: (33-17)/2 = 8. Because the rates of change (2, 4, 8) are strictly increasing, the function is concave up."
-  },
-  {
-    q: `3. Analyze the following table for a continuous function w(x):
-        <table style="margin-top:10px;"><tr><th>x</th><td>0</td><td>1</td><td>2</td><td>3</td></tr><tr><th>w(x)</th><td>20</td><td>10</td><td>4</td><td>1</td></tr></table>
-        Which of the following describes the behavior of w(x)?`,
-    opts: {
-        A: "Decreasing at a decreasing rate",
-        B: "Decreasing at an increasing rate",
-        Rates: "Increasing at a decreasing rate",
-        D: "Increasing at an increasing rate"
-    },
-    ans: "B",
-    sol: "Calculate the rates of change. [0, 1]: -10. [1, 2]: -6. [2, 3]: -3. The function values are going down (decreasing). However, the rates of change (-10, -6, -3) are becoming strictly larger numbers. Therefore, it is decreasing at an increasing rate (concave up)."
-  },
-  {
-    q: "4. If a secant line connecting the points (a, f(a)) and (b, f(b)) lies entirely ABOVE the graph of f(x) for all x in the interval (a, b), what is the concavity of f(x) on this interval?",
-    opts: { A: "Concave up", B: "Concave down", C: "Linear", D: "Cannot be determined" },
-    ans: "A",
-    sol: "By definition, if a graph is concave up (bending upwards like a cup), any secant line drawn between two points on the curve will pass 'above' the actual curve itself."
-  },
-  {
-    q: "5. Function A and Function B both start at the point (0, 0) and end at (10, 100). Function A increases at a constant rate. Function B increases at an increasing rate. Which function has a lower y-value at x = 5?",
-    opts: { A: "Function A", B: "Function B", C: "They have the same y-value", D: "Not enough information" },
-    ans: "B",
-    sol: "Function A is a straight line. Function B increases at an increasing rate (concave up), meaning it grows slowly at first and very fast at the end. Because it lags behind initially to save its rapid growth for the end, Function B will be lower than Function A at the halfway point."
-  }
+            { q: "1. A function h(x) is strictly increasing on the interval (a, b). If the rate at which h(x) increases is getting smaller as x increases, what must be true about the graph of h(x)?", opts: { A: "It is concave up.", B: "It is concave down.", C: "It is linear.", D: "It has a vertical asymptote." }, ans: "B", sol: "When a function is increasing at a decreasing rate, its slopes are positive but getting less steep over time. Graphically, this creates a curve that bends downwards, which is the definition of concave down." },
+            { q: `2. Use the table below to determine the concavity of the function k(x):
+                <table style="margin-top:10px;"><tr><th>x</th><td>1</td><td>3</td><td>5</td><td>7</td></tr><tr><th>k(x)</th><td>5</td><td>9</td><td>17</td><td>33</td></tr></table>`, opts: { A: "Concave up because the average rates of change are increasing.", B: "Concave down because the average rates of change are decreasing.", C: "Linear because the change in x is constant.", D: "Concave down because the function values are positive." }, ans: "A", sol: "Calculate successive average rates of change over the intervals. [1, 3]: (9-5)/2 = 2. [3, 5]: (17-9)/2 = 4. [5, 7]: (33-17)/2 = 8. Because the rates of change (2, 4, 8) are strictly increasing, the function is concave up." },
+            { q: `3. Analyze the following table for a continuous function w(x):
+                <table style="margin-top:10px;"><tr><th>x</th><td>0</td><td>1</td><td>2</td><td>3</td></tr><tr><th>w(x)</th><td>20</td><td>10</td><td>4</td><td>1</td></tr></table>
+                Which of the following describes the behavior of w(x)?`, opts: { A: "Decreasing at a decreasing rate", B: "Decreasing at an increasing rate", C: "Increasing at a decreasing rate", D: "Increasing at an increasing rate" }, ans: "B", sol: "Calculate the rates of change. [0, 1]: -10. [1, 2]: -6. [2, 3]: -3. The function values are going down (decreasing). However, the rates of change (-10, -6, -3) are becoming strictly larger numbers. Therefore, it is decreasing at an increasing rate (concave up)." },
+            { q: "4. If a secant line connecting the points (a, f(a)) and (b, f(b)) lies entirely ABOVE the graph of f(x) for all x in the interval (a, b), what is the concavity of f(x) on this interval?", opts: { A: "Concave up", B: "Concave down", C: "Linear", D: "Cannot be determined" }, ans: "A", sol: "By definition, if a graph is concave up (bending upwards like a cup), any secant line drawn between two points on the curve will pass 'above' the actual curve itself." },
+            { q: "5. Function A and Function B both start at the point (0, 0) and end at (10, 100). Function A increases at a constant rate. Function B increases at an increasing rate. Which function has a lower y-value at x = 5?", opts: { A: "Function A", B: "Function B", C: "They have the same y-value", D: "Not enough information" }, ans: "B", sol: "Function A is a straight line. Function B increases at an increasing rate (concave up), meaning it grows slowly at first and very fast at the end. Because it lags behind initially to save its rapid growth for the end, Function B will be lower than Function A at the halfway point." },
+            { q: "6. A function f(x) is decreasing, but its rate of change is strictly increasing (getting closer to zero). What is the concavity of the graph?", opts: { A: "Concave up", B: "Concave down", C: "Linear", D: "Undefined" }, ans: "A", sol: "If the slopes are negative (decreasing) but becoming less negative over time (increasing), the curve is flattening out from a steep drop. This upward bend is concave up." },
+            { q: "7. The average rates of change of h(x) on consecutive, equal-length intervals are: 5, 8, 11, 14. Which statement describes h(x)?", opts: { A: "Increasing at a decreasing rate", B: "Increasing at an increasing rate", C: "Decreasing at an increasing rate", D: "Decreasing at a decreasing rate" }, ans: "B", sol: "The rates of change are all positive (the function is increasing). The rates themselves (5, 8, 11...) are getting larger, so it is increasing at an increasing rate." },
+            { q: "8. Analyze the table: x=(1, 2, 3, 4), y=(10, 8, 5, 1). Describe the behavior of the function.", opts: { A: "Decreasing at a decreasing rate", B: "Decreasing at an increasing rate", C: "Increasing at a constant rate", D: "Concave up" }, ans: "A", sol: "Calculate the rates of change: (8-10)=-2, (5-8)=-3, (1-5)=-4. The function is decreasing. The slopes are becoming more negative (which mathematically means the rates are decreasing). Therefore, decreasing at a decreasing rate (concave down)." },
+            { q: "9. If a function is concave down on the interval (a, b), what must be true about its average rates of change across consecutive equal-length intervals?", opts: { A: "They are strictly increasing", B: "They are strictly decreasing", C: "They are constant", D: "They are zero" }, ans: "B", sol: "By definition, a curve is concave down if its slopes (rates of change) are strictly decreasing as x increases." },
+            { q: "10. Which of the following functions exhibits a constant rate of change?", opts: { A: "y = x²", B: "y = 3^x", C: "y = 5x - 7", D: "y = 1/x" }, ans: "C", sol: "Only linear functions have a constant rate of change. The equation y = 5x - 7 is a line with a constant slope of 5." }
         ]
     },
     "1_1_hard": {
         title: "Unit 1.1: Hard Practice",
         subtitle: "Focus: Contextual models and proportional reasoning.",
-        themeColor: "#e74c3c", // Red
+        themeColor: "#e74c3c", 
         questions: [
-             {
-    q: "1. A spherical balloon is being inflated such that its volume V increases at a constant rate with respect to time t. How does the radius r of the balloon change in tandem with time t?",
-    opts: { 
-        A: "The radius increases at a constant rate.", 
-        B: "The radius increases at an increasing rate.", 
-        C: "The radius increases at a decreasing rate.", 
-        D: "The radius decreases at a decreasing rate." 
-    },
-    ans: "C",
-    sol: "As the balloon gets larger, it requires significantly more volume to add just a tiny bit of length to the radius. Because the volume is entering at a constant speed, the outward growth of the radius must slow down as the balloon expands. Therefore, the radius increases at a decreasing rate (concave down)."
-  },
-  {
-    q: "2. The variables x and y change in tandem such that for every increase of 2 in the value of x, the value of y is multiplied by 3. If y = 4 when x = 0, what is the value of y when x = 6?",
-    opts: { A: "36", B: "108", C: "256", D: "324" },
-    ans: "B",
-    sol: "The x-values increase from 0 to 6 in steps of 2: 0 &rarr; 2 &rarr; 4 &rarr; 6. This is exactly three steps. Since y is multiplied by 3 for each step, we multiply the initial y-value by 3, three times. y = 4 * (3 * 3 * 3) = 4 * 27 = 108."
-  },
-  {
-    q: "3. Water is poured into a conical cup (point facing down) at a constant rate. Let h(t) represent the height of the water in the cup at time t. Which of the following best describes the concavity of h(t)?",
-    opts: { A: "Concave up", B: "Concave down", C: "Linear", D: "Cannot be determined" },
-    ans: "B",
-    sol: "Because the cone is wider at the top than at the bottom, it takes more water to raise the level by 1 inch at the top than it does at the narrow bottom. Since water enters at a constant rate, the height will rise quickly at first, and then slow down as the cup gets wider. An increasing function that is slowing down is concave down."
-  },
-  {
-    q: "4. A car traveling at 60 mph suddenly slams on the brakes. Let d(t) be the total distance the car has traveled since the brakes were applied. Which of the following describes the rate of change of d(t)?",
-    opts: { 
-        A: "d(t) increases at an increasing rate", 
-        B: "d(t) increases at a decreasing rate", 
-        C: "d(t) decreases at an increasing rate", 
-        D: "d(t) decreases at a decreasing rate" 
-    },
-    ans: "B",
-    sol: "The car is still moving forward, so the total distance traveled, d(t), is increasing. However, because the brakes are applied, the car is slowing down. Therefore, the distance is increasing, but it is increasing at a decreasing rate as the car comes to a stop."
-  },
-  {
-    q: "5. Company A and Company B both produce 500 units of a product per day. Company A decides to increase production by adding exactly 50 units per day. Company B decides to increase production by 10% per day. How do the rates of change compare over the first 5 days?",
-    opts: { 
-        A: "Both companies increase at a constant rate.", 
-        B: "Company A increases at a constant rate, while Company B increases at an increasing rate.", 
-        C: "Company A increases at an increasing rate, while Company B increases at a constant rate.", 
-        D: "Both companies increase at an increasing rate." 
-    },
-    ans: "B",
-    sol: "Company A adds a fixed amount (+50) every day, which defines a constant rate of change (linear). Company B multiplies its current total by 1.10 every day. As the total gets larger, 10% of that total also becomes a larger number, meaning Company B's growth rate accelerates over time (increasing at an increasing rate)."
-  }
+            { q: "1. A spherical balloon is being inflated such that its volume V increases at a constant rate with respect to time t. How does the radius r of the balloon change in tandem with time t?", opts: { A: "The radius increases at a constant rate.", B: "The radius increases at an increasing rate.", C: "The radius increases at a decreasing rate.", D: "The radius decreases at a decreasing rate." }, ans: "C", sol: "As the balloon gets larger, it requires significantly more volume to add just a tiny bit of length to the radius. Because the volume is entering at a constant speed, the outward growth of the radius must slow down as the balloon expands. Therefore, the radius increases at a decreasing rate (concave down)." },
+            { q: "2. The variables x and y change in tandem such that for every increase of 2 in the value of x, the value of y is multiplied by 3. If y = 4 when x = 0, what is the value of y when x = 6?", opts: { A: "36", B: "108", C: "256", D: "324" }, ans: "B", sol: "The x-values increase from 0 to 6 in steps of 2: 0 &rarr; 2 &rarr; 4 &rarr; 6. This is exactly three steps. Since y is multiplied by 3 for each step, we multiply the initial y-value by 3, three times. y = 4 * (3 * 3 * 3) = 4 * 27 = 108." },
+            { q: "3. Water is poured into a conical cup (point facing down) at a constant rate. Let h(t) represent the height of the water in the cup at time t. Which of the following best describes the concavity of h(t)?", opts: { A: "Concave up", B: "Concave down", C: "Linear", D: "Cannot be determined" }, ans: "B", sol: "Because the cone is wider at the top than at the bottom, it takes more water to raise the level by 1 inch at the top than it does at the narrow bottom. Since water enters at a constant rate, the height will rise quickly at first, and then slow down as the cup gets wider. An increasing function that is slowing down is concave down." },
+            { q: "4. A car traveling at 60 mph suddenly slams on the brakes. Let d(t) be the total distance the car has traveled since the brakes were applied. Which of the following describes the rate of change of d(t)?", opts: { A: "d(t) increases at an increasing rate", B: "d(t) increases at a decreasing rate", C: "d(t) decreases at an increasing rate", D: "d(t) decreases at a decreasing rate" }, ans: "B", sol: "The car is still moving forward, so the total distance traveled, d(t), is increasing. However, because the brakes are applied, the car is slowing down. Therefore, the distance is increasing, but it is increasing at a decreasing rate as the car comes to a stop." },
+            { q: "5. Company A and Company B both produce 500 units of a product per day. Company A decides to increase production by adding exactly 50 units per day. Company B decides to increase production by 10% per day. How do the rates of change compare over the first 5 days?", opts: { A: "Both companies increase at a constant rate.", B: "Company A increases at a constant rate, while Company B increases at an increasing rate.", C: "Company A increases at an increasing rate, while Company B increases at a constant rate.", D: "Both companies increase at an increasing rate." }, ans: "B", sol: "Company A adds a fixed amount (+50) every day, which defines a constant rate of change (linear). Company B multiplies its current total by 1.10 every day. As the total gets larger, 10% of that total also becomes a larger number, meaning Company B's growth rate accelerates over time (increasing at an increasing rate)." },
+            { q: "6. A population of bacteria grows such that for every 2 hours, the population is multiplied by 1.5. If the population is 1,000 at hour 0, what is it at hour 6?", opts: { A: "1,500", B: "2,250", C: "3,375", D: "4,500" }, ans: "C", sol: "The hours go 0 -> 2 -> 4 -> 6, which is exactly three 2-hour intervals. Multiply by 1.5 three times: 1000 * 1.5 * 1.5 * 1.5 = 3,375." },
+            { q: "7. Water drains from a perfectly cylindrical tank at a constant volume rate. How does the height of the water h(t) change in tandem with time?", opts: { A: "Decreases at an increasing rate", B: "Decreases at a decreasing rate", C: "Decreases at a constant rate", D: "Increases at a constant rate" }, ans: "C", sol: "Unlike a cone, a cylinder has straight, uniform sides. Because the shape doesn't get wider or narrower, a constant change in volume translates directly to a constant change in height. Thus, it decreases at a constant rate." },
+            { q: "8. A car accelerates from a stoplight. Let d(t) be its distance traveled. If the car is speeding up, what is the concavity of d(t)?", opts: { A: "Concave up", B: "Concave down", C: "Linear", D: "Cannot be determined" }, ans: "A", sol: "Speed is the rate of change of distance. If the car is speeding up, the rate of change of distance is increasing. An increasing rate of change creates a concave up graph." },
+            { q: "9. Two variables x and y change in tandem. If x increases by a constant amount, y increases by a constant amount. This implies that y is modeled by which type of function?", opts: { A: "Quadratic", B: "Exponential", C: "Linear", D: "Logarithmic" }, ans: "C", sol: "A constant change in y for every constant change in x is the exact definition of a constant rate of change, which defines a linear function." },
+            { q: "10. Let f(x) be strictly concave down on the interval (0, 10). Compare the average rate of change on [2, 4] to the average rate of change on [6, 8].", opts: { A: "The rate on [2, 4] is larger", B: "The rate on [6, 8] is larger", C: "They are exactly equal", D: "Not enough information" }, ans: "A", sol: "Because the function is concave down, its rate of change is strictly decreasing over time. Therefore, an earlier interval [2, 4] will always have a larger rate of change than a later interval [6, 8]." }
         ]
     },
 
     // ==========================================
-    // UNIT 1.2: Rates of Change (Expanded Practice)
+    // UNIT 1.2: Rates of Change
     // ==========================================
     "1_2_easy": {
         title: "Unit 1.2: Easy Practice",
@@ -193,7 +100,6 @@ export const masterCurriculum = {
             { q: "5. The AROC of a function is 10 on [0, 2] and 10 on [2, 4]. Does this prove the function is linear?", opts: { A: "Yes", B: "No, it could be a curve that happens to hit those specific points", C: "No, it proves it is quadratic", D: "Yes, but only if it passes through the origin" }, ans: "B", sol: "AROC only looks at endpoints. A highly fluctuating curve (like a sine wave) could easily happen to have the same average rate of change over two specific intervals without being a straight line." }
         ]
     },
-    // You just keep adding blocks for 1_2_med, 1_2_hard, 1_3_easy, etc.!
 
     // ==========================================
     // UNIT 1.3: Linear & Quadratic Rates of Change
@@ -274,6 +180,7 @@ export const masterCurriculum = {
             { q: "5. A sequence of 1st differences for a function f(x) is: 1, 7, 19, 37, 61. Assuming x increases by 1, find the constant difference.", opts: { A: "6 (2nd diff)", B: "12 (3rd diff)", C: "6 (3rd diff)", D: "12 (4th diff)" }, ans: "C", sol: "1st: 1, 7, 19, 37, 61. 2nd diff: 6, 12, 18, 24. 3rd diff: 6, 6, 6. The constant difference is 6 at the 3rd level." }
         ]
     },
+
     // ==========================================
     // UNIT 1.5: Polynomial Functions & Complex Zeros
     // ==========================================
@@ -313,6 +220,47 @@ export const masterCurriculum = {
             { q: "5. Given f(x) = x⁴ + 3x² - 4. How many real and non-real zeros does it have?", opts: { A: "4 real", B: "4 non-real", C: "2 real, 2 non-real", D: "1 real, 3 non-real" }, ans: "C", sol: "Factor it like a quadratic: (x² + 4)(x² - 1) = 0. The first factor gives x² = -4 (two non-real roots: ±2i). The second factor gives x² = 1 (two real roots: ±1)." }
         ]
     },
+
+    // ==========================================
+    // UNIT 1.6: Polynomial Functions & End Behavior
+    // ==========================================
+    "1_6_easy": {
+        title: "Unit 1.6: Easy Practice",
+        subtitle: "Focus: The Leading Coefficient Test and basic limit notation.",
+        themeColor: "#27ae60",
+        questions: [
+            { q: "1. What is the end behavior of a polynomial with an EVEN degree and a POSITIVE leading coefficient?", opts: { A: "Up on the left, Up on the right", B: "Down on the left, Down on the right", C: "Down on the left, Up on the right", D: "Up on the left, Down on the right" }, ans: "A", sol: "Think of y = x². It is an even degree with a positive leading coefficient, and both ends point upward." },
+            { q: "2. What is the end behavior of f(x) = -3x⁵ + 4x² - 1?", opts: { A: "Up on the left, Up on the right", B: "Down on the left, Down on the right", C: "Down on the left, Up on the right", D: "Up on the left, Down on the right" }, ans: "D", sol: "The degree (5) is odd, so the ends go in opposite directions. The leading coefficient (-3) is negative, meaning the right side goes down. Therefore, it goes Up on the left, Down on the right." },
+            { q: "3. How do you read the mathematical notation: limit as x approaches infinity of f(x) = negative infinity?", opts: { A: "As x goes to the left, the graph goes up.", B: "As x goes to the right, the graph goes down.", C: "As x goes to the right, the graph goes up.", D: "As x goes to the left, the graph goes down." }, ans: "B", sol: "x approaching infinity means moving to the far right side of the graph. f(x) = negative infinity means the y-values are pointing straight down." },
+            { q: "4. A polynomial graph points Down on the left and Up on the right. What MUST be true about its equation?", opts: { A: "Even degree, positive leading coefficient", B: "Odd degree, negative leading coefficient", C: "Odd degree, positive leading coefficient", D: "Even degree, negative leading coefficient" }, ans: "C", sol: "Because the ends point in opposite directions, the degree is odd. Because the right side points up, the leading coefficient is positive. (Think of y = x³)." },
+            { q: "5. Find the leading term of the polynomial P(x) = 4x - 7x⁶ + 2x³.", opts: { A: "4x", B: "-7x⁶", C: "2x³", D: "x⁶" }, ans: "B", sol: "The leading term is the term with the highest exponent, regardless of the order it is written in. Here, -7x⁶ has the highest power." }
+        ]
+    },
+    "1_6_med": {
+        title: "Unit 1.6: Medium Practice",
+        subtitle: "Focus: Finding leading terms from factored form and limit matching.",
+        themeColor: "#f39c12",
+        questions: [
+            { q: "1. What is the leading term of the factored polynomial f(x) = -2x(x - 4)²(x + 1)³?", opts: { A: "-2x⁶", B: "-2x⁵", C: "2x⁶", D: "-2x³" }, ans: "A", sol: "Multiply the leading terms of each factor: (-2x) * (x)² * (x)³ = -2x * x² * x³ = -2x⁶." },
+            { q: "2. Evaluate the end behavior of g(x) = 5(x + 2)³(3 - x).", opts: { A: "As x approaches infinity, g(x) approaches infinity", B: "As x approaches infinity, g(x) approaches negative infinity", C: "As x approaches negative infinity, g(x) approaches negative infinity", D: "None of the above" }, ans: "B", sol: "Find the leading term: (5) * (x)³ * (-x) = -5x⁴. This is an even degree with a negative leading coefficient, so both ends go down. Therefore, as x approaches infinity, g(x) approaches negative infinity." },
+            { q: "3. If the limits of h(x) approach infinity as x approaches both infinity and negative infinity, which of the following could be h(x)?", opts: { A: "h(x) = -x⁴ + 2x", B: "h(x) = 3x³ - x²", C: "h(x) = x⁴ - 5x³", D: "h(x) = -x⁵ + 1" }, ans: "C", sol: "Both limits equal positive infinity, meaning both ends point UP. This requires an even degree and a positive leading coefficient. Only x⁴ - 5x³ fits this." },
+            { q: "4. What determines the end behavior of a polynomial when x gets extremely large?", opts: { A: "The constant term", B: "The term with the smallest exponent", C: "The sum of all coefficients", D: "The term with the highest exponent" }, ans: "D", sol: "As x gets extremely large, the term with the highest power grows so much faster than all other terms that it completely dominates the function's value." },
+            { q: "5. A polynomial has limits approaching negative infinity on the left and positive infinity on the right. Could this polynomial have exactly 2 real roots?", opts: { A: "Yes", B: "No", C: "Only if the leading coefficient is negative", D: "Cannot be determined" }, ans: "A", sol: "The limits describe an odd-degree polynomial (Left Down, Right Up). An odd degree polynomial (like degree 3) can have 1 real root and 2 imaginary roots, or 3 real roots. It cannot have exactly 2 real roots, because imaginary roots must come in pairs." }
+        ]
+    },
+    "1_6_hard": {
+        title: "Unit 1.6: Hard Practice",
+        subtitle: "Focus: Parameter constraints and mathematical modeling.",
+        themeColor: "#e74c3c",
+        questions: [
+            { q: "1. Let p(x) = ax^n + bx + c. If p(x) approaches negative infinity as x approaches infinity, and p(x) approaches infinity as x approaches negative infinity, what must be true about parameters 'a' and 'n'?", opts: { A: "a > 0 and n is even", B: "a < 0 and n is even", C: "a > 0 and n is odd", D: "a < 0 and n is odd" }, ans: "D", sol: "The right side goes down and the left side goes up. Opposite directions means 'n' is odd. The right side going down means the leading coefficient 'a' must be negative." },
+            { q: "2. The revenue of a company over time t is modeled by a polynomial R(t). If the leading term of R(t) is -0.5t³, why is this model unrealistic for making long-term future predictions?", opts: { A: "Revenue will eventually become infinitely negative.", B: "Revenue will grow too fast.", C: "Revenue will become a constant flat line.", D: "Cubic functions cannot model money." }, ans: "A", sol: "The end behavior of -0.5t³ as t approaches infinity is negative infinity. In the real world, a company's revenue cannot drop to negative infinity; the math model eventually breaks down." },
+            { q: "3. What is the leading term of f(x) = (2x - 1)³(4 - x²)²?", opts: { A: "8x⁷", B: "-8x⁷", C: "8x⁵", D: "16x⁷" }, ans: "A", sol: "Expand the highest powers: from the first factor, (2x)³ = 8x³. From the second factor, (-x²)² = x⁴. Multiply them together: (8x³)(x⁴) = 8x⁷." },
+            { q: "4. Which of the following limits is FALSE for the function y = -2x⁴(x - 5)³?", opts: { A: "As x approaches infinity, y approaches negative infinity", B: "As x approaches negative infinity, y approaches infinity", C: "As x approaches infinity, y approaches infinity", D: "Both A and B are true" }, ans: "C", sol: "The leading term is (-2x⁴)(x)³ = -2x⁷. This is an odd degree with a negative coefficient (Left Up, Right Down). Therefore, as x approaches infinity, y must go to negative infinity. Option C is false." },
+            { q: "5. A polynomial has 4 turning points and its right side points upward. Which of the following limits MUST be true?", opts: { A: "As x approaches negative infinity, f(x) approaches negative infinity", B: "As x approaches negative infinity, f(x) approaches infinity", C: "It depends on the leading coefficient", D: "It depends on the roots" }, ans: "A", sol: "If a graph has 4 turning points, its minimum degree is 5 (degree = turns + 1). An odd degree with the right side pointing UP means the left side MUST point DOWN." }
+        ] 
+    },
+
     // ==========================================
     // THE MASTER EXAMS (Purple Theme)
     // ==========================================
@@ -363,7 +311,7 @@ export const masterCurriculum = {
             { q: "4. First differences are: 1, 8, 27, 64. What is the lowest possible degree of the polynomial?", opts: { A: "2", B: "3", C: "4", D: "5" }, ans: "C", sol: "These differences are perfect cubes. 2nd diff: 7, 19, 37. 3rd diff: 12, 18. 4th diff: 6. Because the 4th diff is constant, it is degree 4." },
             { q: "5. Why do cubic functions NOT have constant second differences?", opts: { A: "Because they are not polynomials", B: "Because their rates of change are changing at a non-constant rate", C: "Because they have asymptotes", D: "Because they are linear" }, ans: "B", sol: "Constant second differences belong exclusively to quadratics. A cubic's rate of change (first difference) is a parabola, meaning its rate of change (second difference) is a line, which is not constant." }
         ]
-    }
+    },
     "1_5_master": {
         title: "Unit 1.5 Master Exam",
         subtitle: "Complex Zeros, Multiplicities, and Conjugates.",
@@ -374,6 +322,18 @@ export const masterCurriculum = {
             { q: "3. Write the equation for a cubic function that passes through the origin, is tangent to the x-axis at x = 4, and passes through the point (2, 8).", opts: { A: "y = x(x - 4)²", B: "y = 2x(x - 4)²", C: "y = x²(x - 4)", D: "y = 0.5x(x - 4)²" }, ans: "A", sol: "Passes origin: x is a factor. Tangent at 4: (x-4)² is a factor. Equation is y = a*x*(x-4)². Plug in (2, 8): 8 = a(2)(-2)².  8 = 8a, so a=1. Equation is y = x(x-4)²." },
             { q: "4. A polynomial crosses the x-axis at x = -2 and bounces off the x-axis at x = 1. Which of the following could be its equation?", opts: { A: "y = (x + 2)²(x - 1)", B: "y = (x - 2)(x + 1)²", C: "y = (x + 2)(x - 1)²", D: "y = (x + 2)³(x - 1)³" }, ans: "C", sol: "Crosses at -2 means (x+2) must have an odd power (like 1). Bounces at 1 means (x-1) must have an even power (like 2). This matches (x+2)(x-1)²." },
             { q: "5. Find all roots of f(x) = x³ - x² + x - 1.", opts: { A: "x = 1, i, -i", B: "x = 1, -1", C: "x = 1 (mult 3)", D: "x = -1, i, -i" }, ans: "A", sol: "Factor by grouping: x²(x - 1) + 1(x - 1) = (x² + 1)(x - 1). The roots are x = 1 (real) and x = ±i (non-real)." }
+        ]
+    },
+    "1_6_master": {
+        title: "Unit 1.6 Master Exam",
+        subtitle: "Advanced Limits & Polynomial Graph Analysis.",
+        themeColor: "#8e44ad",
+        questions: [
+            { q: "1. Evaluate the end behavior of P(x) = -x(3x² - 1)²(2 - x)³.", opts: { A: "Left Up, Right Down", B: "Left Down, Right Up", C: "Left Up, Right Up", D: "Left Down, Right Down" }, ans: "C", sol: "Extract leading term: (-x) * (3x²)² * (-x)³ = (-x) * (9x⁴) * (-x³) = 9x⁸. Even degree, positive coefficient. Both go UP." },
+            { q: "2. Which of the following limits correctly describes f(x) = 5x³ - 100x² + 2?", opts: { A: "As x approaches negative infinity, f(x) approaches infinity", B: "As x approaches infinity, f(x) approaches negative infinity", C: "As x approaches negative infinity, f(x) approaches negative infinity", D: "As x approaches 0, f(x) approaches infinity" }, ans: "C", sol: "Leading term is 5x³ (Odd, Positive). Left side goes down, right side goes up. Therefore, as x approaches negative infinity, f(x) approaches negative infinity." },
+            { q: "3. A table shows that as x becomes large and negative, f(x) becomes large and positive. As x becomes large and positive, f(x) becomes large and negative. What is the likely degree and leading coefficient?", opts: { A: "Even degree, a > 0", B: "Odd degree, a < 0", C: "Odd degree, a > 0", D: "Even degree, a < 0" }, ans: "B", sol: "Left side goes UP (positive y). Right side goes DOWN (negative y). This opposite behavior requires an odd degree, and right-side-down requires a negative leading coefficient." },
+            { q: "4. Let h(x) = ax^n. If h(x) is an even function (symmetric about the y-axis), what must be true about its end behavior limits?", opts: { A: "They approach opposite infinities.", B: "They approach the exact same infinity.", C: "They approach zero.", D: "It depends on 'a'." }, ans: "B", sol: "Even functions have y-axis symmetry, meaning whatever the right side does, the left side perfectly mirrors. Therefore, the limits must equal each other." },
+            { q: "5. A polynomial graph crosses the x-axis 5 times and has 4 turning points. If the limit as x approaches infinity is negative infinity, what is the limit as x approaches negative infinity?", opts: { A: "infinity", B: "negative infinity", C: "0", D: "Cannot be determined" }, ans: "A", sol: "5 roots and 4 turns indicate an odd degree polynomial (like degree 5). An odd degree polynomial has ends that point in opposite directions. If the right side goes down, the left side must go up." }
         ]
     }
 };
