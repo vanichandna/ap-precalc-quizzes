@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 1 Quiz - AP Precalculus</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; max-width: 800px; margin: auto; }
+        .question { margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .options label { display: block; margin: 5px 0; cursor: pointer; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; background-color: #0056b3; color: white; border: none; border-radius: 4px; }
+        #result-message { margin-top: 20px; font-weight: bold; font-size: 1.2em; color: green; }
+        .nav-btn { background-color: #555; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+    <button class="nav-btn" onclick="window.location.href='index.html'">← Back to Dashboard</button>
+    
+    <h1>Unit 1: Polynomial and Rational Functions</h1>
+    <p>Select the best answer for each question.</p>
+
+    <div id="quiz-container"></div>
+
+    <button id="submit-quiz-btn">Submit Quiz & Save Score</button>
+    
+    <div id="result-message"></div>
+
+    <script type="module" src="quiz1.js"></script>
+</body>
+</html>
