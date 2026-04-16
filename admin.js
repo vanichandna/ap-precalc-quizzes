@@ -119,19 +119,3 @@ async function loadStudents() {
         tableBody.innerHTML = "<tr><td colspan='5' style='color:red;'>Failed to load students.</td></tr>";
     }
 }
-// Update Access Checkboxes
-async function handleAccessToggle(event) {
-    const email = event.target.getAttribute('data-email');
-    const unit = event.target.getAttribute('data-unit');
-    const isChecked = event.target.checked;
-
-    try {
-        const studentRef = doc(db, "users", email);
-        await updateDoc(studentRef, {
-            [`access.${unit}`]: isChecked
-        });
-    } catch (e) {
-        alert("Error updating access! Reverting checkbox.");
-        event.target.checked = !isChecked;
-    }
-}
