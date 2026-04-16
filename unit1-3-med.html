@@ -1,0 +1,38 @@
+const quizData = [
+  {
+    q: "1. Over equal-length intervals, a linear function will always have an average rate of change that is:",
+    opts: { A: "Increasing", B: "Decreasing", C: "Constant", D: "Zero" },
+    ans: "C",
+    sol: "By definition, a linear function has a constant slope, meaning its average rate of change is the same (constant) over any interval of equal length."
+  },
+  {
+    q: "2. If a function is quadratic, its average rates of change over consecutive equal-length intervals will form a sequence of numbers that are:",
+    opts: { 
+        A: "All identical", 
+        B: "Changing at a constant rate", 
+        C: "Changing at an increasing rate", 
+        D: "Random" 
+    },
+    ans: "B",
+    sol: "A defining characteristic of quadratic functions is that their rates of change are linear. This means the average rates of change themselves change by a constant amount (a constant rate of a rate)."
+  },
+  {
+    q: `3. Analyze the table below. Is the function linear, quadratic, or neither?
+        <table style="margin-top:10px;"><tr><th>x</th><td>1</td><td>2</td><td>3</td><td>4</td></tr><tr><th>f(x)</th><td>5</td><td>8</td><td>11</td><td>14</td></tr></table>`,
+    opts: { A: "Linear", B: "Quadratic", C: "Neither", D: "Cannot be determined" },
+    ans: "A",
+    sol: "Check the differences in the f(x) values for each step of x. 8 - 5 = 3. 11 - 8 = 3. 14 - 11 = 3. Because the function changes by a constant amount (+3) over equal intervals, it is linear."
+  },
+  {
+    q: "4. Which of the following equations represents a function whose average rate of change over ANY interval of length 1 is exactly 5?",
+    opts: { A: "f(x) = 5x&sup2;", B: "f(x) = x + 5", C: "f(x) = 5x - 2", D: "f(x) = x&sup2; + 5x" },
+    ans: "C",
+    sol: "A constant average rate of change means the function is linear. The rate of change is the slope. The equation f(x) = 5x - 2 is a linear function with a slope (constant rate of change) of 5."
+  },
+  {
+    q: "5. A function g(x) is quadratic. If its graph opens upwards (leading coefficient is positive), what must be true about its average rates of change as x increases?",
+    opts: { A: "They are constant", B: "They are decreasing", C: "They are increasing", D: "They are all positive" },
+    ans: "C",
+    sol: "An upward-opening parabola is concave up. By definition, a function that is concave up has a rate of change that is strictly increasing as x gets larger."
+  }
+];
