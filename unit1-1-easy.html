@@ -74,7 +74,7 @@ const quizData = [
   },
   {
     q: `2. Consider the table of values for a continuous function g(x):
-        <table><tr><th>x</th><td>0</td><td>2</td><td>4</td><td>6</td></tr><tr><th>g(x)</th><td>10</td><td>7</td><td>4</td><td>1</td></tr></table>
+        <table style="margin-top:10px;"><tr><th>x</th><td>0</td><td>2</td><td>4</td><td>6</td></tr><tr><th>g(x)</th><td>10</td><td>7</td><td>4</td><td>1</td></tr></table>
         Which of the following describes how g(x) changes in tandem with x?`,
     opts: { 
         A: "As x increases, g(x) increases at a constant rate.", 
@@ -94,10 +94,21 @@ const quizData = [
         D: "The graph of h(x) is concave down" 
     },
     ans: "A",
-    sol: "Average rate of change only looks at the endpoints. If the overall rate of change is negative, the y-value at the end of the interval, h(5), must be lower than the y-value at the start of the interval, h(2)."
+    sol: "Average rate of change only looks at the endpoints. If the overall rate of change is negative, the y-value at the end of the interval, h(5), must be strictly lower than the y-value at the start of the interval, h(2)."
+  },
+  {
+    q: "4. Let p(x) = x&sup2; + 2x. What is the average rate of change of p(x) over the interval [-1, 3]?",
+    opts: { A: "4", B: "8", C: "16", D: "2" },
+    ans: "A",
+    sol: "Evaluate the endpoints: p(3) = (3)&sup2; + 2(3) = 9 + 6 = 15. Then p(-1) = (-1)&sup2; + 2(-1) = 1 - 2 = -1. The rate is (15 - (-1)) / (3 - (-1)) = 16 / 4 = 4."
+  },
+  {
+    q: "5. A function m(x) has a constant rate of change of 0 over the interval [-5, 5]. Which of the following best describes the graph of m(x) on this interval?",
+    opts: { A: "A vertical line", B: "A perfectly flat horizontal line", C: "A line passing through the origin", D: "A parabola opening upwards" },
+    ans: "B",
+    sol: "A constant rate of change of 0 means the y-values never increase or decrease as x changes. Graphically, this is a horizontal line."
   }
 ];
-
 function renderQuiz() {
     quizData.forEach((item, index) => {
       let optionsHtml = '';
