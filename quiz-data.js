@@ -491,5 +491,160 @@ export const masterCurriculum = {
             { q: "4. A rational function has a HA of y = 2, a VA of x = 1, and crosses the x-axis at x = -4. What is the equation?", opts: { A: "y = 2(x + 4) / (x - 1)", B: "y = (2x + 8) / (x - 1)", C: "y = (x + 4) / 2(x - 1)", D: "Both A and B" }, ans: "D", sol: "Option A and B are the exact same algebraic expression. Leading ratio is 2/1 = 2 (HA). Bottom zero is x=1 (VA). Top zero is x=-4 (x-intercept)." },
             { q: "5. Let f(x) = 1 / (e^x - e). What is the vertical asymptote?", opts: { A: "x = 0", B: "x = 1", C: "x = e", D: "No VA" }, ans: "B", sol: "Set denominator to 0: e^x - e = 0 -> e^x = e¹. Therefore, x = 1." }
         ]
+    },
+    // ==========================================
+    // UNIT 1.10: Rational Functions and Holes
+    // ==========================================
+    "1_10_easy": {
+        title: "Unit 1.10: Easy Practice",
+        subtitle: "Focus: Identifying removable discontinuities (holes).",
+        themeColor: "#27ae60",
+        questions: [
+            { q: "1. A removable discontinuity (hole) occurs on the graph of a rational function when:", opts: { A: "The denominator is zero but the numerator is not.", B: "A factor containing x cancels out from both the numerator and denominator.", C: "The degree of the numerator equals the denominator.", D: "The function crosses the x-axis." }, ans: "B", sol: "When a factor (x - c) exists in both the top and bottom, they cancel out, leaving a 'hole' in the graph at x = c rather than a vertical asymptote." },
+            { q: "2. Identify the x-coordinate of the hole for f(x) = (x - 3)(x + 2) / (x - 3).", opts: { A: "x = -2", B: "x = 3", C: "x = -3", D: "No holes" }, ans: "B", sol: "The factor (x - 3) appears in both the numerator and denominator. Setting it to zero gives x = 3." },
+            { q: "3. Does the function g(x) = x / x² have a hole?", opts: { A: "Yes, at x = 0", B: "No, it has a vertical asymptote at x = 0", C: "Yes, at x = 1", D: "Both A and B" }, ans: "D", sol: "This is a trick! Simplify x / x² to 1 / x. An 'x' canceled out, so there is a hole at 0. HOWEVER, an 'x' still remains in the denominator, so there is ALSO a vertical asymptote at 0. The VA dominates." },
+            { q: "4. Let h(x) = (x² - 16) / (x - 4). What is the simplified form of this function (ignoring domain restrictions)?", opts: { A: "x - 4", B: "x + 4", C: "x + 16", D: "1 / (x + 4)" }, ans: "B", sol: "Factor the difference of squares: (x - 4)(x + 4) / (x - 4). Cancel the (x - 4) to leave x + 4." },
+            { q: "5. What is the domain of f(x) = (x + 1) / (x + 1)?", opts: { A: "All real numbers", B: "x cannot equal 0", C: "x cannot equal -1", D: "x cannot equal 1" }, ans: "C", sol: "Even though the function simplifies to y = 1 (a horizontal line), you must evaluate the domain on the ORIGINAL function. Dividing by zero is illegal, so x cannot equal -1." }
+        ]
+    },
+    "1_10_med": {
+        title: "Unit 1.10: Medium Practice",
+        subtitle: "Focus: Calculating the exact coordinates of holes.",
+        themeColor: "#f39c12",
+        questions: [
+            { q: "1. Find the exact (x, y) coordinates of the hole for f(x) = (x² - 9) / (x - 3).", opts: { A: "(3, 0)", B: "(3, 6)", C: "(-3, 0)", D: "(3, Undefined)" }, ans: "B", sol: "Factor and cancel: (x - 3)(x + 3) / (x - 3) simplifies to y = x + 3. The hole is at x = 3. To find the y-coordinate, plug 3 into the SIMPLIFIED equation: 3 + 3 = 6. Coordinates are (3, 6)." },
+            { q: "2. Where is the removable discontinuity for g(x) = (2x² - 8x) / x?", opts: { A: "(0, -8)", B: "(0, 0)", C: "(4, 0)", D: "(-8, 0)" }, ans: "A", sol: "Factor top: 2x(x - 4) / x. The 'x' cancels, so the hole is at x = 0. Plug 0 into the simplified function 2(x - 4): 2(0 - 4) = -8. Coordinates are (0, -8)." },
+            { q: "3. Evaluate the limit as x approaches 5 for h(x) = (x² - 25) / (x - 5).", opts: { A: "0", B: "Infinity", C: "10", D: "Does not exist" }, ans: "C", sol: "A limit is literally asking for the y-coordinate of the hole. Factor to (x-5)(x+5) / (x-5). Cancel and plug in 5 to get 5 + 5 = 10." },
+            { q: "4. Let f(x) = (x² - 4x + 3) / (x² - 1). At what coordinates is there a hole?", opts: { A: "(1, -1)", B: "(1, -2)", C: "(1, 0)", D: "(3, 0)" }, ans: "A", sol: "Factor: (x-3)(x-1) / (x+1)(x-1). The (x-1) cancels, so hole is at x=1. Simplified function is (x-3)/(x+1). Plug in x=1: (1-3)/(1+1) = -2/2 = -1. Hole is at (1, -1)." },
+            { q: "5. If a function has a hole at (2, 5), which of the following is true?", opts: { A: "f(2) = 5", B: "The limit as x approaches 2 is 5", C: "There is a vertical asymptote at x = 2", D: "The function crosses the x-axis at 2" }, ans: "B", sol: "Because it is a hole, f(2) is mathematically undefined. However, the graph gets infinitely close to that point from both sides, meaning the limit exists and equals 5." }
+        ]
+    },
+    "1_10_hard": {
+        title: "Unit 1.10: Hard Practice",
+        subtitle: "Focus: Complex factoring and limit definition of holes.",
+        themeColor: "#e74c3c",
+        questions: [
+            { q: "1. Let y = (x³ - 8) / (x - 2). Find the y-coordinate of the hole.", opts: { A: "0", B: "4", C: "12", D: "8" }, ans: "C", sol: "Difference of cubes: (x-2)(x² + 2x + 4) / (x-2). Cancel (x-2). Hole is at x=2. Plug 2 into the trinomial: (2)² + 2(2) + 4 = 4 + 4 + 4 = 12." },
+            { q: "2. The function f(x) = (ax² + bx + c) / (x - 4) has a hole at (4, 10) and an x-intercept at x = -1. Find 'a'.", opts: { A: "1", B: "2", C: "4", D: "-1" }, ans: "B", sol: "Hole at 4 and root at -1 means the numerator factors to a(x-4)(x+1). Simplified function is a(x+1). We know the hole is at (4, 10). Plug in x=4, y=10: 10 = a(4+1) -> 10 = 5a -> a = 2." },
+            { q: "3. Find the coordinates of the hole for g(x) = (1/x - 1/3) / (x - 3).", opts: { A: "(3, 0)", B: "(3, -1/9)", C: "(3, 1/9)", D: "(3, -1/3)" }, ans: "B", sol: "Find common denominator on top: (3-x)/3x. The whole expression is ((3-x)/3x) * (1/(x-3)). Note that (3-x) is -(x-3). Cancel to get -1 / 3x. Plug in x=3 to get -1/9." },
+            { q: "4. Let h(x) = (x² + 5x + 6) / (x³ + 2x² - x - 2). Where does this function have a removable discontinuity?", opts: { A: "x = -2", B: "x = -3", C: "x = 1", D: "x = -1" }, ans: "A", sol: "Factor top: (x+2)(x+3). Factor bottom by grouping: x²(x+2) - 1(x+2) = (x²-1)(x+2). The (x+2) cancels, so the hole is at x = -2." },
+            { q: "5. A rational function simplifies to y = x + 2. If its domain is all real numbers EXCEPT x = 5, what was the original function?", opts: { A: "(x² - 3x - 10) / (x - 5)", B: "(x² + 3x - 10) / (x - 5)", C: "(x + 2) / (x - 5)", D: "(x² - 7x + 10) / (x - 5)" }, ans: "A", sol: "The hole is at x=5, so the canceled factor was (x-5). Multiply the simplified function by (x-5)/(x-5): (x+2)(x-5) / (x-5) = (x² - 3x - 10) / (x - 5)." }
+        ]
+    },
+    "1_10_master": {
+        title: "Unit 1.10 Master Exam",
+        subtitle: "Removable Discontinuities & Limits.",
+        themeColor: "#8e44ad",
+        questions: [
+            { q: "1. Find the y-coordinate of the hole for f(x) = (2x² - 18) / (x² + x - 12).", opts: { A: "12/7", B: "6/7", C: "-6", D: "0" }, ans: "A", sol: "Factor top: 2(x-3)(x+3). Factor bottom: (x+4)(x-3). Cancel (x-3). Hole at x=3. Simplified is 2(x+3)/(x+4). Plug in 3: 2(6) / 7 = 12/7." },
+            { q: "2. The function g(x) = (x² + kx - 10) / (x - 2) has a hole. What must be the value of k?", opts: { A: "-3", B: "3", C: "5", D: "-5" }, ans: "B", sol: "For it to have a hole, the top must be factorable by (x - 2). That means x=2 must be a root of the top. Plug 2 into top and set to 0: (2)² + k(2) - 10 = 0 -> 4 + 2k - 10 = 0 -> 2k = 6 -> k = 3." },
+            { q: "3. Describe the discontinuity at x = 0 for h(x) = sin(x) / x.", opts: { A: "Vertical Asymptote", B: "Removable Discontinuity (Hole)", C: "Jump Discontinuity", D: "It is continuous" }, ans: "B", sol: "While not a standard polynomial, limit as x->0 of sin(x)/x is a famous calculus property equal to 1. Because the limit exists but f(0) is undefined (0/0), it is a hole at (0, 1)." },
+            { q: "4. Let f(x) = x³ / x. Which statement is mathematically rigorous?", opts: { A: "f(x) is identical to y = x² everywhere.", B: "f(x) is identical to y = x² except at x = 0.", C: "f(x) has a vertical asymptote at x = 0.", D: "f(x) is undefined for all negative numbers." }, ans: "B", sol: "You can simplify to x², but you cannot erase the domain restriction of the original function. The original function cannot accept x=0, making it a parabola with a single hole at the origin." },
+            { q: "5. Find the limit as x approaches -4 of (x² + 4x) / (x² - 16).", opts: { A: "Infinity", B: "0", C: "1/2", D: "1/8" }, ans: "C", sol: "Factor top: x(x+4). Factor bottom: (x-4)(x+4). Cancel (x+4). Simplified: x / (x-4). Plug in -4: -4 / (-8) = 1/2." }
+        ]
+    },
+
+    // ==========================================
+    // UNIT 1.11: Equivalent Representations & Division
+    // ==========================================
+    "1_11_easy": {
+        title: "Unit 1.11: Easy Practice",
+        subtitle: "Focus: Polynomial long division and synthetic division basics.",
+        themeColor: "#27ae60",
+        questions: [
+            { q: "1. When rewriting the rational expression A(x)/B(x) using polynomial division, the result is written in the form: q(x) + r(x)/B(x). What does r(x) represent?", opts: { A: "The quotient", B: "The divisor", C: "The remainder", D: "The roots" }, ans: "C", sol: "Just like regular division, a fraction a/b is equal to its quotient plus the remainder over the divisor." },
+            { q: "2. Divide (x² + 5x + 6) by (x + 2). What is the quotient?", opts: { A: "x + 2", B: "x + 3", C: "x - 3", D: "x² + 3" }, ans: "B", sol: "Since (x+2)(x+3) = x² + 5x + 6, dividing by (x+2) leaves a perfect quotient of x+3 with no remainder." },
+            { q: "3. In synthetic division, if you are dividing by the binomial (x - 4), what number goes in the 'box' on the outside?", opts: { A: "-4", B: "4", C: "1", D: "0" }, ans: "B", sol: "Synthetic division uses the ROOT of the divisor. If the factor is (x - c), you put positive 'c' in the box. Here, x = 4." },
+            { q: "4. Rewrite 17/5 in the form q + r/b.", opts: { A: "3 + 2/5", B: "2 + 3/5", C: "3.4", D: "1 + 12/5" }, ans: "A", sol: "5 goes into 17 three times (quotient = 3). The remainder is 2. So it is written as 3 + 2/5." },
+            { q: "5. If you divide a cubic polynomial (degree 3) by a linear polynomial (degree 1), what is the degree of the quotient?", opts: { A: "3", B: "2", C: "1", D: "4" }, ans: "B", sol: "When dividing polynomials, you subtract the degrees. 3 - 1 = 2 (Quadratic)." }
+        ]
+    },
+    "1_11_med": {
+        title: "Unit 1.11: Medium Practice",
+        subtitle: "Focus: Remainder Theorem and rewriting rational expressions.",
+        themeColor: "#f39c12",
+        questions: [
+            { q: "1. Divide (x² - 7x + 15) by (x - 3). Write the result in q(x) + r(x)/b(x) form.", opts: { A: "(x - 4) + 3/(x-3)", B: "(x + 4) - 3/(x-3)", C: "(x - 10) + 45/(x-3)", D: "(x - 4) + 27/(x-3)" }, ans: "A", sol: "Use synthetic or long division. Root is 3. Bring down 1, multiply 3(1)=3. Add -7+3=-4. Multiply 3(-4)=-12. Add 15-12=3. Quotient is x-4, remainder is 3." },
+            { q: "2. The Remainder Theorem states that if a polynomial P(x) is divided by (x - c), the remainder is exactly equal to:", opts: { A: "P(-c)", B: "P(c)", C: "c", D: "0" }, ans: "B", sol: "This is a fundamental theorem. Evaluating the function at x=c gives the exact same result as the remainder of dividing the function by (x-c)." },
+            { q: "3. Use the Remainder Theorem to find the remainder when P(x) = x³ - 2x² + x - 5 is divided by (x - 2).", opts: { A: "-3", B: "-5", C: "5", D: "11" }, ans: "A", sol: "Evaluate P(2): (2)³ - 2(2)² + 2 - 5 = 8 - 8 + 2 - 5 = -3. The remainder is -3." },
+            { q: "4. Rewrite f(x) = (2x + 7) / (x + 1) in the form q(x) + r(x)/(x+1).", opts: { A: "2 + 5/(x+1)", B: "2 + 7/(x+1)", C: "1 + 6/(x+1)", D: "x + 6/(x+1)" }, ans: "A", sol: "Divide 2x+7 by x+1. 2x divided by x is 2. Multiply 2(x+1) = 2x+2. Subtract from 2x+7 to get remainder 5. Result: 2 + 5/(x+1)." },
+            { q: "5. If f(x) / (x - 4) = x² + 2x - 1 + 5/(x-4), what is the value of f(4)?", opts: { A: "0", B: "4", C: "5", D: "Cannot be determined" }, ans: "C", sol: "The remainder of the division is 5. By the Remainder Theorem, the remainder of dividing by (x-4) is identical to f(4). Therefore, f(4) = 5." }
+        ]
+    },
+    "1_11_hard": {
+        title: "Unit 1.11: Hard Practice",
+        subtitle: "Focus: Slant asymptotes via division and unknown parameters.",
+        themeColor: "#e74c3c",
+        questions: [
+            { q: "1. The function f(x) = (x² - 3x + 5) / (x - 1) has a slant asymptote. Find its equation by performing polynomial division.", opts: { A: "y = x - 4", B: "y = x - 2", C: "y = x - 3", D: "y = x + 2" }, ans: "B", sol: "Divide using synthetic division with root 1. Coeffs: 1, -3, 5. Drop 1. 1*1=1. Add -3+1=-2. 1(-2)=-2. Add 5-2=3. Quotient is x - 2, remainder is 3. As x approaches infinity, remainder goes to 0, leaving the slant asymptote y = x - 2." },
+            { q: "2. If a polynomial P(x) is divided by (x + 3), the quotient is x² - 4 and the remainder is 2. Find P(-2).", opts: { A: "2", B: "10", C: "4", D: "0" }, ans: "A", sol: "Reconstruct P(x): P(x) = (Quotient)(Divisor) + Remainder = (x² - 4)(x + 3) + 2. Plug in x = -2: ((-2)² - 4)(-2 + 3) + 2 = (4 - 4)(1) + 2 = 0 + 2 = 2." },
+            { q: "3. When x³ + kx² - 2x + 4 is divided by (x - 2), the remainder is 12. Find the value of k.", opts: { A: "0", B: "1", C: "2", D: "-1" }, ans: "B", sol: "By Remainder Theorem, P(2) = 12. Plug in 2: 2³ + k(2)² - 2(2) + 4 = 12 -> 8 + 4k - 4 + 4 = 12 -> 8 + 4k = 12 -> 4k = 4 -> k = 1." },
+            { q: "4. Rewrite (x³ - 1) / (x - 1).", opts: { A: "x² + x + 1", B: "x² - x + 1", C: "x² + 1", D: "x² + 2x + 1" }, ans: "A", sol: "Difference of cubes factors to (x-1)(x² + x + 1). Dividing by (x-1) leaves exactly x² + x + 1 with a remainder of 0." },
+            { q: "5. Let f(x) = (3x² + 5x) / (x + 2). What is the behavior of the graph as x approaches infinity?", opts: { A: "It approaches y = 3", B: "It approaches y = 0", C: "It approaches the line y = 3x - 1", D: "It approaches the line y = 3x + 1" }, ans: "C", sol: "Perform division to find the slant asymptote. Root -2. Coeffs 3, 5, 0. Drop 3. -2(3)=-6. 5-6=-1. Quotient is 3x - 1. The graph behaves like y = 3x - 1 for large x." }
+        ]
+    },
+    "1_11_master": {
+        title: "Unit 1.11 Master Exam",
+        subtitle: "Division Algorithms & Rational Equivalence.",
+        themeColor: "#8e44ad",
+        questions: [
+            { q: "1. The function R(x) = (2x³ - x² + 3) / (x² + 1). Use polynomial long division to find the slant/curvilinear asymptote.", opts: { A: "y = 2x - 1", B: "y = 2x + 1", C: "y = 2x", D: "y = x² + 1" }, ans: "A", sol: "Since divisor is quadratic, use long division. 2x³ / x² = 2x. Multiply: 2x³ + 2x. Subtract: (-x² - 2x + 3). Next: -x² / x² = -1. Multiply: -x² - 1. Subtract: (-2x + 4). Quotient is 2x - 1. This is the slant asymptote." },
+            { q: "2. If P(x) = (x-a)(x-b) + r, what is the remainder when P(x) is divided by (x-a)?", opts: { A: "a", B: "b", C: "r", D: "0" }, ans: "C", sol: "By the Remainder Theorem, the remainder is P(a). If you plug 'a' into P(x), you get P(a) = (a-a)(a-b) + r = 0(a-b) + r = r." },
+            { q: "3. Which of the following is equivalent to (x⁴ - 16) / (x + 2)?", opts: { A: "x³ - 2x² + 4x - 8", B: "x³ + 2x² + 4x + 8", C: "x³ - 8", D: "x³ + 8" }, ans: "A", sol: "Root is -2. Synthetic division coeffs: 1, 0, 0, 0, -16. Drop 1. -2(1)=-2. 0-2=-2. -2(-2)=4. 0+4=4. -2(4)=-8. 0-8=-8. -2(-8)=16. Remainder 0. Quotient: x³ - 2x² + 4x - 8." },
+            { q: "4. Let f(x) = P(x) / (x - 3). If f(x) behaves like y = 2x + 5 as x gets infinitely large, and has a hole at (3, 11), what is P(x)?", opts: { A: "2x² - x - 15", B: "2x² + x - 15", C: "2x² - x + 15", D: "Cannot determine" }, ans: "A", sol: "If it behaves like 2x+5, the quotient is 2x+5. If there is a hole at 3, the remainder is 0. So P(x) / (x-3) = 2x + 5. Multiply by (x-3): P(x) = (2x+5)(x-3) = 2x² - x - 15." },
+            { q: "5. Find the remainder when x¹⁰⁰ - 3x⁹⁹ + 2 is divided by (x - 1).", opts: { A: "100", B: "99", C: "0", D: "1" }, ans: "C", sol: "Use the Remainder Theorem! P(1) = 1¹⁰⁰ - 3(1)⁹⁹ + 2 = 1 - 3 + 2 = 0. The remainder is 0." }
+        ]
+    },
+
+    // ==========================================
+    // UNIT 1.12: Transformations of Functions
+    // ==========================================
+    "1_12_easy": {
+        title: "Unit 1.12: Easy Practice",
+        subtitle: "Focus: Basic vertical and horizontal translations and reflections.",
+        themeColor: "#27ae60",
+        questions: [
+            { q: "1. The graph of g(x) = f(x) + 4 represents what transformation of f(x)?", opts: { A: "Shift left 4 units", B: "Shift right 4 units", C: "Shift up 4 units", D: "Shift down 4 units" }, ans: "C", sol: "Adding a constant to the OUTSIDE of the function directly shifts the y-values upward." },
+            { q: "2. The graph of h(x) = f(x - 3) represents what transformation of f(x)?", opts: { A: "Shift left 3 units", B: "Shift right 3 units", C: "Shift up 3 units", D: "Shift down 3 units" }, ans: "B", sol: "Subtracting a constant on the INSIDE of the function shifts the graph to the right. (x-3) means the x-value must be 3 units larger to achieve the same output." },
+            { q: "3. What transformation maps f(x) to -f(x)?", opts: { A: "Reflection across the y-axis", B: "Reflection across the x-axis", C: "Reflection across origin", D: "Vertical stretch" }, ans: "B", sol: "Multiplying the OUTSIDE of the function by -1 flips all positive y-values to negative, and vice versa. This is a reflection across the horizontal x-axis." },
+            { q: "4. What transformation maps f(x) to f(-x)?", opts: { A: "Reflection across the y-axis", B: "Reflection across the x-axis", C: "Reflection across origin", D: "Horizontal compression" }, ans: "A", sol: "Multiplying the INSIDE of the function by -1 flips all positive x-inputs to negative inputs. This is a reflection across the vertical y-axis." },
+            { q: "5. If a point on f(x) is (2, 5), what is the corresponding point on g(x) = f(x + 1) - 2?", opts: { A: "(3, 3)", B: "(1, 3)", C: "(3, 7)", D: "(1, 7)" }, ans: "B", sol: "(x + 1) shifts LEFT by 1, so the x-coord becomes 2 - 1 = 1. The -2 on the outside shifts DOWN by 2, so the y-coord becomes 5 - 2 = 3. Point is (1, 3)." }
+        ]
+    },
+    "1_12_med": {
+        title: "Unit 1.12: Medium Practice",
+        subtitle: "Focus: Vertical and horizontal dilations (stretching/compressing).",
+        themeColor: "#f39c12",
+        questions: [
+            { q: "1. The function g(x) = 3f(x) represents a:", opts: { A: "Vertical stretch by a factor of 3", B: "Vertical compression by a factor of 1/3", C: "Horizontal stretch by a factor of 3", D: "Horizontal compression by 1/3" }, ans: "A", sol: "Multiplying the OUTSIDE of a function by a number greater than 1 stretches the y-values vertically away from the x-axis." },
+            { q: "2. The function h(x) = f(4x) represents a:", opts: { A: "Vertical stretch by a factor of 4", B: "Vertical compression by a factor of 1/4", C: "Horizontal stretch by a factor of 4", D: "Horizontal compression by a factor of 1/4" }, ans: "D", sol: "Multiplying the INSIDE of a function by a number greater than 1 makes the function reach its values 4 times faster. This squishes (compresses) it horizontally by a factor of 1/4." },
+            { q: "3. If the domain of f(x) is [-10, 10], what is the domain of g(x) = f(2x)?", opts: { A: "[-20, 20]", B: "[-10, 10]", C: "[-5, 5]", D: "[-8, 12]" }, ans: "C", sol: "Inside changes affect the domain, and they do the opposite of what they look like. f(2x) is a horizontal compression by 1/2. Divide the domain by 2: [-5, 5]." },
+            { q: "4. If the range of f(x) is [0, 8], what is the range of h(x) = -1/2 f(x)?", opts: { A: "[-4, 0]", B: "[0, 4]", C: "[-8, 0]", D: "[-16, 0]" }, ans: "A", sol: "Outside changes affect range directly. Multiply the range values by -1/2. 0 * -1/2 = 0. 8 * -1/2 = -4. The new range is [-4, 0]." },
+            { q: "5. Which transformation happens FIRST according to standard order of operations for g(x) = -f(x - 2) + 5?", opts: { A: "Shift right 2", B: "Reflect across x-axis", C: "Shift up 5", D: "Does not matter" }, ans: "A", sol: "Work from the inside out (PEMDAS). First evaluate the inside grouping (x - 2), which is a shift right. Then multiplication (reflection), then addition (shift up)." }
+        ]
+    },
+    "1_12_hard": {
+        title: "Unit 1.12: Hard Practice",
+        subtitle: "Focus: Complex composite transformations and mapping coordinates.",
+        themeColor: "#e74c3c",
+        questions: [
+            { q: "1. The point (4, 10) is on the graph of f(x). Find the corresponding point on g(x) = 2f(-x + 1) - 3.", opts: { A: "(-3, 17)", B: "(-5, 17)", C: "(3, 17)", D: "(-3, 7)" }, ans: "A", sol: "Set inside equal to original x: -x + 1 = 4 -> -x = 3 -> x = -3. Apply outside to y: 2(10) - 3 = 17. The point is (-3, 17)." },
+            { q: "2. Describe the transformations to get from f(x) to g(x) = f(3x - 6).", opts: { A: "Shift right 6, compress horizontally by 1/3", B: "Shift right 2, compress horizontally by 1/3", C: "Compress horizontally by 1/3, shift right 6", D: "Stretch horizontally by 3, shift right 6" }, ans: "C", sol: "Inside is (3x - 6). If you apply transformations strictly left to right on the inside, it's compress by 1/3, then shift right 6. (Or factor out the 3: f(3(x - 2)) -> shift right 2, compress by 1/3. Option C matches the non-factored order)." },
+            { q: "3. If f(x) is an odd function (symmetric across origin), what is true about g(x) = f(-x) + f(x)?", opts: { A: "g(x) is an even function", B: "g(x) = 2f(x)", C: "g(x) = 0 for all x", D: "g(x) is undefined" }, ans: "C", sol: "By definition, an odd function means f(-x) = -f(x). Substitute that into g(x): g(x) = -f(x) + f(x) = 0." },
+            { q: "4. Let f(x) = x². The graph is translated 3 units left, reflected over the x-axis, and stretched vertically by 4. Equation?", opts: { A: "y = -4(x - 3)²", B: "y = 4(-x + 3)²", C: "y = -4(x + 3)²", D: "y = (-4x + 3)²" }, ans: "C", sol: "Shift 3 left: (x+3)². Reflect x-axis (outside negative): -(x+3)². Stretch vertically by 4 (outside multiplier): -4(x+3)²." },
+            { q: "5. The domain of f(x) is [2, 6]. What is the domain of f(-1/2 x)?", opts: { A: "[-3, -1]", B: "[-12, -4]", C: "[-1, -3]", D: "[4, 12]" }, ans: "B", sol: "Set inside equal to domain bounds. -1/2 x = 2 -> x = -4. -1/2 x = 6 -> x = -12. Because it's an interval, write from smallest to largest: [-12, -4]." }
+        ]
+    },
+    "1_12_master": {
+        title: "Unit 1.12 Master Exam",
+        subtitle: "Function Transformations & Parameter Analysis.",
+        themeColor: "#8e44ad",
+        questions: [
+            { q: "1. The function f(x) has a horizontal asymptote at y = 5 and a vertical asymptote at x = -2. Where are the asymptotes for g(x) = -f(x - 3) + 1?", opts: { A: "HA: y = -4, VA: x = 1", B: "HA: y = -6, VA: x = 1", C: "HA: y = -4, VA: x = -5", D: "HA: y = 6, VA: x = -5" }, ans: "A", sol: "HA is y-value: reflect across x-axis (5 * -1 = -5), then shift up 1 (-5 + 1 = -4). VA is x-value: shift right 3 (-2 + 3 = 1). HA is -4, VA is 1." },
+            { q: "2. Let f(x) = 2^x. Write the equation for g(x), which is f(x) compressed horizontally by a factor of 1/3 and shifted down 5.", opts: { A: "g(x) = 2^(1/3 x) - 5", B: "g(x) = 2^(3x) - 5", C: "g(x) = 3(2^x) - 5", D: "g(x) = 1/3(2^x) - 5" }, ans: "B", sol: "Horizontal compression by 1/3 means multiplying the INSIDE x by 3 (it does the opposite). Shift down 5 is outside. Result: 2^(3x) - 5." },
+            { q: "3. If point (a, b) is on f(x), what point MUST be on y = 5f(2x + 8) - 1?", opts: { A: "((a-8)/2, 5b-1)", B: "(2a+8, 5b-1)", C: "((a-8)/2, (b-1)/5)", D: "(a/2 - 4, 5b-1)" }, ans: "A", sol: "Set inside to 'a': 2x + 8 = a -> 2x = a - 8 -> x = (a - 8)/2. Set outside to 'b': 5b - 1. The correct coordinate pair is A. (Note: D is algebraically equivalent to A: a/2 - 4 = (a-8)/2, but standard form maps exactly to A)." },
+            { q: "4. Which transformation of y = 1/x does NOT change its vertical asymptote?", opts: { A: "y = 1/(x - 2)", B: "y = 1/(x + 5)", C: "y = 3/x + 4", D: "y = 1/(2x - 6)" }, ans: "C", sol: "The vertical asymptote of 1/x is x=0. Any horizontal shift (inside change) will move it. 3/x + 4 is a vertical stretch and vertical shift; it leaves the VA at x=0 untouched." },
+            { q: "5. A polynomial f(x) has roots at -1, 2, and 5. What are the roots of f(-x)?", opts: { A: "-1, 2, 5", B: "1, -2, -5", C: "Cannot determine", D: "There are no roots" }, ans: "B", sol: "f(-x) is a reflection across the y-axis. All x-values (including roots) flip their signs. 1, -2, -5." }
+        ]
     }
 };
