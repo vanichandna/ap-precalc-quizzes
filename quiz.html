@@ -8,7 +8,7 @@
   body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px; background-color: #f4f7f6; color: #333; }
   .container { max-width: 850px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
   
-  /* We use CSS Variables here so JavaScript can change the colors dynamically! */
+  /* CSS Variables */
   :root { --theme: #3498db; } 
   
   h1 { text-align: center; color: var(--theme); font-size: 28px;}
@@ -47,33 +47,30 @@
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
 import { doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 import { auth, db } from './firebase-config.js';
-import { masterCurriculum } from './quiz-data.js'; // Import your new data bank!
+import { masterCurriculum } from './quiz-data.js';
 
-// 1. Read the URL to figure out which quiz to load
-// Example URL: quiz.html?unit=1_1&diff=easy
 const urlParams = new URLSearchParams(window.location.search);
-const unitParam = urlParams.get('unit'); // "1_1"
-const diffParam = urlParams.get('diff'); // "easy"
-const dbKey = `unit${unitParam}_${diffParam}`; // Creates exact database slot name: "unit1_1_easy"
-const dataKey = `${unitParam}_${diffParam}`; // Creates data bank lookup name: "1_1_easy"
+const unitParam = urlParams.get('unit'); 
+const diffParam = urlParams.get('diff'); 
+const dbKey = `unit${unitParam}_${diffParam}`; 
+const dataKey = `${unitParam}_${diffParam}`; 
 
-// 2. Fetch the correct data
 const currentQuiz = masterCurriculum[dataKey];
 let currentUser = null;
 
 const container = document.getElementById('quiz-container');
 const submitBtn = document.getElementById('submit-btn');
 
-// 3. Authenticate & Build Page
 onAuthStateChanged(auth, async (user) => {
     if (user && currentQuiz) {
         const docSnap = await getDoc(doc(db, "users", user.email));
         
-        // Security check: Make sure they have access to this specific unit
-        if (docSnap.exists() && docSnap.data().access[`unit${unitParam}`] === true) {
+        // Updated Security check: Allow if they have explicit access to the topic, OR if it's a Final Exam 
+        const hasAccess = diffParam === 'final' || docSnap.data().access[`unit${unitParam}`] === true;
+        
+        if (docSnap.exists() && hasAccess) {
             currentUser = user;
             
-            // Build the dynamic UI
             document.documentElement.style.setProperty('--theme', currentQuiz.themeColor);
             document.getElementById('page-title').innerText = currentQuiz.title;
             document.getElementById('page-subtitle').innerText = currentQuiz.subtitle;
@@ -144,7 +141,6 @@ submitBtn.addEventListener('click', async () => {
     }
 
     try {
-        // DYNAMICALLY SAVES TO THE CORRECT SLOT!
         const studentRef = doc(db, "users", currentUser.email);
         await updateDoc(studentRef, {
             [`scores.${dbKey}`]: percentage 
