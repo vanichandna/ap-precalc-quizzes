@@ -41,7 +41,7 @@ onAuthStateChanged(auth, (user) => {
         loginSection.style.display = "none";
         dashboardSection.style.display = "block";
         
-        // Dynamically update table headers to match curriculum & add Actions column
+        // Dynamically update table headers
         const thead = document.querySelector('thead tr');
         thead.innerHTML = `<th>Student Email</th>`;
         for(let u in curriculum) thead.innerHTML += `<th>Unit ${u} Access</th>`;
@@ -65,7 +65,6 @@ addBtn.addEventListener('click', async () => {
     addBtn.innerText = "Adding...";
     addBtn.disabled = true;
 
-    // Generate blank access and scores
     let newAccess = {};
     let newScores = {};
     for (let unit in curriculum) {
@@ -111,14 +110,12 @@ async function loadStudents() {
             let studentCompletedTopics = 0;
             let columnsHTML = "";
 
-            // Loop through each Main Unit to create a column
             for (let unit in curriculum) {
                 let unitTotal = 0;
                 let unitCompleted = 0;
                 
                 let subHTML = `<div style="display:flex; flex-wrap:wrap; gap:8px;">`;
                 
-                // Loop through sub-topics
                 for (let sub = 1; sub <= curriculum[unit]; sub++) {
                     const unitKey = `unit${unit}_${sub}`;
                     const hasAccess = student.access && student.access[unitKey]; 
@@ -134,7 +131,6 @@ async function loadStudents() {
                     `;
                 }
                 
-                // Final Exam logic
                 const finalKey = `unit${unit}_final`;
                 const hasFinalAccess = student.access && student.access[finalKey];
                 unitTotal++; studentTotalTopics++;
@@ -149,7 +145,6 @@ async function loadStudents() {
                         </div>
                     </div>`;
 
-                // Unit Level "Select All" Checkbox
                 const unitAllChecked = (unitTotal === unitCompleted && unitTotal > 0) ? 'checked' : '';
                 
                 columnsHTML += `<td style="min-width: 175px;">
@@ -163,7 +158,6 @@ async function loadStudents() {
                 </td>`;
             }
 
-            // Student Level "Select All" Checkbox
             const studentAllChecked = (studentTotalTopics === studentCompletedTopics && studentTotalTopics > 0) ? 'checked' : '';
 
             let rowHTML = `
@@ -197,7 +191,7 @@ async function loadStudents() {
 // Attach all interactive event listeners
 function attachEventListeners() {
     
-    // 1. Single Topic Toggle
+    // Single Topic Toggle
     document.querySelectorAll('.access-toggle').forEach(checkbox => {
         checkbox.addEventListener('change', async (e) => {
             const email = e.target.getAttribute('data-email');
@@ -212,14 +206,13 @@ function attachEventListeners() {
         });
     });
 
-    // 2. Unit "Select All" Toggle
+    // Unit "Select All" Toggle
     document.querySelectorAll('.toggle-unit').forEach(box => {
         box.addEventListener('change', async (e) => {
             const email = e.target.getAttribute('data-email');
             const unitNum = e.target.getAttribute('data-unit');
             const isChecked = e.target.checked;
             
-            // Visually check/uncheck the boxes instantly for good UI
             const checkboxes = document.querySelectorAll(`.access-toggle[data-email="${email}"][data-unit^="unit${unitNum}_"]`);
             let updates = {};
             checkboxes.forEach(cb => {
@@ -227,23 +220,21 @@ function attachEventListeners() {
                 updates[`access.${cb.getAttribute('data-unit')}`] = isChecked;
             });
 
-            // Batch send to Firebase
             try {
                 await updateDoc(doc(db, "users", email), updates);
             } catch (err) {
                 alert("Error updating unit access!");
-                loadStudents(); // Revert visual changes on failure
+                loadStudents(); 
             }
         });
     });
 
-    // 3. Master "Unlock ALL" Toggle
+    // Master "Unlock ALL" Toggle
     document.querySelectorAll('.toggle-all-student').forEach(box => {
         box.addEventListener('change', async (e) => {
             const email = e.target.getAttribute('data-email');
             const isChecked = e.target.checked;
 
-            // Grab literally every checkbox for this student
             const checkboxes = document.querySelectorAll(`.access-toggle[data-email="${email}"]`);
             const unitBoxes = document.querySelectorAll(`.toggle-unit[data-email="${email}"]`);
             
@@ -263,19 +254,17 @@ function attachEventListeners() {
         });
     });
 
-    // 4. Remove Student Button
+    // Remove Student Button
     document.querySelectorAll('.btn-remove').forEach(btn => {
         btn.addEventListener('click', async (e) => {
             const email = e.target.getAttribute('data-email');
-            
-            // Confirmation prompt to prevent accidental deletions
             if(confirm(`WARNING: Are you sure you want to permanently delete ${email}?\n\nThis will revoke all access and erase all of their quiz scores.`)) {
                 e.target.innerText = "Deleting...";
                 e.target.disabled = true;
                 
                 try {
                     await deleteDoc(doc(db, "users", email));
-                    loadStudents(); // Refresh the table
+                    loadStudents(); 
                 } catch(err) {
                     alert("Error removing student. Please check your connection.");
                     e.target.innerText = "🗑️ Remove User";
@@ -285,3 +274,29 @@ function attachEventListeners() {
         });
     });
 }
+
+// 5. Assign Custom Quiz Logic
+document.getElementById('assign-custom-btn').addEventListener('click', async () => {
+    const email = document.getElementById('custom-email').value.trim().toLowerCase();
+    const quizId = document.getElementById('custom-quiz-id').value.trim();
+    const btn = document.getElementById('assign-custom-btn');
+    
+    if(!email || !quizId) return alert("Please enter both the student's email and the Custom Quiz ID.");
+    if(!quizId.startsWith("custom_")) return alert("Custom Quiz IDs must start with 'custom_' (e.g., custom_makeup_1).");
+
+    btn.innerText = "Assigning...";
+    btn.disabled = true;
+
+    try {
+        await updateDoc(doc(db, "users", email), {
+            [`access.${quizId}`]: true
+        });
+        alert(`Successfully assigned ${quizId} to ${email}!`);
+        document.getElementById('custom-quiz-id').value = ""; // Clear input
+    } catch (err) {
+        alert("Error: Make sure the student exists in the database first.");
+    } finally {
+        btn.innerText = "Assign Quiz";
+        btn.disabled = false;
+    }
+});
