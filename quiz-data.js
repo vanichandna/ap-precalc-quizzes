@@ -1783,5 +1783,160 @@ export const masterCurriculum = {
             { q: "4. A tidal river has high tide of 15ft at noon (t=12) and low tide of 5ft at 6:00 PM (t=18). Model the depth d(t).", opts: { A: "d(t) = 5cos(π/6 * (t - 12)) + 10", B: "d(t) = 5cos(π/12 * (t - 12)) + 10", C: "d(t) = 10cos(π/6 * (t - 12)) + 5", D: "d(t) = 5sin(π/6 * t) + 10" }, ans: "A", sol: "Midline = 10. Amp = 5. High to low is 6 hours, so full period is 12. B = 2π/12 = π/6. It hits a maximum at t=12, so use positive cosine shifted right by 12: 5cos(π/6 * (t - 12)) + 10." },
             { q: "5. Why might a sinusoidal model for daily temperature be slightly inaccurate in reality?", opts: { A: "Temperatures never repeat.", B: "Heating during the day happens faster than cooling at night, making the wave asymmetrical.", C: "Temperature cannot be modeled with radians.", D: "Sinusoidal functions cannot have positive y-intercepts." }, ans: "B", sol: "True sine waves are perfectly symmetrical. In reality, the sun heats the earth quickly (steep rise), but cooling overnight is a slow decay. Real temp curves are slightly skewed, not perfect sine waves." }
         ]
+    },
+    // ==========================================
+    // UNIT 3.6: Equivalent Representations of Trig Functions
+    // ==========================================
+    "3_6_easy": {
+        title: "Unit 3.6: Easy Practice",
+        subtitle: "Focus: Basic phase shifts and the Pythagorean Identity.",
+        themeColor: "#27ae60",
+        questions: [
+            { q: "1. Which of the following is an equivalent representation of cos(x)?", opts: { A: "sin(x + π/2)", B: "sin(x - π/2)", C: "-sin(x)", D: "sin(x + π)" }, ans: "A", sol: "If you take a sine wave (starts at 0) and shift it to the left by π/2, its peak moves to x=0, perfectly matching the cosine wave." },
+            { q: "2. The fundamental Pythagorean Identity states that for any angle θ:", opts: { A: "sin(θ) + cos(θ) = 1", B: "sin²(θ) - cos²(θ) = 1", C: "sin²(θ) + cos²(θ) = 1", D: "sin(θ) / cos(θ) = 1" }, ans: "C", sol: "Based on the unit circle equation x² + y² = 1, substituting x = cos(θ) and y = sin(θ) yields cos²(θ) + sin²(θ) = 1." },
+            { q: "3. If sin²(θ) = 0.36, what is cos²(θ)?", opts: { A: "0.64", B: "0.6", C: "0.8", D: "0.14" }, ans: "A", sol: "Use the Pythagorean Identity: 0.36 + cos²(θ) = 1. Subtract 0.36 from 1 to get 0.64." },
+            { q: "4. Which of the following represents a reflection of y = sin(x) across the x-axis?", opts: { A: "y = sin(-x)", B: "y = -sin(x)", C: "y = cos(x)", D: "Both A and B" }, ans: "D", sol: "Reflecting across the x-axis is y = -sin(x). Because sine is an odd function, sin(-x) is algebraically equivalent to -sin(x)." },
+            { q: "5. Simplify the expression: 1 - cos²(x).", opts: { A: "sin²(x)", B: "-sin²(x)", C: "sin(x)", D: "cos²(x)" }, ans: "A", sol: "Rearrange the Pythagorean Identity: sin²(x) + cos²(x) = 1  -->  sin²(x) = 1 - cos²(x)." }
+        ]
+    },
+    "3_6_med": {
+        title: "Unit 3.6: Medium Practice",
+        subtitle: "Focus: Using identities to evaluate expressions.",
+        themeColor: "#f39c12",
+        questions: [
+            { q: "1. If cos(θ) = 5/13 and θ is in Quadrant IV, what is sin(θ)?", opts: { A: "12/13", B: "-12/13", C: "-5/13", D: "25/169" }, ans: "B", sol: "sin²(θ) + (5/13)² = 1 -> sin²(θ) + 25/169 = 169/169 -> sin²(θ) = 144/169. sin(θ) = ±12/13. In Q4, sine (y) is negative, so -12/13." },
+            { q: "2. Which of the following is equivalent to cos²(x) - sin²(x)?", opts: { A: "1", B: "1 - 2sin²(x)", C: "2cos²(x) + 1", D: "0" }, ans: "B", sol: "Substitute cos²(x) with (1 - sin²(x)). The expression becomes (1 - sin²(x)) - sin²(x) = 1 - 2sin²(x)." },
+            { q: "3. Simplify: tan(x) * cos(x).", opts: { A: "sin(x)", B: "cos²(x)", C: "1", D: "sin²(x)" }, ans: "A", sol: "Rewrite tangent: (sin(x) / cos(x)) * cos(x). The cos(x) terms cancel out, leaving just sin(x)." },
+            { q: "4. Write an equivalent cosine function for y = -5sin(x - π).", opts: { A: "y = 5cos(x - π/2)", B: "y = 5cos(x + π/2)", C: "y = -5cos(x - π/2)", D: "y = 5cos(x)" }, ans: "A", sol: "y = -5sin(x - π) simplifies to y = 5sin(x) (since shifting sine by π reflects it). To turn 5sin(x) into cosine, shift it right by π/2: y = 5cos(x - π/2)." },
+            { q: "5. Given sin(θ) = u, what is cos²(θ) in terms of u?", opts: { A: "1 - u", B: "1 - u²", C: "√(1 - u²)", D: "u² - 1" }, ans: "B", sol: "Substitute u into the Pythagorean Identity: u² + cos²(θ) = 1. Isolate cos²(θ) = 1 - u²." }
+        ]
+    },
+    "3_6_hard": {
+        title: "Unit 3.6: Hard Practice",
+        subtitle: "Focus: Complex equivalence and symmetry applications.",
+        themeColor: "#e74c3c",
+        questions: [
+            { q: "1. Which of the following functions is equivalent to y = 3cos(2x - π) + 1?", opts: { A: "y = 3sin(2x) + 1", B: "y = -3cos(2x) + 1", C: "y = -3sin(2x) + 1", D: "y = 3cos(2x) + 1" }, ans: "B", sol: "Shifting a cosine wave by half a period (π inside the argument, which factors to a shift of π/2 relative to the 2x period) perfectly reflects it. Thus, cos(2x - π) = -cos(2x)." },
+            { q: "2. If sin(x) = 1/3, evaluate sin(-x) + cos²(x).", opts: { A: "5/9", B: "11/9", C: "8/9", D: "7/9" }, ans: "A", sol: "sin(-x) = -sin(x) = -1/3. cos²(x) = 1 - sin²(x) = 1 - (1/9) = 8/9. Add them: -1/3 + 8/9 = -3/9 + 8/9 = 5/9." },
+            { q: "3. Simplify: (sin(x) + cos(x))².", opts: { A: "1", B: "1 + 2sin(x)cos(x)", C: "sin²(x) + cos²(x)", D: "1 - 2sin(x)cos(x)" }, ans: "B", sol: "FOIL the expression: sin²(x) + 2sin(x)cos(x) + cos²(x). Since sin²(x) + cos²(x) = 1, this simplifies to 1 + 2sin(x)cos(x)." },
+            { q: "4. Which of the following limits is true due to equivalent representations?", opts: { A: "cos(x) approaches sin(x) as x approaches infinity", B: "sin(x + 2πn) = sin(x) for any integer n", C: "tan(x) is always less than sin(x)", D: "cos(-x) = -cos(x)" }, ans: "B", sol: "The periodic nature of sine means that adding any full rotation (2π multiplied by any integer n) results in the exact same mathematical value." },
+            { q: "5. Write y = -sin(x) in terms of cosine without using a negative leading coefficient.", opts: { A: "y = cos(x + π/2)", B: "y = cos(x - π/2)", C: "y = cos(x + π)", D: "y = cos(x)" }, ans: "A", sol: "Standard cosine starts at 1. -sin(x) starts at 0 and goes down to -1. If you shift a standard cosine wave LEFT by π/2, its value at x=0 becomes 0, and it heads downward, matching -sin(x). Thus, cos(x + π/2)." }
+        ]
+    },
+    "3_6_master": {
+        title: "Unit 3.6 Master Exam",
+        subtitle: "Advanced Trigonometric Identities and Equivalence.",
+        themeColor: "#8e44ad",
+        questions: [
+            { q: "1. Simplify the expression: sin⁴(x) - cos⁴(x).", opts: { A: "1", B: "sin²(x) - cos²(x)", C: "0", D: "1 - 2cos²(x)" }, ans: "B", sol: "Factor as a difference of squares: (sin²x - cos²x)(sin²x + cos²x). Since sin²x + cos²x = 1, the expression simplifies exactly to sin²(x) - cos²(x)." },
+            { q: "2. If f(x) = A*sin(B(x - C)) + D, which equivalent form is guaranteed to have a positive 'A' and a positive 'B'?", opts: { A: "By reflecting C across the y-axis.", B: "By using the identities sin(-θ) = -sin(θ) and shifting C by π/B.", C: "It is impossible.", D: "By changing D to -D." }, ans: "B", sol: "If A is negative, you can make it positive by shifting the phase C by exactly half a period (π/B). If B is negative, you can pull the negative out using sin(-x) = -sin(x), which flips the sign of A, which you can then fix with a phase shift." },
+            { q: "3. Evaluate: cos²(π/8) + cos²(3π/8).", opts: { A: "1", B: "√2", C: "1/2", D: "2" }, ans: "A", sol: "Notice that π/8 and 3π/8 are complementary (they add to 4π/8 = π/2). Therefore, cos(3π/8) = sin(π/8). Substituting this in gives cos²(π/8) + sin²(π/8), which equals exactly 1 via the Pythagorean Identity." },
+            { q: "4. Let y = cos(x). Which sequence of transformations does NOT return the graph to its original state?", opts: { A: "Shift right 2π", B: "Reflect over x-axis, shift right π", C: "Reflect over y-axis", D: "Shift left π/2, reflect over x-axis" }, ans: "D", sol: "A: 2π shift does nothing. B: Reflect over x makes it -cos, shift by π makes it -(-cos) = cos. C: cos(-x) = cos(x). D: Shift left π/2 makes it -sin(x). Reflecting over x makes it sin(x), which is NOT cos(x)." },
+            { q: "5. Find the maximum value of f(x) = 3sin(x) + 4cos(x).", opts: { A: "7", B: "5", C: "12", D: "1" }, ans: "B", sol: "This is a classic linear combination. Asin(x) + Bcos(x) can be rewritten as C*sin(x + D), where the new amplitude C is √(A² + B²). Here, √(3² + 4²) = √25 = 5. The maximum value is 5." }
+        ]
+    },
+
+    // ==========================================
+    // UNIT 3.7: Trigonometric Equations & Inequalities
+    // ==========================================
+    "3_7_easy": {
+        title: "Unit 3.7: Easy Practice",
+        subtitle: "Focus: Solving basic trigonometric equations on [0, 2π).",
+        themeColor: "#27ae60",
+        questions: [
+            { q: "1. Solve for x on the interval [0, 2π): sin(x) = 1/2.", opts: { A: "π/6, 5π/6", B: "π/3, 2π/3", C: "π/6, 11π/6", D: "7π/6, 11π/6" }, ans: "A", sol: "Sine (y-coordinate) is positive 1/2 in Quadrants I and II. The reference angle is π/6. The Q2 angle is π - π/6 = 5π/6." },
+            { q: "2. Solve for x on [0, 2π): cos(x) = -1.", opts: { A: "0", B: "π/2", C: "π", D: "3π/2" }, ans: "C", sol: "Cosine is the x-coordinate. The only place on the unit circle where the x-coordinate is -1 is the far left side, which is exactly π radians (180 degrees)." },
+            { q: "3. Solve for x on [0, 2π): 2cos(x) - 1 = 0.", opts: { A: "π/6, 11π/6", B: "π/3, 5π/3", C: "2π/3, 4π/3", D: "π/4, 7π/4" }, ans: "B", sol: "Add 1 and divide by 2: cos(x) = 1/2. Cosine is positive in Q1 and Q4. The reference angle is π/3. The Q4 angle is 2π - π/3 = 5π/3." },
+            { q: "4. Solve for x on [0, 2π): sin(x) = 0.", opts: { A: "0, π", B: "π/2, 3π/2", C: "0, 2π", D: "π" }, ans: "A", sol: "Sine (y-coordinate) is 0 on the x-axis. This occurs at 0 radians and π radians. (Note: 2π is typically excluded by the bracket notation [0, 2π) )." },
+            { q: "5. Find the solutions to √2 * sin(x) = 1 on [0, 2π).", opts: { A: "π/4, 3π/4", B: "π/4, 7π/4", C: "3π/4, 5π/4", D: "5π/4, 7π/4" }, ans: "A", sol: "Divide by √2: sin(x) = 1 / √2, which rationalizes to √2/2. Sine is positive in Q1 and Q2. The angles are π/4 and 3π/4." }
+        ]
+    },
+    "3_7_med": {
+        title: "Unit 3.7: Medium Practice",
+        subtitle: "Focus: Multiple angles and factoring trigonometric equations.",
+        themeColor: "#f39c12",
+        questions: [
+            { q: "1. Solve for x on [0, 2π): sin²(x) - sin(x) = 0.", opts: { A: "0, π", B: "π/2", C: "0, π, π/2", D: "π/2, 3π/2" }, ans: "C", sol: "Factor out sin(x): sin(x)[sin(x) - 1] = 0. Set each to 0. sin(x) = 0 gives x = 0, π. sin(x) = 1 gives x = π/2." },
+            { q: "2. Solve for x on [0, 2π): cos(2x) = 1/2.", opts: { A: "π/6, 5π/6", B: "π/6, 5π/6, 7π/6, 11π/6", C: "π/3, 5π/3", D: "π/12, 11π/12" }, ans: "B", sol: "Let u = 2x. cos(u) = 1/2. u = π/3, 5π/3, 7π/3, 11π/3 (going out to 4π because 2x doubles the domain). Substitute 2x back in: 2x = π/3 -> x = π/6. Divide all by 2: π/6, 5π/6, 7π/6, 11π/6." },
+            { q: "3. Find the general solution for all real numbers: sin(x) = -√3/2.", opts: { A: "x = 4π/3 + 2πn and 5π/3 + 2πn", B: "x = 2π/3 + 2πn and 4π/3 + 2πn", C: "x = -π/3 + πn", D: "x = 4π/3 + πn" }, ans: "A", sol: "Sine is negative in Q3 and Q4. The base angles are 4π/3 and 5π/3. To encompass all infinite rotations, add 2πn to both." },
+            { q: "4. Solve for x on [0, 2π): 2cos²(x) - 1 = 0.", opts: { A: "π/4, 3π/4", B: "π/4, 7π/4", C: "π/4, 3π/4, 5π/4, 7π/4", D: "π/2, 3π/2" }, ans: "C", sol: "Isolate cos²(x) = 1/2. Take the square root of both sides: cos(x) = ±√(1/2) = ±√2/2. Because it is ±, we need the π/4 reference angle in ALL four quadrants." },
+            { q: "5. Solve the inequality on [0, 2π): sin(x) > 0.", opts: { A: "(0, π)", B: "(π, 2π)", C: "[0, π]", D: "(0, π/2)" }, ans: "A", sol: "Sine represents the y-coordinate. The y-coordinate is strictly greater than 0 everywhere in the top half of the unit circle, which is between 0 and π (excluding the endpoints because it must be strictly greater than 0)." }
+        ]
+    },
+    "3_7_hard": {
+        title: "Unit 3.7: Hard Practice",
+        subtitle: "Focus: Disguised quadratics and multi-step inequalities.",
+        themeColor: "#e74c3c",
+        questions: [
+            { q: "1. Solve for x on [0, 2π): 2sin²(x) + sin(x) - 1 = 0.", opts: { A: "π/6, 5π/6, 3π/2", B: "π/2, 7π/6, 11π/6", C: "π/6, 5π/6, π/2", D: "7π/6, 11π/6, 3π/2" }, ans: "A", sol: "Factor like a quadratic (2u² + u - 1 = 0): (2sin(x) - 1)(sin(x) + 1) = 0. Set each to 0: sin(x) = 1/2 gives π/6 and 5π/6. sin(x) = -1 gives 3π/2." },
+            { q: "2. Solve for x on [0, 2π): cos(x) + 2cos(x)sin(x) = 0.", opts: { A: "π/2, 3π/2", B: "7π/6, 11π/6", C: "π/2, 3π/2, 7π/6, 11π/6", D: "0, π, 7π/6, 11π/6" }, ans: "C", sol: "Factor out cos(x): cos(x)[1 + 2sin(x)] = 0. cos(x) = 0 gives π/2 and 3π/2. 1 + 2sin(x) = 0 -> sin(x) = -1/2 gives 7π/6 and 11π/6." },
+            { q: "3. Solve the inequality on [0, 2π): 2cos(x) < 1.", opts: { A: "(0, π/3)", B: "(π/3, 5π/3)", C: "(5π/3, 2π)", D: "(π/3, π)" }, ans: "B", sol: "Divide by 2: cos(x) < 1/2. Cosine is the x-coordinate. We want the part of the unit circle where the x-coordinate is less than 0.5. This happens to the 'left' of the angles π/3 and 5π/3. The interval wraps through Q2 and Q3: (π/3, 5π/3)." },
+            { q: "4. Find all solutions for sin(3x) = 1 on [0, 2π).", opts: { A: "π/6, 5π/6, 3π/2", B: "π/6, 5π/6", C: "π/2", D: "π/6, 5π/6, 3π/2, 7π/6" }, ans: "A", sol: "Let u = 3x. sin(u) = 1. u = π/2, 5π/2, 9π/2 (going out to 6π domain). Substitute back: 3x = π/2 -> x = π/6. 3x = 5π/2 -> x = 5π/6. 3x = 9π/2 -> x = 3π/2." },
+            { q: "5. Solve for x: sin²(x) = cos²(x) on [0, π].", opts: { A: "π/4", B: "3π/4", C: "π/4, 3π/4", D: "π/4, 5π/4" }, ans: "C", sol: "Divide both sides by cos²(x) to get tan²(x) = 1. Take square root: tan(x) = ±1. On the interval [0, π] (the top half of the circle), tangent is 1 at π/4 and -1 at 3π/4." }
+        ]
+    },
+    "3_7_master": {
+        title: "Unit 3.7 Master Exam",
+        subtitle: "Advanced Trigonometric Root Finding.",
+        themeColor: "#8e44ad",
+        questions: [
+            { q: "1. Find all solutions on [0, 2π): sec²(x) - 2 = 0. (Hint: sec(x) = 1/cos(x)).", opts: { A: "π/4, 7π/4", B: "π/4, 3π/4, 5π/4, 7π/4", C: "π/2, 3π/2", D: "0, π" }, ans: "B", sol: "sec²(x) = 2. Take square root: sec(x) = ±√2. Since sec = 1/cos, this means cos(x) = ±1/√2, which rationalizes to ±√2/2. This occurs at all four π/4 reference angles." },
+            { q: "2. Solve for x on [0, 2π): cos²(x) - sin²(x) = 0.", opts: { A: "π/4, 3π/4, 5π/4, 7π/4", B: "0, π", C: "π/2, 3π/2", D: "π/4, 5π/4" }, ans: "A", sol: "Add sin²(x) to both sides: cos²(x) = sin²(x). This is asking where the x and y coordinates have the same magnitude. This happens at all four π/4 reference angles." },
+            { q: "3. Solve the inequality: sin(x) > cos(x) on [0, 2π).", opts: { A: "(π/4, 5π/4)", B: "(0, π/4)", C: "(5π/4, 2π)", D: "(π/4, 3π/4)" }, ans: "A", sol: "They intersect at π/4 and 5π/4. Between π/4 and 5π/4 (sweeping through Q2 and half of Q3), the y-coordinate (sine) is strictly greater (higher up) than the x-coordinate (cosine)." },
+            { q: "4. Solve for x: 3sin(x) = 2. Give the general solution.", opts: { A: "x = arcsin(2/3) + 2πn", B: "x = arcsin(2/3) + 2πn  AND  x = π - arcsin(2/3) + 2πn", C: "x = arcsin(2/3) + πn", D: "No solution" }, ans: "B", sol: "sin(x) = 2/3. The principal solution is x = arcsin(2/3). Because sine is positive in Q1 and Q2, the second solution is π minus the reference angle: π - arcsin(2/3). Add 2πn to both to capture all coterminal rotations." },
+            { q: "5. Find the number of solutions to sin(100x) = 0.5 on the interval [0, 2π).", opts: { A: "2", B: "100", C: "200", D: "50" }, ans: "C", sol: "The function sin(100x) completes 100 full cycles between 0 and 2π. In each single cycle, sine hits 0.5 exactly twice (once going up, once going down). 100 cycles * 2 hits/cycle = 200 solutions." }
+        ]
+    },
+
+    // ==========================================
+    // UNIT 3.8: The Tangent Function
+    // ==========================================
+    "3_8_easy": {
+        title: "Unit 3.8: Easy Practice",
+        subtitle: "Focus: Values, period, and asymptotes of the tangent graph.",
+        themeColor: "#27ae60",
+        questions: [
+            { q: "1. What is the fundamental period of the parent tangent function, y = tan(x)?", opts: { A: "2π", B: "π", C: "π/2", D: "4π" }, ans: "B", sol: "Unlike sine and cosine, tangent repeats its values every half-circle. The slope of the line passing through the origin is identical for opposite quadrants, so the period is π." },
+            { q: "2. The vertical asymptotes of y = tan(x) occur exactly where:", opts: { A: "sin(x) = 0", B: "cos(x) = 0", C: "sin(x) = 1", D: "cos(x) = 1" }, ans: "B", sol: "Tangent is defined as sin(x) / cos(x). A function has vertical asymptotes where its denominator is zero. Therefore, asymptotes occur where cos(x) = 0." },
+            { q: "3. Evaluate tan(π/4).", opts: { A: "√3", B: "1", C: "0", D: "Undefined" }, ans: "B", sol: "At π/4 (45 degrees), the sine and cosine values are both √2/2. Dividing a number by itself yields 1." },
+            { q: "4. Where is the first positive vertical asymptote for y = tan(x)?", opts: { A: "x = π", B: "x = π/4", C: "x = π/2", D: "x = 2π" }, ans: "C", sol: "Cosine is 0 at the top and bottom of the unit circle. The first positive instance is the top of the circle, which is π/2 radians (90 degrees)." },
+            { q: "5. What is the value of tan(π)?", opts: { A: "0", B: "1", C: "-1", D: "Undefined" }, ans: "A", sol: "At π (far left of circle), sin(π) = 0 and cos(π) = -1. 0 / -1 = 0." }
+        ]
+    },
+    "3_8_med": {
+        title: "Unit 3.8: Medium Practice",
+        subtitle: "Focus: Graphing transformations and evaluating exact roots.",
+        themeColor: "#f39c12",
+        questions: [
+            { q: "1. What is the period of y = 3tan(2x)?", opts: { A: "π", B: "2π", C: "π/2", D: "π/4" }, ans: "C", sol: "The formula for the period of tangent is π / |B| (NOT 2π). Here, B = 2. So the period is π/2." },
+            { q: "2. Evaluate tan(5π/6).", opts: { A: "√3", B: "-√3", C: "1/√3", D: "-1/√3" }, ans: "D", sol: "5π/6 is in Quadrant II, where tangent is negative. The reference angle is π/6. tan(π/6) = sin(π/6)/cos(π/6) = (1/2) / (√3/2) = 1/√3. Therefore, -1/√3 (or -√3/3)." },
+            { q: "3. Find the first positive vertical asymptote of y = tan(3x).", opts: { A: "x = π/2", B: "x = π/6", C: "x = π/3", D: "x = 3π/2" }, ans: "B", sol: "The parent asymptote is at π/2. Set the argument equal to the parent asymptote: 3x = π/2. Divide by 3: x = π/6." },
+            { q: "4. What is the y-intercept of f(x) = tan(x - π/4)?", opts: { A: "0", B: "1", C: "-1", D: "Undefined" }, ans: "C", sol: "Plug in x = 0: f(0) = tan(0 - π/4) = tan(-π/4). Tangent is an odd function, so tan(-π/4) = -tan(π/4) = -1." },
+            { q: "5. Which interval represents exactly one full period of the parent tangent function containing the origin?", opts: { A: "[0, π]", B: "(-π/2, π/2)", C: "[-π, π]", D: "[0, 2π]" }, ans: "B", sol: "A single continuous branch of the tangent wave starts at the asymptote x = -π/2, passes through the origin (0,0), and goes up to the asymptote x = π/2." }
+        ]
+    },
+    "3_8_hard": {
+        title: "Unit 3.8: Hard Practice",
+        subtitle: "Focus: Tangent modeling and complex inequalities.",
+        themeColor: "#e74c3c",
+        questions: [
+            { q: "1. Solve the equation tan(x) = √3 on the interval [0, 2π).", opts: { A: "π/3, 4π/3", B: "π/6, 7π/6", C: "π/3, 2π/3", D: "2π/3, 5π/3" }, ans: "A", sol: "Tangent is √3 at a reference angle of π/3 (where sine is √3/2 and cosine is 1/2). Tangent is positive in Q1 (π/3) and Q3 (π + π/3 = 4π/3)." },
+            { q: "2. Where are the vertical asymptotes for y = 2tan(x/4)?", opts: { A: "x = 2π + 4πn", B: "x = π/8 + π/4 n", C: "x = 4π + 8πn", D: "x = π/2 + πn" }, ans: "A", sol: "Set x/4 = π/2 + πn. Multiply the entire equation by 4: x = 2π + 4πn." },
+            { q: "3. Solve the inequality on (-π/2, π/2): tan(x) > 1.", opts: { A: "(0, π/2)", B: "(π/4, π/2)", C: "(-π/2, π/4)", D: "(π/4, ∞)" }, ans: "B", sol: "Tangent equals 1 at x = π/4. As x moves from π/4 toward the asymptote at π/2, the tangent graph shoots upward to infinity. Therefore, it is greater than 1 on the interval (π/4, π/2)." },
+            { q: "4. A rotating beacon of light stands 50 feet from a straight wall. The beam hits the wall at a distance 'd' from the point closest to the beacon. Which function models 'd' in terms of the rotation angle θ?", opts: { A: "d(θ) = 50sin(θ)", B: "d(θ) = 50cos(θ)", C: "d(θ) = 50tan(θ)", D: "d(θ) = tan(50θ)" }, ans: "C", sol: "Draw a right triangle. The adjacent side is 50. The opposite side along the wall is d. tan(θ) = Opp/Adj = d / 50. Multiply by 50: d = 50tan(θ)." },
+            { q: "5. Find the x-intercepts of f(x) = tan(2x) on the interval [0, π).", opts: { A: "0", B: "0, π/2", C: "π/4, 3π/4", D: "0, π/2, π" }, ans: "B", sol: "tan(2x) = 0 when 2x = 0, π, 2π, etc. Divide by 2: x = 0, π/2, π. Since the interval is [0, π), we exclude π. The intercepts are 0 and π/2." }
+        ]
+    },
+    "3_8_master": {
+        title: "Unit 3.8 Master Exam",
+        subtitle: "Advanced Tangent Algebra and Graph Analysis.",
+        themeColor: "#8e44ad",
+        questions: [
+            { q: "1. Describe the end behavior of y = tan(x) as x approaches π/2 from the LEFT.", opts: { A: "Approaches 0", B: "Approaches 1", C: "Approaches Infinity", D: "Approaches Negative Infinity" }, ans: "C", sol: "The graph of tangent sweeps upward from the origin in Q1. As it gets closer to the asymptote at π/2 from the left side, the y-values explode upwards to positive infinity." },
+            { q: "2. Solve for x on [0, π]: 3tan²(x) - 1 = 0.", opts: { A: "π/6", B: "π/6, 5π/6", C: "π/3, 2π/3", D: "π/6, 11π/6" }, ans: "B", sol: "Isolate tan²(x): 3tan²(x) = 1 -> tan²(x) = 1/3. Take the square root: tan(x) = ±√(1/3) = ±1/√3. The reference angle is π/6. In the top half of the circle [0, π], this occurs at π/6 (Q1) and 5π/6 (Q2)." },
+            { q: "3. Let f(x) = A*tan(B(x - C)) + D. If the period is 4π and an asymptote is at x = 0, what are the values of B and C?", opts: { A: "B = 1/4, C = 0", B: "B = 1/4, C = 2π", C: "B = 4, C = π/2", D: "B = 1/2, C = π" }, ans: "B", sol: "Period = π/B -> 4π = π/B -> B = 1/4. For y = tan(1/4 x), the asymptote x=π/2 shifts: 1/4 x = π/2 -> x = 2π. To move this asymptote back to x=0, we must shift the graph left by 2π (or right by 2π). So C = 2π." },
+            { q: "4. Which of the following is an equivalent representation of tan(x)?", opts: { A: "sin(x) / cos(-x)", B: "-tan(-x)", C: "Both A and B", D: "cos(x) / sin(x)" }, ans: "C", sol: "cos(-x) = cos(x), so A simplifies to sin(x)/cos(x) = tan(x). Tangent is an odd function, so -tan(-x) = -(-tan(x)) = tan(x). Both A and B are true." },
+            { q: "5. Given the point P(-3, 4) on the terminal side of angle θ in standard position, find tan(θ).", opts: { A: "3/4", B: "-3/4", C: "4/3", D: "-4/3" }, ans: "D", sol: "Tangent is defined as y/x. The y-coordinate is 4, the x-coordinate is -3. tan(θ) = 4 / -3 = -4/3." }
+        ]
     }
 };
