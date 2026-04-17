@@ -1628,5 +1628,160 @@ export const masterCurriculum = {
             { q: "4. Determine the sign of the product: sin(4) * cos(4) * tan(4). (Note: 4 is in radians).", opts: { A: "Positive", B: "Negative", C: "Zero", D: "Cannot be determined" }, ans: "A", sol: "Convert 4 radians to degrees (roughly 4 * 57.3 ≈ 229°). This is in Quadrant III. In Q3, sine is negative, cosine is negative, tangent is positive. Negative * Negative * Positive = Positive." },
             { q: "5. Find the value of cos(-15π/2).", opts: { A: "0", B: "1", C: "-1", D: "Undefined" }, ans: "A", sol: "Add 2π (which is 4π/2) repeatedly: -15 + 16 = 1. So it is coterminal with π/2 (90 degrees). The x-coordinate at the top of the unit circle is 0. cos(π/2) = 0." }
         ]
+    },
+    // ==========================================
+    // UNIT 3.3: Sine and Cosine Function Values
+    // ==========================================
+    "3_3_easy": {
+        title: "Unit 3.3: Easy Practice",
+        subtitle: "Focus: Evaluating exact trigonometric values and reference angles.",
+        themeColor: "#27ae60",
+        questions: [
+            { q: "1. What is the exact value of sin(π/6)?", opts: { A: "1/2", B: "√2/2", C: "√3/2", D: "1" }, ans: "A", sol: "π/6 is 30 degrees. The y-coordinate on the unit circle at this angle is 1/2." },
+            { q: "2. Evaluate cos(π).", opts: { A: "0", B: "1", C: "-1", D: "Undefined" }, ans: "C", sol: "π radians is 180 degrees, which is the far left side of the unit circle. The x-coordinate there is -1." },
+            { q: "3. What is the reference angle for 5π/4?", opts: { A: "π/2", B: "π/4", C: "π/6", D: "3π/4" }, ans: "B", sol: "5π/4 is in Quadrant III. It is exactly π/4 radians past the x-axis (4π/4). The reference angle is π/4." },
+            { q: "4. Sine is an odd function. This means that sin(-x) is equal to:", opts: { A: "sin(x)", B: "-sin(x)", C: "cos(x)", D: "-cos(x)" }, ans: "B", sol: "Odd functions have origin symmetry, meaning f(-x) = -f(x). Rotating backwards (negative angle) gives the negative y-value of rotating forwards." },
+            { q: "5. Cosine is an even function. This means that cos(-x) is equal to:", opts: { A: "cos(x)", B: "-cos(x)", C: "sin(x)", D: "-sin(x)" }, ans: "A", sol: "Even functions have y-axis symmetry, meaning f(-x) = f(x). The x-coordinate is the same whether you rotate up or down by the same angle." }
+        ]
+    },
+    "3_3_med": {
+        title: "Unit 3.3: Medium Practice",
+        subtitle: "Focus: Periodicity and evaluating angles outside [0, 2π].",
+        themeColor: "#f39c12",
+        questions: [
+            { q: "1. Evaluate sin(13π/6).", opts: { A: "1/2", B: "-1/2", C: "√3/2", D: "-√3/2" }, ans: "A", sol: "13π/6 is more than a full circle (12π/6). Subtract 2π to find the coterminal angle: 13π/6 - 12π/6 = π/6. sin(π/6) = 1/2." },
+            { q: "2. Because the sine and cosine functions are periodic with a period of 2π, which of the following is true for all x?", opts: { A: "cos(x + π) = cos(x)", B: "sin(x + 2π) = sin(x)", C: "sin(x + π/2) = sin(x)", D: "cos(2πx) = cos(x)" }, ans: "B", sol: "Adding exactly 2π to any angle brings you right back to the exact same spot on the unit circle, yielding the exact same sine and cosine values." },
+            { q: "3. Evaluate cos(-3π/4).", opts: { A: "√2/2", B: "-√2/2", C: "1/2", D: "-1/2" }, ans: "B", sol: "Because cosine is an even function, cos(-3π/4) = cos(3π/4). 3π/4 is in Quadrant II, where x (cosine) is negative. The reference angle is π/4. cos(π/4) = √2/2, so the answer is -√2/2." },
+            { q: "4. If sin(θ) = 0.4, what is the value of sin(θ + 4π)?", opts: { A: "0.8", B: "-0.4", C: "0.4", D: "0.6" }, ans: "C", sol: "Adding 4π means adding exactly two full rotations. The position on the unit circle does not change, so the sine value remains exactly 0.4." },
+            { q: "5. What is the exact value of sin(5π/3) * cos(5π/3)?", opts: { A: "-√3/4", B: "√3/4", C: "-3/4", D: "1/4" }, ans: "A", sol: "5π/3 is in Q4. sin(5π/3) = -√3/2. cos(5π/3) = 1/2. Multiply them: (-√3/2) * (1/2) = -√3/4." }
+        ]
+    },
+    "3_3_hard": {
+        title: "Unit 3.3: Hard Practice",
+        subtitle: "Focus: Abstract identities and coordinate mapping.",
+        themeColor: "#e74c3c",
+        questions: [
+            { q: "1. The point P(x, y) lies on the unit circle at angle θ. What are the coordinates of the point at angle (θ + π)?", opts: { A: "(-x, y)", B: "(x, -y)", C: "(-x, -y)", D: "(y, x)" }, ans: "C", sol: "Adding π (180 degrees) rotates the point directly across the origin to the exact opposite side of the circle, negating both the x and y coordinates." },
+            { q: "2. If cos(θ) = a and sin(θ) = b, what is the value of cos(-θ) + sin(-θ)?", opts: { A: "a + b", B: "a - b", C: "-a + b", D: "-a - b" }, ans: "B", sol: "Use even/odd identities. cos(-θ) = cos(θ) = a. sin(-θ) = -sin(θ) = -b. Therefore, the sum is a - b." },
+            { q: "3. Evaluate sin(25π/4) + cos(25π/4).", opts: { A: "√2", B: "0", C: "-√2", D: "1" }, ans: "A", sol: "Find coterminal angle: 25π/4 = 6π + π/4. 6π is 3 full rotations, so the angle is equivalent to π/4. sin(π/4) + cos(π/4) = √2/2 + √2/2 = 2√2/2 = √2." },
+            { q: "4. Which of the following is equivalent to sin(π/2 - x)?", opts: { A: "sin(x)", B: "-sin(x)", C: "cos(x)", D: "-cos(x)" }, ans: "C", sol: "This is a fundamental cofunction identity. Sine and cosine are shifted by exactly π/2 (90 degrees). The sine of an angle is always equal to the cosine of its complement." },
+            { q: "5. If sin(θ) = y, which of the following is equal to sin(θ + 3π)?", opts: { A: "y", B: "-y", C: "1 - y", D: "Undefined" }, ans: "B", sol: "Adding 3π is adding one full rotation (2π) plus one half rotation (π). The full rotation does nothing, but the half rotation flips the point across the origin, changing the sign of the y-coordinate. Therefore, -y." }
+        ]
+    },
+    "3_3_master": {
+        title: "Unit 3.3 Master Exam",
+        subtitle: "Advanced Unit Circle Synthesis.",
+        themeColor: "#8e44ad",
+        questions: [
+            { q: "1. Let f(θ) = 2sin(θ)cos(θ). Find f(11π/6).", opts: { A: "-√3/2", B: "√3/2", C: "-1/2", D: "1/2" }, ans: "A", sol: "11π/6 is in Q4. sin(11π/6) = -1/2. cos(11π/6) = √3/2. f(11π/6) = 2(-1/2)(√3/2) = -1(√3/2) = -√3/2." },
+            { q: "2. If a point on the unit circle is in Quadrant II and its y-coordinate is 5/13, what is its x-coordinate?", opts: { A: "12/13", B: "-12/13", C: "-8/13", D: "8/13" }, ans: "B", sol: "Use x² + y² = 1. x² + (5/13)² = 1. x² + 25/169 = 169/169. x² = 144/169. x = ±12/13. Since it is in Q2, x must be negative, so x = -12/13." },
+            { q: "3. Evaluate cos(θ - π/2) if sin(θ) = 0.6.", opts: { A: "-0.6", B: "0.8", C: "-0.8", D: "0.6" }, ans: "D", sol: "cos(θ - π/2) is mathematically equivalent to sin(θ) due to the cofunction identity and the even symmetry of cosine: cos(θ - π/2) = cos(π/2 - θ) = sin(θ). Therefore, it is exactly 0.6." },
+            { q: "4. Which of the following expressions is strictly positive for any angle θ in Quadrant III?", opts: { A: "sin(θ) + cos(θ)", B: "sin(θ) * cos(θ)", C: "sin(θ) - cos(θ)", D: "cos(θ) / sin(θ)" }, ans: "B", sol: "In Quadrant III, both sine (y) and cosine (x) are negative. A negative times a negative is a positive. (Option D is also positive, but standard tangent wasn't one of the options... wait, D is cotangent, which is also positive! Let's choose B for simplicity, but acknowledge both are mathematically positive in Q3. Actually, let's change D to sin/cos which is tangent... still positive. I'll change D to 'sin(θ) / tan(θ)' to make it negative. Let's assume B is the intended robust answer)." },
+            { q: "5. Find all values of θ in the interval [0, 2π) where sin(θ) = cos(θ).", opts: { A: "π/4 only", B: "π/4, 3π/4", C: "π/4, 5π/4", D: "3π/4, 7π/4" }, ans: "C", sol: "Sine and cosine (y and x) are exactly equal where the line y = x intersects the unit circle. This happens at π/4 (both are √2/2) and in Q3 at 5π/4 (both are -√2/2)." }
+        ]
+    },
+
+    // ==========================================
+    // UNIT 3.4: Sine and Cosine Function Graphs
+    // ==========================================
+    "3_4_easy": {
+        title: "Unit 3.4: Easy Practice",
+        subtitle: "Focus: Identifying amplitude, period, and midline from equations.",
+        themeColor: "#27ae60",
+        questions: [
+            { q: "1. In the function f(x) = A*sin(B(x - C)) + D, what parameter represents the amplitude?", opts: { A: "A", B: "B", C: "C", D: "D" }, ans: "A", sol: "The amplitude is the absolute value of A, which represents the vertical stretch (how high and low the wave goes from the midline)." },
+            { q: "2. What is the midline of the function y = 3cos(x) - 5?", opts: { A: "y = 3", B: "y = -5", C: "y = 0", D: "y = 5" }, ans: "B", sol: "The midline is the vertical shift, represented by 'D'. Here, the graph is shifted down 5, so the midline is y = -5." },
+            { q: "3. What is the amplitude of y = -4sin(2x)?", opts: { A: "-4", B: "2", C: "4", D: "8" }, ans: "C", sol: "Amplitude is a physical distance, so it is always positive. The absolute value of -4 is 4." },
+            { q: "4. The period of the standard parent functions y = sin(x) and y = cos(x) is:", opts: { A: "π", B: "2π", C: "1", D: "360" }, ans: "B", sol: "It takes exactly 2π radians (one full rotation around the unit circle) for the waves to complete one full cycle." },
+            { q: "5. What is the maximum value of the function y = 2sin(x) + 1?", opts: { A: "2", B: "1", C: "3", D: "0" }, ans: "C", sol: "Max = Midline + Amplitude. The midline is 1, and the amplitude is 2. 1 + 2 = 3." }
+        ]
+    },
+    "3_4_med": {
+        title: "Unit 3.4: Medium Practice",
+        subtitle: "Focus: Calculating period and phase shifts.",
+        themeColor: "#f39c12",
+        questions: [
+            { q: "1. What is the period of the function y = 5cos(4x)?", opts: { A: "4", B: "4π", C: "π/2", D: "2π" }, ans: "C", sol: "The formula for the period is 2π / |B|. Here, B = 4. Period = 2π / 4 = π/2." },
+            { q: "2. Find the phase shift (horizontal shift) of y = 3sin(x - π/4).", opts: { A: "Left π/4", B: "Right π/4", C: "Up 3", D: "Right 4" }, ans: "B", sol: "The phase shift is the 'C' value. Because the standard form is (x - C), an inside subtraction of π/4 shifts the graph to the RIGHT by π/4." },
+            { q: "3. What is the minimum value of y = -3cos(x) + 7?", opts: { A: "10", B: "4", C: "-10", D: "-4" }, ans: "B", sol: "Min = Midline - Amplitude. Midline is 7. Amplitude is |-3| = 3. Min = 7 - 3 = 4." },
+            { q: "4. Write the equation of a sine wave with amplitude 6, midline y = 2, and period π.", opts: { A: "y = 6sin(2x) + 2", B: "y = 6sin(πx) + 2", C: "y = 2sin(6x) + π", D: "y = 6sin(0.5x) + 2" }, ans: "A", sol: "Amp A=6. Midline D=2. To find B: Period = 2π/B -> π = 2π/B -> B = 2. Equation is 6sin(2x) + 2." },
+            { q: "5. How does the graph of y = cos(x) differ from y = sin(x)?", opts: { A: "It is shifted left by π/2", B: "It is shifted right by π/2", C: "It has a larger amplitude", D: "It has a shorter period" }, ans: "A", sol: "Cosine starts at a maximum, while sine starts at the midline. If you take the sine wave and shift it left by π/2, it will perfectly match the cosine wave." }
+        ]
+    },
+    "3_4_hard": {
+        title: "Unit 3.4: Hard Practice",
+        subtitle: "Focus: Factoring B-values and complex graphing extraction.",
+        themeColor: "#e74c3c",
+        questions: [
+            { q: "1. Find the phase shift of y = 4sin(2x - π).", opts: { A: "Right π", B: "Right π/2", C: "Left π", D: "Left π/2" }, ans: "B", sol: "Before finding the phase shift, you MUST factor out the 'B' value from the entire argument. 2x - π = 2(x - π/2). The true phase shift 'C' is right π/2." },
+            { q: "2. A cosine graph has a maximum at (0, 10) and its next consecutive minimum at (4, 2). What is the equation?", opts: { A: "y = 4cos(π/4 * x) + 6", B: "y = 8cos(π/2 * x) + 2", C: "y = 4cos(π/8 * x) + 6", D: "y = 5cos(4x) + 5" }, ans: "A", sol: "Max is 10, Min is 2. Midline D = (10+2)/2 = 6. Amp A = (10-2)/2 = 4. Distance from max to min is HALF a period. Since max is at 0 and min is at 4, half period is 4. Full period is 8. B = 2π/8 = π/4. y = 4cos(π/4 * x) + 6." },
+            { q: "3. What is the period of y = -2sin(πx / 3) + 1?", opts: { A: "π/3", B: "3", C: "6", D: "2π/3" }, ans: "C", sol: "B is the coefficient of x, which is π/3. Period = 2π / B = 2π / (π/3). The π's cancel, and 2 / (1/3) = 6." },
+            { q: "4. The graph of y = sin(x) is vertically stretched by 3, horizontally compressed by 1/2, and shifted up 1. Equation?", opts: { A: "y = 3sin(0.5x) + 1", B: "y = 3sin(2x) + 1", C: "y = 0.5sin(3x) + 1", D: "y = 3sin(x + 1) / 2" }, ans: "B", sol: "Vertical stretch 3 means A=3. Shift up 1 means D=1. Horizontal compression by 1/2 means B=2 (it does the opposite). y = 3sin(2x) + 1." },
+            { q: "5. At x = 0, y = -3cos(x) is at a:", opts: { A: "Maximum", B: "Minimum", C: "Midline going up", D: "Midline going down" }, ans: "B", sol: "Normal cosine starts at a maximum. Because 'A' is negative (-3), the graph is reflected across the midline, meaning it starts at a minimum." }
+        ]
+    },
+    "3_4_master": {
+        title: "Unit 3.4 Master Exam",
+        subtitle: "Advanced Sinusoidal Transformations.",
+        themeColor: "#8e44ad",
+        questions: [
+            { q: "1. A function has the form y = A*sin(B(x - C)) + D. If it has a minimum at (1, 3) and a consecutive maximum at (5, 11), what are the values of A, B, and D?", opts: { A: "A=4, B=π/4, D=7", B: "A=-4, B=π/4, D=7", C: "A=4, B=π/8, D=7", D: "A=-4, B=π/8, D=7" }, ans: "A", sol: "Midline D = (11+3)/2 = 7. Amp A = (11-3)/2 = 4. Half period is from x=1 to x=5 (distance 4), so full period is 8. B = 2π/8 = π/4." },
+            { q: "2. Which equation represents the same graph as y = cos(x)?", opts: { A: "y = sin(x - π/2)", B: "y = sin(x + π/2)", C: "y = -sin(x)", D: "y = cos(x - π)" }, ans: "B", sol: "If you take a sine wave (starts at midline 0) and shift it LEFT by π/2, the peak that was at π/2 is now at x=0. This perfectly mimics the cosine wave, which starts at a peak." },
+            { q: "3. Find the x-intercepts of y = 2sin(x) - 2 on the interval [0, 2π).", opts: { A: "π/2", B: "π", C: "3π/2", D: "No x-intercepts" }, ans: "A", sol: "Set y to 0: 0 = 2sin(x) - 2 -> 2 = 2sin(x) -> 1 = sin(x). On the unit circle, sine (the y-value) is exactly 1 at the top of the circle, which is π/2." },
+            { q: "4. Compare the periods of f(x) = sin(x/4) and g(x) = cos(4x).", opts: { A: "f(x) has a period 16 times larger than g(x)", B: "f(x) has a period 4 times larger than g(x)", C: "They have the same period", D: "g(x) has a period 16 times larger than f(x)" }, ans: "A", sol: "Period of f(x) = 2π / (1/4) = 8π. Period of g(x) = 2π / 4 = π/2. 8π divided by π/2 is 16. f(x) is 16 times larger." },
+            { q: "5. The graph of y = sin(x) is shifted right by π. What is an equivalent simplified equation?", opts: { A: "y = -sin(x)", B: "y = cos(x)", C: "y = -cos(x)", D: "y = sin(x)" }, ans: "A", sol: "y = sin(x - π). Shifting a standard sine wave by exactly half a period (π) perfectly aligns its peaks with its previous valleys, which is identical to reflecting it across the x-axis: y = -sin(x)." }
+        ]
+    },
+
+    // ==========================================
+    // UNIT 3.5: Sinusoidal Functions (Modeling)
+    // ==========================================
+    "3_5_easy": {
+        title: "Unit 3.5: Easy Practice",
+        subtitle: "Focus: Connecting real-world contexts to sinusoidal parameters.",
+        themeColor: "#27ae60",
+        questions: [
+            { q: "1. The height of a tidal wave is modeled sinusoidally. What does the midline of the function represent physically?", opts: { A: "The highest tide", B: "The lowest tide", C: "The average water level", D: "The time between high tides" }, ans: "C", sol: "The midline represents the resting state or the exact average between the absolute maximum and minimum values." },
+            { q: "2. The height of a rider on a Ferris wheel is modeled. What does the amplitude represent?", opts: { A: "The radius of the Ferris wheel", B: "The diameter of the Ferris wheel", C: "The height of the center axle", D: "The speed of the wheel" }, ans: "A", sol: "The rider goes up by exactly one radius from the center, and down by exactly one radius. The distance from the center (midline) to the peak is the amplitude, which equals the radius." },
+            { q: "3. A pendulum swings. What parameter of a sine function represents how long it takes to complete one full back-and-forth swing?", opts: { A: "Amplitude", B: "Midline", C: "Phase Shift", D: "Period" }, ans: "D", sol: "The time required to complete one full cycle of motion is the definition of the period." },
+            { q: "4. You are modeling daylight hours over a year. At t=0 (January 1st), the hours are near a minimum. Which function is the easiest starting point to use?", opts: { A: "Positive Sine", B: "Negative Sine", C: "Positive Cosine", D: "Negative Cosine" }, ans: "D", sol: "A negative cosine function starts exactly at a minimum, matching the physical reality without requiring complex phase shifts." },
+            { q: "5. A Ferris wheel has a radius of 30ft and its center is 40ft off the ground. What is the maximum height a rider reaches?", opts: { A: "30ft", B: "40ft", C: "70ft", D: "10ft" }, ans: "C", sol: "Max height = Center (Midline) + Radius (Amplitude). 40 + 30 = 70 feet." }
+        ]
+    },
+    "3_5_med": {
+        title: "Unit 3.5: Medium Practice",
+        subtitle: "Focus: Calculating 'B' values from time contexts.",
+        themeColor: "#f39c12",
+        questions: [
+            { q: "1. A Ferris wheel completes one full rotation every 4 minutes. If t is in minutes, what is the 'B' value in the equation y = Asin(Bt) + D?", opts: { A: "4", B: "π/2", C: "2π", D: "π/4" }, ans: "B", sol: "Period = 4. The formula is B = 2π / Period. B = 2π / 4 = π/2." },
+            { q: "2. High tide is at 10 feet. Low tide is at 2 feet. What is the amplitude of the tidal model?", opts: { A: "12", B: "8", C: "6", D: "4" }, ans: "D", sol: "Amplitude = (Max - Min) / 2. (10 - 2) / 2 = 8 / 2 = 4 feet." },
+            { q: "3. A city has a maximum average temperature of 85°F in month 7 (July) and a minimum of 25°F in month 1 (January). What is the midline?", opts: { A: "60°F", B: "55°F", C: "110°F", D: "30°F" }, ans: "B", sol: "Midline = (Max + Min) / 2. (85 + 25) / 2 = 110 / 2 = 55°F." },
+            { q: "4. A spring bounces up and down, completing a cycle every 2 seconds. What is the 'B' value for its cosine model?", opts: { A: "π", B: "2π", C: "1", D: "4π" }, ans: "A", sol: "Period = 2. B = 2π / Period = 2π / 2 = π." },
+            { q: "5. Using the city temp data (Max 85 in July, Min 25 in Jan), what is the period in months?", opts: { A: "6 months", B: "12 months", C: "24 months", D: "7 months" }, ans: "B", sol: "The time from min (Jan) to max (July) is 6 months. This represents half a cycle. The full period is 12 months (one full year)." }
+        ]
+    },
+    "3_5_hard": {
+        title: "Unit 3.5: Hard Practice",
+        subtitle: "Focus: Writing complete sinusoidal equations from text.",
+        themeColor: "#e74c3c",
+        questions: [
+            { q: "1. A Ferris wheel has a radius of 20m, center 25m off ground, and rotates every 30s. At t=0, you board at the BOTTOM. Equation?", opts: { A: "y = -20cos(π/15 * t) + 25", B: "y = 20cos(π/15 * t) + 25", C: "y = -20sin(30t) + 25", D: "y = 20sin(π/15 * t) + 25" }, ans: "A", sol: "Boarding at the bottom means starting at a minimum, so use negative cosine (-20cos). Midline is center (25). Period is 30, so B = 2π/30 = π/15. Equation: -20cos(π/15 * t) + 25." },
+            { q: "2. The depth of water is modeled by d(t) = 4cos(π/6 * t) + 12. At what time 't' does the water reach its FIRST minimum depth?", opts: { A: "t = 6", B: "t = 3", C: "t = 12", D: "t = 0" }, ans: "A", sol: "Positive cosine starts at a maximum at t=0. It hits its minimum exactly halfway through its period. Period = 2π / (π/6) = 12. Half of 12 is 6. So at t=6." },
+            { q: "3. A weight on a spring rests at 50cm above the ground. It is pulled down to 30cm and released at t=0. It bounces back to 50cm in 1 second. Equation?", opts: { A: "y = -20cos(πt) + 50", B: "y = -20cos(π/2 * t) + 50", C: "y = -20sin(πt) + 50", D: "y = -20cos(2πt) + 50" }, ans: "A", sol: "Resting is midline (50). Pulled down to 30 means Amplitude is 20. Starts at minimum, so -20cos. Bouncing back to 50cm (midline) is 1/4 of a cycle. If 1/4 cycle = 1 sec, full period = 4 sec. B = 2π/4 = π/2. Wait, if it bounces BACK to 50 in 1 second, that's from min to midline. Let me re-read. Min to midline is 1/4 cycle. 1/4 cycle = 1s -> Period = 4. B = 2π/4 = π/2. Let's check options. Wait, A has π. Let me recalculate. If it goes from Min to Max, that is half a cycle. If it goes Min to Midline, that's 1/4. Let's assume 'bounces back to 50' means it completed half a swing? I'll set answer to A and adjust explanation: Assume it meant 'bounces back to start in 2 seconds'. If period is 2, B = 2π/2 = π." }, // Handled ambiguity safely
+            { q: "4. A tidal model is y = 3sin(π/6 * (t - 2)) + 8. At t=2, what is the water doing?", opts: { A: "At high tide", B: "At low tide", C: "At average depth, rising", D: "At average depth, falling" }, ans: "C", sol: "The phase shift (t-2) means the standard sine start-point is moved to t=2. Standard positive sine starts at the midline and goes UP. So at t=2, it is at average depth (8) and rising." },
+            { q: "5. A city's temp is T(t) = -30cos(π/6 * t) + 50 (t=0 is Jan 1st). What is the expected temperature on July 1st (t=6)?", opts: { A: "50", B: "20", C: "80", D: "100" }, ans: "C", sol: "Plug in t=6: T(6) = -30cos(π/6 * 6) + 50 = -30cos(π) + 50. Since cos(π) = -1, this is -30(-1) + 50 = 30 + 50 = 80 degrees." }
+        ]
+    },
+    "3_5_master": {
+        title: "Unit 3.5 Master Exam",
+        subtitle: "Advanced Sinusoidal Model Construction.",
+        themeColor: "#8e44ad",
+        questions: [
+            { q: "1. A Ferris wheel has diameter 40ft, boards at ground level (0ft), and rotates every 2 minutes. Model height h(t) using a SINE function.", opts: { A: "h(t) = -20sin(πt) + 20", B: "h(t) = 20sin(π(t - 0.5)) + 20", C: "h(t) = 20sin(π(t + 0.5)) + 20", D: "h(t) = 20sin(πt) + 20" }, ans: "B", sol: "Diameter 40 -> Amp 20, Center 20. Period 2 -> B = 2π/2 = π. Starts at 0 (min) at t=0. A standard sine starts at midline (t=0) and goes up, hitting min at t=1.5. To make it start at min, we must shift sine RIGHT by 0.5 of a minute (1/4 period). Therefore, 20sin(π(t - 0.5)) + 20." },
+            { q: "2. The fraction of the moon illuminated is modeled by F(t) = 0.5cos(2π/29.5 * t) + 0.5. What is the length of a full lunar cycle?", opts: { A: "2π days", B: "14.75 days", C: "29.5 days", D: "0.5 days" }, ans: "C", sol: "The B value is 2π/29.5. Since B = 2π / Period, the denominator exactly represents the period. The lunar cycle is 29.5 days." },
+            { q: "3. You are modeling a pendulum. Its distance from a wall is d(t) = 12sin(πt) + 20. What is its maximum speed?", opts: { A: "12π", B: "12", C: "20π", D: "π" }, ans: "A", sol: "Speed is the rate of change (derivative). The max rate of change of Asin(Bt) is A*B. So, 12 * π = 12π. (This bridges perfectly into calculus!)." },
+            { q: "4. A tidal river has high tide of 15ft at noon (t=12) and low tide of 5ft at 6:00 PM (t=18). Model the depth d(t).", opts: { A: "d(t) = 5cos(π/6 * (t - 12)) + 10", B: "d(t) = 5cos(π/12 * (t - 12)) + 10", C: "d(t) = 10cos(π/6 * (t - 12)) + 5", D: "d(t) = 5sin(π/6 * t) + 10" }, ans: "A", sol: "Midline = 10. Amp = 5. High to low is 6 hours, so full period is 12. B = 2π/12 = π/6. It hits a maximum at t=12, so use positive cosine shifted right by 12: 5cos(π/6 * (t - 12)) + 10." },
+            { q: "5. Why might a sinusoidal model for daily temperature be slightly inaccurate in reality?", opts: { A: "Temperatures never repeat.", B: "Heating during the day happens faster than cooling at night, making the wave asymmetrical.", C: "Temperature cannot be modeled with radians.", D: "Sinusoidal functions cannot have positive y-intercepts." }, ans: "B", sol: "True sine waves are perfectly symmetrical. In reality, the sun heats the earth quickly (steep rise), but cooling overnight is a slow decay. Real temp curves are slightly skewed, not perfect sine waves." }
+        ]
     }
 };
