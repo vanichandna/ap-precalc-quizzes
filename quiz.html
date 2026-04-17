@@ -53,15 +53,27 @@ import { doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.
 import { auth, db } from './firebase-config.js';
 import { masterCurriculum } from './quiz-data.js';
 
+// URL Parsing for routing
 const urlParams = new URLSearchParams(window.location.search);
+const customId = urlParams.get('customId'); 
 const unitParam = urlParams.get('unit'); 
 const diffParam = urlParams.get('diff'); 
 
-// Routing Logic: Identifies if it's a sub-topic quiz (1_1_easy) or a final exam (1_final)
-const isFinal = diffParam === 'final';
-const dbKey = isFinal ? `unit${unitParam}_final` : `unit${unitParam}_${diffParam}`; 
-const dataKey = isFinal ? `${unitParam}_final` : `${unitParam}_${diffParam}`; 
-const accessKey = isFinal ? `unit${unitParam}_final` : `unit${unitParam}`;
+let dbKey, dataKey, accessKey, isFinal;
+
+if (customId) {
+    dbKey = customId;
+    dataKey = customId;
+    accessKey = customId;
+    isFinal = false; 
+} else {
+    isFinal = diffParam === 'final';
+    dbKey = isFinal ? `unit${unitParam}_final` : `unit${unitParam}_${diffParam}`; 
+    dataKey = isFinal ? `${unitParam}_final` : `${unitParam}_${diffParam}`; 
+    accessKey = isFinal ? `unit${unitParam}_final` : `unit${unitParam}_${diffParam.split('_')[0]}`; 
+    // Fix: Make accessKey match the parent unit (e.g. unit1_1), except for finals which use unit1_final
+    accessKey = isFinal ? `unit${unitParam}_final` : `unit${unitParam}`;
+}
 
 const currentQuiz = masterCurriculum[dataKey];
 let currentUser = null;
@@ -79,7 +91,7 @@ onAuthStateChanged(auth, async (user) => {
     if (user && currentQuiz) {
         const docSnap = await getDoc(doc(db, "users", user.email));
         
-        // Exact Security Check
+        // Check Access
         if (docSnap.exists() && docSnap.data().access[accessKey] === true) {
             currentUser = user;
             
@@ -93,20 +105,19 @@ onAuthStateChanged(auth, async (user) => {
             renderQuiz(); 
 
             // Initialize Timer if high-stakes exam
-            if (diffParam === 'master' || diffParam === 'final') {
+            if (diffParam === 'master' || isFinal) {
                 timerBar.style.display = "block";
-                // 10 mins for Master Quizzes, 20 mins for Grand Finals
                 timeLeft = isFinal ? 20 * 60 : 10 * 60; 
                 
                 timerInterval = setInterval(() => {
-                    if (submitBtn.disabled) return clearInterval(timerInterval); // Stop if submitted
+                    if (submitBtn.disabled) return clearInterval(timerInterval); 
                     
                     timeLeft--;
                     let m = Math.floor(timeLeft / 60);
                     let s = timeLeft % 60;
                     timeDisplay.innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
 
-                    if (timeLeft <= 60) timerBar.style.backgroundColor = "#e74c3c"; // Turn red at 1 min warning
+                    if (timeLeft <= 60) timerBar.style.backgroundColor = "#e74c3c"; 
 
                     if (timeLeft <= 0) {
                         clearInterval(timerInterval);
@@ -146,8 +157,7 @@ submitBtn.addEventListener('click', async () => {
     let allAnswered = true;
     currentQuiz.questions.forEach((item, index) => { if (!document.querySelector(`input[name="q${index}"]:checked`)) allAnswered = false; });
     
-    // Only enforce the strict answered rule if the timer HAS NOT run out
-    if (!allAnswered && timeLeft > 0) return alert("Please answer all questions before submitting.");
+    if (!allAnswered && (!timerInterval || timeLeft > 0)) return alert("Please answer all questions before submitting.");
     
     let score = 0;
     currentQuiz.questions.forEach((item, index) => {
@@ -164,7 +174,6 @@ submitBtn.addEventListener('click', async () => {
             document.getElementById(`label-${index}-${item.ans}`).classList.add('correct-highlight');
         }
         
-        // Show solutions
         document.getElementById(`solution-${index}`).style.display = "block"; 
     });
 
