@@ -1938,5 +1938,160 @@ export const masterCurriculum = {
             { q: "4. Which of the following is an equivalent representation of tan(x)?", opts: { A: "sin(x) / cos(-x)", B: "-tan(-x)", C: "Both A and B", D: "cos(x) / sin(x)" }, ans: "C", sol: "cos(-x) = cos(x), so A simplifies to sin(x)/cos(x) = tan(x). Tangent is an odd function, so -tan(-x) = -(-tan(x)) = tan(x). Both A and B are true." },
             { q: "5. Given the point P(-3, 4) on the terminal side of angle θ in standard position, find tan(θ).", opts: { A: "3/4", B: "-3/4", C: "4/3", D: "-4/3" }, ans: "D", sol: "Tangent is defined as y/x. The y-coordinate is 4, the x-coordinate is -3. tan(θ) = 4 / -3 = -4/3." }
         ]
+    },
+    // ==========================================
+    // UNIT 3.9: Inverse Trigonometric Functions
+    // ==========================================
+    "3_9_easy": {
+        title: "Unit 3.9: Easy Practice",
+        subtitle: "Focus: Domains, ranges, and basic evaluation of inverse trig.",
+        themeColor: "#27ae60",
+        questions: [
+            { q: "1. What is the domain of the inverse sine function, f(x) = arcsin(x)?", opts: { A: "All real numbers", B: "[-π/2, π/2]", C: "[-1, 1]", D: "[0, π]" }, ans: "C", sol: "The domain of an inverse function is the range of the original function. Since the standard sine function only outputs values between -1 and 1, arcsin(x) can only accept inputs between -1 and 1." },
+            { q: "2. What is the principal range of the inverse cosine function, arccos(x)?", opts: { A: "[-π/2, π/2]", B: "[0, π]", C: "All real numbers", D: "(-π/2, π/2)" }, ans: "B", sol: "To make cosine invertible, we restrict its domain to the top half of the unit circle, from 0 to π. Therefore, the output (range) of arccos(x) is [0, π]." },
+            { q: "3. Evaluate arcsin(1/2).", opts: { A: "π/3", B: "π/6", C: "5π/6", D: "π/4" }, ans: "B", sol: "This asks: 'What angle strictly between -π/2 and π/2 has a sine of 1/2?' The answer is 30 degrees, or π/6 radians." },
+            { q: "4. What is the range of the inverse tangent function, arctan(x)?", opts: { A: "[-1, 1]", B: "(-π/2, π/2)", C: "[-π/2, π/2]", D: "[0, π]" }, ans: "B", sol: "Tangent has vertical asymptotes at ±π/2, so the range of its inverse is bounded by those horizontal asymptotes. The brackets are soft (parentheses) because it never actually touches the asymptotes." },
+            { q: "5. Evaluate arccos(-1).", opts: { A: "0", B: "π/2", C: "π", D: "-π" }, ans: "C", sol: "This asks: 'What angle between 0 and π has a cosine of -1?' The x-coordinate is -1 on the far left of the unit circle, which is exactly π radians." }
+        ]
+    },
+    "3_9_med": {
+        title: "Unit 3.9: Medium Practice",
+        subtitle: "Focus: Evaluating inverse compositions and negative arguments.",
+        themeColor: "#f39c12",
+        questions: [
+            { q: "1. Evaluate arcsin(-√3/2).", opts: { A: "4π/3", B: "5π/3", C: "-π/3", D: "-π/6" }, ans: "C", sol: "The range of arcsin is [-π/2, π/2], meaning answers MUST be in Q1 (positive) or Q4 (negative). Since sine is negative, the angle is in Q4, measured negatively: -π/3." },
+            { q: "2. Evaluate arccos(-1/2).", opts: { A: "2π/3", B: "-π/3", C: "4π/3", D: "5π/6" }, ans: "A", sol: "The range of arccos is [0, π], meaning Q1 or Q2. Cosine is negative in Q2. The reference angle for 1/2 is π/3. The Q2 angle is π - π/3 = 2π/3." },
+            { q: "3. Evaluate the composition: sin(arcsin(0.8)).", opts: { A: "0.8", B: "-0.8", C: "Undefined", D: "0.6" }, ans: "A", sol: "Because 0.8 is within the valid domain of arcsin [-1, 1], the functions simply cancel each other out." },
+            { q: "4. Evaluate the composition: arcsin(sin(5π/6)).", opts: { A: "5π/6", B: "π/6", C: "-π/6", D: "7π/6" }, ans: "B", sol: "TRICK QUESTION! First, evaluate the inside: sin(5π/6) = 1/2. Now evaluate the outside: arcsin(1/2). Because arcsin is strictly restricted to Q1 and Q4, the answer must be the principal angle π/6, NOT 5π/6." },
+            { q: "5. Evaluate cos(arctan(3/4)).", opts: { A: "3/4", B: "4/3", C: "3/5", D: "4/5" }, ans: "D", sol: "Draw a right triangle in Q1. Tangent is Opp/Adj, so Opp=3, Adj=4. By Pythagorean theorem, Hypotenuse=5 (a 3-4-5 triangle). Cosine is Adj/Hyp, which is 4/5." }
+        ]
+    },
+    "3_9_hard": {
+        title: "Unit 3.9: Hard Practice",
+        subtitle: "Focus: Abstract algebraic compositions and domains.",
+        themeColor: "#e74c3c",
+        questions: [
+            { q: "1. Write an algebraic expression for sin(arccos(x)).", opts: { A: "√(1 - x²)", B: "1 - x²", C: "1 / √(1 - x²)", D: "x / √(1 - x²)" }, ans: "A", sol: "Draw a right triangle where angle θ = arccos(x). This means cos(θ) = x/1 (Adj = x, Hyp = 1). By Pythagorean theorem, Opp = √(1 - x²). Sine is Opp/Hyp, so √(1 - x²) / 1 = √(1 - x²)." },
+            { q: "2. Write an algebraic expression for tan(arcsin(x)).", opts: { A: "x / √(1 - x²)", B: "√(1 - x²) / x", C: "1 / x", D: "1 / √(1 - x²)" }, ans: "A", sol: "Draw a triangle for θ = arcsin(x). Opp = x, Hyp = 1. Adj = √(1 - x²). Tangent is Opp/Adj, which gives x / √(1 - x²)." },
+            { q: "3. What is the domain of f(x) = arccos(2x - 1)?", opts: { A: "[-1, 1]", B: "[0, 1]", C: "[0, 2]", D: "[-0.5, 0.5]" }, ans: "B", sol: "The argument of arccos must be between -1 and 1. Set up the inequality: -1 ≤ 2x - 1 ≤ 1. Add 1 to all sides: 0 ≤ 2x ≤ 2. Divide by 2: 0 ≤ x ≤ 1." },
+            { q: "4. Evaluate arccos(cos(7π/4)).", opts: { A: "7π/4", B: "-π/4", C: "π/4", D: "3π/4" }, ans: "C", sol: "Evaluate inside: cos(7π/4) is in Q4, where cosine is positive, yielding √2/2. Outside: arccos(√2/2). Because arccos only outputs in [0, π], we must use the Q1 principal angle: π/4." },
+            { q: "5. If arctan(x) = y, then what is sec(y) in terms of x?", opts: { A: "√(1 - x²)", B: "√(x² - 1)", C: "√(x² + 1)", D: "x / √(x² + 1)" }, ans: "C", sol: "y is the angle. tan(y) = x/1. Opp=x, Adj=1. Hyp = √(x² + 1). Secant is 1/cos, which is Hyp/Adj. Therefore, sec(y) = √(x² + 1) / 1 = √(x² + 1)." }
+        ]
+    },
+    "3_9_master": {
+        title: "Unit 3.9 Master Exam",
+        subtitle: "Advanced Inverse Trigonometry Synthesis.",
+        themeColor: "#8e44ad",
+        questions: [
+            { q: "1. Evaluate exactly: sin(arcsin(3/5) + arccos(4/5)).", opts: { A: "7/5", B: "1", C: "24/25", D: "0" }, ans: "B", sol: "Notice that a 3-4-5 right triangle has sin(θ) = 3/5 and cos(θ) = 4/5. This means arcsin(3/5) and arccos(4/5) are actually describing the exact same angle! So this is sin(θ + θ) = sin(2θ). Wait, let's use the sum formula: sin(A+B) = sinAcosB + cosAsinB. A = arcsin(3/5), B = arccos(4/5). sin(A)=3/5, cos(A)=4/5. sin(B)=3/5, cos(B)=4/5. sin(A+B) = (3/5)(4/5) + (4/5)(3/5) = 12/25 + 12/25 = 24/25. Let me re-read. Ah, the angles are NOT the same. My mental math was sloppy. It is 24/25. Let me update the key to C.", ans: "C" }, // Corrected mental path
+            { q: "2. The function f(x) = a * arcsin(b(x - c)) + d has a domain of [2, 6] and a range of [0, 4π]. Find a, b, c, d.", opts: { A: "a=4, b=1/2, c=4, d=2π", B: "a=4, b=2, c=4, d=2π", C: "a=2, b=1/2, c=2, d=π", D: "a=4, b=1/2, c=2, d=2π" }, ans: "A", sol: "Parent domain is [-1, 1] (width 2). New domain is [2, 6] (width 4). It is stretched by 2, so b = 1/2. Center of domain shifted from 0 to 4, so c = 4. Parent range is [-π/2, π/2] (width π). New range [0, 4π] (width 4π). Stretched by 4, so a = 4. Center of range shifted from 0 to 2π, so d = 2π." },
+            { q: "3. What is the behavior of y = arctan(x) as x approaches negative infinity?", opts: { A: "Approaches 0", B: "Approaches -π", C: "Approaches -π/2", D: "Approaches Negative Infinity" }, ans: "C", sol: "The parent tangent function has vertical asymptotes at ±π/2. When inverted, these become horizontal asymptotes for arctan at y = ±π/2. As x goes to -infinity, the graph flattens out at y = -π/2." },
+            { q: "4. Solve the equation for x: arcsin(x) = arccos(x).", opts: { A: "x = 1/2", B: "x = √2/2", C: "x = 1", D: "x = 0" }, ans: "B", sol: "This asks for the value where sine and cosine are exactly equal. On the restricted domains for both functions (which overlap only in Q1), this happens at the angle π/4. The sine (and cosine) of π/4 is √2/2." },
+            { q: "5. Evaluate tan(arccos(-2/3)).", opts: { A: "-√5/2", B: "√5/2", C: "-2/√5", D: "-3/2" }, ans: "A", sol: "arccos is negative, so the angle is in Q2. Adj = -2, Hyp = 3. Opp = √(3² - (-2)²) = √(9 - 4) = √5. Tangent in Q2 is negative: Opp/Adj = √5 / -2 = -√5/2." }
+        ]
+    },
+
+    // ==========================================
+    // UNIT 3.10: Trig Equations with Inverses
+    // ==========================================
+    "3_10_easy": {
+        title: "Unit 3.10: Easy Practice",
+        subtitle: "Focus: Using inverse functions to represent solutions.",
+        themeColor: "#27ae60",
+        questions: [
+            { q: "1. If sin(x) = 0.4 and x is in Quadrant I, which expression represents x?", opts: { A: "arccos(0.4)", B: "arcsin(0.4)", C: "arctan(0.4)", D: "sin(0.4)" }, ans: "B", sol: "To isolate x, apply the inverse sine function (arcsin) to both sides. Since it is in Q1, the principal arcsin value is the correct answer." },
+            { q: "2. A ladder leans against a wall. The height of the wall is 10 ft and the ladder is 12 ft. What expression gives the angle θ the ladder makes with the ground?", opts: { A: "arcsin(10/12)", B: "arccos(10/12)", C: "arctan(10/12)", D: "arcsin(12/10)" }, ans: "A", sol: "Opposite = 10, Hypotenuse = 12. sin(θ) = 10/12. Therefore, θ = arcsin(10/12)." },
+            { q: "3. Solve for the principal value of x: tan(x) = 5.", opts: { A: "x = 5", B: "x = arctan(5)", C: "x = arcsin(5)", D: "x = tan(5)" }, ans: "B", sol: "Apply inverse tangent to both sides. The principal solution is simply arctan(5)." },
+            { q: "4. If cos(x) = 0.7, what are the two solutions in the interval [0, 2π)?", opts: { A: "arccos(0.7) and π - arccos(0.7)", B: "arccos(0.7) and π + arccos(0.7)", C: "arccos(0.7) and 2π - arccos(0.7)", D: "arccos(0.7) and -arccos(0.7)" }, ans: "C", sol: "Cosine is positive in Q1 and Q4. The Q1 answer is arccos(0.7). To find the Q4 answer between 0 and 2π, subtract the reference angle from a full circle: 2π - arccos(0.7)." },
+            { q: "5. Why must you be careful when using a calculator's sin⁻¹ button to solve sin(x) = 0.5?", opts: { A: "It only gives the answer in degrees.", B: "It only gives one of the infinitely many solutions.", C: "It will give an error.", D: "It assumes x is a side length." }, ans: "B", sol: "The calculator adheres strictly to the restricted domain [-π/2, π/2]. It will only give the Q1 answer (30°), ignoring the Q2 answer (150°) and all coterminal rotations." }
+        ]
+    },
+    "3_10_med": {
+        title: "Unit 3.10: Medium Practice",
+        subtitle: "Focus: General solutions and non-principal angles.",
+        themeColor: "#f39c12",
+        questions: [
+            { q: "1. Write the general solution for all real numbers for cos(x) = 0.2.", opts: { A: "x = arccos(0.2) + 2πn", B: "x = ±arccos(0.2) + 2πn", C: "x = arccos(0.2) + πn", D: "x = π - arccos(0.2) + 2πn" }, ans: "B", sol: "Cosine is positive in Q1 and Q4. The solutions are arccos(0.2) and -arccos(0.2) (which is coterminal with 2π - arccos(0.2)). Add 2πn to both to capture all rotations." },
+            { q: "2. The depth of water is d(t) = 4cos(π/6 * t) + 10. Write an expression for the FIRST time t > 0 that the water is 11 feet deep.", opts: { A: "t = 6/π * arccos(1/4)", B: "t = 6/π * arcsin(1/4)", C: "t = arccos(1/4) - 10", D: "t = 12/π * arccos(1/4)" }, ans: "A", sol: "11 = 4cos(π/6 * t) + 10. Subtract 10: 1 = 4cos(π/6 * t). Divide by 4: 1/4 = cos(π/6 * t). Apply arccos: arccos(1/4) = π/6 * t. Multiply by 6/π: t = (6/π) * arccos(1/4)." },
+            { q: "3. If sin(θ) = -0.3, and θ is in Quadrant III, find θ in terms of inverse trig.", opts: { A: "arcsin(-0.3)", B: "π - arcsin(-0.3)", C: "π + arcsin(0.3)", D: "2π - arcsin(0.3)" }, ans: "C", sol: "arcsin(-0.3) outputs a negative angle in Q4. To get the Q3 angle, find the positive reference angle (arcsin(0.3)) and add it to π. So, π + arcsin(0.3)." },
+            { q: "4. Solve 3tan(2x) = 12 on the interval [0, π/2).", opts: { A: "1/2 * arctan(4)", B: "arctan(2)", C: "1/2 * arctan(12)", D: "arctan(4) / 3" }, ans: "A", sol: "Divide by 3: tan(2x) = 4. Apply arctan: 2x = arctan(4). Divide by 2: x = 1/2 * arctan(4). Because arctan(4) is between 0 and π/2, dividing by 2 keeps it safely in the requested interval." },
+            { q: "5. Find the general solution for tan(x) = -5.", opts: { A: "x = arctan(-5) + 2πn", B: "x = arctan(5) + πn", C: "x = arctan(-5) + πn", D: "x = π - arctan(5) + 2πn" }, ans: "C", sol: "Tangent has a period of π. The principal solution is arctan(-5). Because it repeats every half-circle, you only need to add πn to capture every solution." }
+        ]
+    },
+    "3_10_hard": {
+        title: "Unit 3.10: Hard Practice",
+        subtitle: "Focus: Factoring and identifying multiple roots contextually.",
+        themeColor: "#e74c3c",
+        questions: [
+            { q: "1. Solve for x on [0, 2π): 5sin²(x) - 4sin(x) = 0.", opts: { A: "0, π, arcsin(4/5), π - arcsin(4/5)", B: "0, arcsin(4/5)", C: "arcsin(4/5), π - arcsin(4/5)", D: "0, π, arcsin(4/5)" }, ans: "A", sol: "Factor: sin(x)(5sin(x) - 4) = 0. First part: sin(x) = 0 gives x = 0, π. Second part: 5sin(x) = 4 -> sin(x) = 4/5. Since 4/5 is positive, solutions are in Q1 (arcsin(4/5)) and Q2 (π - arcsin(4/5))." },
+            { q: "2. A model is y = 10sin(Bt) + 15. The period is 12 hours. Write an expression for the times when y = 20 on the first day [0, 24).", opts: { A: "t = 6/π * arcsin(0.5) + 12n", B: "t = 6/π * arcsin(0.5) and t = 6/π * (π - arcsin(0.5))", C: "It requires adding 12 to the principal solutions.", D: "Both B and C are needed for the full 24 hours." }, ans: "D", sol: "Period 12 -> B = π/6. 20 = 10sin(π/6 * t) + 15 -> 5 = 10sin() -> 0.5 = sin(π/6 * t). The principal solutions in one cycle are t_1 = (6/π)*arcsin(0.5) and t_2 = (6/π)*(π - arcsin(0.5)). Because the interval is 24 hours (two full periods), you must also add 12 to both t_1 and t_2 to find the solutions in the second cycle." },
+            { q: "3. Solve 2cos²(x) - 7cos(x) + 3 = 0 on [0, 2π).", opts: { A: "arccos(1/2), 2π - arccos(1/2)", B: "arccos(3), arccos(1/2)", C: "π/3, 5π/3", D: "Both A and C" }, ans: "D", sol: "Factor the quadratic: (2cos(x) - 1)(cos(x) - 3) = 0. cos(x) = 1/2 gives π/3 and 5π/3 (which is exactly arccos(1/2) and 2π - arccos(1/2)). The second factor gives cos(x) = 3, which has no solution because cosine cannot exceed 1." },
+            { q: "4. The inequality sin(x) > 0.8 on [0, 2π) has the solution set:", opts: { A: "(arcsin(0.8), 2π - arcsin(0.8))", B: "(arcsin(0.8), π - arcsin(0.8))", C: "(0, arcsin(0.8))", D: "(π - arcsin(0.8), 2π)" }, ans: "B", sol: "Sine is the y-coordinate. It is greater than 0.8 only in the very top sliver of the unit circle, strictly between the Q1 intersection (arcsin(0.8)) and the Q2 intersection (π - arcsin(0.8))." },
+            { q: "5. Find the general solution for cos(3x) = -0.4.", opts: { A: "x = 1/3 * arccos(-0.4) + 2πn", B: "x = ±1/3 * arccos(-0.4) + 2πn/3", C: "x = 1/3 * arccos(-0.4) + 2πn/3", D: "x = ±arccos(-0.4)/3 + 2πn" }, ans: "B", sol: "Let u = 3x. cos(u) = -0.4 -> u = ±arccos(-0.4) + 2πn. Substitute 3x back in: 3x = ±arccos(-0.4) + 2πn. Divide EVERYTHING by 3: x = ±(1/3)arccos(-0.4) + 2πn/3." }
+        ]
+    },
+    "3_10_master": {
+        title: "Unit 3.10 Master Exam",
+        subtitle: "Trigonometric Modeling & Constraints.",
+        themeColor: "#8e44ad",
+        questions: [
+            { q: "1. The voltage of a circuit is V(t) = 170sin(120πt). How many times per second does the voltage hit exactly 100 volts?", opts: { A: "60", B: "120", C: "170", D: "240" }, ans: "B", sol: "The B value is 120π. Period = 2π / 120π = 1/60th of a second. This means the wave completes 60 full cycles in one second. In each cycle, it hits +100 volts twice (once going up, once coming down). 60 cycles * 2 hits/cycle = 120 times." },
+            { q: "2. Solve for x: 4sin(x)cos(x) = 1 on [0, 2π). (Hint: use a double angle identity).", opts: { A: "π/12, 5π/12", B: "π/12, 5π/12, 13π/12, 17π/12", C: "arcsin(0.5) / 2", D: "No exact solution" }, ans: "B", sol: "Rewrite as 2 * (2sin(x)cos(x)) = 1. Using sin(2x) = 2sin(x)cos(x), we get 2sin(2x) = 1. So sin(2x) = 1/2. Let u = 2x. u = π/6, 5π/6, 13π/6, 17π/6. Divide by 2: x = π/12, 5π/12, 13π/12, 17π/12." },
+            { q: "3. If a projectile's horizontal range is R = (v² * sin(2θ)) / g, what angle θ maximizes the range?", opts: { A: "π/2", B: "π/4", C: "π/6", D: "0" }, ans: "B", sol: "To maximize R, the sine term must be at its maximum value of 1. sin(2θ) = 1. This occurs when the inside angle is π/2. Set 2θ = π/2 and divide by 2: θ = π/4 (45 degrees)." },
+            { q: "4. Solve tan²(x) - sec(x) = 1 on [0, 2π).", opts: { A: "π/3, 5π/3", B: "0, π/3, 5π/3", C: "π, π/3, 5π/3", D: "0" }, ans: "C", sol: "Use identity: tan²(x) = sec²(x) - 1. Substitute: (sec²(x) - 1) - sec(x) = 1 -> sec²(x) - sec(x) - 2 = 0. Factor: (sec(x) - 2)(sec(x) + 1) = 0. sec(x) = 2 means cos(x) = 1/2 (π/3, 5π/3). sec(x) = -1 means cos(x) = -1 (π)." },
+            { q: "5. Find the inverse function of f(x) = 3cos(2x - 1) + 4 on the restricted domain [1/2, 1/2 + π/2].", opts: { A: "y = 1/2 * arccos((x - 4)/3) + 1/2", B: "y = 1/2 * arccos((x - 3)/4) + 1", C: "y = arccos((x - 4)/6) + 1/2", D: "Not invertible" }, ans: "A", sol: "x = 3cos(2y - 1) + 4. x - 4 = 3cos(2y - 1). (x - 4)/3 = cos(2y - 1). arccos((x - 4)/3) = 2y - 1. arccos((x - 4)/3) + 1 = 2y. y = 1/2 * arccos((x - 4)/3) + 1/2. The domain restriction maps exactly to the [0, π] range of arccos." }
+        ]
+    },
+
+    // ==========================================
+    // UNIT 3.11: Polar Coordinates and Graphs
+    // ==========================================
+    "3_11_easy": {
+        title: "Unit 3.11: Easy Practice",
+        subtitle: "Focus: Converting points between rectangular and polar forms.",
+        themeColor: "#27ae60",
+        questions: [
+            { q: "1. In the polar coordinate system (r, θ), what does 'r' represent?", opts: { A: "The x-coordinate", B: "The y-coordinate", C: "The directed distance from the origin", D: "The angle from the x-axis" }, ans: "C", sol: "The 'r' stands for radius, which is the straight-line distance from the pole (origin) to the point." },
+            { q: "2. Convert the polar point (4, π/2) to rectangular (x, y) coordinates.", opts: { A: "(4, 0)", B: "(0, 4)", C: "(2, 2)", D: "(-4, 0)" }, ans: "B", sol: "x = r*cos(θ) = 4*cos(π/2) = 4(0) = 0. y = r*sin(θ) = 4*sin(π/2) = 4(1) = 4. The point is (0, 4)." },
+            { q: "3. Convert the rectangular point (3, 4) into polar coordinates (r, θ).", opts: { A: "(5, arctan(4/3))", B: "(7, arctan(3/4))", C: "(25, arctan(4/3))", D: "(5, arctan(3/4))" }, ans: "A", sol: "r = √(x² + y²) = √(3² + 4²) = √25 = 5. θ = arctan(y/x) = arctan(4/3). Because (3,4) is in Q1, the principal arctan value is correct." },
+            { q: "4. What does a negative radius, such as (-3, π/4), mean geometrically?", opts: { A: "The point does not exist.", B: "Move to π/4, then go 3 units backwards through the origin.", C: "Reflect the point across the x-axis.", D: "The point is in Quadrant II." }, ans: "B", sol: "A negative 'r' value directs you to point towards the given angle, but walk backwards in the exact opposite direction (adding π to the angle)." },
+            { q: "5. What is the standard rectangular equation for the polar equation r = 5?", opts: { A: "x = 5", B: "y = 5", C: "x² + y² = 25", D: "x + y = 5" }, ans: "C", sol: "r = 5 describes all points exactly 5 units from the origin. This is a circle. Since r = √(x² + y²), squaring both sides gives x² + y² = 25." }
+        ]
+    },
+    "3_11_med": {
+        title: "Unit 3.11: Medium Practice",
+        subtitle: "Focus: Basic polar graphs and converting equations.",
+        themeColor: "#f39c12",
+        questions: [
+            { q: "1. Convert the polar equation θ = π/4 into a rectangular equation.", opts: { A: "x² + y² = π/4", B: "y = x", C: "y = -x", D: "x = π/4" }, ans: "B", sol: "θ = π/4 describes all points at a 45-degree angle from the origin, extending infinitely in both directions. Take the tangent of both sides: tan(θ) = tan(π/4). Since tan(θ) = y/x and tan(π/4) = 1, y/x = 1, so y = x." },
+            { q: "2. Convert the rectangular equation x = 7 into a polar equation.", opts: { A: "r = 7", B: "r = 7cos(θ)", C: "r = 7sec(θ)", D: "r = 7csc(θ)" }, ans: "C", sol: "Substitute x = r*cos(θ). r*cos(θ) = 7. Isolate r by dividing by cos(θ). Since 1/cos(θ) is sec(θ), r = 7sec(θ)." },
+            { q: "3. What shape is graphed by the polar equation r = 6sin(θ)?", opts: { A: "A line", B: "A circle centered at the origin", C: "A circle sitting on the x-axis, symmetric to the y-axis", D: "A spiral" }, ans: "C", sol: "Multiply both sides by r: r² = 6r*sin(θ). Substitute: x² + y² = 6y. Completing the square gives x² + (y - 3)² = 9. This is a circle with radius 3, centered at (0, 3)." },
+            { q: "4. The polar point (-2, 5π/6) is equivalent to which point with a positive radius?", opts: { A: "(2, 5π/6)", B: "(2, 11π/6)", C: "(2, π/6)", D: "(2, -5π/6)" }, ans: "B", sol: "A negative radius reflects the point across the origin. To make the radius positive, add or subtract π from the angle. 5π/6 + 6π/6 = 11π/6." },
+            { q: "5. Find the maximum distance from the origin for the graph of r = 3 + 3cos(θ).", opts: { A: "3", B: "6", C: "0", D: "9" }, ans: "B", sol: "The maximum value of r occurs when cos(θ) is at its maximum (which is 1). Max r = 3 + 3(1) = 6." }
+        ]
+    },
+    "3_11_hard": {
+        title: "Unit 3.11: Hard Practice",
+        subtitle: "Focus: Limacons, rose curves, and symmetry.",
+        themeColor: "#e74c3c",
+        questions: [
+            { q: "1. The graph of r = 2 - 4sin(θ) is a limacon. What defining feature does it have?", opts: { A: "A dimple", B: "An inner loop", C: "It is perfectly flat on one side", D: "It is a perfect circle" }, ans: "B", sol: "Check the ratio of |a|/|b|. Here, a=2, b=-4. The ratio is 2/4 = 0.5. Because the ratio is less than 1 (meaning the subtraction will force 'r' into negative numbers), the graph will cross through the origin and form an inner loop." },
+            { q: "2. How many petals does the rose curve r = 5cos(4θ) have?", opts: { A: "4", B: "5", C: "8", D: "16" }, ans: "C", sol: "For rose curves r = a*cos(nθ), if 'n' is even, the graph has 2n petals. Since n=4, there are 2*4 = 8 petals." },
+            { q: "3. Convert the polar equation r = 4 / (1 - sin(θ)) to rectangular form.", opts: { A: "x² = 8y + 16", B: "y = x² - 4", C: "x² + y² = 16", D: "x = 8y² + 16" }, ans: "A", sol: "Multiply both sides by denominator: r - r*sin(θ) = 4. Substitute: r - y = 4 -> r = y + 4. Square both sides: r² = (y + 4)². Substitute x² + y² = r²: x² + y² = y² + 8y + 16. The y² terms cancel: x² = 8y + 16. (This is a parabola!)." },
+            { q: "4. Determine the symmetry of r = 3sin(2θ).", opts: { A: "x-axis only", B: "y-axis only", C: "Origin only", D: "x-axis, y-axis, and Origin" }, ans: "D", sol: "This is a 4-petal rose. Because it has petals equally spaced in all four quadrants, it possesses symmetry across the x-axis, the y-axis, and the origin." },
+            { q: "5. Find the angles θ in [0, 2π) where the graph of r = 1 + 2cos(θ) passes through the origin.", opts: { A: "π/2, 3π/2", B: "2π/3, 4π/3", C: "π/3, 5π/3", D: "It never passes through the origin" }, ans: "B", sol: "Passing through the origin means r = 0. Set 0 = 1 + 2cos(θ). cos(θ) = -1/2. Cosine is -1/2 in Q2 and Q3 at the π/3 reference angles: 2π/3 and 4π/3." }
+        ]
+    },
+    "3_11_master": {
+        title: "Unit 3.11 Master Exam",
+        subtitle: "Advanced Polar Graph Analysis.",
+        themeColor: "#8e44ad",
+        questions: [
+            { q: "1. A polar curve is given by r = a*cos(nθ). If the curve has 7 petals, what is the value of n?", opts: { A: "3.5", B: "7", C: "14", D: "Cannot exist" }, ans: "B", sol: "For rose curves, if 'n' is an odd integer, the graph has exactly 'n' petals. If 'n' is even, it has '2n' petals. Since 7 is odd, n = 7." },
+            { q: "2. Find the points of intersection between r = 2 and r = 4cos(θ).", opts: { A: "(2, π/3) and (2, 5π/3)", B: "(2, π/6) and (2, 11π/6)", C: "(2, π/4) and (2, 7π/4)", D: "They do not intersect" }, ans: "A", sol: "Set them equal: 2 = 4cos(θ) -> 1/2 = cos(θ). θ = π/3 and 5π/3. In both cases, r is clearly 2. The intersection points are (2, π/3) and (2, 5π/3)." },
+            { q: "3. Analyze the rate of change of r with respect to θ for r = 3sin(θ) at θ = π/2.", opts: { A: "It is increasing", B: "It is decreasing", C: "It is zero", D: "It is undefined" }, ans: "C", sol: "At π/2, sine reaches its maximum value of 1. As a function approaches and hits its absolute maximum, its rate of change (tangent slope) flattens out to zero." },
+            { q: "4. What is the length of the inner loop of r = 1 - 2sin(θ)?", opts: { A: "1", B: "2", C: "3", D: "It does not have an inner loop" }, ans: "A", sol: "The loop starts and ends at the origin (r=0), which occurs at θ = π/6 and 5π/6. The tip of the loop occurs halfway between them at θ = π/2. Plug in π/2: r = 1 - 2(1) = -1. The physical length (distance from pole to tip) is |-1| = 1." },
+            { q: "5. Convert the rectangular equation (x² + y²)² = 9(x² - y²) to polar form.", opts: { A: "r² = 9sin(2θ)", B: "r² = 9cos(2θ)", C: "r = 9cos²(θ)", D: "r = 3cos(θ)" }, ans: "B", sol: "Substitute x²+y² = r². Substitute x² - y² = r²cos²(θ) - r²sin²(θ) = r²(cos²(θ) - sin²(θ)). Using the double angle identity, cos² - sin² = cos(2θ). Equation becomes (r²)² = 9r²cos(2θ) -> r⁴ = 9r²cos(2θ). Divide by r²: r² = 9cos(2θ). (This is a Lemniscate of Bernoulli)." }
+        ]
     }
 };
