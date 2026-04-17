@@ -1163,5 +1163,160 @@ export const masterCurriculum = {
             { q: "4. A function f(x) has a horizontal asymptote at y = 4 and a vertical asymptote at x = -1. What are the asymptotes of f⁻¹(x)?", opts: { A: "HA: y = 4, VA: x = -1", B: "HA: y = -4, VA: x = 1", C: "HA: y = -1, VA: x = 4", D: "HA: y = 1, VA: x = -4" }, ans: "C", sol: "Inverses swap all x and y values. The HA (y=4) becomes a VA (x=4). The VA (x=-1) becomes an HA (y=-1)." },
             { q: "5. Let f(x) = x³ + x. Why is it difficult to find f⁻¹(x) algebraically?", opts: { A: "It fails the horizontal line test.", B: "You cannot isolate 'y' after swapping x and y.", C: "It has no real roots.", D: "The inverse is an imaginary function." }, ans: "B", sol: "If you swap x and y, you get x = y³ + y. Because y is trapped in both a cubic and linear term, it is algebraically impossible to isolate y using standard precalculus methods (though the inverse does exist because the function is strictly increasing)." }
         ]
+    },
+    // ==========================================
+    // UNIT 2.9: Logarithmic Expressions
+    // ==========================================
+    "2_9_easy": {
+        title: "Unit 2.9: Easy Practice",
+        subtitle: "Focus: The fundamental definition of a logarithm.",
+        themeColor: "#27ae60",
+        questions: [
+            { q: "1. A logarithm is fundamentally just another way to write an:", opts: { A: "Exponent", B: "Asymptote", C: "Derivative", D: "Inverse fraction" }, ans: "A", sol: "The expression log_b(x) = y simply means 'the exponent you raise base b to, in order to get x, is y'. A log equals an exponent." },
+            { q: "2. Evaluate log_2(8).", opts: { A: "4", B: "3", C: "16", D: "6" }, ans: "B", sol: "Ask yourself: '2 raised to what power equals 8?' Since 2³ = 8, the answer is 3." },
+            { q: "3. Rewrite the exponential equation 5³ = 125 in logarithmic form.", opts: { A: "log_3(125) = 5", B: "log_125(5) = 3", C: "log_5(125) = 3", D: "log_5(3) = 125" }, ans: "C", sol: "The base of the exponent (5) becomes the base of the log. The exponent (3) becomes the answer. log_5(125) = 3." },
+            { q: "4. Evaluate log_10(10000).", opts: { A: "1000", B: "4", C: "5", D: "40" }, ans: "B", sol: "10 raised to what power is 10,000? Since 10⁴ = 10,000, the log is 4." },
+            { q: "5. What is the value of log_b(1) for any valid base b?", opts: { A: "b", B: "1", C: "0", D: "Undefined" }, ans: "C", sol: "Any non-zero base raised to the power of 0 equals 1. Therefore, log_b(1) is always 0." }
+        ]
+    },
+    "2_9_med": {
+        title: "Unit 2.9: Medium Practice",
+        subtitle: "Focus: Fractional and negative exponents in logs.",
+        themeColor: "#f39c12",
+        questions: [
+            { q: "1. Evaluate log_3(1/9).", opts: { A: "-2", B: "1/2", C: "-3", D: "1/3" }, ans: "A", sol: "3 raised to what power is 1/9? Since 3² = 9, the negative exponent 3⁻² gives the reciprocal 1/9. The answer is -2." },
+            { q: "2. Evaluate log_16(4).", opts: { A: "2", B: "1/2", C: "-2", D: "1/4" }, ans: "B", sol: "16 raised to what power is 4? Since the square root of 16 is 4, and a square root is the 1/2 power, 16^(1/2) = 4. The log is 1/2." },
+            { q: "3. Rewrite the natural log equation ln(x) = 5 in exponential form.", opts: { A: "x^5 = e", B: "10^5 = x", C: "e^5 = x", D: "5^e = x" }, ans: "C", sol: "The natural log 'ln' has a hidden base of 'e'. Rewrite base e to the power of 5 equals x: e^5 = x." },
+            { q: "4. Simplify the expression e^(ln(7)).", opts: { A: "e^7", B: "ln(7)", C: "7", D: "1" }, ans: "C", sol: "The functions e^x and ln(x) are inverses. They cancel each other out perfectly, leaving just the argument 7." },
+            { q: "5. Evaluate log_8(2).", opts: { A: "3", B: "1/4", C: "1/3", D: "4" }, ans: "C", sol: "8 raised to what power is 2? Since the cube root of 8 is 2, and the cube root is the 1/3 power, the answer is 1/3." }
+        ]
+    },
+    "2_9_hard": {
+        title: "Unit 2.9: Hard Practice",
+        subtitle: "Focus: Abstract algebraic evaluation and limits.",
+        themeColor: "#e74c3c",
+        questions: [
+            { q: "1. Evaluate log_x(x^5).", opts: { A: "x", B: "5", C: "x^5", D: "5x" }, ans: "B", sol: "The base is x. x raised to what power gives x^5? The power is exactly 5." },
+            { q: "2. Evaluate log_4(1/32).", opts: { A: "-5/2", B: "-2/5", C: "-3", D: "-8" }, ans: "A", sol: "Rewrite both with base 2. log_4(x) asks: 4^y = 1/32. (2²)^y = 2⁻⁵. 2^(2y) = 2⁻⁵. Set exponents equal: 2y = -5, so y = -5/2." },
+            { q: "3. If log_b(2) = 0.3 and log_b(3) = 0.48, use log properties to find log_b(6).", opts: { A: "0.144", B: "0.78", C: "0.18", D: "0.8" }, ans: "B", sol: "The product rule for logs states that log(xy) = log(x) + log(y). Therefore, log_b(6) = log_b(2 * 3) = log_b(2) + log_b(3) = 0.3 + 0.48 = 0.78." },
+            { q: "4. What is the value of log_5(√125)?", opts: { A: "3/2", B: "2/3", C: "3", D: "1/3" }, ans: "A", sol: "Rewrite √125 as (5³)^(1/2) = 5^(3/2). log_5(5^(3/2)) asks what power of 5 gives 5^(3/2). The answer is 3/2." },
+            { q: "5. Evaluate the limit as x approaches 0 from the right of ln(x).", opts: { A: "0", B: "1", C: "Infinity", D: "Negative Infinity" }, ans: "D", sol: "As the argument of a log gets closer and closer to 0, the exponent required to reach that tiny fraction becomes infinitely negative. e^(-1000) is a tiny decimal. The limit is negative infinity." }
+        ]
+    },
+    "2_9_master": {
+        title: "Unit 2.9 Master Exam",
+        subtitle: "Logarithmic Evaluation & Base Manipulation.",
+        themeColor: "#8e44ad",
+        questions: [
+            { q: "1. Evaluate log_9(27).", opts: { A: "3", B: "3/2", C: "2/3", D: "4/3" }, ans: "B", sol: "9^y = 27. Rewrite with base 3: (3²)^y = 3³. 3^(2y) = 3³. 2y = 3, so y = 3/2." },
+            { q: "2. If e^a = 5 and e^b = 2, what is ln(10) in terms of a and b?", opts: { A: "a * b", B: "a + b", C: "10ab", D: "e^(a+b)" }, ans: "B", sol: "Take the natural log of both given equations: a = ln(5) and b = ln(2). We want ln(10), which is ln(5 * 2). By log rules, ln(5 * 2) = ln(5) + ln(2) = a + b." },
+            { q: "3. Simplify 10^(log(5) + log(3)).", opts: { A: "8", B: "15", C: "125", D: "log(15)" }, ans: "B", sol: "Use the product rule in the exponent: log(5) + log(3) = log(15). The expression becomes 10^(log_10(15)). The base 10 and log_10 cancel, leaving 15." },
+            { q: "4. Solve for x: log_x(1/64) = -3.", opts: { A: "2", B: "4", C: "8", D: "1/4" }, ans: "B", sol: "Rewrite in exponential form: x⁻³ = 1/64. This means 1/x³ = 1/64, so x³ = 64. The cube root of 64 is 4." },
+            { q: "5. Why is log_2(-4) undefined?", opts: { A: "Because 2 is an even number", B: "Because there is no real exponent y such that 2^y = -4", C: "Because the base must be negative", D: "Because logs cannot have negative answers" }, ans: "B", sol: "A positive base raised to ANY real power will always produce a positive result. 2³ = 8, 2⁻³ = 1/8. It never crosses zero into negative numbers." }
+        ]
+    },
+
+    // ==========================================
+    // UNIT 2.10: Inverses of Exponential Functions
+    // ==========================================
+    "2_10_easy": {
+        title: "Unit 2.10: Easy Practice",
+        subtitle: "Focus: Swapping x and y to find log inverses.",
+        themeColor: "#27ae60",
+        questions: [
+            { q: "1. The inverse of the exponential function y = 10^x is:", opts: { A: "y = x^10", B: "y = log_10(x)", C: "y = ln(x)", D: "y = 10/x" }, ans: "B", sol: "The inverse of an exponential function base b is the logarithmic function base b. y = log_10(x), often just written as y = log(x)." },
+            { q: "2. The inverse of the natural exponential function y = e^x is:", opts: { A: "y = ln(x)", B: "y = x^e", C: "y = log_x(e)", D: "y = e^(-x)" }, ans: "A", sol: "The natural log (ln) is the logarithm with base 'e'. It is the perfect inverse of e^x." },
+            { q: "3. An exponential function f(x) has a horizontal asymptote at y = 0. What is the vertical asymptote of its inverse?", opts: { A: "y = 0", B: "x = 0", C: "No vertical asymptote", D: "x = 1" }, ans: "B", sol: "Inverses swap all x and y values. The horizontal asymptote y = 0 becomes the vertical asymptote x = 0 for the logarithmic inverse." },
+            { q: "4. If the point (3, 8) is on the graph of y = 2^x, what point is on the graph of y = log_2(x)?", opts: { A: "(-3, 1/8)", B: "(1/3, 1/8)", C: "(8, 3)", D: "(-8, -3)" }, ans: "C", sol: "The inverse function completely swaps the coordinates. (x, y) becomes (y, x), so (3, 8) becomes (8, 3)." },
+            { q: "5. Find the inverse of f(x) = 3^x + 4.", opts: { A: "f⁻¹(x) = log_3(x) + 4", B: "f⁻¹(x) = log_3(x - 4)", C: "f⁻¹(x) = log_3(x) - 4", D: "f⁻¹(x) = log_4(x - 3)" }, ans: "B", sol: "y = 3^x + 4. Swap: x = 3^y + 4. Subtract 4: x - 4 = 3^y. Convert to log form: y = log_3(x - 4)." }
+        ]
+    },
+    "2_10_med": {
+        title: "Unit 2.10: Medium Practice",
+        subtitle: "Focus: Multi-step algebraic inverses and domains.",
+        themeColor: "#f39c12",
+        questions: [
+            { q: "1. Find the inverse of g(x) = 5 * e^x.", opts: { A: "ln(x/5)", B: "ln(x) / 5", C: "5 * ln(x)", D: "ln(x - 5)" }, ans: "A", sol: "y = 5e^x. Swap: x = 5e^y. Divide by 5 first: x/5 = e^y. Take the natural log: y = ln(x/5)." },
+            { q: "2. The domain of f(x) = 2^x is all real numbers, and its range is y > 0. What is the domain of f⁻¹(x) = log_2(x)?", opts: { A: "All real numbers", B: "x ≥ 0", C: "x > 0", D: "x ≠ 0" }, ans: "C", sol: "The domain of the inverse is exactly the range of the original function. Since range was y > 0, the new domain is x > 0." },
+            { q: "3. Find the inverse of h(x) = 10^(x - 2).", opts: { A: "log(x) - 2", B: "log(x) + 2", C: "log(x + 2)", D: "log(x - 2)" }, ans: "B", sol: "y = 10^(x-2). Swap: x = 10^(y-2). Convert to log: log_10(x) = y - 2. Add 2: y = log(x) + 2." },
+            { q: "4. Find the inverse of y = ln(x) + 7.", opts: { A: "y = e^(x) + 7", B: "y = e^(x + 7)", C: "y = e^(x - 7)", D: "y = e^x - 7" }, ans: "C", sol: "Swap: x = ln(y) + 7. Subtract 7: x - 7 = ln(y). Convert to exponential form with base e: e^(x - 7) = y." },
+            { q: "5. Find the inverse of f(x) = log_4(3x).", opts: { A: "y = 4^x / 3", B: "y = 4^(x/3)", C: "y = (4^x) - 3", D: "y = 3 * 4^x" }, ans: "A", sol: "Swap: x = log_4(3y). Convert to exponential: 4^x = 3y. Divide by 3: y = 4^x / 3." }
+        ]
+    },
+    "2_10_hard": {
+        title: "Unit 2.10: Hard Practice",
+        subtitle: "Focus: Complex bases and logarithmic transformations.",
+        themeColor: "#e74c3c",
+        questions: [
+            { q: "1. Find the inverse of f(x) = 2 * 3^(x - 1) + 4.", opts: { A: "log_3((x - 4) / 2) + 1", B: "log_3(x/2) - 3", C: "(log_3(x - 4) + 1) / 2", D: "log_3((x - 4) / 2) - 1" }, ans: "A", sol: "Swap: x = 2 * 3^(y-1) + 4. Subtract 4: x - 4 = 2 * 3^(y-1). Divide by 2: (x - 4) / 2 = 3^(y-1). Take log base 3: log_3((x-4)/2) = y - 1. Add 1: y = log_3((x-4)/2) + 1." },
+            { q: "2. Let f(x) = ln(x - 2). What is the domain and range of f⁻¹(x)?", opts: { A: "Domain: All reals, Range: y > 2", B: "Domain: x > 2, Range: All reals", C: "Domain: x > 0, Range: y > 2", D: "Domain: All reals, Range: y > 0" }, ans: "A", sol: "Original domain: x - 2 > 0 -> x > 2. Original range of ln is all reals. For the inverse e^(x) + 2, swap them: Domain is all reals, Range is y > 2." },
+            { q: "3. Find the inverse of g(x) = e^(2x) - 5.", opts: { A: "ln(x + 5) / 2", B: "ln((x + 5) / 2)", C: "ln(x) / 2 + 5", D: "2ln(x + 5)" }, ans: "A", sol: "Swap: x = e^(2y) - 5. Add 5: x + 5 = e^(2y). Natural log: ln(x + 5) = 2y. Divide by 2: y = ln(x + 5) / 2." },
+            { q: "4. The inverse of f(x) = 10^(x) is plotted. It is then shifted 3 units left and 2 units down. What is the equation of the new graph?", opts: { A: "y = log(x - 3) - 2", B: "y = log(x + 3) - 2", C: "y = 10^(x + 3) - 2", D: "y = log(x - 2) + 3" }, ans: "B", sol: "The inverse is log(x). A shift 3 left adds 3 to the inside: log(x + 3). A shift 2 down subtracts 2 from the outside: log(x + 3) - 2." },
+            { q: "5. Find the inverse of y = log_5(x) + log_5(2).", opts: { A: "y = 5^(x) / 2", B: "y = 5^(x - 2)", C: "y = 5^x - 2", D: "y = 2 * 5^x" }, ans: "A", sol: "First, condense the original function using log product rule: y = log_5(2x). Swap: x = log_5(2y). Convert to exp: 5^x = 2y. Divide by 2: y = 5^x / 2." }
+        ]
+    },
+    "2_10_master": {
+        title: "Unit 2.10 Master Exam",
+        subtitle: "Inverse Graphical & Algebraic Proofs.",
+        themeColor: "#8e44ad",
+        questions: [
+            { q: "1. Prove algebraically that f(x) = ln(x - 4) and g(x) = e^x + 4 are inverses by composing f(g(x)).", opts: { A: "ln(e^x + 4) - 4", B: "ln(e^x + 4 - 4) = ln(e^x) = x", C: "e^(ln(x-4)) + 4 = x - 4 + 4 = x", D: "They are not inverses" }, ans: "B", sol: "Plug g(x) into f: f(e^x + 4) = ln((e^x + 4) - 4) = ln(e^x). Since ln and e cancel, the result is x, proving they are inverses." },
+            { q: "2. The y-intercept of an exponential function f(x) is (0, a). What is the x-intercept of its inverse f⁻¹(x)?", opts: { A: "(0, a)", B: "(a, 0)", C: "(1, 0)", D: "It does not have an x-intercept" }, ans: "B", sol: "Inverses perfectly swap all coordinates. The y-intercept (0, a) becomes the x-intercept (a, 0)." },
+            { q: "3. Given f(x) = 10^(3x - 1). Evaluate f⁻¹(100).", opts: { A: "1", B: "2", C: "3", D: "100" }, ans: "A", sol: "This asks 'what x-value produces a y-value of 100 in the original function?' Set 10^(3x - 1) = 100. Since 100 = 10², 3x - 1 = 2. 3x = 3. x = 1." },
+            { q: "4. Let f(x) = -ln(x). Describe the graph of its inverse.", opts: { A: "Exponential decay, passing through (0, 1)", B: "Exponential growth, passing through (0, -1)", C: "Logarithmic decay, passing through (1, 0)", D: "Exponential growth, passing through (0, 1)" }, ans: "A", sol: "Swap: x = -ln(y). Multiply by -1: -x = ln(y). Exponentiate: e^(-x) = y. The graph of y = e^(-x) is exponential decay, and e^0 = 1, so it passes through (0, 1)." },
+            { q: "5. Find the inverse of y = (e^x - e^(-x)) / 2. (Hint: this is sinh(x)).", opts: { A: "y = ln(x + √(x² + 1))", B: "y = ln(x - √(x² - 1))", C: "y = 2ln(x)", D: "Algebraically impossible in standard terms" }, ans: "A", sol: "Swap: x = (e^y - e^(-y)) / 2. 2x = e^y - 1/e^y. Multiply by e^y: 2xe^y = e^(2y) - 1. Let u = e^y. u² - 2xu - 1 = 0. Use quadratic formula for u: u = (2x + √(4x² + 4))/2 = x + √(x² + 1). Since u = e^y, y = ln(x + √(x² + 1))." }
+        ]
+    },
+
+    // ==========================================
+    // UNIT 2.11: Logarithmic Functions
+    // ==========================================
+    "2_11_easy": {
+        title: "Unit 2.11: Easy Practice",
+        subtitle: "Focus: Domain and vertical asymptotes of log graphs.",
+        themeColor: "#27ae60",
+        questions: [
+            { q: "1. What is the standard domain of the parent logarithmic function f(x) = log_b(x)?", opts: { A: "All real numbers", B: "x ≥ 0", C: "x > 0", D: "x ≠ 0" }, ans: "C", sol: "You cannot take the logarithm of zero or a negative number. The argument must be strictly positive, so x > 0." },
+            { q: "2. The graph of y = log(x) has a vertical asymptote at:", opts: { A: "y = 0", B: "x = 1", C: "x = 0", D: "It has no asymptote" }, ans: "C", sol: "The y-axis acts as a barrier. The graph swoops down infinitely close to x = 0 but never touches it." },
+            { q: "3. What is the x-intercept of the parent function f(x) = ln(x)?", opts: { A: "(0, 1)", B: "(1, 0)", C: "(e, 0)", D: "It does not cross the x-axis" }, ans: "B", sol: "Set y to 0: 0 = ln(x). Convert to exp: e^0 = x. Since anything to the 0 power is 1, x = 1. The intercept is (1, 0)." },
+            { q: "4. As x increases toward infinity, what happens to the graph of y = log_2(x)?", opts: { A: "It approaches a horizontal asymptote.", B: "It curves back down.", C: "It grows to infinity, but at a decreasing rate.", D: "It grows to infinity at an increasing rate." }, ans: "C", sol: "Log graphs grow forever (no horizontal asymptote), but they flatten out over time, meaning they grow slower and slower (concave down)." },
+            { q: "5. Find the vertical asymptote of g(x) = log_5(x - 4).", opts: { A: "x = 0", B: "x = -4", C: "x = 4", D: "y = -4" }, ans: "C", sol: "Set the argument inside the log equal to zero. x - 4 = 0, so the vertical asymptote shifted to x = 4." }
+        ]
+    },
+    "2_11_med": {
+        title: "Unit 2.11: Medium Practice",
+        subtitle: "Focus: Transformations and concavity.",
+        themeColor: "#f39c12",
+        questions: [
+            { q: "1. What is the domain of h(x) = ln(2x + 10)?", opts: { A: "x > 0", B: "x > -5", C: "x ≥ -5", D: "x > 5" }, ans: "B", sol: "The argument must be strictly positive: 2x + 10 > 0. Subtract 10: 2x > -10. Divide by 2: x > -5." },
+            { q: "2. Describe the transformations from y = log(x) to y = -log(x + 2).", opts: { A: "Shift right 2, reflect over y-axis", B: "Shift left 2, reflect over x-axis", C: "Shift down 2, reflect over x-axis", D: "Shift left 2, reflect over y-axis" }, ans: "B", sol: "The +2 is inside, so it shifts LEFT 2. The negative is on the outside, so it reflects over the horizontal x-axis." },
+            { q: "3. What is the concavity of f(x) = ln(x) for x > 0?", opts: { A: "Concave up", B: "Concave down", C: "Linear", D: "Changes at x = 1" }, ans: "B", sol: "A standard log function is strictly increasing, but its slopes get flatter and flatter. Increasing at a decreasing rate defines concave down." },
+            { q: "4. Evaluate the limit of f(x) = log_3(x) as x approaches 0 from the right.", opts: { A: "0", B: "1", C: "Infinity", D: "Negative Infinity" }, ans: "D", sol: "As the x-values get infinitesimally close to 0 (like 0.0001), the power required on base 3 to reach that tiny fraction becomes infinitely negative." },
+            { q: "5. Find the x-intercept of y = log(x + 9) - 1. (Assume base 10)", opts: { A: "(1, 0)", B: "(0, 0)", C: "(-9, 0)", D: "(-8, 0)" }, ans: "A", sol: "Set y to 0: 0 = log(x + 9) - 1. Add 1: 1 = log(x + 9). Convert to exp: 10¹ = x + 9. 10 = x + 9, so x = 1." }
+        ]
+    },
+    "2_11_hard": {
+        title: "Unit 2.11: Hard Practice",
+        subtitle: "Focus: Complex domains, reflection analysis, and limit end-behavior.",
+        themeColor: "#e74c3c",
+        questions: [
+            { q: "1. What is the domain of f(x) = log(16 - x²)?", opts: { A: "x < 4", B: "-4 < x < 4", C: "x > 4 or x < -4", D: "All real numbers" }, ans: "B", sol: "The argument must be positive: 16 - x² > 0. This means x² < 16. The values that square to less than 16 are bounded between -4 and 4." },
+            { q: "2. Let g(x) = ln(-x). Describe the graph compared to y = ln(x).", opts: { A: "Reflected over x-axis, domain x < 0", B: "Reflected over y-axis, domain x < 0", C: "Reflected over y-axis, domain x > 0", D: "It does not exist" }, ans: "B", sol: "The negative is INSIDE the function, which causes a horizontal reflection across the y-axis. For the log to be valid, the argument -x must be positive, which means x itself must be negative (x < 0)." },
+            { q: "3. Find the vertical asymptote and domain of h(x) = log_2(3 - x).", opts: { A: "VA: x = 3, Domain: x > 3", B: "VA: x = -3, Domain: x < -3", C: "VA: x = 3, Domain: x < 3", D: "VA: x = 3, Domain: All reals" }, ans: "C", sol: "Set argument to zero: 3 - x = 0 -> x = 3 (This is the VA). Set argument > 0 for domain: 3 - x > 0 -> 3 > x, which is x < 3." },
+            { q: "4. Which of the following limits correctly describes f(x) = ln(x - 5)?", opts: { A: "As x -> infinity, f(x) -> 0", B: "As x -> 5 from the right, f(x) -> Negative Infinity", C: "As x -> 5 from the left, f(x) -> Negative Infinity", D: "As x -> 0, f(x) -> Negative Infinity" }, ans: "B", sol: "The vertical asymptote is at x = 5. Because the domain is x > 5, the graph only exists to the right of 5. As you get infinitely close to 5 from the right side, the log plunges to negative infinity." },
+            { q: "5. Find the y-intercept of f(x) = -2 * log_4(16 - x).", opts: { A: "-4", B: "-2", C: "0", D: "No y-intercept" }, ans: "A", sol: "Set x to 0: y = -2 * log_4(16). Since 4² = 16, log_4(16) is 2. y = -2 * (2) = -4." }
+        ]
+    },
+    "2_11_master": {
+        title: "Unit 2.11 Master Exam",
+        subtitle: "Logarithmic Functions Synthesis.",
+        themeColor: "#8e44ad",
+        questions: [
+            { q: "1. The function f(x) = a * ln(x - h) + k has a vertical asymptote at x = -2 and passes through (-1, 5). If a=3, find the function.", opts: { A: "f(x) = 3ln(x - 2) + 5", B: "f(x) = 3ln(x + 2) + 5", C: "f(x) = 3ln(x + 2) - 5", D: "f(x) = 5ln(x + 2) + 3" }, ans: "B", sol: "VA at -2 means the argument must be (x + 2), so h = -2. f(x) = 3ln(x + 2) + k. Plug in (-1, 5): 5 = 3ln(-1 + 2) + k -> 5 = 3ln(1) + k. Since ln(1) = 0, k = 5." },
+            { q: "2. Compare f(x) = ln(x²) and g(x) = 2ln(x). Are these identical functions?", opts: { A: "Yes, by the log power rule.", B: "No, f(x) has a domain of x ≠ 0, while g(x) has a domain of x > 0.", C: "No, g(x) is twice as steep.", D: "Yes, but they have different y-intercepts." }, ans: "B", sol: "While log rules say ln(x²) = 2ln(x), you MUST respect original domains. In f(x), squaring x makes it positive, so you can plug in negative x-values (like -3). In g(x), you cannot. Therefore, f(x) has two branches, while g(x) only has one." },
+            { q: "3. What is the concavity of y = -log_2(x)?", opts: { A: "Concave up", B: "Concave down", C: "Linear", D: "Changes concavity" }, ans: "A", sol: "The parent log function is concave down (bending downward). Multiplying the outside by a negative reflects the graph over the x-axis, flipping the downward bend into an upward curve. It becomes decreasing and concave up." },
+            { q: "4. Let h(x) = log(x) / log(x). What does the graph look like?", opts: { A: "A horizontal line y = 1 for all reals.", B: "A horizontal line y = 1 for x > 0.", C: "A horizontal line y = 1 for x > 0, with a hole at x = 1.", D: "A straight diagonal line y = x." }, ans: "C", sol: "A value divided by itself is 1. However, domain is restricted by the logs: x > 0. Furthermore, you cannot divide by 0. log(x) = 0 when x = 1. Therefore, x cannot be 1. It is a line at y=1 with a hole at (1, 1)." },
+            { q: "5. As x approaches infinity, what is the limit of (ln(x) / x)?", opts: { A: "Infinity", B: "1", C: "0", D: "Negative Infinity" }, ans: "C", sol: "While both ln(x) and x grow to infinity, linear growth (x) is infinitely faster than logarithmic growth (ln(x)). Therefore, the denominator dominates, pulling the fraction to 0." }
+        ]
     }
 };
