@@ -16,7 +16,7 @@
         #admin-logout-btn:hover { background: var(--accent); border-color: var(--accent); }
 
         /* Container */
-        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+        .container { max-width: 1400px; margin: 40px auto; padding: 0 20px; }
         
         /* Cards */
         .card { background: var(--card); padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 30px; border-top: 4px solid var(--primary); }
@@ -36,10 +36,14 @@
 
         /* Table Styling */
         .table-wrapper { overflow-x: auto; margin-top: 20px; border-radius: 8px; border: 1px solid #e0e0e0; }
-        table { width: 100%; border-collapse: collapse; min-width: 800px; background: white; }
-        th, td { border-bottom: 1px solid #eee; border-right: 1px solid #eee; padding: 15px; text-align: left; }
+        table { width: 100%; border-collapse: collapse; min-width: 1000px; background: white; }
+        th, td { border-bottom: 1px solid #eee; border-right: 1px solid #eee; padding: 15px; text-align: left; vertical-align: top; }
         th { background-color: #f8f9fa; color: var(--primary); font-weight: bold; border-bottom: 2px solid #ddd; white-space: nowrap; }
         tr:hover { background-color: #f9fbfd; }
+        
+        /* Remove Button */
+        .btn-remove { background-color: #e74c3c; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-size: 13px; font-weight: bold; transition: 0.3s; width: 100%; }
+        .btn-remove:hover { background-color: #c0392b; }
         
         h3 { margin-top: 0; color: var(--primary); }
     </style>
