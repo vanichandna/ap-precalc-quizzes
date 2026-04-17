@@ -1,7 +1,7 @@
 // admin.js
 
 import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
-import { collection, doc, setDoc, getDocs, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+import { collection, doc, setDoc, getDocs, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 import { auth, db } from './firebase-config.js';
 
 // --- AP PRECALC CURRICULUM DEFINITION ---
@@ -41,10 +41,11 @@ onAuthStateChanged(auth, (user) => {
         loginSection.style.display = "none";
         dashboardSection.style.display = "block";
         
-        // Dynamically update table headers to match curriculum
+        // Dynamically update table headers to match curriculum & add Actions column
         const thead = document.querySelector('thead tr');
         thead.innerHTML = `<th>Student Email</th>`;
         for(let u in curriculum) thead.innerHTML += `<th>Unit ${u} Access</th>`;
+        thead.innerHTML += `<th style="text-align: center;">Actions</th>`;
         
         loadStudents(); 
     } else {
@@ -64,7 +65,7 @@ addBtn.addEventListener('click', async () => {
     addBtn.innerText = "Adding...";
     addBtn.disabled = true;
 
-    // Generate blank access and scores for every single unit AND the Final Exams
+    // Generate blank access and scores
     let newAccess = {};
     let newScores = {};
     for (let unit in curriculum) {
@@ -72,7 +73,6 @@ addBtn.addEventListener('click', async () => {
             newAccess[`unit${unit}_${sub}`] = false;
             newScores[`unit${unit}_${sub}`] = 0;
         }
-        // Add database slots for the Grand Final Exams
         newAccess[`unit${unit}_final`] = false;
         newScores[`unit${unit}_final`] = 0;
     }
@@ -97,7 +97,7 @@ addBtn.addEventListener('click', async () => {
 
 // Load Students into Table
 async function loadStudents() {
-    tableBody.innerHTML = `<tr><td colspan="${Object.keys(curriculum).length + 1}">Loading...</td></tr>`;
+    tableBody.innerHTML = `<tr><td colspan="${Object.keys(curriculum).length + 2}">Loading...</td></tr>`;
     
     try {
         const querySnapshot = await getDocs(collection(db, "users"));
@@ -107,65 +107,181 @@ async function loadStudents() {
             const student = docSnapshot.data();
             const row = document.createElement('tr');
 
-            let rowHTML = `<td><strong>${student.email}</strong></td>`;
-            
+            let studentTotalTopics = 0;
+            let studentCompletedTopics = 0;
+            let columnsHTML = "";
+
             // Loop through each Main Unit to create a column
             for (let unit in curriculum) {
-                rowHTML += `<td style="min-width: 150px;">
-                                <div style="display:flex; flex-wrap:wrap; gap:8px;">`;
+                let unitTotal = 0;
+                let unitCompleted = 0;
                 
-                // Loop through sub-units to create checkboxes
+                let subHTML = `<div style="display:flex; flex-wrap:wrap; gap:8px;">`;
+                
+                // Loop through sub-topics
                 for (let sub = 1; sub <= curriculum[unit]; sub++) {
                     const unitKey = `unit${unit}_${sub}`;
-                    const hasAccess = student.access && student.access[unitKey] ? 'checked' : ''; 
+                    const hasAccess = student.access && student.access[unitKey]; 
                     
-                    rowHTML += `
+                    unitTotal++; studentTotalTopics++;
+                    if (hasAccess) { unitCompleted++; studentCompletedTopics++; }
+                    
+                    subHTML += `
                         <label style="font-size: 12px; background: #eee; padding: 2px 5px; border-radius: 4px; cursor: pointer;">
-                            <input type="checkbox" class="access-toggle" data-email="${student.email}" data-unit="${unitKey}" ${hasAccess}> 
+                            <input type="checkbox" class="access-toggle" data-email="${student.email}" data-unit="${unitKey}" ${hasAccess ? 'checked' : ''}> 
                             ${unit}.${sub}
                         </label>
                     `;
                 }
                 
-                // --- NEW: Add the Grand Final Exam Checkbox at the bottom of each column ---
+                // Final Exam logic
                 const finalKey = `unit${unit}_final`;
-                const hasFinalAccess = student.access && student.access[finalKey] ? 'checked' : '';
-                rowHTML += `
+                const hasFinalAccess = student.access && student.access[finalKey];
+                unitTotal++; studentTotalTopics++;
+                if (hasFinalAccess) { unitCompleted++; studentCompletedTopics++; }
+
+                subHTML += `
                         <div style="width: 100%; margin-top: 8px; border-top: 1px solid #ddd; padding-top: 8px;">
                             <label style="font-size: 12px; background: #f1c40f; color: #000; padding: 4px 6px; border-radius: 4px; cursor: pointer; font-weight: bold; border: 1px solid #d4ac0d; display: inline-block;">
-                                <input type="checkbox" class="access-toggle" data-email="${student.email}" data-unit="${finalKey}" ${hasFinalAccess}> 
+                                <input type="checkbox" class="access-toggle" data-email="${student.email}" data-unit="${finalKey}" ${hasFinalAccess ? 'checked' : ''}> 
                                 👑 Unit ${unit} Final Exam
                             </label>
                         </div>
-                    </div></td>`;
+                    </div>`;
+
+                // Unit Level "Select All" Checkbox
+                const unitAllChecked = (unitTotal === unitCompleted && unitTotal > 0) ? 'checked' : '';
+                
+                columnsHTML += `<td style="min-width: 175px;">
+                    <div style="margin-bottom: 12px; border-bottom: 2px solid #ddd; padding-bottom: 8px;">
+                        <label style="font-size: 13px; font-weight: bold; cursor: pointer; color: #2980b9;">
+                            <input type="checkbox" class="toggle-unit" data-email="${student.email}" data-unit="${unit}" ${unitAllChecked}> 
+                            Select All Unit ${unit}
+                        </label>
+                    </div>
+                    ${subHTML}
+                </td>`;
             }
+
+            // Student Level "Select All" Checkbox
+            const studentAllChecked = (studentTotalTopics === studentCompletedTopics && studentTotalTopics > 0) ? 'checked' : '';
+
+            let rowHTML = `
+                <td>
+                    <strong>${student.email}</strong>
+                    <div style="margin-top: 15px;">
+                        <label style="font-size: 13px; font-weight: bold; cursor: pointer; color: #27ae60; background: #eafaf1; padding: 5px 8px; border-radius: 5px; border: 1px solid #27ae60; display: inline-block;">
+                            <input type="checkbox" class="toggle-all-student" data-email="${student.email}" ${studentAllChecked}>
+                            Unlock ALL Curriculum
+                        </label>
+                    </div>
+                </td>
+                ${columnsHTML}
+                <td style="text-align: center;">
+                    <button class="btn-remove" data-email="${student.email}">🗑️ Remove User</button>
+                </td>
+            `;
 
             row.innerHTML = rowHTML;
             tableBody.appendChild(row);
         });
 
-        document.querySelectorAll('.access-toggle').forEach(checkbox => {
-            checkbox.addEventListener('change', handleAccessToggle);
-        });
+        attachEventListeners();
+
     } catch(e) {
-        tableBody.innerHTML = `<tr><td colspan="${Object.keys(curriculum).length + 1}" style='color:red;'>Failed to load students.</td></tr>`;
+        tableBody.innerHTML = `<tr><td colspan="${Object.keys(curriculum).length + 2}" style='color:red;'>Failed to load students.</td></tr>`;
         console.error(e);
     }
 }
 
-// Update Access Checkboxes
-async function handleAccessToggle(event) {
-    const email = event.target.getAttribute('data-email');
-    const unit = event.target.getAttribute('data-unit');
-    const isChecked = event.target.checked;
-
-    try {
-        const studentRef = doc(db, "users", email);
-        await updateDoc(studentRef, {
-            [`access.${unit}`]: isChecked
+// Attach all interactive event listeners
+function attachEventListeners() {
+    
+    // 1. Single Topic Toggle
+    document.querySelectorAll('.access-toggle').forEach(checkbox => {
+        checkbox.addEventListener('change', async (e) => {
+            const email = e.target.getAttribute('data-email');
+            const unit = e.target.getAttribute('data-unit');
+            const isChecked = e.target.checked;
+            try {
+                await updateDoc(doc(db, "users", email), { [`access.${unit}`]: isChecked });
+            } catch (err) {
+                alert("Error updating access!");
+                e.target.checked = !isChecked;
+            }
         });
-    } catch (e) {
-        alert("Error updating access!");
-        event.target.checked = !isChecked;
-    }
+    });
+
+    // 2. Unit "Select All" Toggle
+    document.querySelectorAll('.toggle-unit').forEach(box => {
+        box.addEventListener('change', async (e) => {
+            const email = e.target.getAttribute('data-email');
+            const unitNum = e.target.getAttribute('data-unit');
+            const isChecked = e.target.checked;
+            
+            // Visually check/uncheck the boxes instantly for good UI
+            const checkboxes = document.querySelectorAll(`.access-toggle[data-email="${email}"][data-unit^="unit${unitNum}_"]`);
+            let updates = {};
+            checkboxes.forEach(cb => {
+                cb.checked = isChecked;
+                updates[`access.${cb.getAttribute('data-unit')}`] = isChecked;
+            });
+
+            // Batch send to Firebase
+            try {
+                await updateDoc(doc(db, "users", email), updates);
+            } catch (err) {
+                alert("Error updating unit access!");
+                loadStudents(); // Revert visual changes on failure
+            }
+        });
+    });
+
+    // 3. Master "Unlock ALL" Toggle
+    document.querySelectorAll('.toggle-all-student').forEach(box => {
+        box.addEventListener('change', async (e) => {
+            const email = e.target.getAttribute('data-email');
+            const isChecked = e.target.checked;
+
+            // Grab literally every checkbox for this student
+            const checkboxes = document.querySelectorAll(`.access-toggle[data-email="${email}"]`);
+            const unitBoxes = document.querySelectorAll(`.toggle-unit[data-email="${email}"]`);
+            
+            let updates = {};
+            checkboxes.forEach(cb => {
+                cb.checked = isChecked;
+                updates[`access.${cb.getAttribute('data-unit')}`] = isChecked;
+            });
+            unitBoxes.forEach(cb => cb.checked = isChecked);
+
+            try {
+                await updateDoc(doc(db, "users", email), updates);
+            } catch (err) {
+                alert("Error updating all access!");
+                loadStudents();
+            }
+        });
+    });
+
+    // 4. Remove Student Button
+    document.querySelectorAll('.btn-remove').forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+            const email = e.target.getAttribute('data-email');
+            
+            // Confirmation prompt to prevent accidental deletions
+            if(confirm(`WARNING: Are you sure you want to permanently delete ${email}?\n\nThis will revoke all access and erase all of their quiz scores.`)) {
+                e.target.innerText = "Deleting...";
+                e.target.disabled = true;
+                
+                try {
+                    await deleteDoc(doc(db, "users", email));
+                    loadStudents(); // Refresh the table
+                } catch(err) {
+                    alert("Error removing student. Please check your connection.");
+                    e.target.innerText = "🗑️ Remove User";
+                    e.target.disabled = false;
+                }
+            }
+        });
+    });
 }
