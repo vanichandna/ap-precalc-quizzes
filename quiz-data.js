@@ -1008,5 +1008,160 @@ export const masterCurriculum = {
             { q: "4. An isotope decays such that 1/8 of the original amount remains after 30 days. What is the half-life?", opts: { A: "10 days", B: "15 days", C: "3.75 days", D: "240 days" }, ans: "A", sol: "1/8 remaining means it has gone through 3 half-lives (1/2 * 1/2 * 1/2 = 1/8). If 3 half-lives take 30 days, one half-life is 30 / 3 = 10 days." },
             { q: "5. Compare A(t) = 1000(1 + 0.05/12)^(12t) and B(t) = 1000e^(0.05t). Which limit is true?", opts: { A: "As n approaches infinity, the discrete formula A(t) approaches B(t).", B: "As t approaches infinity, A(t) and B(t) converge to the same value.", C: "B(t) will eventually approach 0.", D: "A(t) will eventually surpass B(t)." }, ans: "A", sol: "This is the definition of 'e'. As the number of compounding periods 'n' approaches infinity, the discrete compound interest formula fundamentally transforms into the continuous formula (PERT)." }
         ]
+    },
+    // ==========================================
+    // UNIT 2.6: Competing Function Model Validation
+    // ==========================================
+    "2_6_easy": {
+        title: "Unit 2.6: Easy Practice",
+        subtitle: "Focus: Choosing between linear, quadratic, and exponential models.",
+        themeColor: "#27ae60",
+        questions: [
+            { q: "1. A scatterplot of data shows a pattern that increases, reaches a distinct peak, and then decreases. The most appropriate model is:", opts: { A: "Linear", B: "Exponential", C: "Quadratic", D: "Logarithmic" }, ans: "C", sol: "A peak (maximum) followed by a decrease is the defining characteristic of a downward-opening parabola, which is a quadratic model." },
+            { q: "2. If the first differences of a dataset's y-values (over equal x-intervals) are constant, the data is perfectly modeled by a:", opts: { A: "Linear function", B: "Quadratic function", C: "Cubic function", D: "Exponential function" }, ans: "A", sol: "Constant first differences mean the rate of change is constant, which defines a linear function." },
+            { q: "3. If the ratio of consecutive y-values (y_2 / y_1) over equal x-intervals is constant, the data is perfectly modeled by an:", opts: { A: "Linear function", B: "Quadratic function", C: "Exponential function", D: "Rational function" }, ans: "C", sol: "A constant ratio means you are multiplying by the same factor every step. This is exponential growth or decay." },
+            { q: "4. A residual plot for a linear model shows a distinct 'U' shape. What does this mean?", opts: { A: "The linear model is a great fit.", B: "The linear model is inappropriate; a non-linear model is needed.", C: "The data has no correlation.", D: "The correlation coefficient is exactly 1." }, ans: "B", sol: "Residuals should be randomly scattered. A distinct pattern (like a curve or U-shape) means the linear model failed to capture an underlying non-linear trend." },
+            { q: "5. Over a 10-year period, a population grows by roughly 4% each year. The best model is:", opts: { A: "Linear", B: "Quadratic", C: "Exponential", D: "Rational" }, ans: "C", sol: "A constant percentage growth rate translates to a constant multiplier (1.04), which is exponential." }
+        ]
+    },
+    "2_6_med": {
+        title: "Unit 2.6: Medium Practice",
+        subtitle: "Focus: Analyzing tables and comparing average rates of change.",
+        themeColor: "#f39c12",
+        questions: [
+            { q: "1. Data points: (1, 5), (2, 10), (3, 20), (4, 40). Which model fits best?", opts: { A: "Linear, because y increases as x increases", B: "Quadratic, because the differences are changing", C: "Exponential, because the ratio of consecutive y-values is a constant 2", D: "Linear, because x increases by a constant 1" }, ans: "C", sol: "Check ratios: 10/5 = 2. 20/10 = 2. 40/20 = 2. The constant multiplicative ratio confirms it is an exponential model." },
+            { q: "2. Function f(x) is linear and g(x) is exponential growth. If f(0) = g(0) and f(5) = g(5), how do the values compare at x = 3?", opts: { A: "f(3) = g(3)", B: "f(3) > g(3)", C: "f(3) < g(3)", D: "Cannot be determined" }, ans: "B", sol: "Between two intersection points, an exponential growth curve 'sags' below the straight secant line connecting them before shooting upward. Therefore, the linear function f(x) is higher at x=3." },
+            { q: "3. You are choosing between a linear and quadratic model. The 2nd differences of the data are roughly constant but not exactly. The residual plot for the quadratic model is random scatter. Conclusion?", opts: { A: "Use linear, because data is never perfectly quadratic.", B: "Use quadratic, because random scatter in residuals indicates a good fit.", C: "Use neither, find a cubic model.", D: "The quadratic model is broken." }, ans: "B", sol: "Real-world data is rarely perfect. Roughly constant 2nd differences suggest a quadratic trend, and randomly scattered residuals confirm the quadratic model captured the underlying pattern well." },
+            { q: "4. Which of the following justifies choosing an exponential decay model over a linear model with a negative slope?", opts: { A: "The data eventually crosses the x-axis and becomes negative.", B: "The data approaches a horizontal asymptote of y = 0.", C: "The data decreases at a constant rate.", D: "The data has constant first differences." }, ans: "B", sol: "Linear models will plunge through the x-axis into negative values. Exponential decay models approach a horizontal asymptote (usually y=0), making them better for data that cannot be negative (like mass or population)." },
+            { q: "5. A dataset has x-values {0, 2, 4} and y-values {10, 16, 26}. The average rate of change on [0,2] is 3. On [2,4] it is 5. Can this be linear?", opts: { A: "Yes, because x increases by 2", B: "Yes, because the rates are positive", C: "No, because the average rates of change are not constant", D: "No, because the y-values don't double" }, ans: "C", sol: "Linear functions MUST have a constant average rate of change over equal intervals. Since 3 does not equal 5, it cannot be linear." }
+        ]
+    },
+    "2_6_hard": {
+        title: "Unit 2.6: Hard Practice",
+        subtitle: "Focus: Long-term behavior and mathematical limits of models.",
+        themeColor: "#e74c3c",
+        questions: [
+            { q: "1. A company models its profit using a quadratic function P(t) = at² + bt + c, where a > 0. Why is this a dangerous model for long-term forecasting?", opts: { A: "Profit will eventually hit zero.", B: "Profit is predicted to grow at an increasing rate forever, approaching infinity.", C: "The model will eventually predict negative time.", D: "Quadratic models cannot have positive y-intercepts." }, ans: "B", sol: "An upward-opening parabola (a > 0) grows infinitely steeper. In reality, market constraints prevent infinite accelerating growth, making the model eventually unrealistic." },
+            { q: "2. Data for a cooling cup of coffee is recorded. The temperature drops quickly at first, then slowly levels off at 70 degrees (room temperature). Why does an exponential model like y = ab^x fail here?", opts: { A: "Coffee cooling is linear.", B: "Standard exponential models y=ab^x approach an asymptote of y=0, not y=70.", C: "Exponential models cannot decrease.", D: "The data requires a quadratic model." }, ans: "B", sol: "A standard exponential function y=ab^x decays to 0. To model this, the function must be shifted vertically: y = ab^x + 70. (Newton's Law of Cooling)." },
+            { q: "3. Function A is a polynomial of degree 5. Function B is an exponential growth function. As x approaches infinity, which function dominates?", opts: { A: "Function A", B: "Function B", C: "They grow at the same rate", D: "It depends on the leading coefficient of A" }, ans: "B", sol: "A fundamental rule of precalculus: Exponential growth (base > 1) will always eventually surpass ANY polynomial growth, regardless of the polynomial's degree or coefficients." },
+            { q: "4. You calculate the ratio of consecutive y-values for a dataset and find them to be: 1.5, 1.48, 1.52, 1.49. The residuals for an exponential model are randomly scattered. What is the most likely true growth rate?", opts: { A: "50%", B: "150%", C: "1.5%", D: "4.8%" }, ans: "A", sol: "The ratios are fluctuating slightly around 1.5 due to real-world noise. A multiplier of 1.5 represents 100% + 50%, meaning a roughly 50% growth rate." },
+            { q: "5. A model M(t) is proposed for a population. If the data shows the population fluctuates up and down periodically every year, which model is most appropriate?", opts: { A: "Quadratic", B: "Exponential", C: "Linear", D: "None of these (requires trigonometric)" }, ans: "D", sol: "Linear, quadratic, and exponential functions cannot model periodic, repeating up-and-down fluctuations. This requires sine/cosine models." }
+        ]
+    },
+    "2_6_master": {
+        title: "Unit 2.6 Master Exam",
+        subtitle: "Rigorous Model Validation & Validation.",
+        themeColor: "#8e44ad",
+        questions: [
+            { q: "1. The AROC of data set D is calculated over equal intervals. The differences between these AROCs are constant and non-zero. What model perfectly fits D?", opts: { A: "Linear", B: "Quadratic", C: "Cubic", D: "Exponential" }, ans: "B", sol: "The AROCs are the first differences. The differences between the AROCs are the second differences. Constant second differences define a quadratic function." },
+            { q: "2. Two models are fit to the same dataset: y_1 = 3x + 5 and y_2 = 2(1.5)^x. At x=10, the actual data value is 115. Which model has the smaller residual magnitude at x=10?", opts: { A: "y_1", B: "y_2", C: "They are equal", D: "Cannot be calculated" }, ans: "B", sol: "y_1(10) = 35. Residual = 115 - 35 = 80. y_2(10) = 2(1.5)^10 ≈ 2(57.66) ≈ 115.3. Residual = 115 - 115.3 = -0.3. The magnitude of y_2's residual is 0.3, which is much smaller." },
+            { q: "3. A dataset records the height of a bouncing ball. Why is a single quadratic function inappropriate for the entire dataset over time?", opts: { A: "Gravity acts linearly.", B: "A single quadratic only has one peak; a bouncing ball has multiple peaks.", C: "The height decays exponentially.", D: "The ball's mass changes." }, ans: "B", sol: "A single parabola goes up once and comes down once. A bouncing ball creates a sequence of smaller and smaller parabolic arches, requiring a piecewise or damped trigonometric model." },
+            { q: "4. You log-transform the y-values of an exponential dataset (plotting x against ln(y)). What shape will the resulting graph have?", opts: { A: "A parabola", B: "An exponential curve", C: "A straight line", D: "A horizontal line" }, ans: "C", sol: "If y = ab^x, then ln(y) = ln(ab^x) = ln(a) + x*ln(b). This is in the form Y = B + xM, which is the equation of a straight line! Log-transforming exponential data linearizes it." },
+            { q: "5. A dataset has points (1, 4), (2, 8), (3, 16). You try to fit a quadratic model y = ax² + bx + c. What will the residual plot likely show?", opts: { A: "Random scatter", B: "A distinct pattern (curve)", C: "All residuals exactly zero", D: "A straight line of residuals" }, ans: "B", sol: "The data is perfectly exponential (multiplying by 2). Forcing a quadratic model onto exponential data will result in a systematic lack of fit, creating a clear curved pattern in the residual plot." }
+        ]
+    },
+
+    // ==========================================
+    // UNIT 2.7: Composition of Functions
+    // ==========================================
+    "2_7_easy": {
+        title: "Unit 2.7: Easy Practice",
+        subtitle: "Focus: Evaluating composite functions numerically.",
+        themeColor: "#27ae60",
+        questions: [
+            { q: "1. If f(x) = 2x + 3 and g(x) = x², find f(g(4)).", opts: { A: "43", B: "121", C: "35", D: "24" }, ans: "C", sol: "Work inside out. First, find g(4): 4² = 16. Next, plug that result into f(x): f(16) = 2(16) + 3 = 32 + 3 = 35." },
+            { q: "2. If h(x) = 5x and k(x) = x - 2, what is k(h(10))?", opts: { A: "48", B: "50", C: "40", D: "38" }, ans: "A", sol: "Inside out: h(10) = 5(10) = 50. Now plug 50 into k: k(50) = 50 - 2 = 48." },
+            { q: "3. What is the standard notation for 'f composed with g of x'?", opts: { A: "f(x) * g(x)", B: "f(g(x))", C: "g(f(x))", D: "f(x) + g(x)" }, ans: "B", sol: "Composition means placing one function inside the other as its input. 'f composed with g' means f is on the outside, g is on the inside: f(g(x)), sometimes written as (f ∘ g)(x)." },
+            { q: "4. Let f(x) = 3x. Find f(f(2)).", opts: { A: "6", B: "12", C: "18", D: "36" }, ans: "C", sol: "Inside f(2) = 3(2) = 6. Now plug 6 back into f: f(6) = 3(6) = 18." },
+            { q: "5. Using a table: If g(2) = 5, and f(5) = -1, what is f(g(2))?", opts: { A: "2", B: "5", C: "-1", D: "Cannot determine" }, ans: "C", sol: "Replace g(2) with its value from the table (5). The expression becomes f(5). The table says f(5) = -1." }
+        ]
+    },
+    "2_7_med": {
+        title: "Unit 2.7: Medium Practice",
+        subtitle: "Focus: Algebraic composition and simplifying expressions.",
+        themeColor: "#f39c12",
+        questions: [
+            { q: "1. Let f(x) = x² - 1 and g(x) = 3x. Find the algebraic expression for f(g(x)).", opts: { A: "3x² - 1", B: "3x² - 3", C: "9x² - 1", D: "9x² - 9" }, ans: "C", sol: "Substitute g(x) into every 'x' in f(x): f(3x) = (3x)² - 1. Square the entire 3x term: 9x² - 1." },
+            { q: "2. Let f(x) = 2x + 5 and g(x) = x - 4. Find g(f(x)).", opts: { A: "2x + 1", B: "2x - 3", C: "2x + 9", D: "2x - 8" }, ans: "A", sol: "Substitute f(x) into g: g(2x + 5) = (2x + 5) - 4 = 2x + 1." },
+            { q: "3. If h(x) = √(x) and k(x) = x + 7, what is the domain of h(k(x))?", opts: { A: "x ≥ 0", B: "x ≥ -7", C: "x > -7", D: "All real numbers" }, ans: "B", sol: "The composed function is √(x + 7). You cannot take the square root of a negative number, so the inside must be ≥ 0. x + 7 ≥ 0 -> x ≥ -7." },
+            { q: "4. Let p(x) = 1/x and q(x) = x - 3. Find p(q(x)) and its domain.", opts: { A: "1/(x-3), x ≠ 3", B: "1/x - 3, x ≠ 0", C: "1/(x-3), x ≠ 0", D: "(x-3)/x, x ≠ 0" }, ans: "A", sol: "p(q(x)) = 1 / (x - 3). The denominator cannot be zero, so x - 3 ≠ 0, meaning x ≠ 3." },
+            { q: "5. True or False: f(g(x)) is always algebraically equal to g(f(x)).", opts: { A: "True", B: "False, they are rarely equal", C: "False, they are only equal if f(x) = x", D: "True, due to the commutative property" }, ans: "B", sol: "Function composition is NOT commutative. f(g(x)) and g(f(x)) usually produce entirely different results (e.g., (3x)² is 9x², while 3(x²) is 3x²)." }
+        ]
+    },
+    "2_7_hard": {
+        title: "Unit 2.7: Hard Practice",
+        subtitle: "Focus: Domain restrictions of composite functions.",
+        themeColor: "#e74c3c",
+        questions: [
+            { q: "1. Let f(x) = 1/(x - 2) and g(x) = 1/x. Find the domain of f(g(x)).", opts: { A: "x ≠ 2", B: "x ≠ 0", C: "x ≠ 0, x ≠ 1/2", D: "x ≠ 2, x ≠ 0" }, ans: "C", sol: "Rule for domains of compositions: 1) Check inside function g(x). x cannot be 0. 2) Check the composed function: 1 / ((1/x) - 2). The denominator (1/x - 2) cannot be 0. 1/x = 2 -> x = 1/2. Domain excludes 0 and 1/2." },
+            { q: "2. If f(x) = √(x) and g(x) = -x², what is the domain of f(g(x))?", opts: { A: "x ≥ 0", B: "x ≤ 0", C: "x = 0", D: "No real solution" }, ans: "C", sol: "f(g(x)) = √(-x²). The inside of the square root must be ≥ 0. -x² ≥ 0. Since x² is always positive or zero, -x² is always negative or zero. The only way it is ≥ 0 is if x = 0." },
+            { q: "3. Decompose h(x) = (2x + 5)³. If h(x) = f(g(x)), what could f(x) and g(x) be?", opts: { A: "f(x) = x³, g(x) = 2x + 5", B: "f(x) = 2x + 5, g(x) = x³", C: "f(x) = 2x³, g(x) = x + 5", D: "f(x) = (2x)³, g(x) = 5" }, ans: "A", sol: "The 'inside' function is 2x + 5. The 'outside' function is cubing the input. So, g(x) = 2x + 5, and f(x) = x³." },
+            { q: "4. Let c(x) be the cost to produce x items. Let x(t) be the number of items produced in t hours. What does c(x(t)) represent?", opts: { A: "The total cost and time", B: "The items produced per dollar", C: "The cost to produce items as a function of time", D: "The time required to reach a specific cost" }, ans: "C", sol: "The input is t (time). It passes through x to become items, which passes through c to become cost. The final output is Cost, based on the initial input Time." },
+            { q: "5. Let f(x) = x² and g(x) = √x. Evaluate f(g(x)) and determine its domain.", opts: { A: "x, Domain: All real numbers", B: "x, Domain: x ≥ 0", C: "|x|, Domain: All real numbers", D: "x², Domain: x ≥ 0" }, ans: "B", sol: "f(g(x)) = (√x)² = x. However, the domain is restricted by the INNER function g(x) = √x. You cannot plug a negative number into the original sequence, so domain is x ≥ 0." }
+        ]
+    },
+    "2_7_master": {
+        title: "Unit 2.7 Master Exam",
+        subtitle: "Advanced Composition & Graphical Analysis.",
+        themeColor: "#8e44ad",
+        questions: [
+            { q: "1. Let f(x) = 1/x and g(x) = x - 4. Find f(f(g(x))).", opts: { A: "x - 4", B: "1 / (x - 4)", C: "1 / (1 / (x - 4))", D: "-x + 4" }, ans: "A", sol: "Step 1: g(x) = x - 4. Step 2: f(g(x)) = 1 / (x - 4). Step 3: f(f(g(x))) means plug Step 2 into f. f( 1/(x-4) ) = 1 / (1/(x-4)). The reciprocal of a fraction flips it, returning x - 4." },
+            { q: "2. The graph of f(x) passes through (3, 7). The graph of g(x) passes through (7, 10) and (4, 3). Find g(f(3)).", opts: { A: "10", B: "4", C: "7", D: "Cannot be determined" }, ans: "A", sol: "Evaluate the inside: f(3) = 7. Now evaluate the outside: g(7). The graph of g passes through (7, 10), so g(7) = 10." },
+            { q: "3. Find the domain of f(g(x)) if f(x) = √(x - 3) and g(x) = x².", opts: { A: "x ≥ 3", B: "x ≥ √3", C: "x ≥ √3 or x ≤ -√3", D: "All real numbers" }, ans: "C", sol: "f(g(x)) = √(x² - 3). The inside must be ≥ 0. x² - 3 ≥ 0. x² ≥ 3. Taking the square root gives |x| ≥ √3, which splits into x ≥ √3 or x ≤ -√3." },
+            { q: "4. Let R(x) be the revenue for selling x units. Let x(p) be the units sold at price p. If you want to find the price that maximizes revenue, you need to analyze the function:", opts: { A: "R(x) * x(p)", B: "x(R(p))", C: "R(x(p))", D: "R(p) / x" }, ans: "C", sol: "You want Revenue as the final output, and Price as the input you control. Therefore, price (p) goes into the demand function x(p), which feeds into Revenue R(x). This is R(x(p))." },
+            { q: "5. If f(x) = x + 2, find the composition (f ∘ f ∘ f)(x).", opts: { A: "x + 8", B: "x + 6", C: "3x + 6", D: "x³ + 8" }, ans: "B", sol: "f(f(x)) = (x + 2) + 2 = x + 4. f(f(f(x))) = (x + 4) + 2 = x + 6." }
+        ]
+    },
+
+    // ==========================================
+    // UNIT 2.8: Inverse Functions
+    // ==========================================
+    "2_8_easy": {
+        title: "Unit 2.8: Easy Practice",
+        subtitle: "Focus: Conceptual definition of inverses and coordinate swapping.",
+        themeColor: "#27ae60",
+        questions: [
+            { q: "1. The primary geometric effect of finding an inverse function is reflecting the graph across the line:", opts: { A: "y = 0 (x-axis)", B: "x = 0 (y-axis)", C: "y = x", D: "y = -x" }, ans: "C", sol: "An inverse swaps all x and y values. Graphically, this reflects the entire function across the diagonal line y = x." },
+            { q: "2. If the point (4, -9) lies on the graph of f(x), what point MUST lie on the graph of its inverse, f⁻¹(x)?", opts: { A: "(-4, 9)", B: "(4, -9)", C: "(-9, 4)", D: "(1/4, -1/9)" }, ans: "C", sol: "The inverse function completely swaps the inputs and outputs. The x becomes y, and the y becomes x. (-9, 4)." },
+            { q: "3. If f(x) and g(x) are true inverse functions, what is the result of the composition f(g(x))?", opts: { A: "1", B: "0", C: "x", D: "x²" }, ans: "C", sol: "Inverses 'undo' each other. If you plug x into g, and then plug that result into f, you will arrive right back where you started: x." },
+            { q: "4. Which test determines if a function's inverse will also be a valid mathematical function?", opts: { A: "Vertical Line Test", B: "Horizontal Line Test", C: "First Derivative Test", D: "Leading Coefficient Test" }, ans: "B", sol: "A function must be one-to-one to have an inverse function. If a horizontal line hits the graph twice, swapping x and y will result in a vertical line hitting twice (failing the vertical line test)." },
+            { q: "5. Find the inverse of the simple linear function f(x) = x + 7.", opts: { A: "f⁻¹(x) = x - 7", B: "f⁻¹(x) = 1/(x + 7)", C: "f⁻¹(x) = -x - 7", D: "f⁻¹(x) = 7x" }, ans: "A", sol: "Set y = x + 7. Swap x and y: x = y + 7. Solve for y: y = x - 7. The operation that 'undoes' adding 7 is subtracting 7." }
+        ]
+    },
+    "2_8_med": {
+        title: "Unit 2.8: Medium Practice",
+        subtitle: "Focus: Algebraic computation of inverse equations.",
+        themeColor: "#f39c12",
+        questions: [
+            { q: "1. Find the inverse function for f(x) = 3x - 5.", opts: { A: "f⁻¹(x) = (x - 5) / 3", B: "f⁻¹(x) = (x + 5) / 3", C: "f⁻¹(x) = 1 / (3x - 5)", D: "f⁻¹(x) = -3x + 5" }, ans: "B", sol: "y = 3x - 5. Swap: x = 3y - 5. Add 5: x + 5 = 3y. Divide by 3: y = (x + 5) / 3." },
+            { q: "2. Find the inverse of g(x) = (2x + 1) / 4.", opts: { A: "g⁻¹(x) = 2x - 1/4", B: "g⁻¹(x) = (4x - 1) / 2", C: "g⁻¹(x) = (4x + 1) / 2", D: "g⁻¹(x) = 4 / (2x + 1)" }, ans: "B", sol: "y = (2x + 1)/4. Swap: x = (2y + 1)/4. Multiply by 4: 4x = 2y + 1. Subtract 1: 4x - 1 = 2y. Divide by 2: y = (4x - 1) / 2." },
+            { q: "3. What is the inverse of h(x) = x³ + 2?", opts: { A: "h⁻¹(x) = ∛(x) - 2", B: "h⁻¹(x) = ∛(x + 2)", C: "h⁻¹(x) = ∛(x - 2)", D: "h⁻¹(x) = 1 / (x³ + 2)" }, ans: "C", sol: "y = x³ + 2. Swap: x = y³ + 2. Subtract 2: x - 2 = y³. Cube root both sides: y = ∛(x - 2)." },
+            { q: "4. Let f(x) = 5 / x. What is f⁻¹(x)?", opts: { A: "x / 5", B: "-5 / x", C: "5 / x", D: "x - 5" }, ans: "C", sol: "y = 5 / x. Swap: x = 5 / y. Multiply by y: xy = 5. Divide by x: y = 5 / x. The function is its own inverse!" },
+            { q: "5. A function has a domain of [-5, 10] and a range of [0, 100]. If it is invertible, what is the domain and range of its inverse?", opts: { A: "Domain: [-5, 10], Range: [0, 100]", B: "Domain: [0, 100], Range: [-5, 10]", C: "Domain: [-10, 5], Range: [-100, 0]", D: "Cannot determine without the equation" }, ans: "B", sol: "The inverse swaps x and y. Therefore, the domain of the inverse is the range of the original, and the range of the inverse is the domain of the original." }
+        ]
+    },
+    "2_8_hard": {
+        title: "Unit 2.8: Hard Practice",
+        subtitle: "Focus: Rational inverses and domain restrictions.",
+        themeColor: "#e74c3c",
+        questions: [
+            { q: "1. Find the inverse of the rational function f(x) = (x + 2) / (x - 3).", opts: { A: "(3x + 2) / (x - 1)", B: "(x - 3) / (x + 2)", C: "(3x - 2) / (x + 1)", D: "(x - 2) / (x + 3)" }, ans: "A", sol: "y = (x+2)/(x-3). Swap: x = (y+2)/(y-3). Multiply: x(y-3) = y+2. Distribute: xy - 3x = y + 2. Get y's on one side: xy - y = 3x + 2. Factor out y: y(x - 1) = 3x + 2. Divide: y = (3x + 2) / (x - 1)." },
+            { q: "2. The function f(x) = x² is NOT invertible over all real numbers. What is the standard domain restriction applied to make it invertible?", opts: { A: "x ≠ 0", B: "x ≥ 0", C: "-1 ≤ x ≤ 1", D: "y ≥ 0" }, ans: "B", sol: "A parabola fails the horizontal line test. To make it invertible, we cut it in half, usually taking only the right side: x ≥ 0. The inverse is then y = √x." },
+            { q: "3. Find the inverse of g(x) = √(x - 4), and state its domain.", opts: { A: "g⁻¹(x) = x² + 4, Domain: x ≥ 0", B: "g⁻¹(x) = x² - 4, Domain: x ≥ 4", C: "g⁻¹(x) = x² + 4, Domain: All real numbers", D: "g⁻¹(x) = (x+4)², Domain: x ≥ 0" }, ans: "A", sol: "y = √(x-4). Swap: x = √(y-4). Square both sides: x² = y - 4. Add 4: y = x² + 4. Since the RANGE of the original function was y ≥ 0, the DOMAIN of the inverse must be x ≥ 0." },
+            { q: "4. Let C(u) = (5/9)(u - 32) be the formula to convert Fahrenheit (u) to Celsius (C). What does the inverse function represent?", opts: { A: "Converting Celsius back to Fahrenheit", B: "The rate of change of temperature", C: "Temperature in Kelvin", D: "Nothing, it has no physical meaning" }, ans: "A", sol: "If a function takes Fahrenheit as an input and outputs Celsius, its inverse takes Celsius as an input and outputs Fahrenheit." },
+            { q: "5. Find the inverse of f(x) = 2x / (x + 5).", opts: { A: "-5x / (x - 2)", B: "5x / (2 - x)", C: "(x + 5) / 2x", D: "2x / (5 - x)" }, ans: "B", sol: "x = 2y / (y + 5). x(y + 5) = 2y. xy + 5x = 2y. 5x = 2y - xy. Factor y: 5x = y(2 - x). y = 5x / (2 - x)." }
+        ]
+    },
+    "2_8_master": {
+        title: "Unit 2.8 Master Exam",
+        subtitle: "Complex Inverses & Composition Verification.",
+        themeColor: "#8e44ad",
+        questions: [
+            { q: "1. To algebraically verify that f(x) and g(x) are inverses, you must prove that:", opts: { A: "f(x) * g(x) = 1", B: "f(g(x)) = x AND g(f(x)) = x", C: "f(x) + g(x) = 0", D: "f(x) / g(x) = x" }, ans: "B", sol: "The formal definition of inverses requires that composing them in BOTH directions yields the identity function, x." },
+            { q: "2. The function f(x) = (x - 3)² + 1 is restricted to the domain x ≤ 3. Find its inverse.", opts: { A: "y = 3 - √(x - 1)", B: "y = 3 + √(x - 1)", C: "y = -3 + √(x - 1)", D: "y = 3 - √(x + 1)" }, ans: "A", sol: "x = (y - 3)² + 1. x - 1 = (y - 3)². ±√(x - 1) = y - 3. y = 3 ± √(x - 1). Because the original domain was x ≤ 3, the inverse range must be y ≤ 3. Therefore, we must choose the negative root: y = 3 - √(x - 1)." },
+            { q: "3. If f(x) = e^(2x - 1), what is f⁻¹(x)?", opts: { A: "(ln(x) + 1) / 2", B: "ln(x/2) + 1", C: "ln(2x - 1)", D: "e^(-2x + 1)" }, ans: "A", sol: "x = e^(2y - 1). Take ln of both sides: ln(x) = 2y - 1. Add 1: ln(x) + 1 = 2y. Divide by 2: y = (ln(x) + 1) / 2." },
+            { q: "4. A function f(x) has a horizontal asymptote at y = 4 and a vertical asymptote at x = -1. What are the asymptotes of f⁻¹(x)?", opts: { A: "HA: y = 4, VA: x = -1", B: "HA: y = -4, VA: x = 1", C: "HA: y = -1, VA: x = 4", D: "HA: y = 1, VA: x = -4" }, ans: "C", sol: "Inverses swap all x and y values. The HA (y=4) becomes a VA (x=4). The VA (x=-1) becomes an HA (y=-1)." },
+            { q: "5. Let f(x) = x³ + x. Why is it difficult to find f⁻¹(x) algebraically?", opts: { A: "It fails the horizontal line test.", B: "You cannot isolate 'y' after swapping x and y.", C: "It has no real roots.", D: "The inverse is an imaginary function." }, ans: "B", sol: "If you swap x and y, you get x = y³ + y. Because y is trapped in both a cubic and linear term, it is algebraically impossible to isolate y using standard precalculus methods (though the inverse does exist because the function is strictly increasing)." }
+        ]
     }
 };
