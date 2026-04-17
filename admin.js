@@ -5,10 +5,9 @@ import { collection, doc, setDoc, getDocs, updateDoc } from "https://www.gstatic
 import { auth, db } from './firebase-config.js';
 
 // --- AP PRECALC CURRICULUM DEFINITION ---
-// Unit 1 has 14 topics, Unit 2 has 8, Unit 3 has 15, Unit 4 has 14
 const curriculum = {
     1: 14, 
-    2: 8,  
+    2: 15, 
     3: 15, 
     4: 14  
 };
@@ -57,7 +56,7 @@ onAuthStateChanged(auth, (user) => {
 
 // --- DASHBOARD LOGIC ---
 
-// Add a Student (Dynamically creates all 51 database slots)
+// Add a Student
 addBtn.addEventListener('click', async () => {
     const email = newStudentEmailInput.value.trim().toLowerCase();
     if (!email) return alert("Please enter an email");
@@ -65,7 +64,7 @@ addBtn.addEventListener('click', async () => {
     addBtn.innerText = "Adding...";
     addBtn.disabled = true;
 
-    // Generate blank access and scores for every single unit
+    // Generate blank access and scores for every single unit AND the Final Exams
     let newAccess = {};
     let newScores = {};
     for (let unit in curriculum) {
@@ -73,6 +72,9 @@ addBtn.addEventListener('click', async () => {
             newAccess[`unit${unit}_${sub}`] = false;
             newScores[`unit${unit}_${sub}`] = 0;
         }
+        // Add database slots for the Grand Final Exams
+        newAccess[`unit${unit}_final`] = false;
+        newScores[`unit${unit}_final`] = 0;
     }
 
     try {
@@ -115,7 +117,6 @@ async function loadStudents() {
                 // Loop through sub-units to create checkboxes
                 for (let sub = 1; sub <= curriculum[unit]; sub++) {
                     const unitKey = `unit${unit}_${sub}`;
-                    // Failsafe: if an older student doesn't have this key yet, default to false
                     const hasAccess = student.access && student.access[unitKey] ? 'checked' : ''; 
                     
                     rowHTML += `
@@ -125,14 +126,24 @@ async function loadStudents() {
                         </label>
                     `;
                 }
-                rowHTML += `</div></td>`;
+                
+                // --- NEW: Add the Grand Final Exam Checkbox at the bottom of each column ---
+                const finalKey = `unit${unit}_final`;
+                const hasFinalAccess = student.access && student.access[finalKey] ? 'checked' : '';
+                rowHTML += `
+                        <div style="width: 100%; margin-top: 8px; border-top: 1px solid #ddd; padding-top: 8px;">
+                            <label style="font-size: 12px; background: #f1c40f; color: #000; padding: 4px 6px; border-radius: 4px; cursor: pointer; font-weight: bold; border: 1px solid #d4ac0d; display: inline-block;">
+                                <input type="checkbox" class="access-toggle" data-email="${student.email}" data-unit="${finalKey}" ${hasFinalAccess}> 
+                                👑 Unit ${unit} Final Exam
+                            </label>
+                        </div>
+                    </div></td>`;
             }
 
             row.innerHTML = rowHTML;
             tableBody.appendChild(row);
         });
 
-        // Add event listeners to the hundreds of newly generated checkboxes
         document.querySelectorAll('.access-toggle').forEach(checkbox => {
             checkbox.addEventListener('change', handleAccessToggle);
         });
