@@ -43,7 +43,6 @@ loginBtn.addEventListener('click', async () => {
 
 logoutBtn.addEventListener('click', () => signOut(auth));
 
-
 // --- DASHBOARD GENERATION & LOGIC ---
 onAuthStateChanged(auth, async (user) => {
     if (user) {
@@ -65,7 +64,6 @@ onAuthStateChanged(auth, async (user) => {
             for (let unit = 1; unit <= 4; unit++) {
                 let unitCardsHTML = "";
 
-                // Loop through Sub-topics for the current unit
                 for(let sub = 1; sub <= curriculum[unit]; sub++) {
                     const unitKey = `unit${unit}_${sub}`;
                     
@@ -103,7 +101,7 @@ onAuthStateChanged(auth, async (user) => {
                     }
                 }
 
-                // --- NEW: Explicit check for Admin access to the Final Exam ---
+                // Final Exam Check
                 const finalKey = `unit${unit}_final`;
                 const hasFinalAccess = studentData.access && studentData.access[finalKey];
                 let grandMasterHTML = "";
@@ -120,7 +118,6 @@ onAuthStateChanged(auth, async (user) => {
                         </div>
                     `;
                 } else if (unitCardsHTML !== "") {
-                    // Only show the locked banner if they are actively working on this unit
                     grandMasterHTML = `
                         <div class="quiz-card" style="border: 2px dashed #bdc3c7; opacity: 0.7; grid-column: 1 / -1;">
                             <h2 style="color: #7f8c8d; margin-top:0;">🔒 Unit ${unit} Final Exam</h2>
@@ -129,7 +126,6 @@ onAuthStateChanged(auth, async (user) => {
                     `;
                 }
 
-                // Render the Unit section
                 if (unitCardsHTML !== "" || hasFinalAccess) {
                     dashboardContent.innerHTML += `
                         <h3 class="unit-header">Unit ${unit}: ${unitTitles[unit]}</h3>
@@ -140,6 +136,35 @@ onAuthStateChanged(auth, async (user) => {
                     `;
                 }
             }
+
+            // --- NEW: Custom Assignments Rendering ---
+            let customCardsHTML = "";
+            for (const [key, hasAccess] of Object.entries(studentData.access || {})) {
+                if (key.startsWith("custom_") && hasAccess) {
+                    hasAnyQuizzes = true;
+                    const score = scores[key];
+                    const isDone = score !== undefined;
+
+                    customCardsHTML += `
+                        <div class="quiz-card" style="border-top-color: #9b59b6;">
+                            <h3 style="color: #9b59b6;">Special Assignment</h3>
+                            <p style="font-family: monospace; background: #f0f0f0; padding: 5px; border-radius: 4px;">ID: ${key}</p>
+                            ${isDone ? `<p style="color: #27ae60; font-weight: bold; margin-bottom: 10px;">Score: ${score}%</p>` : ''}
+                            <a href="quiz.html?customId=${key}" style="background-color: ${isDone ? '#27ae60' : '#9b59b6'}; width: 85%; display: block; margin: auto;">
+                                ${isDone ? '✅ Review Solutions' : '📝 Take Assignment'}
+                            </a>
+                        </div>
+                    `;
+                }
+            }
+
+            if (customCardsHTML !== "") {
+                dashboardContent.innerHTML += `
+                    <h3 class="unit-header" style="color: #9b59b6;">🌟 Custom Assignments</h3>
+                    <div class="grid">${customCardsHTML}</div>
+                `;
+            }
+            // --- END CUSTOM ASSIGNMENTS ---
 
             if(!hasAnyQuizzes) {
                 dashboardContent.innerHTML = `<div class="quiz-card" style="border-top-color:#e74c3c;"><h3>No Active Quizzes</h3><p>Your teacher has not unlocked any quizzes for you yet.</p></div>`;
