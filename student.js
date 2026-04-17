@@ -5,7 +5,7 @@ import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-
 import { auth, db } from './firebase-config.js';
 
 // --- CURRICULUM DEFINITION ---
-const curriculum = { 1: 14, 2: 8, 3: 15, 4: 14 };
+const curriculum = { 1: 14, 2: 15, 3: 15, 4: 14 }; // Note: Updated Unit 2 to 15 topics based on your curriculum!
 const unitTitles = {
     1: "Polynomial & Rational Functions",
     2: "Exponential & Logarithmic Functions",
@@ -58,9 +58,8 @@ onAuthStateChanged(auth, async (user) => {
             
             const studentData = docSnap.data();
             
-            // Failsafe: Ensure scores and exams objects exist in case of legacy data
+            // Failsafe: Ensure scores object exists
             const scores = studentData.scores || {};
-            const exams = studentData.exams || {};
             
             dashboardContent.innerHTML = ""; 
             let hasAnyQuizzes = false;
@@ -85,8 +84,8 @@ onAuthStateChanged(auth, async (user) => {
                         const isMedDone  = scores[`${unitKey}_med`] !== undefined;
                         const isHardDone = scores[`${unitKey}_hard`] !== undefined;
                         
-                        // Check if they took this specific sub-topic's timed master quiz
-                        const isTopicMasterDone = exams[`${unitKey}_master`] !== undefined;
+                        // Check if they took this specific sub-topic's timed master quiz (Look in scores, not exams!)
+                        const isTopicMasterDone = scores[`${unitKey}_master`] !== undefined;
                         if (!isTopicMasterDone) entireUnitMastered = false;
 
                         // Unlocks the Sub-Topic Master only if Easy, Med, and Hard are done
@@ -97,7 +96,7 @@ onAuthStateChanged(auth, async (user) => {
                         const mIcon = isMedDone ? "✅" : "📝";
                         const hIcon = isHardDone ? "✅" : "📝";
 
-                        // Build the Card (Using the new dynamic quiz.html links!)
+                        // Build the Card
                         unitCardsHTML += `
                             <div class="quiz-card">
                                 <h3>Topic ${unit}.${sub}</h3>
@@ -109,7 +108,7 @@ onAuthStateChanged(auth, async (user) => {
                                 </div>
 
                                 ${topicMasterUnlocked 
-                                    ? `<a href="unit${unit}-${sub}-master.html" style="background-color: #8e44ad; width: 85%; display: block; margin: auto;">🏆 Take ${unit}.${sub} Master Quiz</a>` 
+                                    ? `<a href="quiz.html?unit=${unit}_${sub}&diff=master" style="background-color: #8e44ad; width: 85%; display: block; margin: auto;">🏆 Take ${unit}.${sub} Master Quiz</a>` 
                                     : `<button disabled style="background-color: #bdc3c7; color: white; border: none; padding: 10px; border-radius: 20px; width: 100%;">🔒 ${unit}.${sub} Master Locked</button>`
                                 }
                             </div>
@@ -128,7 +127,7 @@ onAuthStateChanged(auth, async (user) => {
                             <div class="quiz-card" style="border: 2px solid #f1c40f; background-color: #fffbef; grid-column: 1 / -1;">
                                 <h2 style="color: #f39c12; margin-top:0;">👑 Unit ${unit} Final Exam</h2>
                                 <p>You have mastered every topic in Unit ${unit}. Take the final timed simulator.</p>
-                                <a href="unit${unit}-overall-exam.html" style="background-color: #f39c12; font-size: 18px; padding: 15px 30px;">Start Final Exam &rarr;</a>
+                                <a href="quiz.html?unit=${unit}&diff=final" style="background-color: #f39c12; font-size: 18px; padding: 15px 30px;">Start Final Exam &rarr;</a>
                             </div>
                         `;
                     } else {
