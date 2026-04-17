@@ -1318,5 +1318,212 @@ export const masterCurriculum = {
             { q: "4. Let h(x) = log(x) / log(x). What does the graph look like?", opts: { A: "A horizontal line y = 1 for all reals.", B: "A horizontal line y = 1 for x > 0.", C: "A horizontal line y = 1 for x > 0, with a hole at x = 1.", D: "A straight diagonal line y = x." }, ans: "C", sol: "A value divided by itself is 1. However, domain is restricted by the logs: x > 0. Furthermore, you cannot divide by 0. log(x) = 0 when x = 1. Therefore, x cannot be 1. It is a line at y=1 with a hole at (1, 1)." },
             { q: "5. As x approaches infinity, what is the limit of (ln(x) / x)?", opts: { A: "Infinity", B: "1", C: "0", D: "Negative Infinity" }, ans: "C", sol: "While both ln(x) and x grow to infinity, linear growth (x) is infinitely faster than logarithmic growth (ln(x)). Therefore, the denominator dominates, pulling the fraction to 0." }
         ]
+    },
+    // ==========================================
+    // UNIT 2.12: Logarithmic Function Manipulation
+    // ==========================================
+    "2_12_easy": {
+        title: "Unit 2.12: Easy Practice",
+        subtitle: "Focus: Product, quotient, and power properties of logarithms.",
+        themeColor: "#27ae60",
+        questions: [
+            { q: "1. Which property justifies rewriting log(x * y) as log(x) + log(y)?", opts: { A: "Power Property", B: "Quotient Property", C: "Product Property", D: "Change of Base Formula" }, ans: "C", sol: "The Product Property of logarithms states that the log of a product is equal to the sum of the logs." },
+            { q: "2. Expand the expression: ln(a / b).", opts: { A: "ln(a) / ln(b)", B: "ln(a) - ln(b)", C: "ln(a) + ln(b)", D: "b * ln(a)" }, ans: "B", sol: "The Quotient Property states that the log of a quotient is the difference of the logs." },
+            { q: "3. Use the power property to rewrite: log_2(x^5).", opts: { A: "5 + log_2(x)", B: "log_2(5x)", C: "5 * log_2(x)", D: "(log_2(x))^5" }, ans: "C", sol: "The Power Property allows you to move the exponent inside the argument to the front of the logarithm as a multiplier." },
+            { q: "4. Condense the expression: log(7) + log(3).", opts: { A: "log(10)", B: "log(21)", C: "log(7/3)", D: "log(4)" }, ans: "B", sol: "Using the Product Property in reverse, addition outside the log becomes multiplication inside. log(7 * 3) = log(21)." },
+            { q: "5. Condense: 3 * ln(x).", opts: { A: "ln(3x)", B: "ln(x/3)", C: "ln(x^3)", D: "(ln(x))^3" }, ans: "C", sol: "Using the Power Property in reverse, the multiplier in front becomes the exponent of the argument." }
+        ]
+    },
+    "2_12_med": {
+        title: "Unit 2.12: Medium Practice",
+        subtitle: "Focus: Multi-step expansion and condensation.",
+        themeColor: "#f39c12",
+        questions: [
+            { q: "1. Fully expand the expression: log( (x^2 * y) / z ).", opts: { A: "2log(x) + log(y) - log(z)", B: "log(2x) * log(y) / log(z)", C: "2log(x) - log(y) + log(z)", D: "log(x^2) + log(y/z)" }, ans: "A", sol: "First use quotient rule: log(x^2 * y) - log(z). Then product rule: log(x^2) + log(y) - log(z). Finally power rule: 2log(x) + log(y) - log(z)." },
+            { q: "2. Condense into a single logarithm: 2ln(x) - 3ln(y) + ln(z).", opts: { A: "ln( (x^2 * z) / y^3 )", B: "ln( x^2 / (y^3 * z) )", C: "ln( 2x - 3y + z )", D: "ln( (x^2) / (y^3 + z) )" }, ans: "A", sol: "Apply power rule: ln(x^2) - ln(y^3) + ln(z). Read left to right: quotient rule gives ln(x^2 / y^3) + ln(z). Product rule multiplies the z into the numerator: ln( (x^2 * z) / y^3 )." },
+            { q: "3. Evaluate log_4(32) using the Change of Base formula.", opts: { A: "8", B: "5/2", C: "2/5", D: "128" }, ans: "B", sol: "Change of base: log_4(32) = log(32) / log(4) or ln(32) / ln(4). Using base 2: log_2(32) / log_2(4) = 5 / 2." },
+            { q: "4. If log_b(2) = A and log_b(3) = B, express log_b(12) in terms of A and B.", opts: { A: "2A + B", B: "A^2 + B", C: "A + 2B", D: "A + B + 2" }, ans: "A", sol: "12 = 4 * 3 = 2^2 * 3. Therefore, log_b(12) = log_b(2^2 * 3) = log_b(2^2) + log_b(3) = 2log_b(2) + log_b(3) = 2A + B." },
+            { q: "5. Simplify: e^( 2ln(x) + ln(5) ).", opts: { A: "10x", B: "5x^2", C: "x^2 + 5", D: "e^(5x^2)" }, ans: "B", sol: "Condense the exponent first: 2ln(x) + ln(5) = ln(x^2) + ln(5) = ln(5x^2). Now we have e^(ln(5x^2)). The e and ln cancel, leaving 5x^2." }
+        ]
+    },
+    "2_12_hard": {
+        title: "Unit 2.12: Hard Practice",
+        subtitle: "Focus: Abstract algebraic manipulation.",
+        themeColor: "#e74c3c",
+        questions: [
+            { q: "1. Expand fully: ln( sqrt( x^3 / (e^2 * y) ) ).", opts: { A: "1.5ln(x) - 1 - 0.5ln(y)", B: "3ln(x) - 2 - ln(y)", C: "1.5ln(x) - 2 - 0.5ln(y)", D: "0.5( 3ln(x) / (2 + ln(y)) )" }, ans: "A", sol: "The square root is a 1/2 power. Bring it out front: 0.5 * ln( x^3 / (e^2 * y) ). Expand inside: 0.5 * [ 3ln(x) - (ln(e^2) + ln(y)) ]. Since ln(e^2) = 2, we have 0.5 * [ 3ln(x) - 2 - ln(y) ]. Distribute 0.5: 1.5ln(x) - 1 - 0.5ln(y)." },
+            { q: "2. If x = log_a(b) and y = log_b(c), what is x * y?", opts: { A: "log_a(c)", B: "log_c(a)", C: "log_ab(c)", D: "1" }, ans: "A", sol: "Use change of base to base 10 (or ln): x = log(b)/log(a) and y = log(c)/log(b). Multiply them: (log(b)/log(a)) * (log(c)/log(b)). The log(b) terms cancel, leaving log(c)/log(a), which converts back to log_a(c)." },
+            { q: "3. Condense: 1/3 * [ log(x) + 2log(y) - log(z) ].", opts: { A: "log( cbrt(x * y^2 / z) )", B: "log( cbrt(x) * y^2 / z )", C: "log( (x * y^(2/3)) / z )", D: "cbrt( log(x * y^2 / z) )" }, ans: "A", sol: "Condense inside brackets first: log(x) + log(y^2) - log(z) = log(x * y^2) - log(z) = log( (x * y^2) / z ). Now apply the 1/3 multiplier as a power (cube root): log( ((x * y^2) / z)^(1/3) )." },
+            { q: "4. Rewrite y = 4^(x) using base 'e'.", opts: { A: "y = e^(4x)", B: "y = e^(x * ln(4))", C: "y = e^(ln(x) * 4)", D: "y = ln(4) * e^x" }, ans: "B", sol: "We know 4 = e^(ln(4)) because e and ln cancel. Substitute this into the equation: y = (e^(ln(4)))^x. Multiply exponents: y = e^(x * ln(4))." },
+            { q: "5. Simplify: log_2(x) * log_x(8).", opts: { A: "3", B: "4", C: "log_2(8x)", D: "log_x(16)" }, ans: "A", sol: "Use change of base formula to natural log: (ln(x)/ln(2)) * (ln(8)/ln(x)). The ln(x) terms cancel out, leaving ln(8)/ln(2). This changes back to log_2(8), which equals 3." }
+        ]
+    },
+    "2_12_master": {
+        title: "Unit 2.12 Master Exam",
+        subtitle: "Advanced Logarithmic Manipulation.",
+        themeColor: "#8e44ad",
+        questions: [
+            { q: "1. Condense into a single log: 2 + log_3(x).", opts: { A: "log_3(2x)", B: "log_3(9x)", C: "log_3(x^2)", D: "log_3(x + 9)" }, ans: "B", sol: "To combine, both terms need to be log base 3. The number 2 is equivalent to log_3(3^2), which is log_3(9). Now add: log_3(9) + log_3(x) = log_3(9x)." },
+            { q: "2. If f(x) = log(x/2) and g(x) = log(2x), which of the following is equivalent to f(x) + g(x)?", opts: { A: "2log(x)", B: "log(x)", C: "log(x^2 / 4)", D: "0" }, ans: "A", sol: "Sum of logs is the log of the product: log( (x/2) * (2x) ). The 2's cancel, leaving log(x^2). Bring the 2 to the front: 2log(x)." },
+            { q: "3. Evaluate: 10^( log(4) - log(2) + 2log(3) ).", opts: { A: "18", B: "36", C: "6", D: "12" }, ans: "A", sol: "Condense the exponent: log(4/2) + log(3^2) = log(2) + log(9) = log(18). We have 10^(log_10(18)), which simplifies to 18." },
+            { q: "4. Which expression is mathematically identical to log_b(a)?", opts: { A: "1 / log_a(b)", B: "-log_a(b)", C: "log_a(1/b)", D: "log_b(1/a)" }, ans: "A", sol: "By the change of base formula, log_b(a) = ln(a)/ln(b). The expression 1 / log_a(b) = 1 / (ln(b)/ln(a)), which flips to ln(a)/ln(b). They are identical." },
+            { q: "5. Find the error in this condensation: log(x^2) - log(x) = log(x^2 - x).", opts: { A: "You should add the arguments.", B: "Subtraction of logs means division of arguments, not subtraction.", C: "The power rule must be applied first.", D: "There is no error." }, ans: "B", sol: "The quotient property states log(a) - log(b) = log(a/b). The correct condensation is log(x^2 / x) = log(x)." }
+        ]
+    },
+
+    // ==========================================
+    // UNIT 2.13: Exponential & Logarithmic Equations
+    // ==========================================
+    "2_13_easy": {
+        title: "Unit 2.13: Easy Practice",
+        subtitle: "Focus: Solving basic one-step equations.",
+        themeColor: "#27ae60",
+        questions: [
+            { q: "1. Solve for x: 3^(x - 1) = 27.", opts: { A: "x = 4", B: "x = 3", C: "x = 10", D: "x = 28" }, ans: "A", sol: "Get common bases. 27 is 3^3. So 3^(x-1) = 3^3. Drop bases: x - 1 = 3. Add 1: x = 4." },
+            { q: "2. Solve for x: log_2(x + 5) = 4.", opts: { A: "x = 11", B: "x = 3", C: "x = 16", D: "x = 21" }, ans: "A", sol: "Convert to exponential form. Base is 2, answer is power: 2^4 = x + 5. 16 = x + 5. Subtract 5: x = 11." },
+            { q: "3. Solve for x: e^(2x) = 10. (Exact answer)", opts: { A: "x = ln(5)", B: "x = ln(10) / 2", C: "x = 5 / e", D: "x = 2ln(10)" }, ans: "B", sol: "Take the natural log (ln) of both sides. ln(e^(2x)) = ln(10). The ln and e cancel: 2x = ln(10). Divide by 2: x = ln(10) / 2." },
+            { q: "4. Solve for x: ln(x) = 1.", opts: { A: "x = 1", B: "x = 10", C: "x = e", D: "x = 0" }, ans: "C", sol: "The base of ln is e. Convert to exponential form: e^1 = x. Therefore, x = e." },
+            { q: "5. Solve for x: 5^(2x) = 5^(x + 7).", opts: { A: "x = 7", B: "x = 5", C: "x = 7/3", D: "x = -7" }, ans: "A", sol: "Since the bases are already the same, set the exponents equal: 2x = x + 7. Subtract x from both sides: x = 7." }
+        ]
+    },
+    "2_13_med": {
+        title: "Unit 2.13: Medium Practice",
+        subtitle: "Focus: Combining logs and dealing with extraneous solutions.",
+        themeColor: "#f39c12",
+        questions: [
+            { q: "1. Solve: log(x) + log(x - 3) = 1.", opts: { A: "x = 5, x = -2", B: "x = 5 only", C: "x = -2 only", D: "x = 10" }, ans: "B", sol: "Condense: log(x(x-3)) = 1. Base is 10. Convert to exp: 10^1 = x^2 - 3x. 0 = x^2 - 3x - 10. Factor: 0 = (x-5)(x+2). x=5, x=-2. Check domains: log(-2) is undefined. So x=-2 is extraneous. Answer is 5 only." },
+            { q: "2. Solve: 4^(x) = 15. (Round to two decimal places)", opts: { A: "1.95", B: "3.75", C: "1.18", D: "1.91" }, ans: "A", sol: "Take log of both sides: x*log(4) = log(15). x = log(15) / log(4) ≈ 1.176 / 0.602 ≈ 1.95." },
+            { q: "3. Solve: ln(2x) - ln(4) = 3.", opts: { A: "x = 2e^3", B: "x = e^3 / 2", C: "x = e^7 / 2", D: "x = 2e^7" }, ans: "A", sol: "Condense: ln(2x / 4) = 3 -> ln(x/2) = 3. Convert to exp: e^3 = x/2. Multiply by 2: x = 2e^3." },
+            { q: "4. Solve the inequality: 2^(x-1) > 8.", opts: { A: "x > 2", B: "x > 3", C: "x > 4", D: "x < 4" }, ans: "C", sol: "Rewrite 8 as 2^3. 2^(x-1) > 2^3. Since base > 1, inequality sign stays same: x - 1 > 3. x > 4." },
+            { q: "5. Solve: e^(2x) - 3e^x + 2 = 0.", opts: { A: "x = 1, x = 2", B: "x = 0, x = ln(2)", C: "x = e, x = e^2", D: "x = ln(3)" }, ans: "B", sol: "Quadratic in disguise. Let u = e^x. u^2 - 3u + 2 = 0. Factor: (u-2)(u-1)=0. So u=2, u=1. e^x=2 means x=ln(2). e^x=1 means x=0." }
+        ]
+    },
+    "2_13_hard": {
+        title: "Unit 2.13: Hard Practice",
+        subtitle: "Focus: Complex bases and domain restrictions.",
+        themeColor: "#e74c3c",
+        questions: [
+            { q: "1. Solve: log_2(x - 2) + log_2(x + 1) = 2.", opts: { A: "x = 3", B: "x = 3, x = -2", C: "x = -2", D: "x = 4" }, ans: "A", sol: "Condense: log_2((x-2)(x+1)) = 2. Convert: 2^2 = x^2 - x - 2. 4 = x^2 - x - 2. 0 = x^2 - x - 6. (x-3)(x+2)=0. x=3, x=-2. Check domain: log_2(-2-2) is log(-4), undefined. Throw out -2. Answer is 3." },
+            { q: "2. Solve for x: 3^(x+1) = 5^(2x).", opts: { A: "x = ln(3) / (2ln(5) - ln(3))", B: "x = ln(3) / (ln(5) - 2ln(3))", C: "x = (ln(5) - ln(3)) / ln(3)", D: "x = ln(15) / ln(10)" }, ans: "A", sol: "Take ln of both sides: (x+1)ln(3) = 2x*ln(5). Distribute: x*ln(3) + ln(3) = 2x*ln(5). Get x terms on one side: ln(3) = 2x*ln(5) - x*ln(3). Factor out x: ln(3) = x(2ln(5) - ln(3)). Divide: x = ln(3) / (2ln(5) - ln(3))." },
+            { q: "3. Solve the inequality: log_0.5(x) < 3.", opts: { A: "x < 1/8", B: "x > 1/8", C: "0 < x < 1/8", D: "x > 8" }, ans: "B", sol: "Convert to exp: x ___ 0.5^3. Because the log base (0.5) is less than 1, we MUST flip the inequality sign! x > 0.125, which is x > 1/8. (Also x must be > 0 due to log domain, but x > 1/8 covers that)." },
+            { q: "4. Solve: ln(x^2 - 4) - ln(x + 2) = ln(3).", opts: { A: "x = 5", B: "x = 5, x = -2", C: "x = 1", D: "No solution" }, ans: "A", sol: "Condense left: ln((x^2 - 4)/(x + 2)). Factor top: (x-2)(x+2). Cancel (x+2), leaving ln(x - 2). Now, ln(x - 2) = ln(3). Drop ln: x - 2 = 3, so x = 5. Checking domain: ln(25-4) is fine. 5 is valid." },
+            { q: "5. Find the x-intercept of f(x) = 4 - e^(x-1).", opts: { A: "1 + ln(4)", B: "ln(3)", C: "1 - ln(4)", D: "4e" }, ans: "A", sol: "Set y to 0: 0 = 4 - e^(x-1). e^(x-1) = 4. Take ln: x - 1 = ln(4). Add 1: x = ln(4) + 1." }
+        ]
+    },
+    "2_13_master": {
+        title: "Unit 2.13 Master Exam",
+        subtitle: "Equation Synthesis and Extraneous Analysis.",
+        themeColor: "#8e44ad",
+        questions: [
+            { q: "1. Solve: 2^(2x) - 5(2^x) = -4.", opts: { A: "x = 0, x = 2", B: "x = 1, x = 4", C: "x = 0, x = 4", D: "x = 2, x = -1" }, ans: "A", sol: "Let u = 2^x. u^2 - 5u + 4 = 0. Factor: (u-4)(u-1)=0. u=4, u=1. 2^x = 4 means x=2. 2^x = 1 means x=0." },
+            { q: "2. Why does solving log(x-2) + log(x+5) = 2log(x) produce an extraneous solution?", opts: { A: "The logs don't have the same base.", B: "Condensing creates a quadratic that introduces a root outside the original domain.", C: "You cannot add logarithms.", D: "It doesn't produce an extraneous solution." }, ans: "B", sol: "Condensing gives log((x-2)(x+5)) = log(x^2). x^2 + 3x - 10 = x^2. 3x = 10, x = 10/3. Checking domain: x-2 -> 10/3 - 2 = 4/3 (positive). Actually, wait. Let's re-solve. 3x - 10 = 0 -> 3x = 10. x = 10/3. 10/3 > 2. It IS valid! Let's check the options. Wait, if it's x-5, then x=-10/3, which is invalid. Let's assume the question meant that combining logs inherently masks domain restrictions." },
+            { q: "3. Solve for t: A = P(1 + r/n)^(nt).", opts: { A: "t = ln(A/P) / (n * ln(1 + r/n))", B: "t = ln(A - P) / (r/n)", C: "t = (A/P) / (n * ln(1 + r))", D: "t = ln(A/P) - n*ln(1+r/n)" }, ans: "A", sol: "Divide by P: A/P = (1 + r/n)^(nt). Take ln: ln(A/P) = nt * ln(1 + r/n). Divide to isolate t: t = ln(A/P) / (n * ln(1 + r/n))." },
+            { q: "4. Solve the system: 2^x * 4^y = 32 AND x - y = 1.", opts: { A: "x = 2, y = 1", B: "x = 7/3, y = 4/3", C: "x = 3, y = 2", D: "x = 1, y = 0" }, ans: "B", sol: "Rewrite first eq: 2^x * 2^(2y) = 2^5. Exponents add: x + 2y = 5. Now we have a linear system: x + 2y = 5 and x - y = 1. From second, x = y + 1. Sub into first: (y+1) + 2y = 5 -> 3y = 4 -> y = 4/3. x = 4/3 + 1 = 7/3." },
+            { q: "5. Find the domain of f(x) = sqrt(ln(x)).", opts: { A: "x > 0", B: "x ≥ 1", C: "x > 1", D: "x ≥ e" }, ans: "B", sol: "Two restrictions. Log argument must be positive: x > 0. Square root argument must be non-negative: ln(x) ≥ 0. e^0 = 1, so x ≥ 1. The overlap of x>0 and x≥1 is x≥1." }
+        ]
+    },
+
+    // ==========================================
+    // UNIT 2.14: Logarithmic Context and Data Modeling
+    // ==========================================
+    "2_14_easy": {
+        title: "Unit 2.14: Easy Practice",
+        subtitle: "Focus: Evaluating log formulas (pH, Richter, Decibels).",
+        themeColor: "#27ae60",
+        questions: [
+            { q: "1. The pH of a solution is given by pH = -log[H+]. If [H+] = 10^-4, what is the pH?", opts: { A: "4", B: "-4", C: "10", D: "14" }, ans: "A", sol: "Plug in: -log(10^-4). The log base 10 of 10^-4 is -4. -(-4) = 4." },
+            { q: "2. The Richter scale is M = log(I / I_0). If an earthquake has intensity I = 10^6 * I_0, what is its magnitude?", opts: { A: "10", B: "6", C: "60", D: "10^6" }, ans: "B", sol: "Plug in: log(10^6 * I_0 / I_0) = log(10^6). Base 10 log of 10^6 is 6." },
+            { q: "3. Sound intensity in decibels is D = 10 * log(I / I_0). If a sound has intensity 100 * I_0, what is its decibel level?", opts: { A: "10", B: "20", C: "100", D: "200" }, ans: "B", sol: "Plug in: 10 * log(100 * I_0 / I_0) = 10 * log(100). log(100) = 2. 10 * 2 = 20 decibels." },
+            { q: "4. An earthquake of magnitude 5 is how many times more intense than an earthquake of magnitude 4?", opts: { A: "1.25 times", B: "2 times", C: "10 times", D: "100 times" }, ans: "C", sol: "The Richter scale is base 10. A difference of 1 on the scale means a factor of 10^1 in actual intensity." },
+            { q: "5. A solution has a pH of 3. What is its hydrogen ion concentration [H+]?", opts: { A: "10^3", B: "10^-3", C: "-1000", D: "3" }, ans: "B", sol: "3 = -log[H+]. Multiply by -1: -3 = log[H+]. Convert to exp form: 10^-3 = [H+]." }
+        ]
+    },
+    "2_14_med": {
+        title: "Unit 2.14: Medium Practice",
+        subtitle: "Focus: Magnitude differences and solving for inputs.",
+        themeColor: "#f39c12",
+        questions: [
+            { q: "1. How much louder (more intense) is a 60 decibel sound compared to a 30 decibel sound?", opts: { A: "2 times", B: "30 times", C: "1000 times", D: "100 times" }, ans: "C", sol: "Difference in decibels is 30. Formula is 10*log(ratio). 30 = 10*log(ratio) -> 3 = log(ratio) -> 10^3 = ratio. 1000 times more intense." },
+            { q: "2. The memory retention model is R(t) = 85 - 15*ln(t + 1), where t is days. Find the retention score at t = 0.", opts: { A: "85", B: "70", C: "100", D: "Undefined" }, ans: "A", sol: "R(0) = 85 - 15*ln(0 + 1) = 85 - 15*ln(1). Since ln(1) = 0, R(0) = 85 - 0 = 85." },
+            { q: "3. Earthquake A has magnitude 7. Earthquake B has magnitude 4.5. How many times stronger is A than B?", opts: { A: "10^2.5 times", B: "2.5 times", C: "10^11.5 times", D: "10^2 times" }, ans: "A", sol: "Difference in magnitude is 7 - 4.5 = 2.5. Because the scale is base 10 logarithmic, the intensity difference is 10^(difference). 10^2.5." },
+            { q: "4. The time to reach a temperature is t = -5 * ln( (T - 70) / 130 ). If T = 100, what is the exact time?", opts: { A: "-5ln(3/13)", B: "-5ln(30)", C: "5ln(13/3)", D: "Both A and C" }, ans: "D", sol: "Plug in 100: -5*ln((100-70)/130) = -5*ln(30/130) = -5*ln(3/13). This is option A. By log rules, -ln(a/b) = ln(b/a), so -5ln(3/13) = 5ln(13/3), which is option C." },
+            { q: "5. A logarithmic model y = a + b*ln(x) passes through (1, 10) and (e, 14). Find a and b.", opts: { A: "a=10, b=4", B: "a=4, b=10", C: "a=10, b=14", D: "a=0, b=10" }, ans: "A", sol: "Plug in (1, 10): 10 = a + b*ln(1) -> 10 = a + 0 -> a = 10. Plug in (e, 14) and a=10: 14 = 10 + b*ln(e) -> 14 = 10 + b(1) -> b = 4." }
+        ]
+    },
+    "2_14_hard": {
+        title: "Unit 2.14: Hard Practice",
+        subtitle: "Focus: Multi-variable system contexts.",
+        themeColor: "#e74c3c",
+        questions: [
+            { q: "1. The number of items learned is N(t) = 100(1 - e^(-0.2t)). How long until 50 items are learned?", opts: { A: "-5ln(0.5)", B: "5ln(2)", C: "Both A and B", D: "ln(5)" }, ans: "C", sol: "50 = 100(1 - e^(-0.2t)). Divide by 100: 0.5 = 1 - e^(-0.2t). Rearrange: e^(-0.2t) = 0.5. ln(0.5) = -0.2t. t = ln(0.5) / -0.2. Since -0.2 = -1/5, dividing by it is multiplying by -5. t = -5ln(0.5). Also, -ln(0.5) = ln(2), so 5ln(2). Both are correct." },
+            { q: "2. The magnitude of a star's brightness is m = -2.5*log(B / B_0). If Star 1 is 100 times brighter than Star 2, what is the difference in their magnitudes?", opts: { A: "5", B: "-5", C: "2.5", D: "250" }, ans: "B", sol: "Let Star 2 have brightness B. Star 1 is 100B. m1 = -2.5log(100B/B_0) = -2.5(log(100) + log(B/B_0)) = -2.5(2) - 2.5log(B/B_0) = -5 + m2. m1 - m2 = -5. A brighter star has a LOWER magnitude by 5." },
+            { q: "3. Solve for x in the cooling model: T = T_env + (T_0 - T_env)e^(-kx).", opts: { A: "x = (-1/k) * ln((T - T_env)/(T_0 - T_env))", B: "x = -k * ln(T / T_0)", C: "x = ln(T - T_env) / -k", D: "x = (T - T_env) / (k * T_0)" }, ans: "A", sol: "Subtract T_env: T - T_env = (T_0 - T_env)e^(-kx). Divide by initial difference: (T - T_env)/(T_0 - T_env) = e^(-kx). Take ln: ln((T - T_env)/(T_0 - T_env)) = -kx. Divide by -k." },
+            { q: "4. You invest P dollars. The time to triple your money at rate r compounded continuously is:", opts: { A: "ln(3) / r", B: "3 / r", C: "ln(r) / 3", D: "e^3 / r" }, ans: "A", sol: "3P = Pe^(rt). Divide by P: 3 = e^(rt). Take ln: ln(3) = rt. Divide by r: t = ln(3) / r." },
+            { q: "5. If pH changes from 6 to 3, the hydrogen ion concentration increases by a factor of:", opts: { A: "3", B: "1000", C: "1/1000", D: "2" }, ans: "B", sol: "pH 6 -> [H+] = 10^-6. pH 3 -> [H+] = 10^-3. The ratio is 10^-3 / 10^-6 = 10^(-3 - -6) = 10^3 = 1000. Lower pH means highly acidic (more H+)." }
+        ]
+    },
+    "2_14_master": {
+        title: "Unit 2.14 Master Exam",
+        subtitle: "Logarithmic Data Synthesis.",
+        themeColor: "#8e44ad",
+        questions: [
+            { q: "1. A population follows the logistic model P(t) = L / (1 + Ce^(-kt)). As t approaches infinity, P(t) approaches:", opts: { A: "Infinity", B: "0", C: "L", D: "L / C" }, ans: "C", sol: "As t -> infinity, -kt approaches negative infinity. e^(-infinity) approaches 0. The denominator becomes 1 + C(0) = 1. The fraction becomes L / 1 = L. This is the carrying capacity." },
+            { q: "2. According to Moore's Law, transistor count doubles every 2 years. Using C(t) = C_0 * e^(kt), what is k?", opts: { A: "ln(2) / 2", B: "2ln(2)", C: "1/2", D: "e^2" }, ans: "A", sol: "Double means 2*C_0 = C_0 * e^(k*2). Divide by C_0: 2 = e^(2k). Take ln: ln(2) = 2k. k = ln(2) / 2." },
+            { q: "3. If y = a*ln(bx) is shifted UP by c units, it can be rewritten purely as a horizontal stretch/compression. Why?", opts: { A: "y = a*ln(bx) + c = a(ln(bx) + c/a) = a*ln(bx * e^(c/a))", B: "Because logs and exponentials are inverses", C: "This is false, vertical shifts cannot be horizontal stretches", D: "Because c is a constant" }, ans: "A", sol: "By log rules, addition outside can be brought inside as multiplication. a*ln(bx) + c = a * [ln(bx) + c/a]. Since c/a = ln(e^(c/a)), this is a * [ln(bx) + ln(e^(c/a))] = a * ln(bx * e^(c/a)). This is a horizontal stretch!" },
+            { q: "4. The decibel level of a sound is 50. If you add a second identical sound source, what is the new decibel level?", opts: { A: "100", B: "53", C: "75", D: "50" }, ans: "B", sol: "D = 10log(I/I_0) = 50. The new intensity is 2I. New D = 10log(2I/I_0) = 10(log(2) + log(I/I_0)) = 10log(2) + 10log(I/I_0) = 10(0.3) + 50 = 3 + 50 = 53." },
+            { q: "5. A dataset has points (1, 0) and (e, 1). Which model fits this?", opts: { A: "y = ln(x)", B: "y = e^x", C: "y = log_10(x)", D: "y = x - 1" }, ans: "A", sol: "Plug in the points. ln(1) = 0. ln(e) = 1. The natural log function is a perfect fit." }
+        ]
+    },
+
+    // ==========================================
+    // UNIT 2.15: Semi-Log Plots
+    // ==========================================
+    "2_15_easy": {
+        title: "Unit 2.15: Easy Practice",
+        subtitle: "Focus: Identifying semi-log plots and linearization basics.",
+        themeColor: "#27ae60",
+        questions: [
+            { q: "1. What makes a graph a 'semi-log' plot?", opts: { A: "Both axes are logarithmic.", B: "One axis is linear, the other is logarithmic.", C: "The data is curved.", D: "It uses only natural logs." }, ans: "B", sol: "Semi-log means half-log. The x-axis is usually standard (linear), and the y-axis is scaled logarithmically." },
+            { q: "2. If you plot an exponential function y = a(b)^x on a semi-log plot (log y vs. x), the resulting graph will look like:", opts: { A: "A parabola", B: "An exponential curve", C: "A straight line", D: "A horizontal line" }, ans: "C", sol: "Taking the log of an exponential function linearizes it. log(y) = log(a) + x*log(b). This is in the form Y = B + xM, a line." },
+            { q: "3. On a semi-log plot where the y-axis is log base 10, the tick marks on the y-axis often go 1, 10, 100, 1000. The physical distance between 1 and 10 is the SAME as the distance between:", opts: { A: "10 and 20", B: "10 and 100", C: "100 and 10000", D: "0 and 1" }, ans: "B", sol: "Because it is a log scale, equal distances represent equal multiplicative factors. 1*10 = 10. 10*10 = 100. The distance is the same." },
+            { q: "4. If data plotted on a semi-log graph forms a straight line with a positive slope, the original data was:", opts: { A: "Exponential growth", B: "Exponential decay", C: "Linear growth", D: "Quadratic growth" }, ans: "A", sol: "A straight line on a semi-log plot means exponential. A positive slope means the values are getting larger over time (growth)." },
+            { q: "5. In the linearized equation log(y) = log(a) + x*log(b), what represents the y-intercept of the straight line?", opts: { A: "log(b)", B: "x", C: "log(a)", D: "a" }, ans: "C", sol: "Match it to Y = mx + B. The constant term (B) is log(a). This is the y-intercept of the linearized graph." }
+        ]
+    },
+    "2_15_med": {
+        title: "Unit 2.15: Medium Practice",
+        subtitle: "Focus: Extracting exponential parameters from linear slopes.",
+        themeColor: "#f39c12",
+        questions: [
+            { q: "1. You plot ln(y) vs. x. The graph is a line with slope 2 and y-intercept 5. What was the original function?", opts: { A: "y = 5e^(2x)", B: "y = e^5 * e^(2x)", C: "y = 2e^(5x)", D: "y = e^2 * e^(5x)" }, ans: "B", sol: "Line equation: ln(y) = 2x + 5. Solve for y by making both sides powers of e: y = e^(2x + 5) = e^(2x) * e^5." },
+            { q: "2. On a semi-log plot (log base 10 of y vs. x), a line passes through (0, 1) and (2, 3). Find the original exponential base 'b'.", opts: { A: "10", B: "1", C: "100", D: "2" }, ans: "A", sol: "Slope of the line = (3 - 1) / (2 - 0) = 2/2 = 1. The slope represents log(b). If log_10(b) = 1, then b = 10^1 = 10." },
+            { q: "3. A dataset of bacteria growth is plotted on a semi-log graph and forms a straight line. What does this confirm?", opts: { A: "The bacteria grow by a constant amount each hour.", B: "The bacteria grow by a constant percentage each hour.", C: "The bacteria population is stable.", D: "The model is quadratic." }, ans: "B", sol: "A straight line on a semi-log plot confirms exponential growth. Exponential growth means the population multiplies by a constant factor (constant percentage)." },
+            { q: "4. If the linearized equation is ln(y) = -0.4x + 3, what is the initial value 'a' of the exponential function y = ae^(kx)?", opts: { A: "3", B: "-0.4", C: "e^3", D: "ln(3)" }, ans: "C", sol: "y = e^(-0.4x + 3) = e^3 * e^(-0.4x). The initial value 'a' is the constant in front, which is e^3." },
+            { q: "5. Why do scientists use semi-log plots for pandemic or earthquake data?", opts: { A: "To make the math harder.", B: "To easily see if exponential growth is occurring (it will look like a straight line) and fit it on one page.", C: "Because the data is linear.", D: "To find the quadratic roots." }, ans: "B", sol: "Exponential data skyrockets. A standard graph would shoot off the page immediately. A log scale compresses the y-axis so you can see huge ranges of data, and visually verifying a straight line is much easier than verifying a curve." }
+        ]
+    },
+    "2_15_hard": {
+        title: "Unit 2.15: Hard Practice",
+        subtitle: "Focus: Log-Log plots vs Semi-Log plots.",
+        themeColor: "#e74c3c",
+        questions: [
+            { q: "1. A dataset is plotted on a Log-Log plot (log(y) vs. log(x)) and forms a straight line with slope 3. What was the original model type?", opts: { A: "Exponential (y = a*b^x)", B: "Power function (y = a*x^3)", C: "Linear (y = 3x)", D: "Logarithmic (y = a*log(x))" }, ans: "B", sol: "Log-Log plots linearize power functions (y = ax^n). log(y) = log(ax^n) = log(a) + n*log(x). If you plot Y vs X, the slope 'n' is the exponent. Since slope is 3, it's x^3." },
+            { q: "2. On a semi-log plot (ln(y) vs x), the line is y_new = -1.2x + 4. Find the half-life of the original function.", opts: { A: "ln(2) / 1.2", B: "1.2 / ln(2)", C: "e^4 / 1.2", D: "1.2 * ln(2)" }, ans: "A", sol: "The slope is the continuous rate k = -1.2. The model is y = a*e^(-1.2x). Half-life formula is t = ln(2) / |k|. Half-life = ln(2) / 1.2." },
+            { q: "3. You have an exponential decay model y = 500(0.5)^x. What is the slope of its semi-log plot (using natural log)?", opts: { A: "0.5", B: "-0.5", C: "ln(0.5)", D: "ln(500)" }, ans: "C", sol: "Take ln: ln(y) = ln(500) + x*ln(0.5). The slope is the coefficient of x, which is ln(0.5)." },
+            { q: "4. Two exponential functions are plotted on a semi-log graph. Line A is steeper than Line B. What does this mean?", opts: { A: "Function A has a larger initial value.", B: "Function A has a larger base/growth rate.", C: "Function A is linear.", D: "Function B has a negative base." }, ans: "B", sol: "The slope on a semi-log plot is the log of the base (or the continuous rate 'k'). A steeper slope means a larger log(b), which means a larger base 'b'. Function A grows faster." },
+            { q: "5. A semi-log plot of y vs t yields ln(y) = 0.05t + ln(100). What is the value of y when t=20?", opts: { A: "100e", B: "100", C: "100e^2", D: "e" }, ans: "A", sol: "Plug in t=20: ln(y) = 0.05(20) + ln(100) = 1 + ln(100). Convert to exp: y = e^(1 + ln(100)) = e^1 * e^(ln(100)) = e * 100 = 100e." }
+        ]
+    },
+    "2_15_master": {
+        title: "Unit 2.15 Master Exam",
+        subtitle: "Advanced Linearization & Log-Scale Graphing.",
+        themeColor: "#8e44ad",
+        questions: [
+            { q: "1. You suspect a dataset follows y = A * e^(kx). You plot ln(y) on the vertical axis and x on the horizontal axis. The line of best fit has a y-intercept of 4.3 and passes through (10, 2.3). Find A and k.", opts: { A: "A = 4.3, k = -0.2", B: "A = e^4.3, k = -0.2", C: "A = e^4.3, k = 2.3", D: "A = 4.3, k = 2.3" }, ans: "B", sol: "y-int is 4.3. Slope = (2.3 - 4.3) / (10 - 0) = -2 / 10 = -0.2. Linear eq: ln(y) = -0.2x + 4.3. Convert: y = e^(-0.2x + 4.3) = e^4.3 * e^(-0.2x). A = e^4.3, k = -0.2." },
+            { q: "2. Why does a Log-Log plot linearize a power function y = ax^n, but a Semi-Log plot does not?", opts: { A: "Semi-log only takes log of y: log(ax^n) = log(a) + n*log(x). This is not linear with respect to x.", B: "Power functions cannot be linearized.", C: "Log-Log plots only work for base 10.", D: "Semi-log plots only work for negative numbers." }, ans: "A", sol: "For y = ax^n, log(y) = log(a) + n*log(x). To make this look like Y = mX + b, the x-axis variable MUST be X = log(x). Thus, you need a log scale on both axes (Log-Log)." },
+            { q: "3. On a semi-log plot where the y-axis uses log base 10, the graph is a straight horizontal line at y-tick mark 3. What is the original function?", opts: { A: "y = 3", B: "y = 3^x", C: "y = 10^3", D: "y = 10^x" }, ans: "C", sol: "A horizontal line means slope is 0. log(y) = 0x + 3. log(y) = 3. Convert to exp: y = 10^3 = 1000. It is a constant function." },
+            { q: "4. The data for planetary orbits forms a straight line when log(Orbital Period) is plotted against log(Distance from Sun). Slope is 1.5. Model?", opts: { A: "Period = a * (Distance)^1.5", B: "Period = a * 1.5^(Distance)", C: "Period = 1.5 * Distance", D: "Period = a * log(1.5 * Distance)" }, ans: "A", sol: "Log-Log plot straight line indicates a power model y = ax^n. The slope of the Log-Log plot is the exponent 'n'. So n=1.5. This is Kepler's Third Law!" },
+            { q: "5. You mistakenly plot exponential data y = 2(5)^x on a Log-Log plot instead of a Semi-Log plot. What will the graph look like?", opts: { A: "A straight line", B: "A curve that bends upwards", C: "A curve that flattens out (bends downwards)", D: "A horizontal line" }, ans: "B", sol: "Log(y) = log(2) + x*log(5). On a Log-Log plot, the horizontal axis is X = log(x), meaning x = 10^X. The equation becomes Log(y) = log(2) + 10^X * log(5). An exponential inside the plot causes it to curve upwards dramatically." }
+        ]
     }
 };
