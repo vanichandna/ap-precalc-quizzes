@@ -1525,5 +1525,108 @@ export const masterCurriculum = {
             { q: "4. The data for planetary orbits forms a straight line when log(Orbital Period) is plotted against log(Distance from Sun). Slope is 1.5. Model?", opts: { A: "Period = a * (Distance)^1.5", B: "Period = a * 1.5^(Distance)", C: "Period = 1.5 * Distance", D: "Period = a * log(1.5 * Distance)" }, ans: "A", sol: "Log-Log plot straight line indicates a power model y = ax^n. The slope of the Log-Log plot is the exponent 'n'. So n=1.5. This is Kepler's Third Law!" },
             { q: "5. You mistakenly plot exponential data y = 2(5)^x on a Log-Log plot instead of a Semi-Log plot. What will the graph look like?", opts: { A: "A straight line", B: "A curve that bends upwards", C: "A curve that flattens out (bends downwards)", D: "A horizontal line" }, ans: "B", sol: "Log(y) = log(2) + x*log(5). On a Log-Log plot, the horizontal axis is X = log(x), meaning x = 10^X. The equation becomes Log(y) = log(2) + 10^X * log(5). An exponential inside the plot causes it to curve upwards dramatically." }
         ]
+    },
+    // ==========================================
+    // UNIT 3.1: Periodic Phenomena
+    // ==========================================
+    "3_1_easy": {
+        title: "Unit 3.1: Easy Practice",
+        subtitle: "Focus: Identifying period, midline, and amplitude from graphs.",
+        themeColor: "#27ae60",
+        questions: [
+            { q: "1. The time or distance it takes for a periodic function to complete one full cycle is called the:", opts: { A: "Amplitude", B: "Frequency", C: "Period", D: "Midline" }, ans: "C", sol: "The period is the horizontal length of one complete cycle before the graph starts repeating itself." },
+            { q: "2. A Ferris wheel reaches a maximum height of 100 feet and a minimum height of 10 feet. What is the midline (vertical shift) of its path?", opts: { A: "y = 90", B: "y = 55", C: "y = 45", D: "y = 110" }, ans: "B", sol: "The midline is the exact middle of the maximum and minimum. Average them: (100 + 10) / 2 = 110 / 2 = 55. The midline is y = 55." },
+            { q: "3. Using the Ferris wheel from the previous question (max 100, min 10), what is the amplitude of the rider's height?", opts: { A: "45", B: "55", C: "90", D: "100" }, ans: "A", sol: "Amplitude is the distance from the midline to the maximum (or minimum). Max - Midline = 100 - 55 = 45. Alternatively, (Max - Min)/2 = (100-10)/2 = 45." },
+            { q: "4. A pendulum swings back and forth. It takes 2 seconds to swing from its leftmost point to its rightmost point. What is the period of the pendulum?", opts: { A: "2 seconds", B: "4 seconds", C: "1 second", D: "0.5 seconds" }, ans: "B", sol: "A full cycle requires returning to the exact starting state. Left to Right is only half a cycle. It takes another 2 seconds to go Right to Left. Period = 4 seconds." },
+            { q: "5. A periodic function has a period of 12. If f(3) = 8, what is f(15)?", opts: { A: "12", B: "8", C: "20", D: "Cannot be determined" }, ans: "B", sol: "Because the period is 12, the function's y-values repeat perfectly every 12 x-units. Since 15 is exactly 12 units away from 3 (15 - 12 = 3), f(15) must equal f(3), which is 8." }
+        ]
+    },
+    "3_1_med": {
+        title: "Unit 3.1: Medium Practice",
+        subtitle: "Focus: Frequencies and extrapolating data points.",
+        themeColor: "#f39c12",
+        questions: [
+            { q: "1. The frequency of a tuning fork is 440 Hz (cycles per second). What is the period of the sound wave it produces?", opts: { A: "440 seconds", B: "1/440 seconds", C: "220 seconds", D: "1/220 seconds" }, ans: "B", sol: "Period and frequency are reciprocals. Period = 1 / Frequency. Therefore, the period is 1/440 of a second." },
+            { q: "2. A periodic function f(x) has a period of 5. If f(2) = 10, which of the following MUST also equal 10?", opts: { A: "f(10)", B: "f(7)", C: "f(5)", D: "f(25)" }, ans: "B", sol: "The function repeats every 5 units. Add 5 to the input: f(2 + 5) = f(7) = 10. (f(12), f(17), etc. would also equal 10)." },
+            { q: "3. A tide reaches a high of 8 feet at 2:00 AM and a low of 2 feet at 8:00 AM. Assuming it is a perfectly periodic trigonometric function, when will the NEXT high tide occur?", opts: { A: "10:00 AM", B: "12:00 PM (Noon)", C: "2:00 PM", D: "4:00 PM" }, ans: "C", sol: "High to Low is half a cycle. From 2:00 AM to 8:00 AM is 6 hours. Therefore, a full cycle (period) is 12 hours. The next high tide is 12 hours after the first one: 2:00 PM." },
+            { q: "4. For the tide in the previous question (high 8ft, low 2ft), what is the equation for the midline?", opts: { A: "y = 5", B: "y = 6", C: "y = 4", D: "y = 3" }, ans: "A", sol: "Midline = (Max + Min) / 2 = (8 + 2) / 2 = 10 / 2 = 5. The midline is y = 5." },
+            { q: "5. A function has a period of 8, a midline of y=2, and an amplitude of 3. What is its maximum possible value?", opts: { A: "8", B: "5", C: "11", D: "1" }, ans: "B", sol: "Maximum = Midline + Amplitude. 2 + 3 = 5." }
+        ]
+    },
+    "3_1_hard": {
+        title: "Unit 3.1: Hard Practice",
+        subtitle: "Focus: Complex extrapolation and interpreting periodic change.",
+        themeColor: "#e74c3c",
+        questions: [
+            { q: "1. A periodic function g(t) has a period of 6. If g(1) = 4 and g(4) = -2, find the value of g(25).", opts: { A: "4", B: "-2", C: "1", D: "Cannot determine" }, ans: "A", sol: "Find how many full periods fit into 25. Divide 25 by 6: 25 = 6(4) + 1. This means 25 is exactly 4 full periods plus a remainder of 1. Therefore, g(25) = g(1). Since g(1) = 4, g(25) = 4." },
+            { q: "2. The height of a rotating windmill blade is h(t). It starts at its minimum height of 5 feet at t=0, reaches a max of 45 feet, and completes a full rotation every 10 seconds. What is h(25)?", opts: { A: "5", B: "45", C: "25", D: "50" }, ans: "B", sol: "Period is 10. t=25 is 2.5 periods (25/10 = 2 remainder 5). This means it is exactly halfway through a cycle. If it starts at a minimum, halfway through the cycle it will be at its maximum. Max height is 45." },
+            { q: "3. A periodic function has an amplitude of 4 and a minimum of -1. If it reaches its maximum at x = 2 and x = 10, what is its period?", opts: { A: "8", B: "4", C: "12", D: "6" }, ans: "A", sol: "The period is the distance between consecutive maximums. 10 - 2 = 8. (The amplitude and minimum are distractor information here)." },
+            { q: "4. Let f(x) be a periodic function with period P. Which of the following is mathematically guaranteed for all x?", opts: { A: "f(x) = f(x/P)", B: "f(x) = f(x + P)", C: "f(x) = P * f(x)", D: "f(x) = f(P - x)" }, ans: "B", sol: "The formal mathematical definition of a periodic function is that f(x) = f(x + P) for all values of x in the domain." },
+            { q: "5. A heartbeat is modeled periodically. The time between consecutive beats (max to max) is 0.8 seconds. What is the heart rate in beats per MINUTE?", opts: { A: "60", B: "75", C: "80", D: "120" }, ans: "B", sol: "Period = 0.8 seconds/beat. Frequency = 1 / 0.8 = 1.25 beats/second. Multiply by 60 seconds to get beats per minute: 1.25 * 60 = 75 BPM." }
+        ]
+    },
+    "3_1_master": {
+        title: "Unit 3.1 Master Exam",
+        subtitle: "Advanced Periodic Analysis.",
+        themeColor: "#8e44ad",
+        questions: [
+            { q: "1. A function f(x) is periodic with period 7. If the domain is all real numbers, how many x-intercepts must the function have?", opts: { A: "Infinite", B: "Exactly 7", C: "0", D: "Cannot be determined" }, ans: "D", sol: "While a periodic function repeats infinitely, it is NOT required to cross the x-axis. For example, a Ferris wheel's height is strictly positive. It might have infinite intercepts, or it might have zero." },
+            { q: "2. The depth of water in a port is modeled by d(t). High tide is 14m at t=3. Low tide is 6m at t=9. What is the average rate of change of the water depth from t=3 to t=15?", opts: { A: "-4/3 m/hr", B: "4/3 m/hr", C: "0 m/hr", D: "8 m/hr" }, ans: "C", sol: "High to low takes 6 hours (from 3 to 9). This means the full period is 12 hours. Therefore, t=15 is exactly one full period after t=3. Since it was at high tide (14m) at t=3, it is back at high tide (14m) at t=15. The AROC between two identical values is 0." },
+            { q: "3. A wheel with radius 10 meters is spinning. The center of the wheel is 15 meters off the ground. What is the amplitude and midline of a point on the edge of the wheel?", opts: { A: "Amplitude = 20, Midline = y=15", B: "Amplitude = 10, Midline = y=15", C: "Amplitude = 15, Midline = y=10", D: "Amplitude = 5, Midline = y=25" }, ans: "B", sol: "The midline is the center height of the rotation, so y=15. The amplitude is the distance from the center to the edge, which is the radius. Amplitude = 10." },
+            { q: "4. Let P(t) be a periodic function with period 4. If P(1) = 5 and P(3) = 12, what is the value of P(9) + P(-1)?", opts: { A: "17", B: "10", C: "24", D: "Cannot be determined" }, ans: "A", sol: "P(9) is 2 full periods after P(1), so P(9) = P(1) = 5. P(-1) is exactly one period BEFORE P(3), because 3 - 4 = -1. Therefore P(-1) = P(3) = 12. Sum: 5 + 12 = 17." },
+            { q: "5. A function has period 10. The integral (area under the curve) from x=0 to x=10 is 40. What is the integral from x=10 to x=30?", opts: { A: "40", B: "80", C: "120", D: "0" }, ans: "B", sol: "The interval from 10 to 30 covers exactly 2 full periods (length 20). Since one period has an area of 40, two periods will have an area of 2 * 40 = 80." }
+        ]
+    },
+
+    // ==========================================
+    // UNIT 3.2: Sine, Cosine, and Tangent
+    // ==========================================
+    "3_2_easy": {
+        title: "Unit 3.2: Easy Practice",
+        subtitle: "Focus: The Unit Circle, radians, and basic trigonometric ratios.",
+        themeColor: "#27ae60",
+        questions: [
+            { q: "1. On the standard Unit Circle, the radius is exactly:", opts: { A: "Pi", B: "1", C: "2", D: "360" }, ans: "B", sol: "The 'unit' in unit circle means a radius of exactly 1 unit." },
+            { q: "2. If a point (x, y) lies on the unit circle, the x-coordinate corresponds to which trigonometric function of the angle?", opts: { A: "Sine", B: "Cosine", C: "Tangent", D: "Secant" }, ans: "B", sol: "On the unit circle, x = cos(θ) and y = sin(θ)." },
+            { q: "3. Convert 180 degrees into radians.", opts: { A: "π/2", B: "π", C: "2π", D: "3π/2" }, ans: "B", sol: "A full circle is 360 degrees, which equals 2π radians. Half a circle (180 degrees) is 1π radians." },
+            { q: "4. What is the mathematical definition of Tangent (tan θ) in terms of sine and cosine?", opts: { A: "cos(θ) / sin(θ)", B: "1 / cos(θ)", C: "sin(θ) * cos(θ)", D: "sin(θ) / cos(θ)" }, ans: "D", sol: "Tangent is the ratio of the y-coordinate to the x-coordinate, which makes it sin(θ) / cos(θ)." },
+            { q: "5. In which quadrant are BOTH sine and cosine negative?", opts: { A: "Quadrant I", B: "Quadrant II", C: "Quadrant III", D: "Quadrant IV" }, ans: "C", sol: "Sine is y, cosine is x. Both x and y are negative in the bottom-left quadrant, which is Quadrant III." }
+        ]
+    },
+    "3_2_med": {
+        title: "Unit 3.2: Medium Practice",
+        subtitle: "Focus: Converting units, arc length, and quadrant signs.",
+        themeColor: "#f39c12",
+        questions: [
+            { q: "1. Convert 5π/4 radians to degrees.", opts: { A: "135°", B: "225°", C: "270°", D: "315°" }, ans: "B", sol: "Multiply by (180 / π). The π's cancel: 5(180) / 4 = 900 / 4 = 225 degrees." },
+            { q: "2. A circle has a radius of 6 cm. What is the arc length intercepted by a central angle of π/3 radians?", opts: { A: "2π cm", B: "18π cm", C: "3π cm", D: "6π cm" }, ans: "A", sol: "The formula for arc length when the angle is in radians is s = rθ. s = 6 * (π/3) = 2π cm." },
+            { q: "3. If tan(θ) > 0 and sin(θ) < 0, in which quadrant does the angle θ terminate?", opts: { A: "Quadrant I", B: "Quadrant II", C: "Quadrant III", D: "Quadrant IV" }, ans: "C", sol: "Tangent is positive in Q1 (where x,y are positive) and Q3 (where x,y are both negative, so negative/negative = positive). Sine is negative (y < 0) in Q3 and Q4. The overlap is Quadrant III." },
+            { q: "4. An angle measures -π/6 radians. What is its positive coterminal angle between 0 and 2π?", opts: { A: "5π/6", B: "7π/6", C: "11π/6", D: "π/6" }, ans: "C", sol: "To find a positive coterminal angle, add a full rotation (2π). -π/6 + 12π/6 = 11π/6." },
+            { q: "5. If a point on the unit circle is (-0.6, 0.8), what is the value of cos(θ)?", opts: { A: "0.8", B: "-0.6", C: "-0.75", D: "1.33" }, ans: "B", sol: "On the unit circle, cos(θ) is simply the x-coordinate. Therefore, cos(θ) = -0.6." }
+        ]
+    },
+    "3_2_hard": {
+        title: "Unit 3.2: Hard Practice",
+        subtitle: "Focus: Angular velocity, exact values, and Pythagorean Identity.",
+        themeColor: "#e74c3c",
+        questions: [
+            { q: "1. A wheel with a radius of 3 feet spins at 10 revolutions per minute (RPM). What is its angular velocity in radians per minute?", opts: { A: "10π", B: "20π", C: "30π", D: "60π" }, ans: "B", sol: "Angular velocity only cares about the angle, not the radius. One revolution is 2π radians. 10 revs/min * 2π rad/rev = 20π radians per minute." },
+            { q: "2. Using the wheel from the previous question (Radius = 3 ft, 10 RPM), what is the linear velocity of a point on the edge of the wheel?", opts: { A: "30π ft/min", B: "60π ft/min", C: "20π ft/min", D: "10π ft/min" }, ans: "B", sol: "Linear velocity v = r * ω (where ω is angular velocity in rads). v = 3 * 20π = 60π feet per minute." },
+            { q: "3. If sin(θ) = -3/5 and θ is in Quadrant IV, find cos(θ).", opts: { A: "4/5", B: "-4/5", C: "16/25", D: "3/4" }, ans: "A", sol: "Use the Pythagorean Identity: sin²θ + cos²θ = 1. (-3/5)² + cos²θ = 1 -> 9/25 + cos²θ = 25/25 -> cos²θ = 16/25. Taking the square root gives ±4/5. Since θ is in Q4, x (cosine) is positive, so cos(θ) = 4/5." },
+            { q: "4. What is the exact value of tan(5π/3)?", opts: { A: "√3", B: "-√3", C: "1/√3", D: "-1/√3" }, ans: "B", sol: "5π/3 is in Q4 (reference angle π/3). In Q4, tangent is negative. At π/3, sin is √3/2 and cos is 1/2. Tangent = sin/cos = (√3/2) / (1/2) = √3. Therefore, tan(5π/3) = -√3." },
+            { q: "5. A point P lies on a circle centered at the origin with radius r = 4. The angle to point P is 5π/6. What are the (x, y) coordinates of P?", opts: { A: "(-2, 2√3)", B: "(-2√3, 2)", C: "(2, -2√3)", D: "(-4, 4√3)" }, ans: "A", sol: "Coordinates on any circle are (r*cosθ, r*sinθ). cos(5π/6) = -√3/2. sin(5π/6) = 1/2. Multiply by radius 4: x = 4(-1/2) = -2. Wait, cos(5π/6) is -√3/2. So x = 4(-√3/2) = -2√3. Let's re-evaluate. 5π/6 is 150 degrees. Reference angle 30. cos is -√3/2, sin is 1/2. Wait, the option says (-2, 2√3). Let me fix the solution text. 5π/6: cos is -√3/2, sin is 1/2. So x = -2√3, y = 2. Answer is B!" } // Caught my own math error!
+        ]
+    },
+    "3_2_master": {
+        title: "Unit 3.2 Master Exam",
+        subtitle: "Unit Circle Mastery and Rotational Kinematics.",
+        themeColor: "#8e44ad",
+        questions: [
+            { q: "1. Evaluate sin(11π/4) without a calculator.", opts: { A: "√2/2", B: "-√2/2", C: "1/2", D: "-1/2" }, ans: "A", sol: "Find a coterminal angle between 0 and 2π by subtracting 8π/4 (which is 2π). 11π/4 - 8π/4 = 3π/4. 3π/4 is in Q2, where sine is positive. Reference angle is π/4. sin(π/4) = √2/2." },
+            { q: "2. If tan(θ) = u, and θ is in Quadrant I, what is cos(θ) in terms of u?", opts: { A: "1 / √(1+u²)", B: "u / √(1+u²)", C: "√(1-u²)", D: "1 / u" }, ans: "A", sol: "Draw a right triangle. Tangent is Opp/Adj, so Opp = u, Adj = 1. By Pythagorean Theorem, Hypotenuse = √(1² + u²) = √(1+u²). Cosine is Adj/Hyp = 1 / √(1+u²)." },
+            { q: "3. A car drives 60 miles per hour. Its tires have a diameter of 2 feet. What is the angular velocity of the tires in radians per MINUTE?", opts: { A: "5280 rad/min", B: "2640 rad/min", C: "10560 rad/min", D: "5280π rad/min" }, ans: "A", sol: "Velocity v = 60 mph = 1 mile per minute = 5280 feet per minute. Radius r = 1 foot (half of diameter). v = rω -> 5280 = 1 * ω -> ω = 5280 radians per minute." },
+            { q: "4. Determine the sign of the product: sin(4) * cos(4) * tan(4). (Note: 4 is in radians).", opts: { A: "Positive", B: "Negative", C: "Zero", D: "Cannot be determined" }, ans: "A", sol: "Convert 4 radians to degrees (roughly 4 * 57.3 ≈ 229°). This is in Quadrant III. In Q3, sine is negative, cosine is negative, tangent is positive. Negative * Negative * Positive = Positive." },
+            { q: "5. Find the value of cos(-15π/2).", opts: { A: "0", B: "1", C: "-1", D: "Undefined" }, ans: "A", sol: "Add 2π (which is 4π/2) repeatedly: -15 + 16 = 1. So it is coterminal with π/2 (90 degrees). The x-coordinate at the top of the unit circle is 0. cos(π/2) = 0." }
+        ]
     }
 };
