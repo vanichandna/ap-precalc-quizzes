@@ -192,13 +192,28 @@ submitBtn.addEventListener('click', async () => {
         scoreDiv.innerHTML = `You scored ${percentage}%. Review the solutions above.`;
     }
 
+    // Replace the old try/catch block at the end of quiz.html with this:
     try {
         const studentRef = doc(db, "users", currentUser.email);
-        await updateDoc(studentRef, {
-            [`scores.${dbKey}`]: percentage 
-        });
-        submitBtn.innerText = "Score Saved!";
+        
+        // 1. Get their current best score from the database
+        const docSnap = await getDoc(studentRef);
+        let currentBest = 0;
+        if (docSnap.exists() && docSnap.data().scores && docSnap.data().scores[dbKey] !== undefined) {
+            currentBest = docSnap.data().scores[dbKey];
+        }
+
+        // 2. Only overwrite the database if the new score is higher (or equal)
+        if (percentage >= currentBest) {
+            await updateDoc(studentRef, {
+                [`scores.${dbKey}`]: percentage 
+            });
+            submitBtn.innerText = "Highest Score Saved!";
+        } else {
+            submitBtn.innerText = `Score: ${percentage}% (Kept Best: ${currentBest}%)`;
+        }
         submitBtn.style.backgroundColor = "#27ae60";
+
     } catch (error) {
         submitBtn.innerText = "Error Saving Score";
         submitBtn.style.backgroundColor = "#e74c3c";
