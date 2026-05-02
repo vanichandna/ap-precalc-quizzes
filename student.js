@@ -77,18 +77,23 @@ onAuthStateChanged(auth, async (user) => {
                         const topicMasterUnlocked = isEasyDone && isMedDone && isHardDone;
                         const topicMasterScore = scores[`${unitKey}_master`];
 
-                        const eIcon = isEasyDone ? "✅" : "📝";
-                        const mIcon = isMedDone ? "✅" : "📝";
-                        const hIcon = isHardDone ? "✅" : "📝";
+                        // --- NEW: Display exact scores for every practice level ---
+                        const eScore = scores[`${unitKey}_easy`];
+                        const mScore = scores[`${unitKey}_med`];
+                        const hScore = scores[`${unitKey}_hard`];
+
+                        const eText = isEasyDone ? `✅ Easy (${eScore}%)` : "📝 Easy Practice";
+                        const mText = isMedDone ? `✅ Medium (${mScore}%)` : "📝 Medium Practice";
+                        const hText = isHardDone ? `✅ Hard (${hScore}%)` : "📝 Hard Practice";
 
                         unitCardsHTML += `
                             <div class="quiz-card">
                                 <h3>Topic ${unit}.${sub}</h3>
                                 
                                 <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 15px;">
-                                    <a href="quiz.html?unit=${unit}_${sub}&diff=easy" style="background-color: ${isEasyDone ? '#27ae60' : '#3498db'};">${eIcon} Easy Practice</a>
-                                    <a href="quiz.html?unit=${unit}_${sub}&diff=med" style="background-color: ${isMedDone ? '#27ae60' : '#f39c12'};">${mIcon} Medium Practice</a>
-                                    <a href="quiz.html?unit=${unit}_${sub}&diff=hard" style="background-color: ${isHardDone ? '#27ae60' : '#e74c3c'};">${hIcon} Hard Practice</a>
+                                    <a href="quiz.html?unit=${unit}_${sub}&diff=easy" style="background-color: ${isEasyDone ? '#27ae60' : '#3498db'};">${eText}</a>
+                                    <a href="quiz.html?unit=${unit}_${sub}&diff=med" style="background-color: ${isMedDone ? '#27ae60' : '#f39c12'};">${mText}</a>
+                                    <a href="quiz.html?unit=${unit}_${sub}&diff=hard" style="background-color: ${isHardDone ? '#27ae60' : '#e74c3c'};">${hText}</a>
                                 </div>
 
                                 ${topicMasterUnlocked 
@@ -137,7 +142,7 @@ onAuthStateChanged(auth, async (user) => {
                 }
             }
 
-            // --- NEW: Custom Assignments Rendering ---
+            // --- Custom Assignments Rendering ---
             let customCardsHTML = "";
             for (const [key, hasAccess] of Object.entries(studentData.access || {})) {
                 if (key.startsWith("custom_") && hasAccess) {
@@ -164,7 +169,6 @@ onAuthStateChanged(auth, async (user) => {
                     <div class="grid">${customCardsHTML}</div>
                 `;
             }
-            // --- END CUSTOM ASSIGNMENTS ---
 
             if(!hasAnyQuizzes) {
                 dashboardContent.innerHTML = `<div class="quiz-card" style="border-top-color:#e74c3c;"><h3>No Active Quizzes</h3><p>Your teacher has not unlocked any quizzes for you yet.</p></div>`;
