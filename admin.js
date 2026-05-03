@@ -41,10 +41,10 @@ onAuthStateChanged(auth, (user) => {
         loginSection.style.display = "none";
         dashboardSection.style.display = "block";
         
-        // Dynamically update table headers
+        // Dynamically update table headers to match curriculum & add Actions column
         const thead = document.querySelector('thead tr');
-        thead.innerHTML = `<th>Student Email</th>`;
-        for(let u in curriculum) thead.innerHTML += `<th>Unit ${u} Access</th>`;
+        thead.innerHTML = `<th>Student Details & Global Controls</th>`;
+        for(let u in curriculum) thead.innerHTML += `<th>Unit ${u} Progress & Access</th>`;
         thead.innerHTML += `<th style="text-align: center;">Actions</th>`;
         
         loadStudents(); 
@@ -65,6 +65,7 @@ addBtn.addEventListener('click', async () => {
     addBtn.innerText = "Adding...";
     addBtn.disabled = true;
 
+    // Generate blank access and scores
     let newAccess = {};
     let newScores = {};
     for (let unit in curriculum) {
@@ -110,46 +111,70 @@ async function loadStudents() {
             let studentCompletedTopics = 0;
             let columnsHTML = "";
 
+            // Loop through each Main Unit to create a column
             for (let unit in curriculum) {
                 let unitTotal = 0;
                 let unitCompleted = 0;
                 
                 let subHTML = `<div style="display:flex; flex-wrap:wrap; gap:8px;">`;
                 
+                // Loop through sub-topics
                 for (let sub = 1; sub <= curriculum[unit]; sub++) {
                     const unitKey = `unit${unit}_${sub}`;
                     const hasAccess = student.access && student.access[unitKey]; 
+                    
+                    // --- GRAB TOPIC MASTER SCORE ---
+                    const masterScore = student.scores ? student.scores[`${unitKey}_master`] : undefined;
+                    let scoreBadge = "";
+                    if (masterScore !== undefined) {
+                        const color = masterScore >= 80 ? '#27ae60' : '#e74c3c';
+                        scoreBadge = `<div style="font-size: 11px; color: ${color}; font-weight: bold; margin-top: 4px; text-align: center;">🏆 ${masterScore}%</div>`;
+                    }
                     
                     unitTotal++; studentTotalTopics++;
                     if (hasAccess) { unitCompleted++; studentCompletedTopics++; }
                     
                     subHTML += `
-                        <label style="font-size: 12px; background: #eee; padding: 2px 5px; border-radius: 4px; cursor: pointer;">
-                            <input type="checkbox" class="access-toggle" data-email="${student.email}" data-unit="${unitKey}" ${hasAccess ? 'checked' : ''}> 
-                            ${unit}.${sub}
-                        </label>
+                        <div style="background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 6px; padding: 6px; display: flex; flex-direction: column; align-items: center; min-width: 55px;">
+                            <label style="font-size: 12px; cursor: pointer; display: flex; align-items: center; gap: 4px; margin: 0;">
+                                <input type="checkbox" class="access-toggle" data-email="${student.email}" data-unit="${unitKey}" ${hasAccess ? 'checked' : ''}> 
+                                ${unit}.${sub}
+                            </label>
+                            ${scoreBadge}
+                        </div>
                     `;
                 }
                 
+                // Final Exam logic
                 const finalKey = `unit${unit}_final`;
                 const hasFinalAccess = student.access && student.access[finalKey];
+                
+                // --- GRAB GRAND FINAL SCORE ---
+                const finalScore = student.scores ? student.scores[finalKey] : undefined;
+                let finalBadge = "";
+                if (finalScore !== undefined && finalScore > 0) {
+                     const color = finalScore >= 80 ? '#27ae60' : '#e74c3c';
+                     finalBadge = `<span style="margin-left: 10px; font-size: 14px; color: ${color};">Score: ${finalScore}%</span>`;
+                }
+
                 unitTotal++; studentTotalTopics++;
                 if (hasFinalAccess) { unitCompleted++; studentCompletedTopics++; }
 
                 subHTML += `
-                        <div style="width: 100%; margin-top: 8px; border-top: 1px solid #ddd; padding-top: 8px;">
-                            <label style="font-size: 12px; background: #f1c40f; color: #000; padding: 4px 6px; border-radius: 4px; cursor: pointer; font-weight: bold; border: 1px solid #d4ac0d; display: inline-block;">
-                                <input type="checkbox" class="access-toggle" data-email="${student.email}" data-unit="${finalKey}" ${hasFinalAccess ? 'checked' : ''}> 
-                                👑 Unit ${unit} Final Exam
+                        <div style="width: 100%; margin-top: 10px; border-top: 2px solid #ecf0f1; padding-top: 10px;">
+                            <label style="font-size: 13px; background: #fffbef; color: #d35400; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-weight: bold; border: 1px solid #f1c40f; display: inline-flex; align-items: center; width: 100%; box-sizing: border-box;">
+                                <input type="checkbox" class="access-toggle" data-email="${student.email}" data-unit="${finalKey}" ${hasFinalAccess ? 'checked' : ''} style="margin-right: 8px;"> 
+                                👑 Unit ${unit} Final Exam ${finalBadge}
                             </label>
                         </div>
                     </div>`;
 
+                // Unit Level "Select All" Checkbox
                 const unitAllChecked = (unitTotal === unitCompleted && unitTotal > 0) ? 'checked' : '';
                 
-                columnsHTML += `<td style="min-width: 175px;">
-                    <div style="margin-bottom: 12px; border-bottom: 2px solid #ddd; padding-bottom: 8px;">
-                        <label style="font-size: 13px; font-weight: bold; cursor: pointer; color: #2980b9;">
+                columnsHTML += `<td style="min-width: 250px;">
+                    <div style="margin-bottom: 12px; border-bottom: 2px solid #3498db; padding-bottom: 8px;">
+                        <label style="font-size: 14px; font-weight: bold; cursor: pointer; color: #2c3e50;">
                             <input type="checkbox" class="toggle-unit" data-email="${student.email}" data-unit="${unit}" ${unitAllChecked}> 
                             Select All Unit ${unit}
                         </label>
@@ -158,20 +183,33 @@ async function loadStudents() {
                 </td>`;
             }
 
+            // Student Level "Select All" Checkbox
             const studentAllChecked = (studentTotalTopics === studentCompletedTopics && studentTotalTopics > 0) ? 'checked' : '';
 
+            // --- GRAB CUSTOM QUIZ SCORES ---
+            let customScoresHTML = "";
+            for (const [key, score] of Object.entries(student.scores || {})) {
+                if (key.startsWith("custom_") && score !== undefined) {
+                    customScoresHTML += `<div style="font-size: 12px; color: #8e44ad; margin-top: 5px;"><strong>${key}:</strong> ${score}%</div>`;
+                }
+            }
+            if (customScoresHTML !== "") {
+                customScoresHTML = `<div style="margin-top: 15px; border-top: 1px solid #eee; padding-top: 10px;"><strong style="font-size:12px; color:#666;">Custom Scores:</strong>${customScoresHTML}</div>`;
+            }
+
             let rowHTML = `
-                <td>
-                    <strong>${student.email}</strong>
+                <td style="min-width: 200px;">
+                    <strong style="font-size: 16px; color: #2c3e50;">${student.email}</strong>
                     <div style="margin-top: 15px;">
-                        <label style="font-size: 13px; font-weight: bold; cursor: pointer; color: #27ae60; background: #eafaf1; padding: 5px 8px; border-radius: 5px; border: 1px solid #27ae60; display: inline-block;">
+                        <label style="font-size: 13px; font-weight: bold; cursor: pointer; color: #27ae60; background: #eafaf1; padding: 8px 10px; border-radius: 5px; border: 1px solid #27ae60; display: inline-block; width: 100%; box-sizing: border-box; text-align: center;">
                             <input type="checkbox" class="toggle-all-student" data-email="${student.email}" ${studentAllChecked}>
                             Unlock ALL Curriculum
                         </label>
                     </div>
+                    ${customScoresHTML}
                 </td>
                 ${columnsHTML}
-                <td style="text-align: center;">
+                <td style="text-align: center; vertical-align: middle;">
                     <button class="btn-remove" data-email="${student.email}">🗑️ Remove User</button>
                 </td>
             `;
@@ -275,7 +313,7 @@ function attachEventListeners() {
     });
 }
 
-// 5. Assign Custom Quiz Logic
+// Assign Custom Quiz Logic
 document.getElementById('assign-custom-btn').addEventListener('click', async () => {
     const email = document.getElementById('custom-email').value.trim().toLowerCase();
     const quizId = document.getElementById('custom-quiz-id').value.trim();
@@ -293,6 +331,7 @@ document.getElementById('assign-custom-btn').addEventListener('click', async () 
         });
         alert(`Successfully assigned ${quizId} to ${email}!`);
         document.getElementById('custom-quiz-id').value = ""; // Clear input
+        loadStudents(); // Refresh to show the new custom quiz in their list
     } catch (err) {
         alert("Error: Make sure the student exists in the database first.");
     } finally {
