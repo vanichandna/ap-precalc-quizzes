@@ -48,8 +48,15 @@
         .progress-text { text-align: right; font-size: 13px; font-weight: 600; margin-top: 8px; color: var(--primary); }
 
         /* Layout & Sections */
-        .section-title { font-size: 20px; color: var(--primary); margin: 40px 0 15px 0; padding-bottom: 10px; border-bottom: 2px solid #e2e8f0; display: flex; align-items: center; gap: 10px; }
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        
+        /* Collapsible Accordions */
+        .section-title { font-size: 18px; color: var(--primary); margin: 30px 0 10px 0; padding: 15px 20px; display: flex; align-items: center; gap: 10px; cursor: pointer; user-select: none; transition: background-color 0.2s; border-radius: 8px; background-color: white; border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        .section-title:hover { background-color: #f8fafc; }
+        .section-title::after { content: '▼'; margin-left: auto; font-size: 14px; color: #64748b; transition: transform 0.3s; }
+        .section-title.collapsed::after { transform: rotate(-90deg); }
+        .grid-container { overflow: hidden; transition: all 0.3s ease-in-out; }
+        .grid-container.hidden { display: none; }
         
         /* Modern Cards */
         .quiz-card { background: var(--card); padding: 25px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); display: flex; flex-direction: column; transition: 0.3s; border: 1px solid #e2e8f0; position: relative; overflow: hidden; }
