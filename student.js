@@ -17,6 +17,10 @@ const unitTitles = {
 const loginSection = document.getElementById('login-section');
 const quizSection = document.getElementById('quiz-section');
 const dashboardContent = document.getElementById('dashboard-content');
+const emailDisplay = document.getElementById('student-email-display');
+const progressFill = document.getElementById('overall-progress-fill');
+const progressText = document.getElementById('overall-progress-text');
+
 const emailInput = document.getElementById('student-email');
 const passwordInput = document.getElementById('student-password');
 const loginBtn = document.getElementById('login-btn');
@@ -53,14 +57,50 @@ onAuthStateChanged(auth, async (user) => {
             loginSection.style.display = 'none';
             quizSection.style.display = 'block';
             logoutBtn.style.display = 'block';
+            emailDisplay.innerText = `Logged in as: ${user.email}`;
             
             const studentData = docSnap.data();
             const scores = studentData.scores || {};
             
-            dashboardContent.innerHTML = ""; 
-            let hasAnyQuizzes = false;
+            // Progress Tracking Variables
+            let totalAssigned = 0;
+            let totalCompleted = 0;
+            
+            // HTML Containers
+            let newAssignmentsHTML = "";
+            let coreCurriculumHTML = "";
+            let completedCustomHTML = "";
 
-            // Loop through Main Units 1 to 4
+            // --- 1. PROCESS CUSTOM/HOMEWORK ASSIGNMENTS ---
+            for (const [key, hasAccess] of Object.entries(studentData.access || {})) {
+                if (key.startsWith("custom_") && hasAccess) {
+                    totalAssigned++;
+                    const score = scores[key];
+                    const isDone = score !== undefined;
+                    
+                    if (isDone) totalCompleted++;
+
+                    const cardHTML = `
+                        <div class="quiz-card ${!isDone ? 'alert-card' : ''}">
+                            ${!isDone ? '<div class="alert-badge">NEW</div>' : ''}
+                            <h3 style="color: var(--purple);">Special Assignment</h3>
+                            <p><strong>ID:</strong> ${key}</p>
+                            ${isDone ? `<div style="text-align:center; margin-bottom: 15px;"><span class="score-badge" style="color:var(--success); border:1px solid var(--success);">Score: ${score}%</span></div>` : ''}
+                            <a href="quiz.html?customId=${key}" class="master-btn" style="${isDone ? 'background: var(--success);' : ''}">
+                                ${isDone ? 'Review Solutions' : 'Start Assignment'}
+                            </a>
+                        </div>
+                    `;
+
+                    if (!isDone) {
+                        newAssignmentsHTML += cardHTML;
+                    } else {
+                        completedCustomHTML += cardHTML;
+                    }
+                }
+            }
+
+            // --- 2. PROCESS CORE CURRICULUM (UNITS 1-4) ---
             for (let unit = 1; unit <= 4; unit++) {
                 let unitCardsHTML = "";
 
@@ -68,110 +108,108 @@ onAuthStateChanged(auth, async (user) => {
                     const unitKey = `unit${unit}_${sub}`;
                     
                     if (studentData.access && studentData.access[unitKey]) {
-                        hasAnyQuizzes = true;
+                        // Standard practice quizzes count towards total progress
+                        totalAssigned += 3; // Easy, Med, Hard
 
                         const isEasyDone = scores[`${unitKey}_easy`] !== undefined;
                         const isMedDone  = scores[`${unitKey}_med`] !== undefined;
                         const isHardDone = scores[`${unitKey}_hard`] !== undefined;
                         
+                        if (isEasyDone) totalCompleted++;
+                        if (isMedDone) totalCompleted++;
+                        if (isHardDone) totalCompleted++;
+
                         const topicMasterUnlocked = isEasyDone && isMedDone && isHardDone;
                         const topicMasterScore = scores[`${unitKey}_master`];
 
-                        // --- NEW: Display exact scores for every practice level ---
+                        // Master quiz progress tracking
+                        totalAssigned++; 
+                        if (topicMasterScore !== undefined) totalCompleted++;
+
                         const eScore = scores[`${unitKey}_easy`];
                         const mScore = scores[`${unitKey}_med`];
                         const hScore = scores[`${unitKey}_hard`];
 
-                        const eText = isEasyDone ? `✅ Easy (${eScore}%)` : "📝 Easy Practice";
-                        const mText = isMedDone ? `✅ Medium (${mScore}%)` : "📝 Medium Practice";
-                        const hText = isHardDone ? `✅ Hard (${hScore}%)` : "📝 Hard Practice";
+                        // Build individual practice links
+                        const linkHTML = (done, score, level, diff) => {
+                            if (done) return `<a href="quiz.html?unit=${unit}_${sub}&diff=${diff}" class="quiz-link done">✅ ${level} <span class="score-badge">${score}%</span></a>`;
+                            return `<a href="quiz.html?unit=${unit}_${sub}&diff=${diff}" class="quiz-link">📝 ${level}</a>`;
+                        };
 
                         unitCardsHTML += `
                             <div class="quiz-card">
                                 <h3>Topic ${unit}.${sub}</h3>
-                                
-                                <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 15px;">
-                                    <a href="quiz.html?unit=${unit}_${sub}&diff=easy" style="background-color: ${isEasyDone ? '#27ae60' : '#3498db'};">${eText}</a>
-                                    <a href="quiz.html?unit=${unit}_${sub}&diff=med" style="background-color: ${isMedDone ? '#27ae60' : '#f39c12'};">${mText}</a>
-                                    <a href="quiz.html?unit=${unit}_${sub}&diff=hard" style="background-color: ${isHardDone ? '#27ae60' : '#e74c3c'};">${hText}</a>
+                                <div style="display: flex; flex-direction: column; margin-bottom: 20px;">
+                                    ${linkHTML(isEasyDone, eScore, "Easy Practice", "easy")}
+                                    ${linkHTML(isMedDone, mScore, "Medium Practice", "med")}
+                                    ${linkHTML(isHardDone, hScore, "Hard Practice", "hard")}
                                 </div>
-
                                 ${topicMasterUnlocked 
-                                    ? `<a href="quiz.html?unit=${unit}_${sub}&diff=master" style="background-color: #8e44ad; width: 85%; display: block; margin: auto;">🏆 Take Master Quiz</a>
-                                       ${topicMasterScore !== undefined ? `<p style="color:#8e44ad; font-weight:bold; margin-top:10px; margin-bottom:0;">Score: ${topicMasterScore}%</p>` : ''}`
-                                    : `<button disabled style="background-color: #bdc3c7; color: white; border: none; padding: 10px; border-radius: 20px; width: 100%;">🔒 Master Locked</button>`
+                                    ? `<a href="quiz.html?unit=${unit}_${sub}&diff=master" class="master-btn">
+                                        🏆 Master Quiz ${topicMasterScore !== undefined ? `(${topicMasterScore}%)` : ''}
+                                       </a>`
+                                    : `<button class="master-btn locked" disabled>🔒 Master Locked</button>`
                                 }
                             </div>
                         `;
                     }
                 }
 
-                // Final Exam Check
+                // Final Exam Processing
                 const finalKey = `unit${unit}_final`;
-                const hasFinalAccess = studentData.access && studentData.access[finalKey];
-                let grandMasterHTML = "";
-
-                if (hasFinalAccess) {
-                    hasAnyQuizzes = true;
+                if (studentData.access && studentData.access[finalKey]) {
+                    totalAssigned++;
                     const finalScore = scores[finalKey];
-                    grandMasterHTML = `
-                        <div class="quiz-card" style="border: 2px solid #f1c40f; background-color: #fffbef; grid-column: 1 / -1;">
-                            <h2 style="color: #f39c12; margin-top:0;">👑 Unit ${unit} Final Exam</h2>
-                            <p>Your teacher has unlocked the Final Exam for this unit. Good luck!</p>
-                            ${finalScore !== undefined && finalScore > 0 ? `<p style="color: #27ae60; font-weight: bold; font-size: 18px;">Final Score: ${finalScore}%</p>` : ''}
-                            <a href="quiz.html?unit=${unit}&diff=final" style="background-color: #f39c12; font-size: 18px; padding: 15px 30px; margin-top: 10px;">Start Final Exam &rarr;</a>
-                        </div>
-                    `;
-                } else if (unitCardsHTML !== "") {
-                    grandMasterHTML = `
-                        <div class="quiz-card" style="border: 2px dashed #bdc3c7; opacity: 0.7; grid-column: 1 / -1;">
-                            <h2 style="color: #7f8c8d; margin-top:0;">🔒 Unit ${unit} Final Exam</h2>
-                            <p>This exam is locked. Your teacher will grant access when you are ready.</p>
-                        </div>
-                    `;
-                }
+                    if (finalScore !== undefined) totalCompleted++;
 
-                if (unitCardsHTML !== "" || hasFinalAccess) {
-                    dashboardContent.innerHTML += `
-                        <h3 class="unit-header">Unit ${unit}: ${unitTitles[unit]}</h3>
-                        <div class="grid">
-                            ${unitCardsHTML}
-                            ${grandMasterHTML}
-                        </div>
-                    `;
-                }
-            }
-
-            // --- Custom Assignments Rendering ---
-            let customCardsHTML = "";
-            for (const [key, hasAccess] of Object.entries(studentData.access || {})) {
-                if (key.startsWith("custom_") && hasAccess) {
-                    hasAnyQuizzes = true;
-                    const score = scores[key];
-                    const isDone = score !== undefined;
-
-                    customCardsHTML += `
-                        <div class="quiz-card" style="border-top-color: #9b59b6;">
-                            <h3 style="color: #9b59b6;">Special Assignment</h3>
-                            <p style="font-family: monospace; background: #f0f0f0; padding: 5px; border-radius: 4px;">ID: ${key}</p>
-                            ${isDone ? `<p style="color: #27ae60; font-weight: bold; margin-bottom: 10px;">Score: ${score}%</p>` : ''}
-                            <a href="quiz.html?customId=${key}" style="background-color: ${isDone ? '#27ae60' : '#9b59b6'}; width: 85%; display: block; margin: auto;">
-                                ${isDone ? '✅ Review Solutions' : '📝 Take Assignment'}
+                    unitCardsHTML += `
+                        <div class="quiz-card alert-card" style="grid-column: 1 / -1; border-left-color: var(--warning);">
+                            <div class="alert-badge" style="background: var(--warning);">HIGH STAKES</div>
+                            <h3>👑 Unit ${unit} Final Exam</h3>
+                            <p>Your teacher has unlocked the comprehensive Final Exam for this unit. Ensure you have adequate time before starting.</p>
+                            <a href="quiz.html?unit=${unit}&diff=final" class="master-btn final-btn">
+                                ${finalScore !== undefined ? `Review Final Exam (Score: ${finalScore}%)` : 'Start Final Exam &rarr;'}
                             </a>
                         </div>
                     `;
                 }
+
+                if (unitCardsHTML !== "") {
+                    coreCurriculumHTML += `
+                        <h3 class="section-title">📚 Unit ${unit}: ${unitTitles[unit]}</h3>
+                        <div class="grid">${unitCardsHTML}</div>
+                    `;
+                }
             }
 
-            if (customCardsHTML !== "") {
+            // --- 3. RENDER EVERYTHING ---
+            dashboardContent.innerHTML = "";
+
+            if (newAssignmentsHTML !== "") {
                 dashboardContent.innerHTML += `
-                    <h3 class="unit-header" style="color: #9b59b6;">🌟 Custom Assignments</h3>
-                    <div class="grid">${customCardsHTML}</div>
+                    <h3 class="section-title" style="color: var(--danger);">🚨 Action Required: New Assignments</h3>
+                    <div class="grid">${newAssignmentsHTML}</div>
                 `;
             }
 
-            if(!hasAnyQuizzes) {
-                dashboardContent.innerHTML = `<div class="quiz-card" style="border-top-color:#e74c3c;"><h3>No Active Quizzes</h3><p>Your teacher has not unlocked any quizzes for you yet.</p></div>`;
+            dashboardContent.innerHTML += coreCurriculumHTML;
+
+            if (completedCustomHTML !== "") {
+                dashboardContent.innerHTML += `
+                    <h3 class="section-title" style="color: var(--purple);">🌟 Completed Custom Assignments</h3>
+                    <div class="grid">${completedCustomHTML}</div>
+                `;
+            }
+
+            if (totalAssigned === 0) {
+                dashboardContent.innerHTML = `<div class="quiz-card" style="text-align:center; padding: 40px;"><h3>No Active Assignments</h3><p>Your teacher has not unlocked any work for you yet.</p></div>`;
+            }
+
+            // --- 4. UPDATE PROGRESS BAR ---
+            if (totalAssigned > 0) {
+                const progressPercentage = Math.round((totalCompleted / totalAssigned) * 100);
+                progressFill.style.width = `${progressPercentage}%`;
+                progressText.innerText = `${progressPercentage}% Completed (${totalCompleted}/${totalAssigned})`;
             }
 
         } else {
