@@ -81,7 +81,7 @@ onAuthStateChanged(auth, async (user) => {
                     if (isDone) totalCompleted++;
 
                     const cardHTML = `
-                        <div class="quiz-card ${!isDone ? 'alert-card' : ''}">
+                        <div class="quiz-card ${!isDone ? 'alert-card' : ''}" style="border-top: 4px solid var(--purple);">
                             ${!isDone ? '<div class="alert-badge">NEW</div>' : ''}
                             <h3 style="color: var(--purple);">Special Assignment</h3>
                             <p><strong>ID:</strong> ${key}</p>
@@ -103,28 +103,32 @@ onAuthStateChanged(auth, async (user) => {
             // --- 2. PROCESS CORE CURRICULUM (UNITS 1-4) ---
             for (let unit = 1; unit <= 4; unit++) {
                 let unitCardsHTML = "";
+                let unitTotalAssigned = 0;
+                let unitTotalCompleted = 0;
 
                 for(let sub = 1; sub <= curriculum[unit]; sub++) {
                     const unitKey = `unit${unit}_${sub}`;
                     
                     if (studentData.access && studentData.access[unitKey]) {
                         // Standard practice quizzes count towards total progress
-                        totalAssigned += 3; // Easy, Med, Hard
+                        totalAssigned += 3; 
+                        unitTotalAssigned += 3;
 
                         const isEasyDone = scores[`${unitKey}_easy`] !== undefined;
                         const isMedDone  = scores[`${unitKey}_med`] !== undefined;
                         const isHardDone = scores[`${unitKey}_hard`] !== undefined;
                         
-                        if (isEasyDone) totalCompleted++;
-                        if (isMedDone) totalCompleted++;
-                        if (isHardDone) totalCompleted++;
+                        if (isEasyDone) { totalCompleted++; unitTotalCompleted++; }
+                        if (isMedDone)  { totalCompleted++; unitTotalCompleted++; }
+                        if (isHardDone) { totalCompleted++; unitTotalCompleted++; }
 
                         const topicMasterUnlocked = isEasyDone && isMedDone && isHardDone;
                         const topicMasterScore = scores[`${unitKey}_master`];
 
                         // Master quiz progress tracking
                         totalAssigned++; 
-                        if (topicMasterScore !== undefined) totalCompleted++;
+                        unitTotalAssigned++;
+                        if (topicMasterScore !== undefined) { totalCompleted++; unitTotalCompleted++; }
 
                         const eScore = scores[`${unitKey}_easy`];
                         const mScore = scores[`${unitKey}_med`];
@@ -137,12 +141,12 @@ onAuthStateChanged(auth, async (user) => {
                         };
 
                         unitCardsHTML += `
-                            <div class="quiz-card">
+                            <div class="quiz-card" style="border-top: 4px solid var(--accent);">
                                 <h3>Topic ${unit}.${sub}</h3>
                                 <div style="display: flex; flex-direction: column; margin-bottom: 20px;">
-                                    ${linkHTML(isEasyDone, eScore, "Easy Practice", "easy")}
-                                    ${linkHTML(isMedDone, mScore, "Medium Practice", "med")}
-                                    ${linkHTML(isHardDone, hScore, "Hard Practice", "hard")}
+                                    ${linkHTML(isEasyDone, eScore, "Easy", "easy")}
+                                    ${linkHTML(isMedDone, mScore, "Medium", "med")}
+                                    ${linkHTML(isHardDone, hScore, "Hard", "hard")}
                                 </div>
                                 ${topicMasterUnlocked 
                                     ? `<a href="quiz.html?unit=${unit}_${sub}&diff=master" class="master-btn">
@@ -159,13 +163,14 @@ onAuthStateChanged(auth, async (user) => {
                 const finalKey = `unit${unit}_final`;
                 if (studentData.access && studentData.access[finalKey]) {
                     totalAssigned++;
+                    unitTotalAssigned++;
                     const finalScore = scores[finalKey];
-                    if (finalScore !== undefined) totalCompleted++;
+                    if (finalScore !== undefined) { totalCompleted++; unitTotalCompleted++; }
 
                     unitCardsHTML += `
-                        <div class="quiz-card alert-card" style="grid-column: 1 / -1; border-left-color: var(--warning);">
+                        <div class="quiz-card alert-card" style="grid-column: 1 / -1; border-top: 4px solid var(--warning); border-left: none;">
                             <div class="alert-badge" style="background: var(--warning);">HIGH STAKES</div>
-                            <h3>👑 Unit ${unit} Final Exam</h3>
+                            <h3 style="color: var(--warning);">👑 Unit ${unit} Final Exam</h3>
                             <p>Your teacher has unlocked the comprehensive Final Exam for this unit. Ensure you have adequate time before starting.</p>
                             <a href="quiz.html?unit=${unit}&diff=final" class="master-btn final-btn">
                                 ${finalScore !== undefined ? `Review Final Exam (Score: ${finalScore}%)` : 'Start Final Exam &rarr;'}
@@ -174,10 +179,20 @@ onAuthStateChanged(auth, async (user) => {
                     `;
                 }
 
+                // If unit has any cards, render the Accordion Section
                 if (unitCardsHTML !== "") {
+                    // Logic to auto-collapse units that are 100% finished
+                    const isUnitFullyFinished = (unitTotalAssigned === unitTotalCompleted && unitTotalAssigned > 0); 
+                    const collapsedClass = isUnitFullyFinished ? 'collapsed' : '';
+                    const hiddenClass = isUnitFullyFinished ? 'hidden' : '';
+
                     coreCurriculumHTML += `
-                        <h3 class="section-title">📚 Unit ${unit}: ${unitTitles[unit]}</h3>
-                        <div class="grid">${unitCardsHTML}</div>
+                        <h3 class="section-title ${collapsedClass}" onclick="this.classList.toggle('collapsed'); this.nextElementSibling.classList.toggle('hidden');">
+                            📚 Unit ${unit}: ${unitTitles[unit]}
+                        </h3>
+                        <div class="grid-container ${hiddenClass}">
+                            <div class="grid" style="padding-top: 5px;">${unitCardsHTML}</div>
+                        </div>
                     `;
                 }
             }
@@ -187,7 +202,9 @@ onAuthStateChanged(auth, async (user) => {
 
             if (newAssignmentsHTML !== "") {
                 dashboardContent.innerHTML += `
-                    <h3 class="section-title" style="color: var(--danger);">🚨 Action Required: New Assignments</h3>
+                    <h3 class="section-title" style="color: var(--danger); border-color: var(--danger); cursor: default;">
+                        🚨 Action Required: New Assignments
+                    </h3>
                     <div class="grid">${newAssignmentsHTML}</div>
                 `;
             }
@@ -196,13 +213,17 @@ onAuthStateChanged(auth, async (user) => {
 
             if (completedCustomHTML !== "") {
                 dashboardContent.innerHTML += `
-                    <h3 class="section-title" style="color: var(--purple);">🌟 Completed Custom Assignments</h3>
-                    <div class="grid">${completedCustomHTML}</div>
+                    <h3 class="section-title collapsed" style="color: var(--purple);" onclick="this.classList.toggle('collapsed'); this.nextElementSibling.classList.toggle('hidden');">
+                        🌟 Completed Custom Assignments
+                    </h3>
+                    <div class="grid-container hidden">
+                        <div class="grid" style="padding-top: 5px;">${completedCustomHTML}</div>
+                    </div>
                 `;
             }
 
             if (totalAssigned === 0) {
-                dashboardContent.innerHTML = `<div class="quiz-card" style="text-align:center; padding: 40px;"><h3>No Active Assignments</h3><p>Your teacher has not unlocked any work for you yet.</p></div>`;
+                dashboardContent.innerHTML = `<div class="quiz-card" style="text-align:center; padding: 40px; grid-column: 1/-1;"><h3>No Active Assignments</h3><p>Your teacher has not unlocked any work for you yet.</p></div>`;
             }
 
             // --- 4. UPDATE PROGRESS BAR ---
