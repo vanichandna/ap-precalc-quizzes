@@ -4,94 +4,133 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AP Precalc - Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #1a252f; --accent: #e74c3c; --bg: #ecf0f1; --card: #ffffff; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background-color: var(--bg); color: #333; }
+        :root { 
+            --primary: #0f172a; 
+            --secondary: #1e293b;
+            --accent: #3b82f6; 
+            --bg: #f8fafc; 
+            --card: #ffffff;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --purple: #8b5cf6;
+            --border: #e2e8f0;
+        }
+        body { font-family: 'Inter', sans-serif; margin: 0; background-color: var(--bg); color: #334155; }
         
         /* Navbar */
-        .navbar { background-color: var(--primary); padding: 15px 30px; color: white; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .navbar h1 { margin: 0; font-size: 24px; font-weight: 600; letter-spacing: 1px; }
-        .navbar span { font-size: 14px; color: #aaa; margin-left: 10px; }
-        #admin-logout-btn { background: transparent; border: 1px solid white; color: white; padding: 8px 15px; border-radius: 5px; cursor: pointer; display: none; transition: 0.3s; }
-        #admin-logout-btn:hover { background: var(--accent); border-color: var(--accent); }
+        .navbar { background-color: var(--primary); padding: 15px 40px; color: white; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .navbar h1 { margin: 0; font-size: 22px; font-weight: 800; letter-spacing: -0.5px; display: flex; align-items: center; gap: 10px; }
+        .navbar .badge { background: var(--accent); font-size: 12px; padding: 3px 8px; border-radius: 12px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; }
+        #admin-logout-btn { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 8px 16px; border-radius: 8px; cursor: pointer; transition: 0.2s; font-weight: 600; display: none; }
+        #admin-logout-btn:hover { background: white; color: var(--primary); }
 
         /* Container */
-        .container { max-width: 1400px; margin: 40px auto; padding: 0 20px; }
+        .container { max-width: 95%; margin: 40px auto; padding: 0 20px; }
         
         /* Cards */
-        .card { background: var(--card); padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 30px; border-top: 4px solid var(--primary); }
+        .card { background: var(--card); padding: 30px; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); margin-bottom: 30px; border: 1px solid var(--border); }
+        .card-header { margin: 0 0 15px 0; font-size: 20px; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 8px; }
+        .card-desc { color: #64748b; font-size: 14px; margin: 0 0 20px 0; }
         
         /* Login Box */
-        #login-section { max-width: 400px; margin: 80px auto; text-align: center; border-top: 4px solid var(--accent); }
-        input[type="email"], input[type="password"], input[type="text"] { width: 90%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; box-sizing: border-box; }
-        .btn-main { background-color: var(--accent); color: white; border: none; padding: 12px 20px; width: 90%; border-radius: 5px; font-size: 16px; cursor: pointer; margin-top: 10px; transition: 0.3s; font-weight: bold; }
-        .btn-main:hover { background-color: #c0392b; }
+        #login-section { max-width: 400px; margin: 80px auto; text-align: center; border-top: 5px solid var(--accent); }
+        input[type="email"], input[type="password"], input[type="text"] { width: 100%; padding: 12px 16px; margin: 10px 0; border: 1px solid var(--border); border-radius: 8px; font-size: 15px; font-family: 'Inter', sans-serif; box-sizing: border-box; transition: 0.2s; }
+        input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
+        
+        .btn-main { background-color: var(--accent); color: white; border: none; padding: 12px 20px; border-radius: 8px; font-size: 15px; cursor: pointer; transition: 0.3s; font-weight: 600; box-shadow: 0 2px 4px rgba(59,130,246,0.2); }
+        .btn-main:hover { transform: translateY(-1px); box-shadow: 0 4px 6px rgba(59,130,246,0.3); }
+        .btn-success { background-color: var(--success); box-shadow: 0 2px 4px rgba(16,185,129,0.2); }
+        .btn-success:hover { background-color: #059669; box-shadow: 0 4px 6px rgba(16,185,129,0.3); }
+        .btn-purple { background-color: var(--purple); box-shadow: 0 2px 4px rgba(139,92,246,0.2); }
+        .btn-purple:hover { background-color: #7c3aed; box-shadow: 0 4px 6px rgba(139,92,246,0.3); }
 
         /* Dashboard Elements */
         #dashboard-section { display: none; }
-        .form-group { display: flex; gap: 10px; align-items: center; margin-top: 15px; flex-wrap: wrap; }
-        .form-group input { width: 300px; margin: 0; }
-        .form-group button { background-color: #27ae60; width: auto; margin: 0; }
-        .form-group button:hover { background-color: #219653; }
+        .form-row { display: flex; gap: 15px; align-items: center; flex-wrap: wrap; }
+        .form-row input { max-width: 300px; margin: 0; }
+        .form-row button { margin: 0; }
+
+        /* Top Controls Grid */
+        .controls-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; margin-bottom: 30px; }
 
         /* Table Styling */
-        .table-wrapper { overflow-x: auto; margin-top: 20px; border-radius: 8px; border: 1px solid #e0e0e0; }
-        table { width: 100%; border-collapse: collapse; min-width: 1000px; background: white; }
-        th, td { border-bottom: 1px solid #eee; border-right: 1px solid #eee; padding: 15px; text-align: left; vertical-align: top; }
-        th { background-color: #f8f9fa; color: var(--primary); font-weight: bold; border-bottom: 2px solid #ddd; white-space: nowrap; }
-        tr:hover { background-color: #f9fbfd; }
+        .table-wrapper { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); background: white; max-height: 70vh; overflow-y: auto; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+        table { width: 100%; border-collapse: separate; border-spacing: 0; min-width: 1200px; }
+        th, td { border-bottom: 1px solid var(--border); border-right: 1px solid var(--border); padding: 20px; text-align: left; vertical-align: top; }
+        th:last-child, td:last-child { border-right: none; }
         
+        /* Sticky Header */
+        th { background-color: #f1f5f9; color: var(--secondary); font-weight: 700; font-size: 14px; position: sticky; top: 0; z-index: 10; border-bottom: 2px solid #cbd5e1; white-space: nowrap; box-shadow: 0 2px 2px -1px rgba(0,0,0,0.05); }
+        
+        tr:hover td { background-color: #f8fafc; }
+        
+        /* Custom Checkbox/Label alignments done in JS, but general styling here */
+        .student-email-cell { background-color: white; position: sticky; left: 0; z-index: 5; box-shadow: 2px 0 5px -2px rgba(0,0,0,0.05); }
+        th:first-child { z-index: 15; left: 0; }
+
         /* Remove Button */
-        .btn-remove { background-color: #e74c3c; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-size: 13px; font-weight: bold; transition: 0.3s; width: 100%; }
-        .btn-remove:hover { background-color: #c0392b; }
-        
-        h3 { margin-top: 0; color: var(--primary); }
+        .btn-remove { background-color: white; color: var(--danger); border: 1px solid var(--danger); padding: 8px 15px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; transition: 0.2s; width: 100%; }
+        .btn-remove:hover { background-color: var(--danger); color: white; }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar { width: 10px; height: 10px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 8px; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
     </style>
 </head>
 <body>
 
     <div class="navbar">
-        <div>
-            <h1>AP Precalc <span>Admin</span></h1>
-        </div>
+        <h1>AP Precalculus <span class="badge">Admin Hub</span></h1>
         <button id="admin-logout-btn">Log Out</button>
     </div>
 
     <div class="container">
         
         <div id="login-section" class="card">
-            <h2>Teacher Access</h2>
-            <p style="color:#666; font-size:14px;">Log in to manage student access and view scores.</p>
+            <h2 class="card-header" style="justify-content: center;">Teacher Access</h2>
+            <p class="card-desc" style="text-align: center;">Log in to manage student access and view progress.</p>
             <input type="email" id="admin-email" placeholder="Admin Email">
             <input type="password" id="admin-password" placeholder="Password">
-            <button id="admin-login-btn" class="btn-main">Secure Login</button>
-            <p id="admin-error" style="color: #e74c3c; font-weight: bold; margin-top: 15px;"></p>
+            <button id="admin-login-btn" class="btn-main" style="width: 100%; margin-top: 15px;">Secure Login</button>
+            <p id="admin-error" style="color: var(--danger); font-weight: 600; margin-top: 15px; font-size: 14px;"></p>
         </div>
 
         <div id="dashboard-section">
             
-            <div class="card" style="border-top-color: #27ae60;">
-                <h3>Add New Student</h3>
-                <p style="color:#666; font-size:14px; margin: 0;">Enter a student's email to generate their database profile and grant them portal access.</p>
-                <div class="form-group">
-                    <input type="email" id="new-student-email" placeholder="student@example.com">
-                    <button id="add-student-btn" class="btn-main">Add Student to Database</button>
+            <div class="controls-grid">
+                <!-- ADD STUDENT CARD -->
+                <div class="card" style="border-top: 4px solid var(--success); margin-bottom: 0;">
+                    <h3 class="card-header">🧑‍🎓 Add New Student</h3>
+                    <p class="card-desc">Generate a database profile to grant portal access.</p>
+                    <div class="form-row">
+                        <input type="email" id="new-student-email" placeholder="student@example.com">
+                        <button id="add-student-btn" class="btn-main btn-success">Add to Database</button>
+                    </div>
+                </div>
+
+                <!-- CUSTOM QUIZ CARD -->
+                <div class="card" style="border-top: 4px solid var(--purple); margin-bottom: 0;">
+                    <h3 class="card-header" style="color: var(--purple);">🌟 Assign Custom Quiz</h3>
+                    <p class="card-desc">Grant access to a specific makeup or extra credit ID.</p>
+                    <div class="form-row">
+                        <input type="email" id="custom-email" placeholder="student@example.com">
+                        <input type="text" id="custom-quiz-id" placeholder="Quiz ID (e.g., custom_makeup)">
+                        <button id="assign-custom-btn" class="btn-main btn-purple">Assign</button>
+                    </div>
                 </div>
             </div>
 
-            <div class="card" style="border-top-color: #9b59b6;">
-                <h3 style="color: #9b59b6;">Assign Custom Quiz</h3>
-                <p style="color:#666; font-size:14px; margin: 0;">Grant a specific student access to a custom quiz ID defined in your quiz-data.js file.</p>
-                <div class="form-group">
-                    <input type="email" id="custom-email" placeholder="student@example.com">
-                    <input type="text" id="custom-quiz-id" placeholder="Quiz ID (e.g., custom_makeup_1)">
-                    <button id="assign-custom-btn" class="btn-main" style="background-color: #9b59b6;">Assign Quiz</button>
+            <!-- CURRICULUM TABLE -->
+            <div class="card" style="border-top: 4px solid var(--accent); padding: 0; overflow: hidden;">
+                <div style="padding: 20px 30px; border-bottom: 1px solid var(--border); background: #f8fafc;">
+                    <h3 class="card-header" style="margin:0;">📚 Master Curriculum Control</h3>
+                    <p class="card-desc" style="margin: 5px 0 0 0;">Toggle checkboxes to instantly grant/revoke access. Progress badges appear automatically.</p>
                 </div>
-            </div>
-
-            <div class="card">
-                <h3>Master Curriculum Control</h3>
-                <p style="color:#666; font-size:14px; margin-bottom: 0;">Toggle the checkboxes below to instantly grant or revoke quiz access for specific students.</p>
                 
                 <div class="table-wrapper">
                     <table>
