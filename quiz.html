@@ -3,47 +3,63 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Practice Quiz</title>
+<title>Tixtra | Assessment</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-  body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px; background-color: #f4f7f6; color: #333; }
-  .container { max-width: 850px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+  body { font-family: 'Inter', sans-serif; margin: 0; background-color: #f8fafc; color: #334155; }
+  .navbar { background-color: #1e293b; padding: 15px 40px; color: white; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-bottom: 40px;}
+  .home-link { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 8px 16px; border-radius: 8px; cursor: pointer; transition: 0.2s; font-weight: 600; text-decoration: none; }
+  .home-link:hover { background: white; color: #1e293b; }
   
-  :root { --theme: #3498db; } 
+  .container { max-width: 850px; margin: auto; background: white; padding: 40px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
   
-  /* Timer Styles */
-  #timer-bar { background-color: var(--theme); color: white; padding: 15px; text-align: center; font-size: 22px; font-weight: bold; border-radius: 5px; margin-bottom: 25px; position: sticky; top: 10px; z-index: 100; box-shadow: 0 4px 6px rgba(0,0,0,0.2); display: none; transition: background-color 0.3s;}
+  :root { --theme: #3b82f6; } 
   
-  h1 { text-align: center; color: var(--theme); font-size: 28px;}
-  p.subtitle { text-align:center; margin-bottom: 30px; color: #555; }
-  .question-block { margin-bottom: 25px; padding: 20px; border-left: 5px solid var(--theme); background-color: #fdfdfd; border-radius: 0 8px 8px 0; }
-  .question-text { font-weight: bold; font-size: 16px; margin-bottom: 15px; line-height: 1.5;}
-  .options label { display: block; margin: 10px 0; cursor: pointer; padding: 10px; border-radius: 4px; transition: background 0.2s; border: 1px solid transparent;}
-  .options label:hover { background-color: #f0f0f0; border: 1px solid #dcdcdc; }
+  #timer-bar { background-color: var(--theme); color: white; padding: 15px; text-align: center; font-size: 22px; font-weight: 800; border-radius: 12px; margin-bottom: 25px; position: sticky; top: 15px; z-index: 100; box-shadow: 0 4px 12px rgba(0,0,0,0.2); display: none; transition: 0.3s;}
   
-  .btn-submit { display: block; width: 100%; padding: 15px; font-size: 18px; color: white; background-color: var(--theme); border: none; border-radius: 5px; cursor: pointer; margin-top: 30px; font-weight: bold; transition: 0.3s;}
-  .btn-submit:hover { filter: brightness(85%); }
-  .btn-submit:disabled { background-color: #95a5a6; cursor: not-allowed; }
+  h1 { text-align: center; color: var(--theme); font-size: 32px; margin-top: 0;}
+  p.subtitle { text-align:center; margin-bottom: 30px; color: #64748b; font-size: 15px;}
   
-  #score-display { margin-top: 25px; font-weight: bold; font-size: 20px; text-align: center; padding: 15px; border-radius: 5px; display: none; }
-  .solution-box { margin-top: 15px; padding: 15px; background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; border-radius: 5px; display: none; font-size: 15px; line-height: 1.5;}
-  .correct-highlight { background-color: #d4edda !important; border: 1px solid #c3e6cb !important; font-weight: bold; }
-  .incorrect-highlight { background-color: #f8d7da !important; border: 1px solid #f5c6cb !important; color: #721c24; text-decoration: line-through;}
-  .home-link { display: inline-block; margin-bottom: 20px; text-decoration: none; color: var(--theme); font-weight: bold; }
+  .question-block { margin-bottom: 30px; padding: 25px; border-left: 5px solid var(--theme); background-color: #f8fafc; border-radius: 0 12px 12px 0; border: 1px solid #e2e8f0; border-left-width: 5px; }
+  .question-text { font-weight: 700; font-size: 16px; margin-bottom: 15px; line-height: 1.6;}
+  .options label { display: block; margin: 10px 0; cursor: pointer; padding: 12px 15px; border-radius: 8px; transition: 0.2s; border: 1px solid #e2e8f0; background: white;}
+  .options label:hover { background-color: #f1f5f9; border-color: #cbd5e1; }
+  
+  .btn-submit { display: block; width: 100%; padding: 16px; font-size: 18px; color: white; background-color: var(--theme); border: none; border-radius: 12px; cursor: pointer; margin-top: 30px; font-weight: 700; transition: 0.3s; box-shadow: 0 4px 12px rgba(0,0,0,0.15);}
+  .btn-submit:hover { opacity: 0.9; transform: translateY(-2px);}
+  .btn-submit:disabled { background-color: #94a3b8; cursor: not-allowed; transform: none; box-shadow: none;}
+  
+  #score-display { margin-top: 25px; font-weight: 800; font-size: 22px; text-align: center; padding: 20px; border-radius: 12px; display: none; }
+  .solution-box { margin-top: 15px; padding: 15px; background-color: #fef3c7; color: #b45309; border: 1px solid #fde68a; border-radius: 8px; display: none; font-size: 14px; line-height: 1.6;}
+  
+  .correct-highlight { background-color: #ecfdf5 !important; border: 1px solid #10b981 !important; color: #059669; font-weight: 700; }
+  .incorrect-highlight { background-color: #fef2f2 !important; border: 1px solid #ef4444 !important; color: #b91c1c; text-decoration: line-through;}
 </style>
 </head>
 <body>
 
+<div class="navbar">
+    <div style="display: flex; align-items: center; gap: 12px;">
+        <svg width="36" height="36" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="32" height="32" rx="10" fill="var(--accent)"/>
+            <rect x="8" y="10" width="16" height="4" rx="1.5" fill="white"/>
+            <rect x="14" y="10" width="4" height="14" rx="1.5" fill="white"/>
+            <circle cx="21" cy="20" r="2.5" fill="#93c5fd"/>
+        </svg>
+        <h1 style="margin: 0; font-size: 24px; font-weight: 800; letter-spacing: -0.5px; color: white;">tixtra</h1>
+    </div>
+    <a href="index.html" class="home-link">&larr; Back to Dashboard</a>
+</div>
+
 <div class="container">
-  <a href="index.html" class="home-link">&larr; Back to Dashboard</a>
-  
   <div id="timer-bar">⏱️ Time Remaining: <span id="time-display">--:--</span></div>
 
-  <h1 id="page-title">Loading...</h1>
+  <h1 id="page-title">Loading Assessment...</h1>
   <p id="page-subtitle" class="subtitle"></p>
   
-  <div id="quiz-container">Loading practice questions...</div>
+  <div id="quiz-container">Loading secure environment...</div>
 
-  <button type="button" id="submit-btn" class="btn-submit" style="display: none;">Submit & Check Answers</button>
+  <button type="button" id="submit-btn" class="btn-submit" style="display: none;">Submit Assessment</button>
   <div id="score-display"></div>
 </div>
 
@@ -53,7 +69,6 @@ import { doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.
 import { auth, db } from './firebase-config.js';
 import { masterCurriculum } from './quiz-data.js';
 
-// URL Parsing for routing
 const urlParams = new URLSearchParams(window.location.search);
 const customId = urlParams.get('customId'); 
 const unitParam = urlParams.get('unit'); 
@@ -62,16 +77,11 @@ const diffParam = urlParams.get('diff');
 let dbKey, dataKey, accessKey, isFinal;
 
 if (customId) {
-    dbKey = customId;
-    dataKey = customId;
-    accessKey = customId;
-    isFinal = false; 
+    dbKey = customId; dataKey = customId; accessKey = customId; isFinal = false; 
 } else {
     isFinal = diffParam === 'final';
     dbKey = isFinal ? `unit${unitParam}_final` : `unit${unitParam}_${diffParam}`; 
     dataKey = isFinal ? `${unitParam}_final` : `${unitParam}_${diffParam}`; 
-    accessKey = isFinal ? `unit${unitParam}_final` : `unit${unitParam}_${diffParam.split('_')[0]}`; 
-    // Fix: Make accessKey match the parent unit (e.g. unit1_1), except for finals which use unit1_final
     accessKey = isFinal ? `unit${unitParam}_final` : `unit${unitParam}`;
 }
 
@@ -80,31 +90,26 @@ let currentUser = null;
 
 const container = document.getElementById('quiz-container');
 const submitBtn = document.getElementById('submit-btn');
-
-// Timer Globals
 const timerBar = document.getElementById('timer-bar');
 const timeDisplay = document.getElementById('time-display');
-let timerInterval;
-let timeLeft;
+let timerInterval; let timeLeft;
 
 onAuthStateChanged(auth, async (user) => {
     if (user && currentQuiz) {
         const docSnap = await getDoc(doc(db, "users", user.email));
         
-        // Check Access
         if (docSnap.exists() && docSnap.data().access[accessKey] === true) {
             currentUser = user;
             
             document.documentElement.style.setProperty('--theme', currentQuiz.themeColor);
             document.getElementById('page-title').innerText = currentQuiz.title;
             document.getElementById('page-subtitle').innerText = currentQuiz.subtitle;
-            document.title = currentQuiz.title;
+            document.title = `Tixtra | ${currentQuiz.title}`;
             
             container.innerHTML = ""; 
             submitBtn.style.display = "block"; 
             renderQuiz(); 
 
-            // Initialize Timer if high-stakes exam
             if (diffParam === 'master' || isFinal) {
                 timerBar.style.display = "block";
                 timeLeft = isFinal ? 20 * 60 : 10 * 60; 
@@ -117,7 +122,7 @@ onAuthStateChanged(auth, async (user) => {
                     let s = timeLeft % 60;
                     timeDisplay.innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
 
-                    if (timeLeft <= 60) timerBar.style.backgroundColor = "#e74c3c"; 
+                    if (timeLeft <= 60) timerBar.style.backgroundColor = "#ef4444"; 
 
                     if (timeLeft <= 0) {
                         clearInterval(timerInterval);
@@ -128,7 +133,7 @@ onAuthStateChanged(auth, async (user) => {
             }
 
         } else {
-            container.innerHTML = "<h3 style='color:red;'>Access Denied. This exam is locked.</h3>";
+            container.innerHTML = "<h3 style='color:#ef4444;'>Access Denied. This assessment is currently locked.</h3>";
         }
     } else {
         window.location.href = "index.html"; 
@@ -173,7 +178,6 @@ submitBtn.addEventListener('click', async () => {
             if (selected) document.getElementById(`label-${index}-${selected}`).classList.add('incorrect-highlight');
             document.getElementById(`label-${index}-${item.ans}`).classList.add('correct-highlight');
         }
-        
         document.getElementById(`solution-${index}`).style.display = "block"; 
     });
 
@@ -183,43 +187,37 @@ submitBtn.addEventListener('click', async () => {
     submitBtn.disabled = true;
 
     if (percentage >= 80) {
-        scoreDiv.style.backgroundColor = "#d4edda";
-        scoreDiv.style.color = "#155724";
+        scoreDiv.style.backgroundColor = "#d1fae5";
+        scoreDiv.style.color = "#065f46";
         scoreDiv.innerHTML = `Great job! You scored ${percentage}%.`;
     } else {
-        scoreDiv.style.backgroundColor = "#fff3cd";
-        scoreDiv.style.color = "#856404";
+        scoreDiv.style.backgroundColor = "#fef2f2";
+        scoreDiv.style.color = "#991b1b";
         scoreDiv.innerHTML = `You scored ${percentage}%. Review the solutions above.`;
     }
 
-    // Replace the old try/catch block at the end of quiz.html with this:
     try {
         const studentRef = doc(db, "users", currentUser.email);
-        
-        // 1. Get their current best score from the database
         const docSnap = await getDoc(studentRef);
         let currentBest = 0;
+        
         if (docSnap.exists() && docSnap.data().scores && docSnap.data().scores[dbKey] !== undefined) {
             currentBest = docSnap.data().scores[dbKey];
         }
 
-        // 2. Only overwrite the database if the new score is higher (or equal)
         if (percentage >= currentBest) {
-            await updateDoc(studentRef, {
-                [`scores.${dbKey}`]: percentage 
-            });
+            await updateDoc(studentRef, { [`scores.${dbKey}`]: percentage });
             submitBtn.innerText = "Highest Score Saved!";
         } else {
             submitBtn.innerText = `Score: ${percentage}% (Kept Best: ${currentBest}%)`;
         }
-        submitBtn.style.backgroundColor = "#27ae60";
+        submitBtn.style.backgroundColor = "#10b981";
 
     } catch (error) {
         submitBtn.innerText = "Error Saving Score";
-        submitBtn.style.backgroundColor = "#e74c3c";
+        submitBtn.style.backgroundColor = "#ef4444";
     }
 });
 </script>
-
 </body>
 </html>
