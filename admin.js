@@ -4,15 +4,8 @@ import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https:/
 import { collection, doc, setDoc, getDocs, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 import { auth, db } from './firebase-config.js';
 
-// --- AP PRECALC CURRICULUM DEFINITION ---
-const curriculum = {
-    1: 14, 
-    2: 15, 
-    3: 15, 
-    4: 14  
-};
+const curriculum = { 1: 14, 2: 15, 3: 15, 4: 14 };
 
-// DOM Elements
 const loginSection = document.getElementById('login-section');
 const dashboardSection = document.getElementById('dashboard-section');
 const adminEmailInput = document.getElementById('admin-email');
@@ -24,7 +17,6 @@ const addBtn = document.getElementById('add-student-btn');
 const newStudentEmailInput = document.getElementById('new-student-email');
 const tableBody = document.getElementById('student-table-body');
 
-// --- AUTH LOGIC ---
 loginBtn.addEventListener('click', async () => {
     try {
         errorMsg.innerText = "Logging in...";
@@ -40,26 +32,22 @@ onAuthStateChanged(auth, (user) => {
     if (user) {
         loginSection.style.display = "none";
         dashboardSection.style.display = "block";
+        logoutBtn.style.display = "block";
         
-        // Dynamically update table headers to match curriculum
         const thead = document.querySelector('thead tr');
-        thead.innerHTML = `<th class="student-email-cell">Student Details & Global Controls</th>`;
-        for(let u in curriculum) {
-            thead.innerHTML += `<th>Unit ${u} Progress & Access</th>`;
-        }
+        thead.innerHTML = `<th class="student-email-cell">Student Details & Controls</th>`;
+        for(let u in curriculum) thead.innerHTML += `<th>Unit ${u} Progress & Access</th>`;
         thead.innerHTML += `<th style="text-align: center;">Actions</th>`;
         
         loadStudents(); 
     } else {
         loginSection.style.display = "block";
         dashboardSection.style.display = "none";
+        logoutBtn.style.display = "none";
         adminEmailInput.value = ""; adminPassInput.value = ""; errorMsg.innerText = "";
     }
 });
 
-// --- DASHBOARD LOGIC ---
-
-// Add a Student
 addBtn.addEventListener('click', async () => {
     const email = newStudentEmailInput.value.trim().toLowerCase();
     if (!email) return alert("Please enter an email");
@@ -79,24 +67,18 @@ addBtn.addEventListener('click', async () => {
     }
 
     try {
-        await setDoc(doc(db, "users", email), {
-            email: email,
-            access: newAccess,
-            scores: newScores
-        });
+        await setDoc(doc(db, "users", email), { email: email, access: newAccess, scores: newScores });
         alert("Student added successfully!");
         newStudentEmailInput.value = '';
         loadStudents(); 
     } catch (e) {
         alert("Error adding student! Check console.");
-        console.error(e);
     } finally {
         addBtn.innerText = "Add to Database";
         addBtn.disabled = false;
     }
 });
 
-// Load Students into Table
 async function loadStudents() {
     tableBody.innerHTML = `<tr><td colspan="${Object.keys(curriculum).length + 2}" style="text-align:center; padding: 40px; color: #64748b;">Fetching student data...</td></tr>`;
     
@@ -112,14 +94,11 @@ async function loadStudents() {
             let studentCompletedTopics = 0;
             let columnsHTML = "";
 
-            // Loop through each Main Unit to create a column
             for (let unit in curriculum) {
                 let unitTotal = 0;
                 let unitCompleted = 0;
-                
                 let subHTML = `<div style="display:flex; flex-wrap:wrap; gap:10px;">`;
                 
-                // Loop through sub-topics
                 for (let sub = 1; sub <= curriculum[unit]; sub++) {
                     const unitKey = `unit${unit}_${sub}`;
                     const hasAccess = student.access && student.access[unitKey]; 
@@ -145,11 +124,10 @@ async function loadStudents() {
                     `;
                 }
                 
-                // Final Exam logic
                 const finalKey = `unit${unit}_final`;
                 const hasFinalAccess = student.access && student.access[finalKey];
-                
                 const finalScore = student.scores ? student.scores[finalKey] : undefined;
+                
                 let finalBadge = "";
                 if (finalScore !== undefined && finalScore > 0) {
                      const color = finalScore >= 80 ? '#10b981' : '#ef4444';
@@ -169,7 +147,6 @@ async function loadStudents() {
                     </div>`;
 
                 const unitAllChecked = (unitTotal === unitCompleted && unitTotal > 0) ? 'checked' : '';
-                
                 columnsHTML += `<td style="min-width: 320px;">
                     <div style="margin-bottom: 15px; padding-bottom: 10px;">
                         <label style="font-size: 13px; font-weight: 700; cursor: pointer; color: #3b82f6; display: flex; align-items: center; gap: 8px;">
@@ -183,7 +160,6 @@ async function loadStudents() {
 
             const studentAllChecked = (studentTotalTopics === studentCompletedTopics && studentTotalTopics > 0) ? 'checked' : '';
 
-            // Custom Quiz Scores
             let customScoresHTML = "";
             for (const [key, score] of Object.entries(student.scores || {})) {
                 if (key.startsWith("custom_") && score !== undefined) {
@@ -218,30 +194,21 @@ async function loadStudents() {
         attachEventListeners();
 
     } catch(e) {
-        tableBody.innerHTML = `<tr><td colspan="${Object.keys(curriculum).length + 2}" style='color:var(--danger); padding: 20px;'>Failed to load students. Check console.</td></tr>`;
-        console.error(e);
+        tableBody.innerHTML = `<tr><td colspan="${Object.keys(curriculum).length + 2}" style='color:var(--danger); padding: 20px;'>Failed to load students.</td></tr>`;
     }
 }
 
-// Attach all interactive event listeners
 function attachEventListeners() {
-    
-    // Single Topic Toggle
     document.querySelectorAll('.access-toggle').forEach(checkbox => {
         checkbox.addEventListener('change', async (e) => {
             const email = e.target.getAttribute('data-email');
             const unit = e.target.getAttribute('data-unit');
             const isChecked = e.target.checked;
-            try {
-                await updateDoc(doc(db, "users", email), { [`access.${unit}`]: isChecked });
-            } catch (err) {
-                alert("Error updating access!");
-                e.target.checked = !isChecked;
-            }
+            try { await updateDoc(doc(db, "users", email), { [`access.${unit}`]: isChecked }); } 
+            catch (err) { alert("Error updating access!"); e.target.checked = !isChecked; }
         });
     });
 
-    // Unit "Select All" Toggle
     document.querySelectorAll('.toggle-unit').forEach(box => {
         box.addEventListener('change', async (e) => {
             const email = e.target.getAttribute('data-email');
@@ -250,21 +217,13 @@ function attachEventListeners() {
             
             const checkboxes = document.querySelectorAll(`.access-toggle[data-email="${email}"][data-unit^="unit${unitNum}_"]`);
             let updates = {};
-            checkboxes.forEach(cb => {
-                cb.checked = isChecked;
-                updates[`access.${cb.getAttribute('data-unit')}`] = isChecked;
-            });
+            checkboxes.forEach(cb => { cb.checked = isChecked; updates[`access.${cb.getAttribute('data-unit')}`] = isChecked; });
 
-            try {
-                await updateDoc(doc(db, "users", email), updates);
-            } catch (err) {
-                alert("Error updating unit access!");
-                loadStudents(); 
-            }
+            try { await updateDoc(doc(db, "users", email), updates); } 
+            catch (err) { alert("Error updating unit!"); loadStudents(); }
         });
     });
 
-    // Master "Unlock ALL" Toggle
     document.querySelectorAll('.toggle-all-student').forEach(box => {
         box.addEventListener('change', async (e) => {
             const email = e.target.getAttribute('data-email');
@@ -274,45 +233,26 @@ function attachEventListeners() {
             const unitBoxes = document.querySelectorAll(`.toggle-unit[data-email="${email}"]`);
             
             let updates = {};
-            checkboxes.forEach(cb => {
-                cb.checked = isChecked;
-                updates[`access.${cb.getAttribute('data-unit')}`] = isChecked;
-            });
+            checkboxes.forEach(cb => { cb.checked = isChecked; updates[`access.${cb.getAttribute('data-unit')}`] = isChecked; });
             unitBoxes.forEach(cb => cb.checked = isChecked);
 
-            try {
-                await updateDoc(doc(db, "users", email), updates);
-            } catch (err) {
-                alert("Error updating all access!");
-                loadStudents();
-            }
+            try { await updateDoc(doc(db, "users", email), updates); } 
+            catch (err) { alert("Error updating access!"); loadStudents(); }
         });
     });
 
-    // Remove Student Button
     document.querySelectorAll('.btn-remove').forEach(btn => {
         btn.addEventListener('click', async (e) => {
             const email = e.target.getAttribute('data-email');
-            if(confirm(`WARNING: Are you sure you want to permanently delete ${email}?\n\nThis will revoke all access and erase all of their quiz scores.`)) {
-                e.target.innerText = "Deleting...";
-                e.target.disabled = true;
-                e.target.style.opacity = "0.5";
-                
-                try {
-                    await deleteDoc(doc(db, "users", email));
-                    loadStudents(); 
-                } catch(err) {
-                    alert("Error removing student. Please check your connection.");
-                    e.target.innerText = "Remove User";
-                    e.target.disabled = false;
-                    e.target.style.opacity = "1";
-                }
+            if(confirm(`WARNING: Are you sure you want to permanently delete ${email}?`)) {
+                e.target.innerText = "Deleting..."; e.target.disabled = true; e.target.style.opacity = "0.5";
+                try { await deleteDoc(doc(db, "users", email)); loadStudents(); } 
+                catch(err) { alert("Error removing student."); e.target.innerText = "Remove User"; e.target.disabled = false; e.target.style.opacity = "1"; }
             }
         });
     });
 }
 
-// Assign Custom Quiz Logic
 document.getElementById('assign-custom-btn').addEventListener('click', async () => {
     const email = document.getElementById('custom-email').value.trim().toLowerCase();
     const quizId = document.getElementById('custom-quiz-id').value.trim();
@@ -321,20 +261,12 @@ document.getElementById('assign-custom-btn').addEventListener('click', async () 
     if(!email || !quizId) return alert("Please enter both the student's email and the Custom Quiz ID.");
     if(!quizId.startsWith("custom_")) return alert("Custom Quiz IDs must start with 'custom_' (e.g., custom_makeup).");
 
-    btn.innerText = "Assigning...";
-    btn.disabled = true;
-
+    btn.innerText = "Assigning..."; btn.disabled = true;
     try {
-        await updateDoc(doc(db, "users", email), {
-            [`access.${quizId}`]: true
-        });
-        alert(`Successfully assigned ${quizId} to ${email}!`);
+        await updateDoc(doc(db, "users", email), { [`access.${quizId}`]: true });
+        alert(`Successfully assigned ${quizId}!`);
         document.getElementById('custom-quiz-id').value = ""; 
         loadStudents(); 
-    } catch (err) {
-        alert("Error: Make sure the student exists in the database first.");
-    } finally {
-        btn.innerText = "Assign";
-        btn.disabled = false;
-    }
+    } catch (err) { alert("Error: Make sure the student exists in the database first."); } 
+    finally { btn.innerText = "Assign"; btn.disabled = false; }
 });
