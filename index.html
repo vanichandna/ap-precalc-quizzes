@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AP Precalculus Hub</title>
+    <title>Tixtra | Student Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root { 
@@ -20,7 +20,6 @@
         
         /* Navbar */
         .navbar { background-color: var(--primary); padding: 15px 40px; color: white; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        .navbar h1 { margin: 0; font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
         #logout-btn { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 8px 16px; border-radius: 8px; cursor: pointer; transition: 0.2s; font-weight: 600; }
         #logout-btn:hover { background: white; color: var(--primary); }
 
@@ -86,7 +85,15 @@
 <body>
 
     <div class="navbar">
-        <h1>AP Precalculus Hub</h1>
+        <div style="display: flex; align-items: center; gap: 12px;">
+            <svg width="36" height="36" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="32" height="32" rx="10" fill="var(--accent)"/>
+                <rect x="8" y="10" width="16" height="4" rx="1.5" fill="white"/>
+                <rect x="14" y="10" width="4" height="14" rx="1.5" fill="white"/>
+                <circle cx="21" cy="20" r="2.5" fill="#93c5fd"/>
+            </svg>
+            <h1 style="margin: 0; font-size: 24px; font-weight: 800; letter-spacing: -0.5px;">tixtra</h1>
+        </div>
         <button id="logout-btn">Log Out</button>
     </div>
 
@@ -119,8 +126,6 @@
                     <div class="progress-text" id="overall-progress-text">0% Completed</div>
                 </div>
             </div>
-
-            <!-- This is where student.js will inject the dynamic content -->
             <div id="dashboard-content"></div>
         </div>
     </div>
