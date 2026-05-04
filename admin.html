@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AP Precalc - Admin Dashboard</title>
+    <title>Tixtra | Admin Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root { 
@@ -22,38 +22,33 @@
         
         /* Navbar */
         .navbar { background-color: var(--primary); padding: 15px 40px; color: white; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        .navbar h1 { margin: 0; font-size: 22px; font-weight: 800; letter-spacing: -0.5px; display: flex; align-items: center; gap: 10px; }
-        .navbar .badge { background: var(--accent); font-size: 12px; padding: 3px 8px; border-radius: 12px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; }
+        .navbar .badge { background: var(--accent); font-size: 12px; padding: 3px 8px; border-radius: 12px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; margin-left: 8px;}
         #admin-logout-btn { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 8px 16px; border-radius: 8px; cursor: pointer; transition: 0.2s; font-weight: 600; display: none; }
         #admin-logout-btn:hover { background: white; color: var(--primary); }
 
-        /* Container */
+        /* Container & Cards */
         .container { max-width: 95%; margin: 40px auto; padding: 0 20px; }
-        
-        /* Cards */
         .card { background: var(--card); padding: 30px; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); margin-bottom: 30px; border: 1px solid var(--border); }
         .card-header { margin: 0 0 15px 0; font-size: 20px; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 8px; }
         .card-desc { color: #64748b; font-size: 14px; margin: 0 0 20px 0; }
         
         /* Login Box */
         #login-section { max-width: 400px; margin: 80px auto; text-align: center; border-top: 5px solid var(--accent); }
-        input[type="email"], input[type="password"], input[type="text"] { width: 100%; padding: 12px 16px; margin: 10px 0; border: 1px solid var(--border); border-radius: 8px; font-size: 15px; font-family: 'Inter', sans-serif; box-sizing: border-box; transition: 0.2s; }
+        input { width: 100%; padding: 12px 16px; margin: 10px 0; border: 1px solid var(--border); border-radius: 8px; font-size: 15px; font-family: 'Inter', sans-serif; box-sizing: border-box; transition: 0.2s; }
         input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
         
         .btn-main { background-color: var(--accent); color: white; border: none; padding: 12px 20px; border-radius: 8px; font-size: 15px; cursor: pointer; transition: 0.3s; font-weight: 600; box-shadow: 0 2px 4px rgba(59,130,246,0.2); }
         .btn-main:hover { transform: translateY(-1px); box-shadow: 0 4px 6px rgba(59,130,246,0.3); }
         .btn-success { background-color: var(--success); box-shadow: 0 2px 4px rgba(16,185,129,0.2); }
-        .btn-success:hover { background-color: #059669; box-shadow: 0 4px 6px rgba(16,185,129,0.3); }
+        .btn-success:hover { background-color: #059669; }
         .btn-purple { background-color: var(--purple); box-shadow: 0 2px 4px rgba(139,92,246,0.2); }
-        .btn-purple:hover { background-color: #7c3aed; box-shadow: 0 4px 6px rgba(139,92,246,0.3); }
+        .btn-purple:hover { background-color: #7c3aed; }
 
         /* Dashboard Elements */
         #dashboard-section { display: none; }
         .form-row { display: flex; gap: 15px; align-items: center; flex-wrap: wrap; }
         .form-row input { max-width: 300px; margin: 0; }
         .form-row button { margin: 0; }
-
-        /* Top Controls Grid */
         .controls-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; margin-bottom: 30px; }
 
         /* Table Styling */
@@ -64,10 +59,7 @@
         
         /* Sticky Header */
         th { background-color: #f1f5f9; color: var(--secondary); font-weight: 700; font-size: 14px; position: sticky; top: 0; z-index: 10; border-bottom: 2px solid #cbd5e1; white-space: nowrap; box-shadow: 0 2px 2px -1px rgba(0,0,0,0.05); }
-        
         tr:hover td { background-color: #f8fafc; }
-        
-        /* Custom Checkbox/Label alignments done in JS, but general styling here */
         .student-email-cell { background-color: white; position: sticky; left: 0; z-index: 5; box-shadow: 2px 0 5px -2px rgba(0,0,0,0.05); }
         th:first-child { z-index: 15; left: 0; }
 
@@ -85,7 +77,15 @@
 <body>
 
     <div class="navbar">
-        <h1>AP Precalculus <span class="badge">Admin Hub</span></h1>
+        <div style="display: flex; align-items: center; gap: 12px;">
+            <svg width="36" height="36" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="32" height="32" rx="10" fill="var(--accent)"/>
+                <rect x="8" y="10" width="16" height="4" rx="1.5" fill="white"/>
+                <rect x="14" y="10" width="4" height="14" rx="1.5" fill="white"/>
+                <circle cx="21" cy="20" r="2.5" fill="#93c5fd"/>
+            </svg>
+            <h1 style="margin: 0; font-size: 24px; font-weight: 800; letter-spacing: -0.5px;">tixtra <span class="badge" style="background: var(--success);">Admin</span></h1>
+        </div>
         <button id="admin-logout-btn">Log Out</button>
     </div>
 
@@ -101,9 +101,7 @@
         </div>
 
         <div id="dashboard-section">
-            
             <div class="controls-grid">
-                <!-- ADD STUDENT CARD -->
                 <div class="card" style="border-top: 4px solid var(--success); margin-bottom: 0;">
                     <h3 class="card-header">🧑‍🎓 Add New Student</h3>
                     <p class="card-desc">Generate a database profile to grant portal access.</p>
@@ -113,7 +111,6 @@
                     </div>
                 </div>
 
-                <!-- CUSTOM QUIZ CARD -->
                 <div class="card" style="border-top: 4px solid var(--purple); margin-bottom: 0;">
                     <h3 class="card-header" style="color: var(--purple);">🌟 Assign Custom Quiz</h3>
                     <p class="card-desc">Grant access to a specific makeup or extra credit ID.</p>
@@ -125,7 +122,6 @@
                 </div>
             </div>
 
-            <!-- CURRICULUM TABLE -->
             <div class="card" style="border-top: 4px solid var(--accent); padding: 0; overflow: hidden;">
                 <div style="padding: 20px 30px; border-bottom: 1px solid var(--border); background: #f8fafc;">
                     <h3 class="card-header" style="margin:0;">📚 Master Curriculum Control</h3>
