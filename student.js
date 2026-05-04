@@ -30,19 +30,13 @@ const loginMessage = document.getElementById('login-message');
 
 // --- AUTHENTICATION HANDLERS ---
 signupBtn.addEventListener('click', async () => {
-    try { 
-        await createUserWithEmailAndPassword(auth, emailInput.value.trim(), passwordInput.value); 
-    } catch (error) { 
-        loginMessage.innerText = error.message; 
-    }
+    try { await createUserWithEmailAndPassword(auth, emailInput.value.trim(), passwordInput.value); } 
+    catch (error) { loginMessage.innerText = error.message; }
 });
 
 loginBtn.addEventListener('click', async () => {
-    try { 
-        await signInWithEmailAndPassword(auth, emailInput.value.trim(), passwordInput.value); 
-    } catch (error) { 
-        loginMessage.innerText = "Invalid email or password."; 
-    }
+    try { await signInWithEmailAndPassword(auth, emailInput.value.trim(), passwordInput.value); } 
+    catch (error) { loginMessage.innerText = "Invalid email or password."; }
 });
 
 logoutBtn.addEventListener('click', () => signOut(auth));
@@ -62,11 +56,8 @@ onAuthStateChanged(auth, async (user) => {
             const studentData = docSnap.data();
             const scores = studentData.scores || {};
             
-            // Progress Tracking Variables
             let totalAssigned = 0;
             let totalCompleted = 0;
-            
-            // HTML Containers
             let newAssignmentsHTML = "";
             let coreCurriculumHTML = "";
             let completedCustomHTML = "";
@@ -77,7 +68,6 @@ onAuthStateChanged(auth, async (user) => {
                     totalAssigned++;
                     const score = scores[key];
                     const isDone = score !== undefined;
-                    
                     if (isDone) totalCompleted++;
 
                     const cardHTML = `
@@ -91,16 +81,12 @@ onAuthStateChanged(auth, async (user) => {
                             </a>
                         </div>
                     `;
-
-                    if (!isDone) {
-                        newAssignmentsHTML += cardHTML;
-                    } else {
-                        completedCustomHTML += cardHTML;
-                    }
+                    if (!isDone) newAssignmentsHTML += cardHTML;
+                    else completedCustomHTML += cardHTML;
                 }
             }
 
-            // --- 2. PROCESS CORE CURRICULUM (UNITS 1-4) ---
+            // --- 2. PROCESS CORE CURRICULUM ---
             for (let unit = 1; unit <= 4; unit++) {
                 let unitCardsHTML = "";
                 let unitTotalAssigned = 0;
@@ -110,9 +96,7 @@ onAuthStateChanged(auth, async (user) => {
                     const unitKey = `unit${unit}_${sub}`;
                     
                     if (studentData.access && studentData.access[unitKey]) {
-                        // Standard practice quizzes count towards total progress
-                        totalAssigned += 3; 
-                        unitTotalAssigned += 3;
+                        totalAssigned += 3; unitTotalAssigned += 3;
 
                         const isEasyDone = scores[`${unitKey}_easy`] !== undefined;
                         const isMedDone  = scores[`${unitKey}_med`] !== undefined;
@@ -125,16 +109,13 @@ onAuthStateChanged(auth, async (user) => {
                         const topicMasterUnlocked = isEasyDone && isMedDone && isHardDone;
                         const topicMasterScore = scores[`${unitKey}_master`];
 
-                        // Master quiz progress tracking
-                        totalAssigned++; 
-                        unitTotalAssigned++;
+                        totalAssigned++; unitTotalAssigned++;
                         if (topicMasterScore !== undefined) { totalCompleted++; unitTotalCompleted++; }
 
                         const eScore = scores[`${unitKey}_easy`];
                         const mScore = scores[`${unitKey}_med`];
                         const hScore = scores[`${unitKey}_hard`];
 
-                        // Build individual practice links
                         const linkHTML = (done, score, level, diff) => {
                             if (done) return `<a href="quiz.html?unit=${unit}_${sub}&diff=${diff}" class="quiz-link done">✅ ${level} <span class="score-badge">${score}%</span></a>`;
                             return `<a href="quiz.html?unit=${unit}_${sub}&diff=${diff}" class="quiz-link">📝 ${level}</a>`;
@@ -159,11 +140,10 @@ onAuthStateChanged(auth, async (user) => {
                     }
                 }
 
-                // Final Exam Processing
+                // Final Exam
                 const finalKey = `unit${unit}_final`;
                 if (studentData.access && studentData.access[finalKey]) {
-                    totalAssigned++;
-                    unitTotalAssigned++;
+                    totalAssigned++; unitTotalAssigned++;
                     const finalScore = scores[finalKey];
                     if (finalScore !== undefined) { totalCompleted++; unitTotalCompleted++; }
 
@@ -171,7 +151,7 @@ onAuthStateChanged(auth, async (user) => {
                         <div class="quiz-card alert-card" style="grid-column: 1 / -1; border-top: 4px solid var(--warning); border-left: none;">
                             <div class="alert-badge" style="background: var(--warning);">HIGH STAKES</div>
                             <h3 style="color: var(--warning);">👑 Unit ${unit} Final Exam</h3>
-                            <p>Your teacher has unlocked the comprehensive Final Exam for this unit. Ensure you have adequate time before starting.</p>
+                            <p>Your teacher has unlocked the comprehensive Final Exam for this unit.</p>
                             <a href="quiz.html?unit=${unit}&diff=final" class="master-btn final-btn">
                                 ${finalScore !== undefined ? `Review Final Exam (Score: ${finalScore}%)` : 'Start Final Exam &rarr;'}
                             </a>
@@ -179,9 +159,7 @@ onAuthStateChanged(auth, async (user) => {
                     `;
                 }
 
-                // If unit has any cards, render the Accordion Section
                 if (unitCardsHTML !== "") {
-                    // Logic to auto-collapse units that are 100% finished
                     const isUnitFullyFinished = (unitTotalAssigned === unitTotalCompleted && unitTotalAssigned > 0); 
                     const collapsedClass = isUnitFullyFinished ? 'collapsed' : '';
                     const hiddenClass = isUnitFullyFinished ? 'hidden' : '';
@@ -226,7 +204,6 @@ onAuthStateChanged(auth, async (user) => {
                 dashboardContent.innerHTML = `<div class="quiz-card" style="text-align:center; padding: 40px; grid-column: 1/-1;"><h3>No Active Assignments</h3><p>Your teacher has not unlocked any work for you yet.</p></div>`;
             }
 
-            // --- 4. UPDATE PROGRESS BAR ---
             if (totalAssigned > 0) {
                 const progressPercentage = Math.round((totalCompleted / totalAssigned) * 100);
                 progressFill.style.width = `${progressPercentage}%`;
@@ -241,7 +218,6 @@ onAuthStateChanged(auth, async (user) => {
         loginSection.style.display = 'block';
         quizSection.style.display = 'none';
         logoutBtn.style.display = 'none';
-        emailInput.value = ""; 
-        passwordInput.value = "";
+        emailInput.value = ""; passwordInput.value = "";
     }
 });
