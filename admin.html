@@ -20,19 +20,16 @@
         }
         body { font-family: 'Inter', sans-serif; margin: 0; background-color: var(--bg); color: #334155; }
         
-        /* Navbar */
         .navbar { background-color: var(--primary); padding: 15px 40px; color: white; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
         .navbar .badge { background: var(--accent); font-size: 12px; padding: 3px 8px; border-radius: 12px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; margin-left: 8px;}
         #admin-logout-btn { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 8px 16px; border-radius: 8px; cursor: pointer; transition: 0.2s; font-weight: 600; display: none; }
         #admin-logout-btn:hover { background: white; color: var(--primary); }
 
-        /* Container & Cards */
         .container { max-width: 95%; margin: 40px auto; padding: 0 20px; }
         .card { background: var(--card); padding: 30px; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); margin-bottom: 30px; border: 1px solid var(--border); }
         .card-header { margin: 0 0 15px 0; font-size: 20px; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 8px; }
         .card-desc { color: #64748b; font-size: 14px; margin: 0 0 20px 0; }
         
-        /* Login Box */
         #login-section { max-width: 400px; margin: 80px auto; text-align: center; border-top: 5px solid var(--accent); }
         input { width: 100%; padding: 12px 16px; margin: 10px 0; border: 1px solid var(--border); border-radius: 8px; font-size: 15px; font-family: 'Inter', sans-serif; box-sizing: border-box; transition: 0.2s; }
         input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
@@ -44,34 +41,38 @@
         .btn-purple { background-color: var(--purple); box-shadow: 0 2px 4px rgba(139,92,246,0.2); }
         .btn-purple:hover { background-color: #7c3aed; }
 
-        /* Dashboard Elements */
         #dashboard-section { display: none; }
         .form-row { display: flex; gap: 15px; align-items: center; flex-wrap: wrap; }
         .form-row input { max-width: 300px; margin: 0; }
         .form-row button { margin: 0; }
         .controls-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; margin-bottom: 30px; }
 
-        /* Table Styling */
         .table-wrapper { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); background: white; max-height: 70vh; overflow-y: auto; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
         table { width: 100%; border-collapse: separate; border-spacing: 0; min-width: 1200px; }
         th, td { border-bottom: 1px solid var(--border); border-right: 1px solid var(--border); padding: 20px; text-align: left; vertical-align: top; }
         th:last-child, td:last-child { border-right: none; }
         
-        /* Sticky Header */
         th { background-color: #f1f5f9; color: var(--secondary); font-weight: 700; font-size: 14px; position: sticky; top: 0; z-index: 10; border-bottom: 2px solid #cbd5e1; white-space: nowrap; box-shadow: 0 2px 2px -1px rgba(0,0,0,0.05); }
         tr:hover td { background-color: #f8fafc; }
         .student-email-cell { background-color: white; position: sticky; left: 0; z-index: 5; box-shadow: 2px 0 5px -2px rgba(0,0,0,0.05); }
         th:first-child { z-index: 15; left: 0; }
 
-        /* Remove Button */
         .btn-remove { background-color: white; color: var(--danger); border: 1px solid var(--danger); padding: 8px 15px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; transition: 0.2s; width: 100%; }
         .btn-remove:hover { background-color: var(--danger); color: white; }
 
-        /* Scrollbar Styling */
         ::-webkit-scrollbar { width: 10px; height: 10px; }
         ::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 8px; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        /* --- MODAL STYLES --- */
+        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); display: none; justify-content: center; align-items: center; z-index: 1000; padding: 20px; }
+        .modal-content { background: white; padding: 30px; border-radius: 16px; width: 100%; max-width: 700px; max-height: 85vh; overflow-y: auto; position: relative; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); }
+        .close-modal { position: absolute; top: 20px; right: 25px; font-size: 28px; cursor: pointer; color: #64748b; font-weight: bold; line-height: 1; transition: 0.2s; }
+        .close-modal:hover { color: var(--danger); }
+        .detail-item { padding: 15px; border-bottom: 1px solid #e2e8f0; margin-bottom: 10px; border-radius: 8px; }
+        .detail-correct { background: #ecfdf5; border-left: 5px solid var(--success); }
+        .detail-incorrect { background: #fef2f2; border-left: 5px solid var(--danger); }
     </style>
 </head>
 <body>
@@ -125,7 +126,7 @@
             <div class="card" style="border-top: 4px solid var(--accent); padding: 0; overflow: hidden;">
                 <div style="padding: 20px 30px; border-bottom: 1px solid var(--border); background: #f8fafc;">
                     <h3 class="card-header" style="margin:0;">📚 Master Curriculum Control</h3>
-                    <p class="card-desc" style="margin: 5px 0 0 0;">Toggle checkboxes to instantly grant/revoke access. Progress badges appear automatically.</p>
+                    <p class="card-desc" style="margin: 5px 0 0 0;">Toggle checkboxes to instantly grant access. Click on any score badge to view exact quiz responses.</p>
                 </div>
                 
                 <div class="table-wrapper">
@@ -139,6 +140,15 @@
                 </div>
             </div>
 
+        </div>
+    </div>
+
+    <div id="details-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-modal" id="close-modal">&times;</span>
+            <h2 id="modal-title" style="margin-top:0; color: var(--primary);">Quiz Details</h2>
+            <p id="modal-subtitle" style="color: #64748b; font-size: 14px; margin-bottom: 20px;"></p>
+            <div id="modal-body"></div>
         </div>
     </div>
 
