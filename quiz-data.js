@@ -2348,5 +2348,60 @@ export const masterCurriculum = {
             { q: "7. Find the polar points of intersection for r = 3sin(θ) and r = 3cos(θ) on [0, π].", opts: { A: "(3√2/2, π/4) and the origin", B: "(3, π/4)", C: "(1.5, π/4)", D: "They do not intersect" }, ans: "A", sol: "Set equal: 3sin(θ) = 3cos(θ) -> tan(θ) = 1. On [0, π], this is π/4. Plug π/4 back in: r = 3(√2/2) = 3√2/2. Point: (3√2/2, π/4). Also, checking the pole (r=0): sin(θ)=0 at 0, cos(θ)=0 at π/2. They both pass through the origin at different times, making it an intersection point." },
             { q: "8. Evaluate the domain of f(x) = csc(2x - π/2).", opts: { A: "x ≠ π/4 + nπ/2", B: "x ≠ π/2 + nπ", C: "x ≠ nπ/2", D: "x ≠ 2nπ" }, ans: "A", sol: "Cosecant is undefined when sine is 0. Sine is 0 at nπ. Set argument equal: 2x - π/2 = nπ. Add π/2: 2x = π/2 + nπ. Divide by 2: x = π/4 + nπ/2." }
         ]
-    }
+    },
+    "1_lesson": {
+        title: "Lesson 1: The Linear Empire",
+        subtitle: "Coordinate Geometry Fundamentals",
+        themeColor: "#00d2ff", 
+        questions: [
+            { 
+                q: "1. What are the gradient (m) and y-intercept (c) of the line y = -4x + 7?", 
+                opts: { A: "m = -4, c = 7", B: "m = 4, c = -7", C: "m = 7, c = -4", D: "m = -4, c = -7" }, 
+                ans: "A", 
+                sol: "The equation is in the form y = mx + c. The number attached to x is the gradient (m = -4) and the solo number at the end is the y-intercept (c = 7)." 
+            },
+            { 
+                q: "2. Find the gradient of the line connecting the points (2, 5) and (4, 11).", 
+                opts: { A: "3", B: "1/3", C: "6", D: "2" }, 
+                ans: "A", 
+                sol: "Use the gradient formula: m = (y2 - y1) / (x2 - x1). Plug in the points: (11 - 5) / (4 - 2) = 6 / 2 = 3." 
+            },
+            { 
+                q: "3. Calculate the gradient of the line passing through (-2, 1) and (4, 13).", 
+                opts: { A: "2", B: "-2", C: "12", D: "6" }, 
+                ans: "A", 
+                sol: "m = (13 - 1) / (4 - (-2)). Watch the double negative on the bottom! It becomes 4 + 2 = 6. So, m = 12 / 6 = 2." 
+            },
+            { 
+                q: "4. Does the point (3, 10) lie exactly on the line y = 3x + 2?", 
+                opts: { A: "Yes, it perfectly matches.", B: "No, the math yields a y-value of 11.", C: "No, the math yields a y-value of 12.", D: "Yes, because 3+10 = 13." }, 
+                ans: "B", 
+                sol: "Plug x = 3 into the equation to test it: y = 3(3) + 2 = 9 + 2 = 11. The math yields 11, but the given coordinate's y-value is 10. Therefore, it is not on the line." 
+            },
+            { 
+                q: "5. Write the equation of a line with a gradient of 1/2 that crosses the y-axis at (0, 6).", 
+                opts: { A: "y = 1/2x + 6", B: "y = 6x + 1/2", C: "y = 2x + 6", D: "y = 1/2x - 6" }, 
+                ans: "A", 
+                sol: "The gradient m is 1/2. The starting point on the y-axis gives us c = 6. Plug them directly into the cheat code y = mx + c to get y = 1/2x + 6." 
+            },
+            { 
+                q: "6. A line has a gradient of 4 and passes through the point (1, 3). What is the y-intercept (c)?", 
+                opts: { A: "-1", B: "1", C: "3", D: "7" }, 
+                ans: "A", 
+                sol: "Start with the blueprint y = 4x + c. Plug in the given coordinate (1, 3) for x and y: 3 = 4(1) + c. Subtract 4 from both sides: 3 - 4 = c, so c = -1." 
+            },
+            { 
+                q: "7. Find the full equation of the line that connects (0, -2) and (3, 7).", 
+                opts: { A: "y = 3x - 2", B: "y = 3x + 7", C: "y = -2x + 3", D: "y = 1/3x - 2" }, 
+                ans: "A", 
+                sol: "First find the gradient: m = (7 - (-2)) / (3 - 0) = 9 / 3 = 3. Because one of our points is (0, -2), we already know the y-intercept c is -2. The final equation is y = 3x - 2." 
+            },
+            { 
+                q: "8. If a line has a gradient of -3, what does it look like on a graph?", 
+                opts: { A: "A downhill line.", B: "An uphill line.", C: "A perfectly horizontal line.", D: "A perfectly vertical U-shape." }, 
+                ans: "A", 
+                sol: "A negative gradient means the steepness tracker is dropping as you move to the right on the x-axis. Therefore, it goes downhill." 
+            }
+        ]
+    },
 };
