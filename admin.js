@@ -264,8 +264,9 @@ function attachEventListeners() {
     // --- NEW: Open Details Modal ---
     document.querySelectorAll('.view-details-btn').forEach(btn => {
         btn.addEventListener('click', async (e) => {
-            const email = e.target.getAttribute('data-email');
-            const quizKey = e.target.getAttribute('data-quiz');
+            // FIX: Changed e.target to e.currentTarget
+            const email = e.currentTarget.getAttribute('data-email');
+            const quizKey = e.currentTarget.getAttribute('data-quiz');
             
             modal.style.display = "flex";
             modalTitle.innerText = "Loading Details...";
@@ -287,10 +288,8 @@ function attachEventListeners() {
                     modalTitle.innerText = `Quiz: ${quizKey.replace(/_/g, ' ').toUpperCase()}`;
                     modalBody.innerHTML = "";
                     
-                    detailsArray.forEach((qData, i) => {
+                    detailsArray.forEach((qData) => {
                         const statusClass = qData.isCorrect ? 'detail-correct' : 'detail-incorrect';
-                        const icon = qData.isCorrect ? '✅' : '❌';
-                        
                         modalBody.innerHTML += `
                             <div class="detail-item ${statusClass}">
                                 <p style="font-weight: 600; margin: 0 0 10px 0; color: #1e293b;">${qData.qText}</p>
