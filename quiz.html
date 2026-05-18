@@ -165,13 +165,16 @@ submitBtn.addEventListener('click', async () => {
     if (!allAnswered && (!timerInterval || timeLeft > 0)) return alert("Please answer all questions before submitting.");
     
     let score = 0;
+    let detailedResponses = []; // --- NEW: Array to track exact answers ---
+
     currentQuiz.questions.forEach((item, index) => {
         const selectedInput = document.querySelector(`input[name="q${index}"]:checked`);
         const selected = selectedInput ? selectedInput.value : null;
+        const isCorrect = selected === item.ans;
         
         document.querySelectorAll(`input[name="q${index}"]`).forEach(input => input.disabled = true);
         
-        if (selected === item.ans) {
+        if (isCorrect) {
             score++;
             document.getElementById(`label-${index}-${selected}`).classList.add('correct-highlight');
         } else {
@@ -179,6 +182,14 @@ submitBtn.addEventListener('click', async () => {
             document.getElementById(`label-${index}-${item.ans}`).classList.add('correct-highlight');
         }
         document.getElementById(`solution-${index}`).style.display = "block"; 
+
+        // Add to our exact tracker
+        detailedResponses.push({
+            qText: item.q,
+            selectedOption: selected ? `${selected}) ${item.opts[selected]}` : "Skipped/Blank",
+            correctOption: `${item.ans}) ${item.opts[item.ans]}`,
+            isCorrect: isCorrect
+        });
     });
 
     const percentage = Math.round((score / currentQuiz.questions.length) * 100);
@@ -205,9 +216,13 @@ submitBtn.addEventListener('click', async () => {
             currentBest = docSnap.data().scores[dbKey];
         }
 
+        // Only overwrite the database if the new score is higher (or equal)
         if (percentage >= currentBest) {
-            await updateDoc(studentRef, { [`scores.${dbKey}`]: percentage });
-            submitBtn.innerText = "Highest Score Saved!";
+            await updateDoc(studentRef, { 
+                [`scores.${dbKey}`]: percentage,
+                [`details.${dbKey}`]: detailedResponses // Saves the detailed array!
+            });
+            submitBtn.innerText = "Highest Score & Details Saved!";
         } else {
             submitBtn.innerText = `Score: ${percentage}% (Kept Best: ${currentBest}%)`;
         }
