@@ -4,7 +4,6 @@ import { signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthState
 import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 import { auth, db } from './firebase-config.js';
 
-// --- CURRICULUM DEFINITION ---
 const curriculum = { 1: 14, 2: 15, 3: 15, 4: 14 }; 
 const unitTitles = {
     1: "Polynomial & Rational Functions",
@@ -13,7 +12,6 @@ const unitTitles = {
     4: "Parameters, Vectors & Matrices"
 };
 
-// --- DOM ELEMENTS ---
 const loginSection = document.getElementById('login-section');
 const quizSection = document.getElementById('quiz-section');
 const dashboardContent = document.getElementById('dashboard-content');
@@ -28,7 +26,15 @@ const signupBtn = document.getElementById('signup-btn');
 const logoutBtn = document.getElementById('logout-btn');
 const loginMessage = document.getElementById('login-message');
 
-// --- AUTHENTICATION HANDLERS ---
+// Modal Elements
+const modal = document.getElementById('details-modal');
+const closeBtn = document.getElementById('close-modal');
+const modalTitle = document.getElementById('modal-title');
+const modalBody = document.getElementById('modal-body');
+
+closeBtn.addEventListener('click', () => modal.style.display = "none");
+window.onclick = function(event) { if (event.target == modal) modal.style.display = "none"; }
+
 signupBtn.addEventListener('click', async () => {
     try { await createUserWithEmailAndPassword(auth, emailInput.value.trim(), passwordInput.value); } 
     catch (error) { loginMessage.innerText = error.message; }
@@ -41,7 +47,6 @@ loginBtn.addEventListener('click', async () => {
 
 logoutBtn.addEventListener('click', () => signOut(auth));
 
-// --- DASHBOARD GENERATION & LOGIC ---
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         const docRef = doc(db, "users", user.email);
@@ -55,6 +60,7 @@ onAuthStateChanged(auth, async (user) => {
             
             const studentData = docSnap.data();
             const scores = studentData.scores || {};
+            const detailsObj = studentData.details || {}; // Grab the details object
             
             let totalAssigned = 0;
             let totalCompleted = 0;
@@ -62,7 +68,6 @@ onAuthStateChanged(auth, async (user) => {
             let coreCurriculumHTML = "";
             let completedCustomHTML = "";
 
-            // --- 1. PROCESS CUSTOM/HOMEWORK ASSIGNMENTS ---
             for (const [key, hasAccess] of Object.entries(studentData.access || {})) {
                 if (key.startsWith("custom_") && hasAccess) {
                     totalAssigned++;
@@ -75,9 +80,9 @@ onAuthStateChanged(auth, async (user) => {
                             ${!isDone ? '<div class="alert-badge">NEW</div>' : ''}
                             <h3 style="color: var(--purple);">Special Assignment</h3>
                             <p><strong>ID:</strong> ${key}</p>
-                            ${isDone ? `<div style="text-align:center; margin-bottom: 15px;"><span class="score-badge" style="color:var(--success); border:1px solid var(--success);">Score: ${score}%</span></div>` : ''}
+                            ${isDone ? `<div style="text-align:center; margin-bottom: 15px;"><span class="score-badge view-details-btn" data-quiz="${key}" style="color:var(--success); border:1px solid var(--success); cursor: pointer;" title="Click to view answers">Score: ${score}%</span></div>` : ''}
                             <a href="quiz.html?customId=${key}" class="master-btn" style="${isDone ? 'background: var(--success);' : ''}">
-                                ${isDone ? 'Review Solutions' : 'Start Assignment'}
+                                ${isDone ? 'Retake Assignment' : 'Start Assignment'}
                             </a>
                         </div>
                     `;
@@ -86,7 +91,6 @@ onAuthStateChanged(auth, async (user) => {
                 }
             }
 
-            // --- 2. PROCESS CORE CURRICULUM ---
             for (let unit = 1; unit <= 4; unit++) {
                 let unitCardsHTML = "";
                 let unitTotalAssigned = 0;
@@ -117,7 +121,11 @@ onAuthStateChanged(auth, async (user) => {
                         const hScore = scores[`${unitKey}_hard`];
 
                         const linkHTML = (done, score, level, diff) => {
-                            if (done) return `<a href="quiz.html?unit=${unit}_${sub}&diff=${diff}" class="quiz-link done">✅ ${level} <span class="score-badge">${score}%</span></a>`;
+                            const dbKey = `${unitKey}_${diff}`;
+                            if (done) return `<div style="display:flex; justify-content:space-between; align-items:center; background-color: #ecfdf5; padding: 12px 15px; border-radius: 8px; border: 1px solid #a7f3d0; margin-bottom: 8px;">
+                                <a href="quiz.html?unit=${unit}_${sub}&diff=${diff}" style="color: var(--success); text-decoration: none; font-weight: 600; font-size: 14px;">✅ ${level}</a>
+                                <span class="score-badge view-details-btn" data-quiz="${dbKey}" style="cursor: pointer; color: var(--success);" title="View Answers">${score}%</span>
+                            </div>`;
                             return `<a href="quiz.html?unit=${unit}_${sub}&diff=${diff}" class="quiz-link">📝 ${level}</a>`;
                         };
 
@@ -131,8 +139,9 @@ onAuthStateChanged(auth, async (user) => {
                                 </div>
                                 ${topicMasterUnlocked 
                                     ? `<a href="quiz.html?unit=${unit}_${sub}&diff=master" class="master-btn">
-                                        🏆 Master Quiz ${topicMasterScore !== undefined ? `(${topicMasterScore}%)` : ''}
-                                       </a>`
+                                        🏆 Master Quiz
+                                       </a>
+                                       ${topicMasterScore !== undefined ? `<div class="view-details-btn" data-quiz="${unitKey}_master" style="text-align:center; margin-top: 8px; font-size: 12px; font-weight: bold; color: var(--purple); cursor:pointer;">Highest Score: ${topicMasterScore}% (View Answers)</div>` : ''}`
                                     : `<button class="master-btn locked" disabled>🔒 Master Locked</button>`
                                 }
                             </div>
@@ -140,7 +149,6 @@ onAuthStateChanged(auth, async (user) => {
                     }
                 }
 
-                // Final Exam
                 const finalKey = `unit${unit}_final`;
                 if (studentData.access && studentData.access[finalKey]) {
                     totalAssigned++; unitTotalAssigned++;
@@ -153,8 +161,9 @@ onAuthStateChanged(auth, async (user) => {
                             <h3 style="color: var(--warning);">👑 Unit ${unit} Final Exam</h3>
                             <p>Your teacher has unlocked the comprehensive Final Exam for this unit.</p>
                             <a href="quiz.html?unit=${unit}&diff=final" class="master-btn final-btn">
-                                ${finalScore !== undefined ? `Review Final Exam (Score: ${finalScore}%)` : 'Start Final Exam &rarr;'}
+                                ${finalScore !== undefined ? 'Retake Final Exam' : 'Start Final Exam &rarr;'}
                             </a>
+                            ${finalScore !== undefined ? `<div class="view-details-btn" data-quiz="${finalKey}" style="text-align:center; margin-top: 10px; font-size: 14px; font-weight: bold; color: var(--warning); cursor:pointer;">Highest Score: ${finalScore}% (View Answers)</div>` : ''}
                         </div>
                     `;
                 }
@@ -175,40 +184,44 @@ onAuthStateChanged(auth, async (user) => {
                 }
             }
 
-            // --- 3. RENDER EVERYTHING ---
             dashboardContent.innerHTML = "";
-
-            if (newAssignmentsHTML !== "") {
-                dashboardContent.innerHTML += `
-                    <h3 class="section-title" style="color: var(--danger); border-color: var(--danger); cursor: default;">
-                        🚨 Action Required: New Assignments
-                    </h3>
-                    <div class="grid">${newAssignmentsHTML}</div>
-                `;
-            }
-
+            if (newAssignmentsHTML !== "") dashboardContent.innerHTML += `<h3 class="section-title" style="color: var(--danger); border-color: var(--danger); cursor: default;">🚨 Action Required: New Assignments</h3><div class="grid">${newAssignmentsHTML}</div>`;
             dashboardContent.innerHTML += coreCurriculumHTML;
-
-            if (completedCustomHTML !== "") {
-                dashboardContent.innerHTML += `
-                    <h3 class="section-title collapsed" style="color: var(--purple);" onclick="this.classList.toggle('collapsed'); this.nextElementSibling.classList.toggle('hidden');">
-                        🌟 Completed Custom Assignments
-                    </h3>
-                    <div class="grid-container hidden">
-                        <div class="grid" style="padding-top: 5px;">${completedCustomHTML}</div>
-                    </div>
-                `;
-            }
-
-            if (totalAssigned === 0) {
-                dashboardContent.innerHTML = `<div class="quiz-card" style="text-align:center; padding: 40px; grid-column: 1/-1;"><h3>No Active Assignments</h3><p>Your teacher has not unlocked any work for you yet.</p></div>`;
-            }
+            if (completedCustomHTML !== "") dashboardContent.innerHTML += `<h3 class="section-title collapsed" style="color: var(--purple);" onclick="this.classList.toggle('collapsed'); this.nextElementSibling.classList.toggle('hidden');">🌟 Completed Custom Assignments</h3><div class="grid-container hidden"><div class="grid" style="padding-top: 5px;">${completedCustomHTML}</div></div>`;
+            if (totalAssigned === 0) dashboardContent.innerHTML = `<div class="quiz-card" style="text-align:center; padding: 40px; grid-column: 1/-1;"><h3>No Active Assignments</h3><p>Your teacher has not unlocked any work for you yet.</p></div>`;
 
             if (totalAssigned > 0) {
                 const progressPercentage = Math.round((totalCompleted / totalAssigned) * 100);
                 progressFill.style.width = `${progressPercentage}%`;
                 progressText.innerText = `${progressPercentage}% Completed (${totalCompleted}/${totalAssigned})`;
             }
+
+            // Add Modal Listeners for Students
+            document.querySelectorAll('.view-details-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const quizKey = e.target.getAttribute('data-quiz');
+                    modal.style.display = "flex";
+                    modalTitle.innerText = `Quiz: ${quizKey.replace(/_/g, ' ').toUpperCase()}`;
+                    
+                    const detailsArray = detailsObj[quizKey];
+                    if (!detailsArray || detailsArray.length === 0) {
+                        modalBody.innerHTML = "<p style='color: #64748b;'>Detailed breakdown was not saved for this attempt.</p>";
+                        return;
+                    }
+
+                    modalBody.innerHTML = "";
+                    detailsArray.forEach((qData) => {
+                        const statusClass = qData.isCorrect ? 'detail-correct' : 'detail-incorrect';
+                        modalBody.innerHTML += `
+                            <div class="detail-item ${statusClass}">
+                                <p style="font-weight: 600; margin: 0 0 10px 0; color: #1e293b;">${qData.qText}</p>
+                                <p style="margin: 0 0 5px 0; font-size: 14px;"><strong>You Marked:</strong> ${qData.selectedOption}</p>
+                                ${!qData.isCorrect ? `<p style="margin: 0; font-size: 14px; color: #059669;"><strong>Correct Answer:</strong> ${qData.correctOption}</p>` : ''}
+                            </div>
+                        `;
+                    });
+                });
+            });
 
         } else {
             signOut(auth);
