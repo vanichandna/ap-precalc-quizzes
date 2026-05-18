@@ -2349,7 +2349,7 @@ export const masterCurriculum = {
             { q: "8. Evaluate the domain of f(x) = csc(2x - π/2).", opts: { A: "x ≠ π/4 + nπ/2", B: "x ≠ π/2 + nπ", C: "x ≠ nπ/2", D: "x ≠ 2nπ" }, ans: "A", sol: "Cosecant is undefined when sine is 0. Sine is 0 at nπ. Set argument equal: 2x - π/2 = nπ. Add π/2: 2x = π/2 + nπ. Divide by 2: x = π/4 + nπ/2." }
         ]
     },
-    "1_lesson": {
+    "custom_1_lesson": {
         title: "Lesson 1: The Linear Empire",
         subtitle: "Coordinate Geometry Fundamentals",
         themeColor: "#00d2ff", 
