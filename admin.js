@@ -1,7 +1,7 @@
 // admin.js
 
 import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
-import { collection, doc, setDoc, getDocs, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+import { collection, doc, setDoc, getDocs, updateDoc, deleteDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 import { auth, db } from './firebase-config.js';
 
 const curriculum = { 1: 14, 2: 15, 3: 15, 4: 14 };
@@ -17,6 +17,13 @@ const addBtn = document.getElementById('add-student-btn');
 const newStudentEmailInput = document.getElementById('new-student-email');
 const tableBody = document.getElementById('student-table-body');
 
+// Modal Elements
+const modal = document.getElementById('details-modal');
+const closeBtn = document.getElementById('close-modal');
+const modalTitle = document.getElementById('modal-title');
+const modalSubtitle = document.getElementById('modal-subtitle');
+const modalBody = document.getElementById('modal-body');
+
 loginBtn.addEventListener('click', async () => {
     try {
         errorMsg.innerText = "Logging in...";
@@ -27,6 +34,9 @@ loginBtn.addEventListener('click', async () => {
 });
 
 logoutBtn.addEventListener('click', () => signOut(auth));
+
+closeBtn.addEventListener('click', () => modal.style.display = "none");
+window.onclick = function(event) { if (event.target == modal) modal.style.display = "none"; }
 
 onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -55,8 +65,7 @@ addBtn.addEventListener('click', async () => {
     addBtn.innerText = "Adding...";
     addBtn.disabled = true;
 
-    let newAccess = {};
-    let newScores = {};
+    let newAccess = {}; let newScores = {}; let newDetails = {};
     for (let unit in curriculum) {
         for (let sub = 1; sub <= curriculum[unit]; sub++) {
             newAccess[`unit${unit}_${sub}`] = false;
@@ -67,7 +76,7 @@ addBtn.addEventListener('click', async () => {
     }
 
     try {
-        await setDoc(doc(db, "users", email), { email: email, access: newAccess, scores: newScores });
+        await setDoc(doc(db, "users", email), { email: email, access: newAccess, scores: newScores, details: newDetails });
         alert("Student added successfully!");
         newStudentEmailInput.value = '';
         loadStudents(); 
@@ -107,7 +116,7 @@ async function loadStudents() {
                     let scoreBadge = "";
                     if (masterScore !== undefined) {
                         const color = masterScore >= 80 ? '#10b981' : '#ef4444';
-                        scoreBadge = `<div style="font-size: 11px; color: ${color}; font-weight: 700; margin-top: 5px; background: white; padding: 2px 6px; border-radius: 10px; border: 1px solid #e2e8f0; text-align: center;">🏆 ${masterScore}%</div>`;
+                        scoreBadge = `<div class="view-details-btn" data-email="${student.email}" data-quiz="${unitKey}_master" style="font-size: 11px; color: ${color}; font-weight: 700; margin-top: 5px; background: white; padding: 2px 6px; border-radius: 10px; border: 1px solid #e2e8f0; text-align: center; cursor: pointer;" title="Click to view detailed responses">🏆 ${masterScore}%</div>`;
                     }
                     
                     unitTotal++; studentTotalTopics++;
@@ -131,7 +140,7 @@ async function loadStudents() {
                 let finalBadge = "";
                 if (finalScore !== undefined && finalScore > 0) {
                      const color = finalScore >= 80 ? '#10b981' : '#ef4444';
-                     finalBadge = `<span style="margin-left: auto; font-size: 13px; color: ${color}; background: white; padding: 2px 8px; border-radius: 12px;">Score: ${finalScore}%</span>`;
+                     finalBadge = `<span class="view-details-btn" data-email="${student.email}" data-quiz="${finalKey}" style="margin-left: auto; font-size: 13px; color: ${color}; background: white; padding: 2px 8px; border-radius: 12px; cursor: pointer;" title="Click to view detailed responses">Score: ${finalScore}%</span>`;
                 }
 
                 unitTotal++; studentTotalTopics++;
@@ -163,7 +172,7 @@ async function loadStudents() {
             let customScoresHTML = "";
             for (const [key, score] of Object.entries(student.scores || {})) {
                 if (key.startsWith("custom_") && score !== undefined) {
-                    customScoresHTML += `<div style="font-size: 13px; color: #6d28d9; margin-top: 6px; background: #f3e8ff; padding: 4px 8px; border-radius: 4px; border: 1px solid #d8b4fe;"><strong>${key}:</strong> ${score}%</div>`;
+                    customScoresHTML += `<div class="view-details-btn" data-email="${student.email}" data-quiz="${key}" style="font-size: 13px; color: #6d28d9; margin-top: 6px; background: #f3e8ff; padding: 4px 8px; border-radius: 4px; border: 1px solid #d8b4fe; cursor: pointer;" title="Click to view detailed responses"><strong>${key}:</strong> ${score}%</div>`;
                 }
             }
             if (customScoresHTML !== "") {
@@ -194,7 +203,7 @@ async function loadStudents() {
         attachEventListeners();
 
     } catch(e) {
-        tableBody.innerHTML = `<tr><td colspan="${Object.keys(curriculum).length + 2}" style='color:var(--danger); padding: 20px;'>Failed to load students.</td></tr>`;
+        tableBody.innerHTML = `<tr><td colspan="${Object.keys(curriculum).length + 2}" style='color:var(--danger); padding: 20px;'>Failed to load students. Check console.</td></tr>`;
     }
 }
 
@@ -248,6 +257,52 @@ function attachEventListeners() {
                 e.target.innerText = "Deleting..."; e.target.disabled = true; e.target.style.opacity = "0.5";
                 try { await deleteDoc(doc(db, "users", email)); loadStudents(); } 
                 catch(err) { alert("Error removing student."); e.target.innerText = "Remove User"; e.target.disabled = false; e.target.style.opacity = "1"; }
+            }
+        });
+    });
+
+    // --- NEW: Open Details Modal ---
+    document.querySelectorAll('.view-details-btn').forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+            const email = e.target.getAttribute('data-email');
+            const quizKey = e.target.getAttribute('data-quiz');
+            
+            modal.style.display = "flex";
+            modalTitle.innerText = "Loading Details...";
+            modalSubtitle.innerText = `Fetching data for ${email}`;
+            modalBody.innerHTML = "<p>Please wait...</p>";
+
+            try {
+                const docSnap = await getDoc(doc(db, "users", email));
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    const detailsArray = data.details ? data.details[quizKey] : null;
+
+                    if (!detailsArray || detailsArray.length === 0) {
+                        modalTitle.innerText = "No Details Available";
+                        modalBody.innerHTML = "<p style='color: #64748b;'>Detailed breakdown was not saved for this attempt. (The student may have taken this quiz before the detailed tracking update was deployed).</p>";
+                        return;
+                    }
+
+                    modalTitle.innerText = `Quiz: ${quizKey.replace(/_/g, ' ').toUpperCase()}`;
+                    modalBody.innerHTML = "";
+                    
+                    detailsArray.forEach((qData, i) => {
+                        const statusClass = qData.isCorrect ? 'detail-correct' : 'detail-incorrect';
+                        const icon = qData.isCorrect ? '✅' : '❌';
+                        
+                        modalBody.innerHTML += `
+                            <div class="detail-item ${statusClass}">
+                                <p style="font-weight: 600; margin: 0 0 10px 0; color: #1e293b;">${qData.qText}</p>
+                                <p style="margin: 0 0 5px 0; font-size: 14px;"><strong>Student Marked:</strong> ${qData.selectedOption}</p>
+                                ${!qData.isCorrect ? `<p style="margin: 0; font-size: 14px; color: #059669;"><strong>Correct Answer:</strong> ${qData.correctOption}</p>` : ''}
+                            </div>
+                        `;
+                    });
+                }
+            } catch (err) {
+                modalTitle.innerText = "Error";
+                modalBody.innerHTML = "<p style='color:red;'>Could not load details from the database.</p>";
             }
         });
     });
