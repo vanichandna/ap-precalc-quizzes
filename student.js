@@ -60,7 +60,7 @@ onAuthStateChanged(auth, async (user) => {
             
             const studentData = docSnap.data();
             const scores = studentData.scores || {};
-            const detailsObj = studentData.details || {}; // Grab the details object
+            const detailsObj = studentData.details || {}; 
             
             let totalAssigned = 0;
             let totalCompleted = 0;
@@ -196,10 +196,9 @@ onAuthStateChanged(auth, async (user) => {
                 progressText.innerText = `${progressPercentage}% Completed (${totalCompleted}/${totalAssigned})`;
             }
 
-            // Add Modal Listeners for Students
+            // --- FIX APPLIED HERE (currentTarget) ---
             document.querySelectorAll('.view-details-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
-                    // FIX: Changed e.target to e.currentTarget
                     const quizKey = e.currentTarget.getAttribute('data-quiz');
                     modal.style.display = "flex";
                     modalTitle.innerText = `Quiz: ${quizKey.replace(/_/g, ' ').toUpperCase()}`;
@@ -223,7 +222,7 @@ onAuthStateChanged(auth, async (user) => {
                     });
                 });
             });
-            
+
         } else {
             signOut(auth);
             loginMessage.innerText = "Access Denied: Your email is not authorized by the teacher.";
