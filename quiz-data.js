@@ -2404,7 +2404,7 @@ export const masterCurriculum = {
             }
         ]
     },
-};
+},
 "custom_2_lesson": {
         title: "Lesson 2: The Right Angle Unlock",
         subtitle: "Parallel, Perpendicular & Distance",
