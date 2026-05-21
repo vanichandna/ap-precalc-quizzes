@@ -261,10 +261,9 @@ function attachEventListeners() {
         });
     });
 
-    // --- NEW: Open Details Modal ---
+    // --- FIX APPLIED HERE (currentTarget) ---
     document.querySelectorAll('.view-details-btn').forEach(btn => {
         btn.addEventListener('click', async (e) => {
-            // FIX: Changed e.target to e.currentTarget
             const email = e.currentTarget.getAttribute('data-email');
             const quizKey = e.currentTarget.getAttribute('data-quiz');
             
@@ -281,14 +280,14 @@ function attachEventListeners() {
 
                     if (!detailsArray || detailsArray.length === 0) {
                         modalTitle.innerText = "No Details Available";
-                        modalBody.innerHTML = "<p style='color: #64748b;'>Detailed breakdown was not saved for this attempt. (The student may have taken this quiz before the detailed tracking update was deployed).</p>";
+                        modalBody.innerHTML = "<p style='color: #64748b;'>Detailed breakdown was not saved for this attempt.</p>";
                         return;
                     }
 
                     modalTitle.innerText = `Quiz: ${quizKey.replace(/_/g, ' ').toUpperCase()}`;
                     modalBody.innerHTML = "";
                     
-                    detailsArray.forEach((qData) => {
+                    detailsArray.forEach((qData, i) => {
                         const statusClass = qData.isCorrect ? 'detail-correct' : 'detail-incorrect';
                         modalBody.innerHTML += `
                             <div class="detail-item ${statusClass}">
