@@ -2408,7 +2408,7 @@ export const masterCurriculum = {
         title: "Lesson 2: The Right Angle Unlock",
         subtitle: "Parallel, Perpendicular & Distance",
         themeColor: "#2980b9", 
-        timeLimit: 15,
+        // timeLimit: 15,
         questions: [
             { 
                 q: "1. Line A has the equation y = -5x + 12. What is the gradient of a line that is perfectly parallel to Line A?", 
