@@ -2405,3 +2405,59 @@ export const masterCurriculum = {
         ]
     },
 };
+"custom_2_lesson": {
+        title: "Lesson 2: The Right Angle Unlock",
+        subtitle: "Parallel, Perpendicular & Distance",
+        themeColor: "#2980b9", 
+        timeLimit: 15,
+        questions: [
+            { 
+                q: "1. Line A has the equation y = -5x + 12. What is the gradient of a line that is perfectly parallel to Line A?", 
+                opts: { A: "-5", B: "1/5", C: "5", D: "-1/5" }, 
+                ans: "A", 
+                sol: "Parallel lines never crash into each other, which means their steepness must be exactly identical. The gradient stays exactly the same: -5." 
+            },
+            { 
+                q: "2. Line 1 is y = 3x - 4. Line 2 is parallel to Line 1 and crosses the y-axis at (0, 7). What is the equation of Line 2?", 
+                opts: { A: "y = 3x + 7", B: "y = -1/3x + 7", C: "y = 3x - 4", D: "y = 7x + 3" }, 
+                ans: "A", 
+                sol: "Since it is parallel, we steal the exact same gradient (m = 3). We are given the new y-intercept starting point (c = 7). Plug them into the cheat code: y = 3x + 7." 
+            },
+            { 
+                q: "3. What is the perpendicular gradient to the line y = 4x - 9?", 
+                opts: { A: "-1/4", B: "1/4", C: "-4", D: "4" }, 
+                ans: "A", 
+                sol: "Use the 'Flip and Switch' rule for the 90-degree crash! The original gradient is 4 (which is the fraction 4/1). Flip it upside down to 1/4, and switch the sign to negative. The answer is -1/4." 
+            },
+            { 
+                q: "4. If a line has a gradient of -2/3, what is the gradient of a line perpendicular to it?", 
+                opts: { A: "3/2", B: "-3/2", C: "2/3", D: "-2/3" }, 
+                ans: "A", 
+                sol: "Flip and Switch! Flip the fraction 2/3 upside down to get 3/2. The original was negative, so switch it to positive. The perpendicular gradient is 3/2." 
+            },
+            { 
+                q: "5. Line P has the equation y = 1/3x + 5. Line Q is perpendicular to Line P and passes through (0, -2). What is the equation of Line Q?", 
+                opts: { A: "y = -3x - 2", B: "y = -1/3x - 2", C: "y = 3x - 2", D: "y = -3x + 5" }, 
+                ans: "A", 
+                sol: "Step 1: Flip and switch the gradient 1/3 to get -3 (this is your new m). Step 2: The coordinate (0, -2) gives us our new y-intercept (c = -2). Final equation: y = -3x - 2." 
+            },
+            { 
+                q: "6. Calculate the exact length of the line segment connecting point A(1, 2) and point B(4, 6).", 
+                opts: { A: "5", B: "7", C: "25", D: "10" }, 
+                ans: "A", 
+                sol: "Use the Distance Formula: d = √((x2 - x1)² + (y2 - y1)²). Plug in the numbers: √((4 - 1)² + (6 - 2)²) = √(3² + 4²) = √(9 + 16) = √25 = 5." 
+            },
+            { 
+                q: "7. Find the exact distance between point C(-2, 3) and point D(4, 11).", 
+                opts: { A: "10", B: "14", C: "100", D: "8" }, 
+                ans: "A", 
+                sol: "Distance Formula: √((4 - (-2))² + (11 - 3)²). Watch the double negative! Subtracting negative 2 becomes (4 + 2), which is 6. So, √(6² + 8²) = √(36 + 64) = √100 = 10." 
+            },
+            { 
+                q: "8. Boss Level: A line passes through (2, 4) and (4, 10). Find the equation of the line that is perpendicular to this line and passes through (0, 5).", 
+                opts: { A: "y = -1/3x + 5", B: "y = 3x + 5", C: "y = -3x + 5", D: "y = -1/3x - 5" }, 
+                ans: "A", 
+                sol: "Step 1 (Original m): (10 - 4) / (4 - 2) = 6 / 2 = 3. Step 2 (Perpendicular m): Flip and switch 3 to get -1/3. Step 3 (Blueprint): Passes through (0, 5), so c = 5. Final Equation: y = -1/3x + 5." 
+            }
+        ]
+    };
