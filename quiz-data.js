@@ -2404,7 +2404,6 @@ export const masterCurriculum = {
             }
         ]
     },
-},
 "custom_2_lesson": {
         title: "Lesson 2: The Right Angle Unlock",
         subtitle: "Parallel, Perpendicular & Distance",
@@ -2460,4 +2459,5 @@ export const masterCurriculum = {
                 sol: "Step 1 (Original m): (10 - 4) / (4 - 2) = 6 / 2 = 3. Step 2 (Perpendicular m): Flip and switch 3 to get -1/3. Step 3 (Blueprint): Passes through (0, 5), so c = 5. Final Equation: y = -1/3x + 5." 
             }
         ]
-    };
+    }
+};
