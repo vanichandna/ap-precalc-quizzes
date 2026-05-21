@@ -110,9 +110,10 @@ onAuthStateChanged(auth, async (user) => {
             submitBtn.style.display = "block"; 
             renderQuiz(); 
 
-            if (diffParam === 'master' || isFinal) {
+            // --- TEACHER CONTROLLED TIMER LOGIC ---
+            if (currentQuiz.timeLimit && currentQuiz.timeLimit > 0) {
                 timerBar.style.display = "block";
-                timeLeft = isFinal ? 20 * 60 : 10 * 60; 
+                timeLeft = currentQuiz.timeLimit * 60; // Convert minutes to seconds
                 
                 timerInterval = setInterval(() => {
                     if (submitBtn.disabled) return clearInterval(timerInterval); 
@@ -130,6 +131,8 @@ onAuthStateChanged(auth, async (user) => {
                         submitBtn.click(); 
                     }
                 }, 1000);
+            } else {
+                timerBar.style.display = "none";
             }
 
         } else {
@@ -162,10 +165,14 @@ submitBtn.addEventListener('click', async () => {
     let allAnswered = true;
     currentQuiz.questions.forEach((item, index) => { if (!document.querySelector(`input[name="q${index}"]:checked`)) allAnswered = false; });
     
-    if (!allAnswered && (!timerInterval || timeLeft > 0)) return alert("Please answer all questions before submitting.");
+    // Check if the quiz actually has a timer active and if it has run out
+    const isTimed = currentQuiz.timeLimit && currentQuiz.timeLimit > 0;
+    if (!allAnswered && (!isTimed || timeLeft > 0)) {
+        return alert("Please answer all questions before submitting.");
+    }
     
     let score = 0;
-    let detailedResponses = []; // --- NEW: Array to track exact answers ---
+    let detailedResponses = [];
 
     currentQuiz.questions.forEach((item, index) => {
         const selectedInput = document.querySelector(`input[name="q${index}"]:checked`);
@@ -183,7 +190,6 @@ submitBtn.addEventListener('click', async () => {
         }
         document.getElementById(`solution-${index}`).style.display = "block"; 
 
-        // Add to our exact tracker
         detailedResponses.push({
             qText: item.q,
             selectedOption: selected ? `${selected}) ${item.opts[selected]}` : "Skipped/Blank",
@@ -216,11 +222,10 @@ submitBtn.addEventListener('click', async () => {
             currentBest = docSnap.data().scores[dbKey];
         }
 
-        // Only overwrite the database if the new score is higher (or equal)
         if (percentage >= currentBest) {
             await updateDoc(studentRef, { 
                 [`scores.${dbKey}`]: percentage,
-                [`details.${dbKey}`]: detailedResponses // Saves the detailed array!
+                [`details.${dbKey}`]: detailedResponses 
             });
             submitBtn.innerText = "Highest Score & Details Saved!";
         } else {
