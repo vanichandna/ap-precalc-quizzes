@@ -2459,5 +2459,61 @@ export const masterCurriculum = {
                 sol: "Step 1 (Original m): (10 - 4) / (4 - 2) = 6 / 2 = 3. Step 2 (Perpendicular m): Flip and switch 3 to get -1/3. Step 3 (Blueprint): Passes through (0, 5), so c = 5. Final Equation: y = -1/3x + 5." 
             }
         ]
+    },
+    "custom_3_lesson": {
+        title: "Lesson 3: The Ultimate Cheat Code",
+        subtitle: "Solving Quadratics with the Formula",
+        themeColor: "#8e44ad", 
+        timeLimit: 20,
+        questions: [
+            { 
+                q: "1. What are the correct values for a, b, and c in the equation x² - 5x + 6 = 0?", 
+                opts: { A: "a = 1, b = -5, c = 6", B: "a = 1, b = 5, c = 6", C: "a = 0, b = -5, c = 6", D: "a = 1, b = -5, c = -6" }, 
+                ans: "A", 
+                sol: "The equation must be in ax² + bx + c = 0 form. The 'a' is the invisible 1 attached to x², 'b' takes the negative sign in front of it to become -5, and 'c' is the positive 6." 
+            },
+            { 
+                q: "2. Which of the following is the correct Quadratic Formula (The Cheat Code)?", 
+                opts: { A: "x = (-b ± √(b² - 4ac)) / 2a", B: "x = (b ± √(b² + 4ac)) / 2a", C: "x = -b ± √(b² - 4ac)", D: "x = (-b ± √(a² - 4bc)) / 2c" }, 
+                ans: "A", 
+                sol: "This is the ultimate cheat code! Always write down your empty bracket skeleton first on paper: -( ) ± √(( )² - 4( )( )) / 2( )." 
+            },
+            { 
+                q: "3. If your b-value is -4, what happens when you plug it into the '-b' part at the very beginning of the formula?", 
+                opts: { A: "It becomes a positive 4.", B: "It stays -4.", C: "It becomes -16.", D: "It becomes 0." }, 
+                ans: "A", 
+                sol: "A double negative makes a positive! Plug it into your empty skeleton with brackets: -(-4) magically turns into a +4." 
+            },
+            { 
+                q: "4. What happens when you square a negative number in the formula, like (-3)²?", 
+                opts: { A: "It always becomes a positive number (9).", B: "It stays negative (-9).", C: "It becomes zero.", D: "Your calculator gives a syntax error." }, 
+                ans: "A", 
+                sol: "Squaring a negative number always results in a positive number. If your calculator ever says -9, it means you forgot to use brackets!" 
+            },
+            { 
+                q: "5. Find the exact roots of x² + 7x + 10 = 0.", 
+                opts: { A: "x = -2, x = -5", B: "x = 2, x = 5", C: "x = -1, x = -10", D: "x = 7, x = 10" }, 
+                ans: "A", 
+                sol: "a=1, b=7, c=10. Plug it into the formula: (-7 ± √(49 - 40)) / 2. This simplifies to (-7 ± 3) / 2. The plus version gives -2, the minus version gives -5." 
+            },
+            { 
+                q: "6. Find the exact roots of x² - 3x - 18 = 0.", 
+                opts: { A: "x = 6, x = -3", B: "x = -6, x = 3", C: "x = 9, x = -2", D: "x = -9, x = 2" }, 
+                ans: "A", 
+                sol: "a=1, b=-3, c=-18. Skeleton: -(-3) ± √((-3)² - 4(1)(-18)) / 2(1). This simplifies to (3 ± √81) / 2, which is (3 ± 9) / 2. The two roots are 6 and -3." 
+            },
+            { 
+                q: "7. Find the exact roots of 2x² - x - 6 = 0.", 
+                opts: { A: "x = 2, x = -1.5", B: "x = -2, x = 1.5", C: "x = 3, x = -2", D: "x = -3, x = 2" }, 
+                ans: "A", 
+                sol: "a=2, b=-1, c=-6. Skeleton: -(-1) ± √((-1)² - 4(2)(-6)) / 2(2). This gives (1 ± √49) / 4, which is (1 ± 7) / 4. 8/4 gives 2, and -6/4 gives -1.5." 
+            },
+            { 
+                q: "8. Boss Level Challenge! Find the roots of x² + 2x = 15.", 
+                opts: { A: "x = 3, x = -5", B: "x = -3, x = 5", C: "x = 15, x = -1", D: "x = 2, x = 15" }, 
+                ans: "A", 
+                sol: "The cheat code ONLY works if the equation equals zero! First, move the 15 over to get x² + 2x - 15 = 0. Now a=1, b=2, c=-15. The formula gives (-2 ± √64) / 2. The roots are 3 and -5." 
+            }
+        ]
     }
 };
