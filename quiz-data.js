@@ -2515,5 +2515,61 @@ export const masterCurriculum = {
                 sol: "The cheat code ONLY works if the equation equals zero! First, move the 15 over to get x² + 2x - 15 = 0. Now a=1, b=2, c=-15. The formula gives (-2 ± √64) / 2. The roots are 3 and -5." 
             }
         ]
+    },
+    "custom_4_lesson": {
+        title: "Lesson 4: The Above/Below Ground Rule",
+        subtitle: "Solving Quadratic Inequalities",
+        themeColor: "#e67e22", 
+        timeLimit: 20,
+        questions: [
+            { 
+                q: "1. When a quadratic inequality asks where the equation is < 0, what part of the U-shape sketch are you looking for?", 
+                opts: { A: "Below ground (The connected tunnel)", B: "Above ground (The split wings)", C: "Exactly on the x-axis", D: "The y-intercept" }, 
+                ans: "A", 
+                sol: "Less than zero (< 0) means negative, which is below the ground. This forms the single, connected 'tunnel' between your two roots." 
+            },
+            { 
+                q: "2. If your final answer looks like 'x < 2 OR x > 5' (two separate pieces flying apart), what kind of inequality sign did the original question have?", 
+                opts: { A: "Greater than (> 0)", B: "Less than (< 0)", C: "Equal to (= 0)", D: "Less than or equal to (≤ 0)" }, 
+                ans: "A", 
+                sol: "Answers that split into two separate directions are the 'wings' of the U-shape. This happens when the curve is flying ABOVE the ground (> 0)." 
+            },
+            { 
+                q: "3. You use your calculator and find the roots are 3 and 7. The original question is x² - 10x + 21 < 0. What is your final answer?", 
+                opts: { A: "3 < x < 7", B: "x < 3 OR x > 7", C: "-3 < x < -7", D: "x < -3 OR x > -7" }, 
+                ans: "A", 
+                sol: "The sign is < 0 (below ground). Draw your U-shape crossing at 3 and 7. The bottom of the U connects them, so your answer is one piece: 3 < x < 7." 
+            },
+            { 
+                q: "4. You find your roots are -2 and 4. The question is x² - 2x - 8 ≥ 0. What is your final answer?", 
+                opts: { A: "x ≤ -2 OR x ≥ 4", B: "-2 ≤ x ≤ 4", C: "x < -2 OR x > 4", D: "-2 < x < 4" }, 
+                ans: "A", 
+                sol: "The sign is ≥ 0 (above ground). The arms split apart from -2 and 4. Don't forget to copy the 'or equal to' line from the original question!" 
+            },
+            { 
+                q: "5. A student answers 'x < 1 OR x > 6' for the question x² - 7x + 6 ≥ 0. What tiny mistake did they make?", 
+                opts: { A: "They forgot the 'or equal to' lines under their inequality signs.", B: "They should have connected them like 1 < x < 6.", C: "They found the wrong roots.", D: "They used the wrong numbers entirely." }, 
+                ans: "A", 
+                sol: "The original question had a ≥ sign. The student correctly identified the 'wings', but forgot to copy the little line underneath. It must be x ≤ 1 OR x ≥ 6." 
+            },
+            { 
+                q: "6. Solve the inequality: x² - 16 < 0.", 
+                opts: { A: "-4 < x < 4", B: "x < -4 OR x > 4", C: "x < 4", D: "-16 < x < 16" }, 
+                ans: "A", 
+                sol: "Use your calculator (a=1, b=0, c=-16) to find roots at 4 and -4. The sign is < 0, meaning the connected tunnel. Answer: -4 < x < 4." 
+            },
+            { 
+                q: "7. Solve the inequality: x² + 5x + 4 > 0.", 
+                opts: { A: "x < -4 OR x > -1", B: "-4 < x < -1", C: "x < 1 OR x > 4", D: "1 < x < 4" }, 
+                ans: "A", 
+                sol: "Roots are -1 and -4. Sketch the U-shape crossing at -4 (left) and -1 (right). The > 0 sign means split wings. Answer: x < -4 OR x > -1." 
+            },
+            { 
+                q: "8. Boss Level Challenge! Solve: x² - 3x ≥ 10.", 
+                opts: { A: "x ≤ -2 OR x ≥ 5", B: "-2 ≤ x ≤ 5", C: "x ≤ 2 OR x ≥ -5", D: "-5 ≤ x ≤ 2" }, 
+                ans: "A", 
+                sol: "TRAP! Make it zero first by moving the 10: x² - 3x - 10 ≥ 0. The roots are 5 and -2. The ≥ sign means the split wings. Answer: x ≤ -2 OR x ≥ 5." 
+            }
+        ]
     }
 };
