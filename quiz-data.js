@@ -2571,5 +2571,61 @@ export const masterCurriculum = {
                 sol: "TRAP! Make it zero first by moving the 10: x² - 3x - 10 ≥ 0. The roots are 5 and -2. The ≥ sign means the split wings. Answer: x ≤ -2 OR x ≥ 5." 
             }
         ]
+    },
+    "custom_5_lesson": {
+        "title": "Lesson 5: The Power Rule",
+        "subtitle": "Basic Calculus & Gradients",
+        "themeColor": "#e74c3c", 
+        "timeLimit": 25,
+        "questions": [
+            { 
+                "q": "1. What is the first step of the 'Multiply and Drop' cheat code to find dy/dx?", 
+                "opts": { "A": "Multiply the floating power by the big number in front.", "B": "Add the floating power to the big number.", "C": "Drop the x completely.", "D": "Make the floating power a zero." }, 
+                "ans": "A", 
+                "sol": "Step 1 is always to Multiply! Take that little floating power and multiply it by the big base number attached to the x." 
+            },
+            { 
+                "q": "2. Find the steepness tracker (dy/dx) for the equation y = 4x³.", 
+                "opts": { "A": "12x²", "B": "12x³", "C": "4x²", "D": "7x²" }, 
+                "ans": "A", 
+                "sol": "Multiply: 3 times 4 is 12. Drop: The power of 3 drops down by one to become 2. The answer is 12x²." 
+            },
+            { 
+                "q": "3. What happens to a 'solo number' (a number with no x attached, like +7) when you find dy/dx?", 
+                "opts": { "A": "It disappears completely and becomes 0.", "B": "It stays exactly the same.", "C": "It gets an x attached to it.", "D": "It becomes negative." }, 
+                "ans": "A", 
+                "sol": "Solo numbers have no steepness (they are flat lines on a graph). Therefore, when you use the tracker, they completely vanish!" 
+            },
+            { 
+                "q": "4. Find dy/dx for the equation y = 5x.", 
+                "opts": { "A": "5", "B": "5x", "C": "0", "D": "1" }, 
+                "ans": "A", 
+                "sol": "When an x has no visible power, it drops away entirely, leaving just the number glued to it. The answer is 5." 
+            },
+            { 
+                "q": "5. Find the full dy/dx tracker for: y = 2x⁴ - 3x² + 8x - 15.", 
+                "opts": { "A": "8x³ - 6x + 8", "B": "8x³ - 6x + 8x - 15", "C": "6x³ - 5x + 8", "D": "8x³ - 6x² + 8" }, 
+                "ans": "A", 
+                "sol": "Do it in chunks! 2x⁴ becomes 8x³. The -3x² becomes -6x. The 8x drops the x to become 8. The -15 disappears entirely.  8x³ - 6x + 8." 
+            },
+            { 
+                "q": "6. Find the exact gradient of the curve y = x² + 4x at the point where x = 3.", 
+                "opts": { "A": "10", "B": "21", "C": "7", "D": "2" }, 
+                "ans": "A", 
+                "sol": "Step 1 (Find Tracker): dy/dx = 2x + 4. Step 2 (Plug it in): Plug x = 3 into your tracker. 2(3) + 4 = 6 + 4 = 10." 
+            },
+            { 
+                "q": "7. Find the exact gradient of the curve y = 3x³ - 5x at the point where x = 2.", 
+                "opts": { "A": "31", "B": "14", "C": "13", "D": "36" }, 
+                "ans": "A", 
+                "sol": "Step 1 (Find Tracker): dy/dx = 9x² - 5. Step 2 (Plug it in): Plug in x = 2. 9(2)² - 5 = 9(4) - 5 = 36 - 5 = 31." 
+            },
+            { 
+                "q": "8. Boss Level Challenge! Find the exact gradient of y = x³ - 2x² + 4 at the specific coordinate (4, 36).", 
+                "opts": { "A": "32", "B": "36", "C": "20", "D": "48" }, 
+                "ans": "A", 
+                "sol": "Don't fall for the trap! You only plug the x-value into the tracker. Step 1: dy/dx = 3x² - 4x. Step 2: Plug in ONLY x = 4. 3(4)² - 4(4) = 3(16) - 16 = 48 - 16 = 32." 
+            }
+        ]
     }
 };
