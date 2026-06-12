@@ -2627,5 +2627,61 @@ export const masterCurriculum = {
                 "sol": "Don't fall for the trap! You only plug the x-value into the tracker. Step 1: dy/dx = 3x² - 4x. Step 2: Plug in ONLY x = 4. 3(4)² - 4(4) = 3(16) - 16 = 48 - 16 = 32." 
             }
         ]
+    },
+    "custom_6_lesson": {
+        "title": "Lesson 6: The Peak and The Valley",
+        "subtitle": "Finding Turning Points",
+        "themeColor": "#16a085", 
+        "timeLimit": 20,
+        "questions": [
+            { 
+                "q": "1. What is mathematically special about the exact top of a peak or the exact bottom of a valley on a curve?", 
+                "opts": { "A": "The steepness (dy/dx) is exactly 0.", "B": "The x-value is exactly 0.", "C": "The y-value is exactly 0.", "D": "The steepness is constantly increasing." }, 
+                "ans": "A", 
+                "sol": "At a turning point, the rollercoaster is perfectly flat for a split second. It's not going up, and it's not going down. The gradient is zero!" 
+            },
+            { 
+                "q": "2. What is Step 2 of the Boss Strategy for finding a turning point?", 
+                "opts": { "A": "Force your dy/dx tracker to equal zero.", "B": "Plug x into the tracker.", "C": "Draw a U-shape sketch.", "D": "Make x equal to zero." }, 
+                "ans": "A", 
+                "sol": "Step 1 is finding the tracker. Step 2 is forcing that tracker to equal zero (because we know the steepness is flat!). Step 3 is the Original Return." 
+            },
+            { 
+                "q": "3. The Deadliest Trap: Once you find your x-coordinate for the turning point, where do you plug it in to find the y-coordinate?", 
+                "opts": { "A": "The original y= equation.", "B": "The dy/dx tracker equation.", "C": "The quadratic formula.", "D": "You don't plug it in anywhere." }, 
+                "ans": "A", 
+                "sol": "The Original Return! You must plug x back into the very first equation in the question to find out how high up in the sky the point is. If you plug it into dy/dx, you will just get 0." 
+            },
+            { 
+                "q": "4. Find ONLY the x-coordinate of the turning point for the curve y = x² - 10x + 8.", 
+                "opts": { "A": "x = 5", "B": "x = 10", "C": "x = -5", "D": "x = 8" }, 
+                "ans": "A", 
+                "sol": "Step 1: dy/dx = 2x - 10. Step 2: Set to zero. 2x - 10 = 0. Move the 10 over to get 2x = 10. Divide by 2 to get x = 5." 
+            },
+            { 
+                "q": "5. A curve has a steepness tracker of dy/dx = 3x² - 27. What are the x-coordinates of its turning points?", 
+                "opts": { "A": "x = 3 and x = -3", "B": "x = 9 and x = -9", "C": "x = 0 and x = 3", "D": "x = 27 and x = -27" }, 
+                "ans": "A", 
+                "sol": "Set 3x² - 27 = 0. Move the 27 over: 3x² = 27. Divide by 3: x² = 9. The square root of 9 is both positive 3 and negative 3." 
+            },
+            { 
+                "q": "6. Find the full, exact coordinates (x, y) of the turning point for y = 2x² - 8x + 5.", 
+                "opts": { "A": "(2, -3)", "B": "(2, 0)", "C": "(-2, 29)", "D": "(4, 5)" }, 
+                "ans": "A", 
+                "sol": "Step 1: dy/dx = 4x - 8. Step 2: 4x - 8 = 0 means x = 2. Step 3 (Original Return): y = 2(2)² - 8(2) + 5 = 8 - 16 + 5 = -3. The coordinate is (2, -3)." 
+            },
+            { 
+                "q": "7. Find ONLY the y-coordinate of the turning point for the curve y = -x² + 6x - 1.", 
+                "opts": { "A": "8", "B": "3", "C": "0", "D": "26" }, 
+                "ans": "A", 
+                "sol": "Step 1: dy/dx = -2x + 6. Step 2: -2x + 6 = 0 means x = 3. Step 3 (Original Return): y = -(3)² + 6(3) - 1. This becomes -9 + 18 - 1 = 8." 
+            },
+            { 
+                "q": "8. Boss Level Challenge! The curve y = x³ - 3x² - 24x has two turning points. One is at x = -2. Where is the other one?", 
+                "opts": { "A": "x = 4", "B": "x = 2", "C": "x = -4", "D": "x = 8" }, 
+                "ans": "A", 
+                "sol": "Step 1: dy/dx = 3x² - 6x - 24. Step 2: 3x² - 6x - 24 = 0. Use your calculator cheat code! a=3, b=-6, c=-24. The two roots are 4 and -2. They gave you -2, so the other is 4." 
+            }
+        ]
     }
 };
