@@ -2683,5 +2683,61 @@ export const masterCurriculum = {
                 "sol": "Step 1: dy/dx = 3x² - 6x - 24. Step 2: 3x² - 6x - 24 = 0. Use your calculator cheat code! a=3, b=-6, c=-24. The two roots are 4 and -2. They gave you -2, so the other is 4." 
             }
         ]
+    },
+    "custom_7_lesson": {
+        "title": "Lesson 7: The Gravity Check",
+        "subtitle": "Determining Max & Min Points",
+        "themeColor": "#9b59b6", 
+        "timeLimit": 15,
+        "questions": [
+            { 
+                "q": "1. What is the mathematical symbol for the 'Gravity Check' (the Second Derivative)?", 
+                "opts": { "A": "d²y/dx²", "B": "dy/dx", "C": "y²", "D": "(dy/dx)²" }, 
+                "ans": "A", 
+                "sol": "The second derivative is written as d²y/dx². It literally means finding the derivative of the derivative!" 
+            },
+            { 
+                "q": "2. When you plug your x-coordinate into the second derivative, what are you actually looking for?", 
+                "opts": { "A": "Whether the final number is positive or negative.", "B": "The exact y-coordinate of the turning point.", "C": "To see if the number equals zero.", "D": "The steepness of the tangent line." }, 
+                "ans": "A", 
+                "sol": "The Vibe Check! We don't care about the actual number itself. We only care if it has a minus sign in front of it (Sad/Max) or if it's positive (Happy/Min)." 
+            },
+            { 
+                "q": "3. If your second derivative calculation gives you a positive number (like +12), what kind of turning point is it?", 
+                "opts": { "A": "A Minimum point", "B": "A Maximum point", "C": "Neither, it's a straight line", "D": "An x-intercept" }, 
+                "ans": "A", 
+                "sol": "Positive vibes = Happy face! The flat spot is at the bottom of the smile, which makes it a Minimum." 
+            },
+            { 
+                "q": "4. If your second derivative calculation gives you a negative number (like -6), what kind of turning point is it?", 
+                "opts": { "A": "A Maximum point", "B": "A Minimum point", "C": "A y-intercept", "D": "A root" }, 
+                "ans": "A", 
+                "sol": "Negative vibes = Sad face! The flat spot is at the very top of the frown, which makes it a Maximum." 
+            },
+            { 
+                "q": "5. Find the second derivative (d²y/dx²) for the curve y = x³ - 5x² + 2x.", 
+                "opts": { "A": "6x - 10", "B": "3x² - 10x + 2", "C": "6x", "D": "3x² - 10" }, 
+                "ans": "A", 
+                "sol": "First derivative (dy/dx) = 3x² - 10x + 2. Now do 'Multiply and Drop' again on that answer! The second derivative is 6x - 10." 
+            },
+            { 
+                "q": "6. A curve has the equation y = -2x² + 8x - 3. What is its second derivative (d²y/dx²)?", 
+                "opts": { "A": "-4", "B": "-4x + 8", "C": "4", "D": "8" }, 
+                "ans": "A", 
+                "sol": "First derivative = -4x + 8. Second derivative = -4. Because it's a negative number everywhere, this curve is one giant sad face (a maximum)!" 
+            },
+            { 
+                "q": "7. A curve has the equation y = x³ - 12x. It has a turning point at x = -2. Use the second derivative to determine its nature.", 
+                "opts": { "A": "Maximum", "B": "Minimum", "C": "Neither", "D": "Cannot be determined" }, 
+                "ans": "A", 
+                "sol": "dy/dx = 3x² - 12. The gravity check (d²y/dx²) = 6x. Plug in x = -2: 6(-2) = -12. Negative vibes = Sad face = Maximum." 
+            },
+            { 
+                "q": "8. Boss Level Challenge! A curve has the gravity check equation d²y/dx² = 12x - 24. It has stationary points at x = 4 and x = -1. Which of those points is the Minimum?", 
+                "opts": { "A": "x = 4", "B": "x = -1", "C": "Both are Minimums", "D": "Neither are Minimums" }, 
+                "ans": "A", 
+                "sol": "A Minimum requires positive vibes (a Happy face). Plug in 4: 12(4) - 24 = 48 - 24 = 24 (Positive = Min). Plug in -1: 12(-1) - 24 = -12 - 24 = -36 (Negative = Max)." 
+            }
+        ]
     }
 };
