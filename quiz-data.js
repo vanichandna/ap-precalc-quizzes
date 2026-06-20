@@ -2739,5 +2739,61 @@ export const masterCurriculum = {
                 "sol": "A Minimum requires positive vibes (a Happy face). Plug in 4: 12(4) - 24 = 48 - 24 = 24 (Positive = Min). Plug in -1: 12(-1) - 24 = -12 - 24 = -36 (Negative = Max)." 
             }
         ]
+    },
+    "custom_8_lesson": {
+        "title": "Lesson 8: Tangents & Normals",
+        "subtitle": "The Crossover Episode",
+        "themeColor": "#e67e22", 
+        "timeLimit": 15,
+        "questions": [
+            { 
+                "q": "1. What is the mathematical definition of a Tangent line?", 
+                "opts": { "A": "A straight line that skims the curve and has the exact same gradient.", "B": "A line that crashes into the curve at 90 degrees.", "C": "A line that crosses the x-axis twice.", "D": "A curved line that perfectly matches the equation." }, 
+                "ans": "A", 
+                "sol": "A tangent perfectly skims the edge of the curve. Because it perfectly matches the steepness for that split second, its gradient (m) is exactly equal to the dy/dx tracker!" 
+            },
+            { 
+                "q": "2. What is the mathematical definition of a Normal line?", 
+                "opts": { "A": "A line that crashes into the curve at exactly 90 degrees.", "B": "A line that is perfectly parallel to the curve.", "C": "The standard horizontal line on a graph.", "D": "A line that connects two turning points." }, 
+                "ans": "A", 
+                "sol": "A normal line is perpendicular to the curve. To find its gradient, you must find the tangent's steepness first, and then use the 'Flip and Switch' cheat code!" 
+            },
+            { 
+                "q": "3. Step 2 of the Boss Strategy is 'The Original Return'. When do you use this?", 
+                "opts": { "A": "When they give you 'x' but you need the 'y' coordinate to build the line.", "B": "When you need to find the steepness tracker.", "C": "When you want to find the second derivative.", "D": "When you need to flip and switch the gradient." }, 
+                "ans": "A", 
+                "sol": "To build a line using y = mx + c, you need a full (x, y) coordinate. If they only say 'at x = 3', you MUST plug 3 back into the original y= equation to find the missing y-value!" 
+            },
+            { 
+                "q": "4. Find the gradient of the TANGENT to the curve y = 2x² - 3x at x = 4.", 
+                "opts": { "A": "13", "B": "5", "C": "20", "D": "-1/13" }, 
+                "ans": "A", 
+                "sol": "Step 1: Find the tracker. dy/dx = 4x - 3. Plug in x = 4: 4(4) - 3 = 16 - 3 = 13. Since it's a tangent, we keep it exactly as it is!" 
+            },
+            { 
+                "q": "5. Find the gradient of the NORMAL to the curve y = x² + 2x at x = 1.", 
+                "opts": { "A": "-1/4", "B": "4", "C": "-4", "D": "1/4" }, 
+                "ans": "A", 
+                "sol": "Step 1: Tracker is 2x + 2. Plug in x = 1: 2(1) + 2 = 4. BUT wait! The question asked for the Normal. You must flip and switch the 4 to get -1/4." 
+            },
+            { 
+                "q": "6. You are building a tangent line. You know m = 3, x = 2, and y = 8. What is the value of 'c'?", 
+                "opts": { "A": "2", "B": "14", "C": "-2", "D": "5" }, 
+                "ans": "A", 
+                "sol": "Use the blueprint: y = mx + c. Plug them in: 8 = 3(2) + c. This becomes 8 = 6 + c. Subtract 6 from both sides to find c = 2." 
+            },
+            { 
+                "q": "7. Exam Trap Check: If a question says 'The tangent at point P is PARALLEL to the tangent at point Q', what does that mean?", 
+                "opts": { "A": "Their gradients (dy/dx) are exactly equal to each other.", "B": "Their x-coordinates are equal.", "C": "Their y-coordinates are equal.", "D": "Their gradients are perpendicular." }, 
+                "ans": "A", 
+                "sol": "Parallel lines have identical steepness! If two tangents are parallel, you just set their dy/dx trackers equal to each other to solve the mystery." 
+            },
+            { 
+                "q": "8. Boss Level Challenge! The tangent to the curve y = 3x² - 5x + 1 at x = 2 has the equation y = 7x + c. What is the exact value of c?", 
+                "opts": { "A": "-11", "B": "3", "C": "14", "D": "-3" }, 
+                "ans": "A", 
+                "sol": "Step 1: Original Return! Plug x=2 into y= to get the coordinate. y = 3(4) - 5(2) + 1 = 12 - 10 + 1 = 3. Point is (2, 3). Step 2: Build! 3 = 7(2) + c. 3 = 14 + c. Therefore, c = -11." 
+            }
+        ]
     }
 };
