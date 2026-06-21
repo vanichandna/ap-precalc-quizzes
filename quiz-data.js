@@ -2964,5 +2964,174 @@ export const masterCurriculum = {
                 "sol": "Find roots (a=2, b=-11, c=5) -> x=5 and x=0.5. The < sign means we want the connected tunnel BELOW the ground. So, 0.5 < x < 5." 
             }
         ]
+    },
+    {
+    "custom_9_lesson": {
+        "title": "Lesson 9: The Rewind Button",
+        "subtitle": "Basic Integration",
+        "themeColor": "#3498db", 
+        "timeLimit": 15,
+        "questions": [
+            { 
+                "q": "1. What is the 'Rewind Button' rule for finding the original curve from its dy/dx steepness tracker?", 
+                "opts": { "A": "Add 1 to the power, then divide the big number by that NEW power.", "B": "Multiply the power by the big number, then drop the power.", "C": "Multiply everything by x.", "D": "Make the power zero." }, 
+                "ans": "A", 
+                "sol": "Integration is the exact opposite of differentiation! Step 1 is to Add and Divide." 
+            },
+            { 
+                "q": "2. Integrate the steepness tracker: dy/dx = 12x².", 
+                "opts": { "A": "4x³", "B": "24x", "C": "12x³", "D": "4x²" }, 
+                "ans": "A", 
+                "sol": "Add 1 to the power to get 3. Divide 12 by 3 to get 4. The answer is 4x³." 
+            },
+            { 
+                "q": "3. What happens to a 'solo number' (like +7) when you hit the Rewind Button?", 
+                "opts": { "A": "It gets an x attached to it (becomes 7x).", "B": "It disappears entirely.", "C": "It becomes negative.", "D": "It stays exactly the same." }, 
+                "ans": "A", 
+                "sol": "When differentiating, solo numbers vanish. Therefore, when rewinding, we have to give them their x back!" 
+            },
+            { 
+                "q": "4. Why do we ALWAYS have to write '+ C' at the end of a basic integration?", 
+                "opts": { "A": "To trap the 'Ghost Number' that might have vanished during differentiation.", "B": "Because 'C' stands for Calculus.", "C": "To show the line is curved.", "D": "Because the gradient is constant." }, 
+                "ans": "A", 
+                "sol": "Solo numbers disappear when you find dy/dx. When rewinding, we have no idea if the original equation ended with +10 or -50, so we use + C as a trap for the Ghost Number." 
+            },
+            { 
+                "q": "5. Hit the rewind button for dy/dx = 4x³ - 6x.", 
+                "opts": { "A": "y = x⁴ - 3x² + C", "B": "y = 12x² - 6 + C", "C": "y = 4x⁴ - 6x² + C", "D": "y = x⁴ - 2x² + C" }, 
+                "ans": "A", 
+                "sol": "4x³ becomes 4x⁴/4, which is just x⁴. The -6x becomes -6x²/2, which is -3x². Don't forget + C!" 
+            },
+            { 
+                "q": "6. What is Step 3 of the Boss Strategy: The Interrogation?", 
+                "opts": { "A": "Plug a given (x, y) coordinate into the new equation to find the exact value of C.", "B": "Set the equation to zero.", "C": "Find the second derivative.", "D": "Flip and switch the gradient." }, 
+                "ans": "A", 
+                "sol": "If the exam tells you the curve passes through a specific point, plug those numbers in for x and y. This forces the Ghost Number out of hiding!" 
+            },
+            { 
+                "q": "7. Trap Check! The tracker is dy/dx = 2x + 5. The curve passes through (1, 10). What is the value of C?", 
+                "opts": { "A": "4", "B": "10", "C": "0", "D": "12" }, 
+                "ans": "A", 
+                "sol": "Step 1 & 2: y = x² + 5x + C. Step 3 (Interrogation): 10 = (1)² + 5(1) + C. 10 = 6 + C. Therefore, C = 4." 
+            },
+            { 
+                "q": "8. Boss Level Challenge! dy/dx = 3x² - 4. The curve passes through (2, 5). Find the exact equation.", 
+                "opts": { "A": "y = x³ - 4x + 5", "B": "y = 3x³ - 4x + 5", "C": "y = x³ - 4x + C", "D": "y = x³ - 4x - 3" }, 
+                "ans": "A", 
+                "sol": "Rewind: y = x³ - 4x + C. Interrogate: 5 = (2)³ - 4(2) + C. 5 = 8 - 8 + C. 5 = 0 + C. So C = 5. Final equation: y = x³ - 4x + 5." 
+            }
+        ]
+    },
+    "custom_10_lesson": {
+        "title": "Lesson 10: Algebraic Gymnastics",
+        "subtitle": "Breaking the Indices Wall",
+        "themeColor": "#8e44ad", 
+        "timeLimit": 15,
+        "questions": [
+            { 
+                "q": "1. What is the number one rule about Calculus and Fractions?", 
+                "opts": { "A": "Calculus hates fractions! You must flatten them before using cheat codes.", "B": "Fractions always equal zero in calculus.", "C": "You must use the quadratic formula on fractions.", "D": "Fractions mean it is a normal line." }, 
+                "ans": "A", 
+                "sol": "The Multiply and Drop rule ONLY works on flat equations. If you see a fraction or a square root, you must use Gymnastics to flatten it first." 
+            },
+            { 
+                "q": "2. The Elevator Rule: How do you bring an x³ from the basement up to the top floor?", 
+                "opts": { "A": "Give it a negative power: x⁻³", "B": "Divide it by 2: x/2", "C": "Make it a fraction: 1/x³", "D": "Make it a square root." }, 
+                "ans": "A", 
+                "sol": "The Elevator is simple! Just attach a minus sign to the power, and it flips right up to the ground floor." 
+            },
+            { 
+                "q": "3. The Jailbreak Rule: How do you write √x as a floating power so you can differentiate it?", 
+                "opts": { "A": "x to the power of 1/2 (x^0.5)", "B": "x to the power of -1", "C": "x to the power of 2", "D": "x to the power of 0" }, 
+                "ans": "A", 
+                "sol": "A standard square root is secretly a fractional power of 1/2. Once it is x^(1/2), you can use the Multiply and Drop rule easily!" 
+            },
+            { 
+                "q": "4. Slice the Pie: How do you flatten the fraction (x⁵ + x³) / x²?", 
+                "opts": { "A": "x³ + x", "B": "x³ + x³", "C": "x⁷ + x⁵", "D": "x² + 1" }, 
+                "ans": "A", 
+                "sol": "Give them both a slice of the basement! x⁵ divided by x² is x³. Then, x³ divided by x² is x. The answer is x³ + x." 
+            },
+            { 
+                "q": "5. Use the Elevator to perfectly flatten the equation y = 5 / x⁴.", 
+                "opts": { "A": "y = 5x⁻⁴", "B": "y = -5x⁴", "C": "y = 4x⁻⁵", "D": "y = x⁻⁴" }, 
+                "ans": "A", 
+                "sol": "The 5 is already on the top floor, so it stays exactly where it is. The x⁴ takes the elevator up and becomes x⁻⁴.  5x⁻⁴." 
+            },
+            { 
+                "q": "6. Exam Prep: What must you do FIRST to flatten the equation y = (x² - 3)² / x³?", 
+                "opts": { "A": "Expand the brackets on the top floor.", "B": "Use the Elevator on the x³ immediately.", "C": "Add 1 to all powers.", "D": "Multiply everything by 3." }, 
+                "ans": "A", 
+                "sol": "Brackets are locks! You cannot Slice the Pie or use the Elevator until you FOIL the top of the fraction and unlock those pieces." 
+            },
+            { 
+                "q": "7. Flatten the equation y = 4√x + (2 / x).", 
+                "opts": { "A": "y = 4x^(1/2) + 2x⁻¹", "B": "y = 4x² + 2x⁻¹", "C": "y = x^(1/2) + 2x", "D": "y = 4x⁻¹ + 2x^(1/2)" }, 
+                "ans": "A", 
+                "sol": "Use the Jailbreak on the first part (√x becomes x^1/2). Use the Elevator on the second part (2/x becomes 2x⁻¹)." 
+            },
+            { 
+                "q": "8. Full Calculus Test! Find the steepness tracker dy/dx for the curve y = 2 / x³.", 
+                "opts": { "A": "-6x⁻⁴", "B": "-6x⁻²", "C": "6x⁻⁴", "D": "-3x²" }, 
+                "ans": "A", 
+                "sol": "Algebra first, Calculus second. Flatten it: y = 2x⁻³. Now Multiply and Drop: -3 times 2 is -6. Drop the power by 1: -3 minus 1 is -4. Answer: -6x⁻⁴." 
+            }
+        ]
+    },
+    "custom_stage_3_exam": {
+        "title": "Stage 3 Exam: Lessons 1-10",
+        "subtitle": "Real Past Paper Gauntlet",
+        "themeColor": "#e74c3c", 
+        "timeLimit": 30,
+        "questions": [
+            { 
+                "q": "1. (Indices) Flatten the exam equation: f(x) = (x² - 3)² / x³.", 
+                "opts": { "A": "x - 6x⁻¹ + 9x⁻³", "B": "x⁴ - 6x² + 9", "C": "x - 3x⁻¹ + 9x⁻³", "D": "x² - 9x⁻³" }, 
+                "ans": "A", 
+                "sol": "Expand top: x⁴ - 6x² + 9. Slice the pie: x⁴/x³ - 6x²/x³ + 9/x³. Subtract the powers: x - 6x⁻¹ + 9x⁻³." 
+            },
+            { 
+                "q": "2. (Differentiation) Using your flattened equation f(x) = x - 6x⁻¹ + 9x⁻³, find the steepness tracker f'(x).", 
+                "opts": { "A": "1 + 6x⁻² - 27x⁻⁴", "B": "1 - 6x⁻² + 9x⁻⁴", "C": "-6x⁻² - 27x⁻⁴", "D": "1 + 6x - 27x²" }, 
+                "ans": "A", 
+                "sol": "Multiply and Drop! x becomes 1. (-1)(-6) is +6, power drops to -2. (-3)(9) is -27, power drops to -4." 
+            },
+            { 
+                "q": "3. (Turning Points) Find the x-coordinates of the stationary points for the curve y = 2x³ - 3x² - 12x + 8.", 
+                "opts": { "A": "x = 2 and x = -1", "B": "x = 3 and x = 4", "C": "x = -2 and x = 1", "D": "x = 6 and x = -2" }, 
+                "ans": "A", 
+                "sol": "Tracker = 6x² - 6x - 12. Force to zero: 6x² - 6x - 12 = 0. Use your calculator cheat code! Roots are 2 and -1." 
+            },
+            { 
+                "q": "4. (Gravity Check) Use the second derivative to determine the exact nature of the turning point at x = 2 for the curve above.", 
+                "opts": { "A": "Minimum (Positive Vibes)", "B": "Maximum (Negative Vibes)", "C": "Straight Line", "D": "None of the above" }, 
+                "ans": "A", 
+                "sol": "d²y/dx² = 12x - 6. Plug in x=2: 12(2) - 6 = 18. Positive vibes = Happy Face = Minimum point!" 
+            },
+            { 
+                "q": "5. (Integration) A curve has dy/dx = 3x² - 20x + 29 and passes through P(2, 6). Find the Ghost Number (C).", 
+                "opts": { "A": "C = -20", "B": "C = 6", "C": "C = 0", "D": "C = 20" }, 
+                "ans": "A", 
+                "sol": "Rewind: y = x³ - 10x² + 29x + C. Interrogate: 6 = (2)³ - 10(2)² + 29(2) + C. 6 = 8 - 40 + 58 + C. 6 = 26 + C. Therefore, C = -20." 
+            },
+            { 
+                "q": "6. (Tangents) Find the gradient of the tangent to the curve y = x³ - 4x² + 7 at the exact coordinate (3, -2).", 
+                "opts": { "A": "m = 3", "B": "m = -2", "C": "m = 1", "D": "m = 9" }, 
+                "ans": "A", 
+                "sol": "Tracker = 3x² - 8x. Plug in the x-coordinate (3). 3(3)² - 8(3) = 27 - 24 = 3." 
+            },
+            { 
+                "q": "7. (Normals) If the gradient of a tangent is exactly 4, what is the gradient of the Normal line at that exact same point?", 
+                "opts": { "A": "-1/4", "B": "4", "C": "-4", "D": "1/4" }, 
+                "ans": "A", 
+                "sol": "The normal is perpendicular! You must use the 'Flip and Switch' cheat code on the tangent's gradient. 4 becomes -1/4." 
+            },
+            { 
+                "q": "8. (Inequalities) Solve the underground tunnel inequality: 2x² - 11x + 5 < 0.", 
+                "opts": { "A": "0.5 < x < 5", "B": "x < 0.5 or x > 5", "C": "x < 5", "D": "x > 0.5" }, 
+                "ans": "A", 
+                "sol": "Find roots (a=2, b=-11, c=5) -> x=5 and x=0.5. The < sign means we want the connected tunnel BELOW the ground. So, 0.5 < x < 5." 
+            }
+        ]
     }
 };
