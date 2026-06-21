@@ -2965,7 +2965,6 @@ export const masterCurriculum = {
             }
         ]
     },
-    {
     "custom_9_lesson": {
         "title": "Lesson 9: The Rewind Button",
         "subtitle": "Basic Integration",
