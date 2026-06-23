@@ -2963,5 +2963,76 @@ export const masterCurriculum = {
                 "sol": "Find roots (a=2, b=-11, c=5) -> x=5 and x=0.5. The < sign means we want the connected tunnel BELOW the ground. So, 0.5 < x < 5." 
             }
         ]
+    },
+    {
+    "custom_final_1": {
+        "title": "Final Boss Gauntlet: Exam Prep",
+        "subtitle": "Placement Exam Mastery (Lessons 1-12)",
+        "themeColor": "#ff00ff",
+        "layout": "left-column",
+        "timeLimit": 45,
+        "questions": [
+            { 
+                "q": "1. (Surds) Express (3 - √5)² in the form a + b√5.", 
+                "opts": { "A": "14 - 6√5", "B": "4 - 6√5", "C": "9 + 5", "D": "14 + 6√5" }, 
+                "ans": "A", 
+                "sol": "Write it out side-by-side: (3 - √5)(3 - √5). FOIL gives 9 - 3√5 - 3√5 + 5. Combine to get 14 - 6√5." 
+            },
+            { 
+                "q": "2. (Surds) Rationalize the denominator and simplify fully: 8 / (3 - √5).", 
+                "opts": { "A": "6 + 2√5", "B": "24 + 8√5", "C": "6 - 2√5", "D": "4 + √5" }, 
+                "ans": "A", 
+                "sol": "Multiply top and bottom by the flipped twin: (3 + √5). The bottom becomes 9 - 5 = 4. The top is 8(3 + √5). Divide 8 by 4 to get 2(3 + √5), which expands to 6 + 2√5." 
+            },
+            { 
+                "q": "3. (Algebraic Gymnastics) Flatten the exam equation: f(x) = (x³ + 2x - 5) / x².", 
+                "opts": { "A": "x + 2x⁻¹ - 5x⁻²", "B": "x³ + 2x - 5x⁻²", "C": "x + 2 - 5x⁻²", "D": "x² + 2x⁻¹ - 5" }, 
+                "ans": "A", 
+                "sol": "Slice the pie! Give every piece on the top floor its own x². x³/x² = x. 2x/x² = 2x⁻¹. -5/x² = -5x⁻²." 
+            },
+            { 
+                "q": "4. (Differentiation) Find the steepness tracker f'(x) for the curve f(x) = 4x² - 3x⁻¹.", 
+                "opts": { "A": "8x + 3x⁻²", "B": "8x - 3x⁻²", "C": "8x + 3", "D": "8x - 4x⁻²" }, 
+                "ans": "A", 
+                "sol": "Multiply and Drop! 2 times 4 is 8 (power drops to 1). -1 times -3 is +3 (power drops to -2). Answer: 8x + 3x⁻²." 
+            },
+            { 
+                "q": "5. (Integration) A curve has dy/dx = 6x² - 4. It passes through P(2, 10). Find the exact value of the Ghost Number (C).", 
+                "opts": { "A": "C = 2", "B": "C = 10", "C": "C = -2", "D": "C = 0" }, 
+                "ans": "A", 
+                "sol": "Rewind first: y = 2x³ - 4x + C. Now Interrogate using (2, 10): 10 = 2(2)³ - 4(2) + C. 10 = 16 - 8 + C. 10 = 8 + C, so C = 2." 
+            },
+            { 
+                "q": "6. (Coordinate Geometry) Find the exact gradient of the straight line passing through A(-2, 5) and B(4, -7).", 
+                "opts": { "A": "-2", "B": "2", "C": "-1/2", "D": "-12" }, 
+                "ans": "A", 
+                "sol": "Gradient = Change in Y / Change in X. (-7 - 5) / (4 - -2) = -12 / 6 = -2." 
+            },
+            { 
+                "q": "7. (Tunnel Inequalities) Solve the quadratic inequality: x² - 8x + 15 < 0.", 
+                "opts": { "A": "3 < x < 5", "B": "x < 3 or x > 5", "C": "x < 5", "D": "x > 3" }, 
+                "ans": "A", 
+                "sol": "Factorize to find the roots: (x - 3)(x - 5) = 0. Roots are 3 and 5. The < 0 sign means we want the connected underground tunnel. Therefore, 3 < x < 5." 
+            },
+            { 
+                "q": "8. (The Root Detector) The equation 2x² - 8x + k = 0 has equal roots. What is the value of k?", 
+                "opts": { "A": "k = 8", "B": "k = -8", "C": "k = 4", "D": "k = 16" }, 
+                "ans": "A", 
+                "sol": "Equal roots means the detector (b² - 4ac) equals exactly 0. a=2, b=-8, c=k. (-8)² - 4(2)(k) = 0. 64 - 8k = 0. 8k = 64. k = 8." 
+            },
+            { 
+                "q": "9. (Tangents & Normals) The steepness tracker for a curve is dy/dx = 4x. What is the gradient of the Normal line at x = 3?", 
+                "opts": { "A": "-1/12", "B": "12", "C": "-12", "D": "1/12" }, 
+                "ans": "A", 
+                "sol": "Plug in x=3 to find the Tangent gradient: 4(3) = 12. The Normal is perpendicular, so use the Flip and Switch cheat code! 12 becomes -1/12." 
+            },
+            { 
+                "q": "10. (The Root Detector) The equation x² + 6x + (k-2) = 0 has NO real roots. Set up the inequality for k.", 
+                "opts": { "A": "k > 11", "B": "k < 11", "C": "k > 9", "D": "k < 9" }, 
+                "ans": "A", 
+                "sol": "No real roots means b² - 4ac < 0. (6)² - 4(1)(k-2) < 0. 36 - 4k + 8 < 0. 44 - 4k < 0. 44 < 4k. Divide by 4 to get 11 < k, which is the same as k > 11." 
+            }
+        ]
     }
+}
 };
