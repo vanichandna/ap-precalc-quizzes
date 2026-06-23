@@ -2964,7 +2964,6 @@ export const masterCurriculum = {
             }
         ]
     },
-    {
     "custom_final_1": {
         "title": "Final Boss Gauntlet: Exam Prep",
         "subtitle": "Placement Exam Mastery (Lessons 1-12)",
@@ -3034,5 +3033,4 @@ export const masterCurriculum = {
             }
         ]
     }
-}
 };
